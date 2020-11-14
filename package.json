@@ -16,6 +16,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "styleguide": "FAST_REFRESH=false styleguidist server",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
