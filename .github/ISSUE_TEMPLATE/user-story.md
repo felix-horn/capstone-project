@@ -7,14 +7,14 @@ assignees: ''
 
 ---
 
-## Value statement - a requirement, not a solution
-As a **(role)** 
-I need **(an action)** 
-so that **(a benefit)** 
+## Value Statement
+As a **(role)**, 
+I need **(an action)**, 
+so that **(a benefit)**. 
 
 ## Description (Text, Scribble, Wireframe, Design)
 
-## Acceptance criteria
+## Acceptance Criteria
 - [ ] (functional descriptions)
 
 ## Tasks
