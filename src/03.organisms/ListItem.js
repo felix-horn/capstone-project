@@ -1,21 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import Checkbox from '@material-ui/core/Checkbox'
 
 ListItem.propTypes = {
   titleListItem: PropTypes.string.isRequired,
   isChecked: PropTypes.bool,
   onCheckboxClick: PropTypes.func.isRequired,
 }
-function ListItem({ titleListItem, isChecked, handleCheckboxClick }) {
+function ListItem({ titleListItem, isChecked, onCheckboxClick }) {
   return (
     <LabelStyled>
-      <CheckboxStyled
-        color="default"
+      <Checkbox
+        type="checkbox"
         checked={isChecked}
-        onChange={handleCheckboxClick}
-        value={titleListItem}
+        onChange={onCheckboxClick}
       />
       <span>{titleListItem}</span>
     </LabelStyled>
@@ -23,14 +21,12 @@ function ListItem({ titleListItem, isChecked, handleCheckboxClick }) {
 }
 
 const LabelStyled = styled.label`
-  display: flex;
-  align-items: center;
-  font-family: 'roboto';
+  display: block;
 `
 
-const CheckboxStyled = styled(Checkbox)`
-  color: ${({ checked }) => (checked ? '#B2B2B2' : '#757575')};
-  padding: 2px 22px;
+const Checkbox = styled.input`
+  transform: scale(1.5);
+  margin-right: 10px;
 `
 
 /** @component */
