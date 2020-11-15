@@ -3,15 +3,6 @@ name: User Story
 about: A default user story
 title: ''
 labels: ''
-assignees: felix-horn
-
----
-
----
-name: User Story
-about: A default user story
-title: "(Short name)"
-labels: ''
 assignees: ''
 
 ---
@@ -29,5 +20,5 @@ so that **(a benefit)**
 ## Tasks
 - [ ] (todos for the team)
 
-## Size
+## Complexity
 (small, medium, large)
