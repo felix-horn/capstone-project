@@ -2,15 +2,15 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
 InputForm.propTypes = {
-  onCreateTodo: PropTypes.func.isRequired,
+  onCreateListItem: PropTypes.func.isRequired,
 }
 
-export default function InputForm({ onCreateTodo }) {
+export default function InputForm({ onCreateListItem }) {
   function handleSubmit(event) {
     event.preventDefault()
     const formElement = event.target
     const input = formElement.title
-    onCreateTodo(input.value)
+    onCreateListItem(input.value)
     formElement.reset()
     input.focus()
   }

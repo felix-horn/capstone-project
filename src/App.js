@@ -5,55 +5,42 @@ import InputForm from './01.UI-Elements/InputForm'
 import ListItem from './01.UI-Elements/ListItem'
 
 function App() {
-  const [todos, setTodos] = useState([])
+  const [list, setList] = useState([])
 
   return (
     <div className="App">
-      <InputForm onCreateTodo={addTodo} />
-      {todos.map(({ title, isDone, id }, index) => (
+      <InputForm onCreateListItem={addListItem} />
+      {list.map(({ titleListItem, isCheckmarked, id }, index) => (
         <ListItem
-          onCheckboxClick={() => toggleTodo(index, id)}
-          onDeleteClick={() => deleteTodo(index)}
-          titleListItem={title}
-          isCheckmarked={isDone}
+          onCheckboxClick={() => toggleListItem(index)}
+          onDeleteClick={() => deleteListItem(id)}
+          titleListItem={titleListItem}
+          isCheckmarked={isCheckmarked}
           key={id}
         />
       ))}
     </div>
   )
 
-  function addTodo(title) {
-    console.log(todos.length)
-    setTodos(
-      todos
-        .filter((todo) => !todo.isDone)
-        .concat(
-          { title, isDone: false, id: uuid() },
-          todos.filter((todo) => todo.isDone)
-        )
-    )
+  function addListItem(titleListItem) {
+    setList([
+      ...list,
+      { titleListItem: titleListItem, isCheckmarked: false, id: uuid() },
+    ])
   }
 
-  function toggleTodo(index, id) {
-    const todo = todos[index]
-
-    todo.isDone === true
-      ? setTodos([
-          ...todos.filter((todo) => !todo.isDone),
-          { ...todo, isDone: !todo.isDone },
-          ...todos
-            .filter((todo) => todo.id !== id)
-            .filter((todo) => todo.isDone),
-        ])
-      : setTodos([
-          ...todos.slice(0, index),
-          ...todos.slice(index + 1),
-          { ...todo, isDone: !todo.isDone },
-        ])
+  function toggleListItem(index) {
+    // setList(!list[index].isCheckmarked)
+    const item = list[index]
+    setList([
+      ...list.slice(0, index),
+      { ...item, isCheckmarked: !item.isCheckmarked },
+      ...list.slice(index + 1),
+    ])
   }
 
-  function deleteTodo(index) {
-    setTodos([...todos.slice(0, index), ...todos.slice(index + 1)])
+  function deleteListItem(index) {
+    setList([...list.slice(0, index), ...list.slice(index + 1)])
   }
 }
 
