@@ -1,7 +1,7 @@
 module.exports = {
-  ignore: ['**/App.js'],
+  ignore: ['**/App.js', '**/*.test.js'],
   defaultExample: true,
   exampleMode: 'expand',
-  usageMode: 'expan',
-  components: 'src/01.atoms/**/[A-Z]*.js',
+  usageMode: 'expand',
+  components: 'src/01.UI-Elements/**/[A-Z]*.js',
 }
