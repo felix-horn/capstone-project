@@ -6,29 +6,12 @@ import ListItem from './01.UI-Elements/ListItem'
 
 function App() {
   const [list, setList] = useState({
-    byId: {
-      '65afds4': {
-        id: '65afds4',
-        titleListItem: 'Milk',
-        isCheckmarked: false,
-      },
-      a84f55d: {
-        id: 'a84f55d',
-        titleListItem: 'Butter',
-        isCheckmarked: true,
-      },
-    },
-    allIds: ['65afds4', 'a84f55d'],
+    byId: {},
+    allIds: [],
   })
-
-  // const [list, setList] = useState({
-  //   byId: {},
-  //   allIds: [],
-  // })
 
   return (
     <div className="App">
-      <InputForm onCreateListItem={addListItem} />
       {list.allIds.map((id) => {
         const { titleListItem, isCheckmarked } = list.byId[id]
         return (
@@ -41,12 +24,11 @@ function App() {
           />
         )
       })}
+      <InputForm onCreateListItem={addListItem} />
     </div>
   )
 
   function addListItem(titleListItem) {
-    console.log(titleListItem)
-
     const generatedId = uuid()
 
     setList({
@@ -62,21 +44,16 @@ function App() {
     })
   }
 
-  /* [
-      ...list,
-      { titleListItem: titleListItem, isCheckmarked: false, id: uuid() },
-    ])
-  } */
+  function deleteListItem(id) {
+    const copyOfById = { ...list.byId }
+    delete copyOfById[id]
+    const byIdwithoutTargetId = copyOfById
 
-  /* 
-  list = [
-
-    { titleListItem: 1, isCheckmarked: false, id: 65afds4 }
-    { titleListItem: 2, isCheckmarked: true, id: a6ew4af }
-    { titleListItem: 3, isCheckmarked: false, id: adfsv49 }
-
-  ]
-  */
+    setList({
+      byId: byIdwithoutTargetId,
+      allIds: [...list.allIds.filter((listId) => listId !== id)],
+    })
+  }
 
   /* 
   list = {
@@ -116,10 +93,6 @@ function App() {
       list.map((item) => item.titleListItem),
       list.map((_, index) => index)
     )
-  }
-
-  function deleteListItem(id) {
-    setList(list.filter((item) => item.id !== id))
   }
 }
 
