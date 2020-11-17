@@ -30,7 +30,7 @@ function App() {
   }
 
   function toggleListItem(index) {
-    // setList(!list[index].isCheckmarked)
+    // setList(list[index].isCheckmarked = !list[index].isCheckmarked)
     const item = list[index]
     setList([
       ...list.slice(0, index),
@@ -39,8 +39,8 @@ function App() {
     ])
   }
 
-  function deleteListItem(index) {
-    setList([...list.slice(0, index), ...list.slice(index + 1)])
+  function deleteListItem(id) {
+    setList(list.filter((item) => item.id !== id))
   }
 }
 
