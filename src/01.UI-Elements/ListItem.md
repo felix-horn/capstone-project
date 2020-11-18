@@ -1,4 +1,4 @@
 ```js padded
 <ListItem titleListItem="Milk"/>
-<ListItem titleListItem="Butter" checked />
+<ListItem titleListItem="Butter" isCheckmarked="true" />
 ```

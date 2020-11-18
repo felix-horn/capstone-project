@@ -1,10 +1,22 @@
 import { render } from '@testing-library/react'
+import user from '@testing-library/user-event'
+import InputForm from './InputForm'
 
-import ListItem from './ListItem'
+describe('InputForm', () => {
+  it('shows one input field', () => {
+    const handleCreateListItem = jest.fn()
 
-describe('ListItem', () => {
-  it('shows the right item title', () => {
-    const { container } = render(<ListItem titleListItem="Milk" checked />)
-    expect(container.firstChild).toMatchSnapshot()
+    const { getByPlaceholderText } = render(
+      <InputForm onCreateListItem={handleCreateListItem} />
+    )
+
+    const inputField = getByPlaceholderText(/Listeneintrag/i)
+    expect(inputField).toBeInTheDocument()
+
+    user.type(inputField, 'Milk{enter}')
+
+    expect(handleCreateListItem).toHaveBeenCalledTimes(1)
+    expect(handleCreateListItem).toHaveBeenCalledWith('Milk')
+    expect(inputField).toHaveValue('')
   })
 })

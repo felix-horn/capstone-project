@@ -8,16 +8,16 @@ export default createGlobalStyle`
 
 body {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
     width: 100%;
     max-width: 450px;
-    padding: 20px;
+    padding: 30px;
+    font-family: 'Roboto', sans-serif;
     }
 
 input, textarea, button, select, link, textarea {
     font-family: 'Roboto', sans-serif;
     font-size: 1em;
-    color: black;
+    color: #212121;
 }
 
 h1, h2 {
