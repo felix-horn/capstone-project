@@ -10,7 +10,7 @@ describe('InputForm', () => {
       <InputForm onCreateListItem={handleCreateListItem} />
     )
 
-    const inputField = getByPlaceholderText(/Listeneintrag/i)
+    const inputField = getByPlaceholderText(/listeneintrag/i)
     expect(inputField).toBeInTheDocument()
 
     user.type(inputField, 'Milk{enter}')

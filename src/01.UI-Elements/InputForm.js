@@ -8,12 +8,16 @@ InputForm.propTypes = {
 
 export default function InputForm({ onCreateListItem }) {
   return (
-    <FormStyled onSubmit={handleSubmit}>
-      <label>
-        <AddIcon />
-        <input name="title" type="text" placeholder="Listeneintrag" />
-      </label>
-    </FormStyled>
+    <form onSubmit={handleSubmit}>
+      <Element>
+        <AddIconStyled />
+        <InputFieldStyled
+          name="title"
+          type="text"
+          placeholder="Listeneintrag"
+        />
+      </Element>
+    </form>
   )
   function handleSubmit(event) {
     event.preventDefault()
@@ -24,23 +28,19 @@ export default function InputForm({ onCreateListItem }) {
   }
 }
 
-const FormStyled = styled.form`
-  label {
-    margin-top: 8px;
-    display: flex;
-    align-items: center;
-    color: #878889;
-  }
+const Element = styled.label`
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+`
+const AddIconStyled = styled(AddIcon)`
+  color: #878889;
+`
+const InputFieldStyled = styled.input`
+  margin-left: 13px;
+  border: none;
 
-  input {
-    margin-left: 13px;
-    border: none;
-    font-size: 1em;
-    font-weight: 300;
-    color: #212121;
-
-    &::placeholder {
-      color: #b2b2b2;
-    }
+  &::placeholder {
+    color: #b2b2b2;
   }
 `

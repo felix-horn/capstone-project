@@ -8,33 +8,26 @@ ListItem.propTypes = {
 
 export default function ListItem({ titleListItem, isCheckmarked }) {
   return (
-    <Wrapper>
-      <label>
-        <CheckboxStyled type="checkbox" checked={isCheckmarked} />
-        <span>{titleListItem}</span>
-      </label>
-    </Wrapper>
+    <ElementStyled>
+      <CheckboxStyled type="checkbox" checked={isCheckmarked} />
+      <TitleStyled>{titleListItem}</TitleStyled>
+    </ElementStyled>
   )
 }
 
+const ElementStyled = styled.label`
+  margin-left: 1px;
+  display: flex;
+  align-items: center;
+
+  & :not(:last-of-type) {
+    margin-bottom: 12px;
+  }
+`
 const CheckboxStyled = styled.input`
   margin-right: 10px;
   transform: scale(1.5);
 `
-
-const Wrapper = styled.div`
-  margin-left: 1px;
-  & :not(:last-of-type) {
-    margin-bottom: 12px;
-  }
-  label {
-    display: flex;
-    align-items: center;
-  }
-
-  span {
-    margin-left: 10px;
-    font-weight: 300;
-    color: #212121;
-  }
+const TitleStyled = styled.span`
+  margin-left: 10px;
 `
