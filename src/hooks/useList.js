@@ -12,14 +12,14 @@ export default function useList() {
     addListItem,
   }
 
-  function addListItem(titleListItem) {
+  function addListItem(title) {
     const generatedId = uuid()
     setList({
       byId: {
         ...list.byId,
         [generatedId]: {
           id: generatedId,
-          titleListItem,
+          title,
           isChecked: false,
         },
       },

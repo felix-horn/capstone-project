@@ -1,3 +1,3 @@
 ```js padded
-<ListItem titleListItem="Milch"/>
+<ListItem title="Milch"/>
 ```

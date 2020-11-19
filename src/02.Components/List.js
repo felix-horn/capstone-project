@@ -11,14 +11,8 @@ export default function List({ list }) {
   return (
     <ListStyled>
       {list.allIds.map((id) => {
-        const { titleListItem, isChecked } = list.byId[id]
-        return (
-          <ListItem
-            key={id}
-            titleListItem={titleListItem}
-            isChecked={isChecked}
-          />
-        )
+        const { title, isChecked } = list.byId[id]
+        return <ListItem key={id} title={title} isChecked={isChecked} />
       })}
     </ListStyled>
   )

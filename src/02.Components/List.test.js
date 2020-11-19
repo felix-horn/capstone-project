@@ -6,21 +6,21 @@ describe('List', () => {
     const { container } = render(
       <List
         list={{
-          allIds: ['02c41e96', '0cb406e2', '7374dca9'],
+          allIds: ['a', 'b', 'c'],
           byId: {
-            '02c41e96': {
-              id: '02c41e96',
-              titleListItem: 'Milk',
+            a: {
+              id: 'a',
+              title: 'Milk',
               isChecked: false,
             },
-            '0cb406e2': {
-              id: '0cb406e2',
-              titleListItem: 'Butter',
+            b: {
+              id: 'b',
+              title: 'Butter',
               isChecked: false,
             },
-            '7374dca9': {
-              id: '7374dca9',
-              titleListItem: 'Cheese',
+            c: {
+              id: 'c',
+              title: 'Cheese',
               isChecked: true,
             },
           },
