@@ -4,12 +4,13 @@ import styled from 'styled-components/macro'
 ListItem.propTypes = {
   titleListItem: PropTypes.string.isRequired,
   isChecked: PropTypes.bool,
+  onToggle: PropTypes.func,
 }
 
-export default function ListItem({ titleListItem, isChecked }) {
+export default function ListItem({ titleListItem, isChecked, onToggle }) {
   return (
     <ListItemStyled>
-      <CheckboxStyled type="checkbox" checked={isChecked} />
+      <CheckboxStyled type="checkbox" checked={isChecked} onChange={onToggle} />
       <TitleStyled>{titleListItem}</TitleStyled>
     </ListItemStyled>
   )
