@@ -43,4 +43,8 @@ const InputFieldStyled = styled.input`
   &::placeholder {
     color: #b2b2b2;
   }
+
+  &:focus {
+    outline: none;
+  }
 `
