@@ -5,7 +5,10 @@ module.exports = {
   defaultExample: true,
   exampleMode: 'expand',
   usageMode: 'expand',
-  components: 'src/01.UI-Elements/**/[A-Z]*.js',
+  components: [
+    'src/01.UI-Elements/**/[A-Z]*.js',
+    'src/02.Components/**/[A-Z]*.js',
+  ],
   styleguideComponents: {
     Wrapper: path.join(__dirname, 'src/styles/StyleWrapper'),
   },
