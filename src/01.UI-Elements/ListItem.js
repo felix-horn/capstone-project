@@ -3,26 +3,21 @@ import styled from 'styled-components/macro'
 
 ListItem.propTypes = {
   titleListItem: PropTypes.string.isRequired,
-  isCheckmarked: PropTypes.bool,
+  isChecked: PropTypes.bool,
 }
 
-export default function ListItem({ titleListItem, isCheckmarked }) {
+export default function ListItem({ titleListItem, isChecked }) {
   return (
     <ListItemStyled>
-      <CheckboxStyled type="checkbox" checked={isCheckmarked} />
+      <CheckboxStyled type="checkbox" checked={isChecked} />
       <TitleStyled>{titleListItem}</TitleStyled>
     </ListItemStyled>
   )
 }
 
 const ListItemStyled = styled.label`
-  margin-left: 1px;
   display: flex;
   align-items: center;
-
-  & :not(:last-of-type) {
-    margin-bottom: 12px;
-  }
 `
 const CheckboxStyled = styled.input`
   margin-right: 10px;

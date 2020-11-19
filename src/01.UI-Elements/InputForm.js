@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import AddIcon from '@material-ui/icons/Add'
 
 InputForm.propTypes = {
-  onCreateListItem: PropTypes.func.isRequired,
+  addListItem: PropTypes.func.isRequired,
 }
 
 export default function InputForm({ addListItem }) {
