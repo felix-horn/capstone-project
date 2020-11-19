@@ -7,7 +7,7 @@ describe('InputForm', () => {
     const handleCreateListItem = jest.fn()
 
     const { getByPlaceholderText } = render(
-      <InputForm onCreateListItem={handleCreateListItem} />
+      <InputForm addListItem={handleCreateListItem} />
     )
 
     const inputField = getByPlaceholderText(/listeneintrag/i)

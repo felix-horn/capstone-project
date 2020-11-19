@@ -8,14 +8,14 @@ ListItem.propTypes = {
 
 export default function ListItem({ titleListItem, isCheckmarked }) {
   return (
-    <ElementStyled>
+    <ListItemStyled>
       <CheckboxStyled type="checkbox" checked={isCheckmarked} />
       <TitleStyled>{titleListItem}</TitleStyled>
-    </ElementStyled>
+    </ListItemStyled>
   )
 }
 
-const ElementStyled = styled.label`
+const ListItemStyled = styled.label`
   margin-left: 1px;
   display: flex;
   align-items: center;

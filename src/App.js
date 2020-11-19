@@ -11,7 +11,7 @@ export default function App() {
   })
 
   return (
-    <div className="App">
+    <div>
       {list.allIds.map((id) => {
         const { titleListItem, isCheckmarked } = list.byId[id]
         return (
@@ -22,7 +22,7 @@ export default function App() {
           />
         )
       })}
-      <InputForm onCreateListItem={addListItem} />
+      <InputForm addListItem={addListItem} />
     </div>
   )
 

@@ -1,22 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ListItem shows the right item title 1`] = `
-.c1 {
-  margin-right: 10px;
-  -webkit-transform: scale(1.5);
-  -ms-transform: scale(1.5);
-  transform: scale(1.5);
-}
-
 .c0 {
   margin-left: 1px;
-}
-
-.c0:not(:last-of-type) {
-  margin-bottom: 12px;
-}
-
-.c0 label {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -27,23 +13,32 @@ exports[`ListItem shows the right item title 1`] = `
   align-items: center;
 }
 
-.c0 span {
-  margin-left: 10px;
-  font-weight: 300;
-  color: #212121;
+.c0:not(:last-of-type) {
+  margin-bottom: 12px;
 }
 
-<div
+.c1 {
+  margin-right: 10px;
+  -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+}
+
+.c2 {
+  margin-left: 10px;
+}
+
+<label
   class="c0"
 >
-  <label>
-    <input
-      class="c1"
-      type="checkbox"
-    />
-    <span>
-      Milk
-    </span>
-  </label>
-</div>
+  <input
+    class="c1"
+    type="checkbox"
+  />
+  <span
+    class="c2"
+  >
+    Milk
+  </span>
+</label>
 `;

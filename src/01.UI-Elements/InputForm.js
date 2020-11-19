@@ -6,29 +6,29 @@ InputForm.propTypes = {
   onCreateListItem: PropTypes.func.isRequired,
 }
 
-export default function InputForm({ onCreateListItem }) {
+export default function InputForm({ addListItem }) {
   return (
     <form onSubmit={handleSubmit}>
-      <Element>
+      <InputFormStyled>
         <AddIconStyled />
         <InputFieldStyled
           name="title"
           type="text"
           placeholder="Listeneintrag"
         />
-      </Element>
+      </InputFormStyled>
     </form>
   )
   function handleSubmit(event) {
     event.preventDefault()
     const formElement = event.target
     const input = formElement.elements.title
-    onCreateListItem(input.value)
+    addListItem(input.value)
     formElement.reset()
   }
 }
 
-const Element = styled.label`
+const InputFormStyled = styled.label`
   margin-top: 8px;
   display: flex;
   align-items: center;
