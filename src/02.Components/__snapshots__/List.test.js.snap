@@ -20,13 +20,13 @@ exports[`List renders the list correctly 1`] = `
 }
 
 .c3 {
-  margin-left: 10px;
+  margin-left: 9px;
 }
 
 .c0 {
   display: grid;
   gap: 12px;
-  margin-left: 2px;
+  margin: 3px 2px 8px;
 }
 
 <div

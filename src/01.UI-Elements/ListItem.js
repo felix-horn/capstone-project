@@ -25,5 +25,5 @@ const CheckboxStyled = styled.input`
   transform: scale(1.5);
 `
 const TitleStyled = styled.span`
-  margin-left: 10px;
+  margin-left: 9px;
 `

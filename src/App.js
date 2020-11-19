@@ -7,7 +7,7 @@ export default function App() {
   const { list, addListItem } = useList()
   return (
     <div>
-      <List list={list} />
+      {list.allIds.length > 0 && <List list={list} />}
       <InputForm addListItem={addListItem} />
     </div>
   )

@@ -21,5 +21,5 @@ export default function List({ list }) {
 const ListStyled = styled.div`
   display: grid;
   gap: 12px;
-  margin-left: 2px;
+  margin: 3px 2px 8px;
 `

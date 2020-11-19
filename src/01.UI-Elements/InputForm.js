@@ -29,7 +29,6 @@ export default function InputForm({ addListItem }) {
 }
 
 const InputFormStyled = styled.label`
-  margin-top: 8px;
   display: flex;
   align-items: center;
 `
