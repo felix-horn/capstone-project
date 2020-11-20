@@ -13,7 +13,7 @@ body {
     padding: 30px;
     font-family: 'Roboto', sans-serif;
     font-size: 1em;
-    font-weight: 300;
+    font-weight: 400;
     color: #212121;
     }
 

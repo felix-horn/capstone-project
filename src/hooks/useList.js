@@ -7,10 +7,15 @@ export default function useList() {
     allIds: [],
   })
 
+  const [uncheckedIds, setUncheckedIds] = useState([])
+  const [checkedIds, setCheckedIds] = useState([])
+
   return {
     list,
     addListItem,
     toggleIsChecked,
+    uncheckedIds,
+    checkedIds,
   }
 
   function addListItem(title) {
@@ -26,6 +31,7 @@ export default function useList() {
       },
       allIds: [...list.allIds, generatedId],
     })
+    setUncheckedIds([...uncheckedIds, generatedId])
   }
 
   function toggleIsChecked(id) {
@@ -36,5 +42,17 @@ export default function useList() {
       },
       allIds: [...list.allIds],
     })
+
+    setUncheckedIds(
+      list.byId[id].isChecked === true
+        ? [...uncheckedIds, id]
+        : [...uncheckedIds.filter((uncheckedId) => uncheckedId !== id)]
+    )
+
+    setCheckedIds(
+      list.byId[id].isChecked === true
+        ? [...checkedIds.filter((checkedId) => checkedId !== id)]
+        : [...checkedIds, id]
+    )
   }
 }
