@@ -10,6 +10,7 @@ export default function useList() {
   return {
     list,
     addListItem,
+    toggleIsChecked,
   }
 
   function addListItem(title) {
@@ -24,6 +25,16 @@ export default function useList() {
         },
       },
       allIds: [...list.allIds, generatedId],
+    })
+  }
+
+  function toggleIsChecked(id) {
+    setList({
+      byId: {
+        ...list.byId,
+        [id]: { ...list.byId[id], isChecked: !list.byId[id].isChecked },
+      },
+      allIds: [...list.allIds],
     })
   }
 }

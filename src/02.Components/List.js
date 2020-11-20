@@ -7,14 +7,21 @@ List.propTypes = {
   list: PropTypes.object.isRequired,
 }
 
-export default function List({ list }) {
+export default function List({ list, toggleIsChecked }) {
   return (
     <>
       {list.allIds.length > 0 && (
         <ListStyled>
           {list.allIds.map((id) => {
             const { title, isChecked } = list.byId[id]
-            return <ListItem key={id} title={title} isChecked={isChecked} />
+            return (
+              <ListItem
+                key={id}
+                title={title}
+                isChecked={isChecked}
+                onToggle={() => toggleIsChecked(id)}
+              />
+            )
           })}
         </ListStyled>
       )}
@@ -24,6 +31,6 @@ export default function List({ list }) {
 
 const ListStyled = styled.div`
   display: grid;
-  gap: 12px;
+  /* gap: 12px; */
   margin: 3px 2px 10px;
 `
