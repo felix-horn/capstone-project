@@ -9,17 +9,21 @@ List.propTypes = {
 
 export default function List({ list }) {
   return (
-    <ListStyled>
-      {list.allIds.map((id) => {
-        const { title, isChecked } = list.byId[id]
-        return <ListItem key={id} title={title} isChecked={isChecked} />
-      })}
-    </ListStyled>
+    <>
+      {list.allIds.length > 0 && (
+        <ListStyled>
+          {list.allIds.map((id) => {
+            const { title, isChecked } = list.byId[id]
+            return <ListItem key={id} title={title} isChecked={isChecked} />
+          })}
+        </ListStyled>
+      )}
+    </>
   )
 }
 
 const ListStyled = styled.div`
   display: grid;
   gap: 12px;
-  margin: 3px 2px 8px;
+  margin: 3px 2px 10px;
 `

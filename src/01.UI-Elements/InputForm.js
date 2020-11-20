@@ -36,7 +36,7 @@ const AddIconStyled = styled(AddIcon)`
   color: #878889;
 `
 const InputFieldStyled = styled.input`
-  margin-left: 13px;
+  margin-left: 15px;
   border: none;
 
   &::placeholder {
