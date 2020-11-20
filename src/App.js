@@ -21,6 +21,7 @@ export default function App() {
       <InputForm addListItem={addListItem} />
       <List
         list={list}
+        checked
         checkState={checkedIds}
         toggleIsChecked={toggleIsChecked}
       />

@@ -7,11 +7,11 @@ List.propTypes = {
   list: PropTypes.object.isRequired,
 }
 
-export default function List({ list, checkState, toggleIsChecked }) {
+export default function List({ list, checkState, toggleIsChecked, checked }) {
   return (
     <>
       {list.allIds.length > 0 && (
-        <ListStyled>
+        <ListStyled checked={checked}>
           {checkState.map((id) => {
             const { title, isChecked } = list.byId[id]
             return (
@@ -30,7 +30,9 @@ export default function List({ list, checkState, toggleIsChecked }) {
 }
 
 const ListStyled = styled.div`
+  margin: 3px 2px 10px;
+  padding-top: ${(props) => (props.checked ? '10px' : 'none')};
+  border-top: ${(props) => (props.checked ? '1px solid #dadcdf' : 'none')};
   display: grid;
   /* gap: 12px; */
-  margin: 3px 2px 10px;
 `
