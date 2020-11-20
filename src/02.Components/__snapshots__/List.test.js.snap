@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List renders the list correctly 1`] = `
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c2 {
+  margin-right: 10px;
+  -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+}
+
+.c3 {
+  margin-left: 9px;
+}
+
+.c0 {
+  display: grid;
+  gap: 12px;
+  margin: 3px 2px 10px;
+}
+
+<div
+  class="c0"
+>
+  <label
+    class="c1"
+  >
+    <input
+      class="c2"
+      type="checkbox"
+    />
+    <span
+      class="c3"
+    >
+      Milk
+    </span>
+  </label>
+  <label
+    class="c1"
+  >
+    <input
+      class="c2"
+      type="checkbox"
+    />
+    <span
+      class="c3"
+    >
+      Butter
+    </span>
+  </label>
+  <label
+    class="c1"
+  >
+    <input
+      checked=""
+      class="c2"
+      type="checkbox"
+    />
+    <span
+      class="c3"
+    >
+      Cheese
+    </span>
+  </label>
+</div>
+`;
