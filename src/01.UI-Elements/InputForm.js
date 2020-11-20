@@ -29,7 +29,7 @@ export default function InputForm({ addListItem }) {
 }
 
 const InputFormStyled = styled.label`
-  margin-left: 10px;
+  margin-left: 12px;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -38,7 +38,7 @@ const AddIconStyled = styled(AddIcon)`
   color: #878889;
 `
 const InputFieldStyled = styled.input`
-  margin-left: 15px;
+  margin-left: 20px;
   border: none;
 
   &::placeholder {

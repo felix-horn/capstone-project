@@ -10,7 +10,7 @@ List.propTypes = {
 export default function List({ list, checkState, toggleIsChecked, checked }) {
   return (
     <>
-      {list.allIds.length > 0 && (
+      {checkState.length > 0 && (
         <ListStyled checked={checked}>
           {checkState.map((id) => {
             const { title, isChecked } = list.byId[id]
