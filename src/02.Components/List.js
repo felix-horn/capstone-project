@@ -7,12 +7,17 @@ List.propTypes = {
   list: PropTypes.object.isRequired,
 }
 
-export default function List({ list, checkState, toggleIsChecked, checked }) {
+export default function List({
+  list,
+  listAllocation,
+  toggleIsChecked,
+  checked,
+}) {
   return (
     <>
-      {checkState.length > 0 && (
+      {listAllocation.length > 0 && (
         <ListStyled checked={checked}>
-          {checkState.map((id) => {
+          {listAllocation.map((id) => {
             const { title, isChecked } = list.byId[id]
             return (
               <ListItem

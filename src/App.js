@@ -15,14 +15,14 @@ export default function App() {
     <div>
       <List
         list={list}
-        checkState={uncheckedIds}
+        listAllocation={uncheckedIds}
         toggleIsChecked={toggleIsChecked}
       />
       <InputForm addListItem={addListItem} />
       <List
         list={list}
         checked
-        checkState={checkedIds}
+        listAllocation={checkedIds}
         toggleIsChecked={toggleIsChecked}
       />
     </div>

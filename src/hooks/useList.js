@@ -31,28 +31,32 @@ export default function useList() {
       },
       allIds: [...list.allIds, generatedId],
     })
+    //by default listItems are uncheckd and thus belong to this array
     setUncheckedIds([...uncheckedIds, generatedId])
   }
 
-  function toggleIsChecked(id) {
+  function toggleIsChecked(targetId) {
+    //boolean "isChecked" is toggled in the corresponding byId-object
+    //allIds-object stays untouched / list-allocation is dependent on un/checkedIds-array (s.b.)
     setList({
+      ...list,
       byId: {
         ...list.byId,
-        [id]: { ...list.byId[id], isChecked: !list.byId[id].isChecked },
+        [targetId]: {
+          ...list.byId[targetId],
+          isChecked: !list.byId[targetId].isChecked,
+        },
       },
-      allIds: [...list.allIds],
     })
 
-    setUncheckedIds(
-      list.byId[id].isChecked === true
-        ? [...uncheckedIds, id]
-        : [...uncheckedIds.filter((uncheckedId) => uncheckedId !== id)]
-    )
-
-    setCheckedIds(
-      list.byId[id].isChecked === true
-        ? [...checkedIds.filter((checkedId) => checkedId !== id)]
-        : [...checkedIds, id]
-    )
+    if (list.byId[targetId].isChecked) {
+      //listItem moves up to unchecked items
+      setUncheckedIds([...uncheckedIds, targetId])
+      setCheckedIds([...checkedIds.filter((id) => id !== targetId)])
+    } else {
+      //listItem moves down to checked items
+      setUncheckedIds([...uncheckedIds.filter((id) => id !== targetId)])
+      setCheckedIds([...checkedIds, targetId])
+    }
   }
 }
