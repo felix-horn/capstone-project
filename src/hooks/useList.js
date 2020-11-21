@@ -31,7 +31,7 @@ export default function useList() {
       },
       allIds: [...list.allIds, generatedId],
     })
-    //by default listItems are uncheckd and thus belong to this array
+    //by default listItems are uncheckd and thus belong to this list-allocation-array
     setUncheckedIds([...uncheckedIds, generatedId])
   }
 
@@ -56,7 +56,7 @@ export default function useList() {
     } else {
       //listItem moves down to checked items
       setUncheckedIds([...uncheckedIds.filter((id) => id !== targetId)])
-      setCheckedIds([...checkedIds, targetId])
+      setCheckedIds([targetId, ...checkedIds])
     }
   }
 }

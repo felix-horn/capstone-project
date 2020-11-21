@@ -11,17 +11,17 @@ describe('List', () => {
           byId: {
             a: {
               id: 'a',
-              title: 'Milk',
+              title: 'friends',
               isChecked: false,
             },
             b: {
               id: 'b',
-              title: 'Butter',
+              title: 'family',
               isChecked: false,
             },
             c: {
               id: 'c',
-              title: 'Cheese',
+              title: 'ReactJs',
               isChecked: true,
             },
           },

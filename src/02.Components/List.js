@@ -5,6 +5,9 @@ import ListItem from '../01.UI-Elements/ListItem'
 
 List.propTypes = {
   list: PropTypes.object.isRequired,
+  listAllocation: PropTypes.array.isRequired,
+  toggleIsChecked: PropTypes.func.isRequired,
+  checked: PropTypes.string,
 }
 
 export default function List({
@@ -39,5 +42,4 @@ const ListStyled = styled.div`
   padding-top: ${(props) => (props.checked ? '10px' : 'none')};
   border-top: ${(props) => (props.checked ? '1px solid #dadcdf' : 'none')};
   display: grid;
-  /* gap: 12px; */
 `

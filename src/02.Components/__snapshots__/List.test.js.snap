@@ -34,7 +34,7 @@ exports[`List renders the list correctly 1`] = `
   >
     <span
       aria-disabled="false"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root ListItem__CheckboxStyled-xw4fk9-1"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root"
     >
       <span
         class="MuiIconButton-label"
@@ -63,7 +63,7 @@ exports[`List renders the list correctly 1`] = `
     <span
       class="c2"
     >
-      Milk
+      friends
     </span>
   </label>
   <label
@@ -71,7 +71,7 @@ exports[`List renders the list correctly 1`] = `
   >
     <span
       aria-disabled="false"
-      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root ListItem__CheckboxStyled-xw4fk9-1"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root"
     >
       <span
         class="MuiIconButton-label"
@@ -100,7 +100,7 @@ exports[`List renders the list correctly 1`] = `
     <span
       class="c2"
     >
-      Butter
+      family
     </span>
   </label>
 </div>
