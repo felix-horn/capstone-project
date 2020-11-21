@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { getByRole, render } from '@testing-library/react'
 import ListItem from './ListItem'
 import user from '@testing-library/user-event'
 
@@ -14,27 +14,15 @@ describe('ListItem', () => {
     const { rerender, getByLabelText } = render(
       <ListItem isChecked={true} title="Milk" onToggle={onToggleMock} />
     )
-    const listItem = getByLabelText('Milk')
-    expect(listItem).toHaveProperty('checked', true)
+    const checkbox = getByLabelText('Milk')
+    expect(checkbox).toHaveProperty('checked', true)
 
     rerender(
       <ListItem isChecked={false} title="Milk" onToggle={onToggleMock} />
     )
-    expect(listItem).toHaveProperty('checked', false)
+    expect(checkbox).toHaveProperty('checked', false)
   })
 
-  xit('toggles the checkbox', () => {
-    const onToggleMock = jest.fn()
-    const { rerender, getByLabelText } = render(
-      <ListItem isChecked={true} title="Milk" onToggle={onToggle} />
-    )
-    const listItem = getByLabelText('Milk')
-    expect(listItem).toHaveProperty('checked', true)
-
-    user.click(listItem)
-
-    expect(listItem).toHaveProperty('checked', false)
-  })
   it('calls onToggle', () => {
     const onToggleMock = jest.fn()
     const { getByText } = render(
@@ -45,5 +33,18 @@ describe('ListItem', () => {
     user.click(listItem)
 
     expect(onToggleMock).toHaveBeenCalled()
+  })
+
+  it('toggles the checkbox', () => {
+    const onToggleMock = jest.fn()
+    const { getByLabelText } = render(
+      <ListItem title="Milk" onToggle={onToggleMock} />
+    )
+    const checkbox = getByLabelText('Milk')
+    expect(checkbox).toHaveProperty('checked', false)
+
+    user.click(checkbox)
+
+    expect(checkbox).toHaveProperty('checked', true)
   })
 })
