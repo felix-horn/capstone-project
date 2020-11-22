@@ -10,6 +10,12 @@ export default function useList() {
   const [uncheckedIds, setUncheckedIds] = useState([])
   const [checkedIds, setCheckedIds] = useState([])
 
+  const [deletedListItem, setDeletedListItem] = useState({
+    title: '',
+    isChecked: false,
+  })
+  const [isShownUndoButton, setIsShownUndoButton] = useState(false)
+
   return {
     list,
     addListItem,
@@ -17,9 +23,11 @@ export default function useList() {
     uncheckedIds,
     checkedIds,
     deleteListItem,
+    undoDelete,
+    isShownUndoButton,
   }
 
-  function addListItem(title) {
+  function addListItem(title, isChecked = false) {
     const generatedId = uuid()
     setList({
       byId: {
@@ -27,13 +35,20 @@ export default function useList() {
         [generatedId]: {
           id: generatedId,
           title,
-          isChecked: false,
+          isChecked,
         },
       },
       allIds: [...list.allIds, generatedId],
     })
-    //by default listItems are uncheckd and thus belong to this list-allocation-array
-    setUncheckedIds([...uncheckedIds, generatedId])
+
+    isChecked
+      ? setCheckedIds([...checkedIds, generatedId])
+      : setUncheckedIds([...uncheckedIds, generatedId])
+  }
+
+  function undoDelete() {
+    addListItem(deletedListItem.title, deletedListItem.isChecked)
+    setIsShownUndoButton(false)
   }
 
   function toggleIsChecked(targetId) {
@@ -72,6 +87,12 @@ export default function useList() {
     })
     setUncheckedIds([...uncheckedIds.filter((id) => id !== targetId)])
     setCheckedIds([...checkedIds.filter((id) => id !== targetId)])
-    console.log(list, uncheckedIds, checkedIds)
+
+    const title = list.byId[targetId].title
+    const isChecked = list.byId[targetId].isChecked
+    console.log({ title, isChecked })
+    setDeletedListItem({ title, isChecked })
+
+    setIsShownUndoButton(true)
   }
 }
