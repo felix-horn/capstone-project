@@ -35,6 +35,7 @@ const TitleStyled = styled.span`
   margin-left: 9px;
 `
 const DeleteIconStyled = styled(CloseIcon)`
-  opacity: 0.5;
   margin-left: auto;
+  transform: scale(0.9);
+  opacity: 0.4;
 `

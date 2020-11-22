@@ -6,5 +6,5 @@ export default function UndoButton({ undoDelete }) {
 }
 
 const UndoIconStyled = styled(UndoIcon)`
-  color: #212121;
+  color: #757575;
 `
