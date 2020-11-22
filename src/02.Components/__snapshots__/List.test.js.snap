@@ -10,23 +10,20 @@ exports[`List renders the list correctly 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  opacity: 1;
 }
 
 .c2 {
-  margin-right: 10px;
-  -webkit-transform: scale(1.5);
-  -ms-transform: scale(1.5);
-  transform: scale(1.5);
-}
-
-.c3 {
   margin-left: 9px;
 }
 
 .c0 {
-  display: grid;
-  gap: 12px;
   margin: 3px 2px 10px;
+  padding-top: none;
+  border-top: none;
+  display: grid;
 }
 
 <div
@@ -35,41 +32,75 @@ exports[`List renders the list correctly 1`] = `
   <label
     class="c1"
   >
-    <input
-      class="c2"
-      type="checkbox"
-    />
     <span
-      class="c3"
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root"
     >
-      Milk
+      <span
+        class="MuiIconButton-label"
+      >
+        <input
+          class="PrivateSwitchBase-input-4"
+          data-indeterminate="false"
+          type="checkbox"
+          value=""
+        />
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+          />
+        </svg>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
+    </span>
+    <span
+      class="c2"
+    >
+      friends
     </span>
   </label>
   <label
     class="c1"
   >
-    <input
-      class="c2"
-      type="checkbox"
-    />
     <span
-      class="c3"
+      aria-disabled="false"
+      class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root"
     >
-      Butter
+      <span
+        class="MuiIconButton-label"
+      >
+        <input
+          class="PrivateSwitchBase-input-4"
+          data-indeterminate="false"
+          type="checkbox"
+          value=""
+        />
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+          />
+        </svg>
+      </span>
+      <span
+        class="MuiTouchRipple-root"
+      />
     </span>
-  </label>
-  <label
-    class="c1"
-  >
-    <input
-      checked=""
-      class="c2"
-      type="checkbox"
-    />
     <span
-      class="c3"
+      class="c2"
     >
-      Cheese
+      family
     </span>
   </label>
 </div>

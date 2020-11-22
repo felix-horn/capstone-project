@@ -9,18 +9,18 @@ describe('ListItem', () => {
     expect(getByText('Butter')).toBeInTheDocument()
   })
 
-  it('toggles the checkbox', () => {
+  it('toggles the checkbox by property change', () => {
     const onToggleMock = jest.fn()
     const { rerender, getByLabelText } = render(
       <ListItem isChecked={true} title="Milk" onToggle={onToggleMock} />
     )
-    const listItem = getByLabelText('Milk')
-    expect(listItem).toHaveProperty('checked', true)
+    const checkbox = getByLabelText('Milk')
+    expect(checkbox).toHaveProperty('checked', true)
 
     rerender(
       <ListItem isChecked={false} title="Milk" onToggle={onToggleMock} />
     )
-    expect(listItem).toHaveProperty('checked', false)
+    expect(checkbox).toHaveProperty('checked', false)
   })
 
   it('calls onToggle', () => {
@@ -33,5 +33,18 @@ describe('ListItem', () => {
     user.click(listItem)
 
     expect(onToggleMock).toHaveBeenCalled()
+  })
+
+  it('toggles the checkbox', () => {
+    const onToggleMock = jest.fn()
+    const { getByLabelText } = render(
+      <ListItem title="Milk" onToggle={onToggleMock} />
+    )
+    const checkbox = getByLabelText('Milk')
+    expect(checkbox).toHaveProperty('checked', false)
+
+    user.click(checkbox)
+
+    expect(checkbox).toHaveProperty('checked', true)
   })
 })

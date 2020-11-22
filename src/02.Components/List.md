@@ -1,12 +1,19 @@
 ```js padded
-<List list={
-    {
-        allIds: ["02c41e96", "0cb406e2", "7374dca9"],
-        byId: {
-            "02c41e96": { id: "02c41e96", title: "Milch", isChecked: false },
-            "0cb406e2": { id: "0cb406e2", title: "Butter", isChecked: false},
-            "7374dca9": { id: "7374dca9", title: "Käse", isChecked: true },
+<List 
+    listAllocation={["a", "b"]}
+    list={ {       byId: {
+            "a": { id: "a", title: "Koks", isChecked: false },
+            "b": { id: "b", title: "Nutten", isChecked: false},
         }
-    }
-}/>
+    }}
+/>
+
+<List 
+    listAllocation={["c", "d"]}
+    list={ {       byId: {
+            "c": { id: "c", title: "Gummibärchen", isChecked: true },
+            "d": { id: "d", title: "Pumuckl-Torte", isChecked: true},
+        }
+    }}
+/>
 ```
