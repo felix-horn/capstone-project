@@ -16,6 +16,7 @@ export default function useList() {
     toggleIsChecked,
     uncheckedIds,
     checkedIds,
+    deleteListItem,
   }
 
   function addListItem(title) {
@@ -58,5 +59,19 @@ export default function useList() {
       setUncheckedIds([...uncheckedIds.filter((id) => id !== targetId)])
       setCheckedIds([targetId, ...checkedIds])
     }
+  }
+
+  function deleteListItem(targetId) {
+    const copyOfById = { ...list.byId }
+    delete copyOfById[targetId]
+    const byIdWithoutTargetId = copyOfById
+
+    setList({
+      byId: byIdWithoutTargetId,
+      allIds: [...list.allIds.filter((id) => id !== targetId)],
+    })
+    setUncheckedIds([...uncheckedIds.filter((id) => id !== targetId)])
+    setCheckedIds([...checkedIds.filter((id) => id !== targetId)])
+    console.log(list, uncheckedIds, checkedIds)
   }
 }

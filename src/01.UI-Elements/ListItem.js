@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Checkbox from '@material-ui/core/Checkbox'
+import CloseIcon from '@material-ui/icons/Close'
 
 ListItem.propTypes = {
   title: PropTypes.string.isRequired,
@@ -8,7 +9,7 @@ ListItem.propTypes = {
   onToggle: PropTypes.func.isRequired,
 }
 
-export default function ListItem({ title, isChecked, onToggle }) {
+export default function ListItem({ title, isChecked, onToggle, onDelete }) {
   return (
     <ListItemStyled checked={isChecked}>
       <Checkbox
@@ -18,11 +19,13 @@ export default function ListItem({ title, isChecked, onToggle }) {
         onChange={onToggle}
       />
       <TitleStyled>{title}</TitleStyled>
+      <DeleteIconStyled onClick={onDelete} />
     </ListItemStyled>
   )
 }
 
 const ListItemStyled = styled.label`
+  width: 80vw;
   display: flex;
   align-items: center;
   text-decoration: ${(props) => (props.checked ? 'line-through' : 'none')};
@@ -30,4 +33,8 @@ const ListItemStyled = styled.label`
 `
 const TitleStyled = styled.span`
   margin-left: 9px;
+`
+const DeleteIconStyled = styled(CloseIcon)`
+  opacity: 0.5;
+  margin-left: auto;
 `

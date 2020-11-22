@@ -7,14 +7,15 @@ List.propTypes = {
   list: PropTypes.object.isRequired,
   listAllocation: PropTypes.array.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
-  checked: PropTypes.string,
+  checked: PropTypes.bool,
 }
 
 export default function List({
-  list,
   listAllocation,
-  toggleIsChecked,
   checked,
+  list,
+  toggleIsChecked,
+  deleteListItem,
 }) {
   return (
     <>
@@ -28,6 +29,7 @@ export default function List({
                 title={title}
                 isChecked={isChecked}
                 onToggle={() => toggleIsChecked(id)}
+                onDelete={() => deleteListItem(id)}
               />
             )
           })}

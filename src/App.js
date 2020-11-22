@@ -6,10 +6,11 @@ import InputForm from './01.UI-Elements/InputForm'
 export default function App() {
   const {
     list,
-    addListItem,
-    toggleIsChecked,
     uncheckedIds,
     checkedIds,
+    addListItem,
+    toggleIsChecked,
+    deleteListItem,
   } = useList()
   return (
     <div>
@@ -17,6 +18,7 @@ export default function App() {
         list={list}
         listAllocation={uncheckedIds}
         toggleIsChecked={toggleIsChecked}
+        deleteListItem={deleteListItem}
       />
       <InputForm addListItem={addListItem} />
       <List
@@ -24,6 +26,7 @@ export default function App() {
         list={list}
         listAllocation={checkedIds}
         toggleIsChecked={toggleIsChecked}
+        deleteListItem={deleteListItem}
       />
     </div>
   )
