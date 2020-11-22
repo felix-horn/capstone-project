@@ -28,22 +28,22 @@ export default function useList() {
   }
 
   function addListItem(title, isChecked = false) {
-    const generatedId = uuid()
+    const newId = uuid()
     setList({
       byId: {
         ...list.byId,
-        [generatedId]: {
-          id: generatedId,
+        [newId]: {
+          id: newId,
           title,
           isChecked,
         },
       },
-      allIds: [...list.allIds, generatedId],
+      allIds: [...list.allIds, newId],
     })
 
     isChecked
-      ? setCheckedIds([...checkedIds, generatedId])
-      : setUncheckedIds([...uncheckedIds, generatedId])
+      ? setCheckedIds([...checkedIds, newId])
+      : setUncheckedIds([...uncheckedIds, newId])
   }
 
   function undoDelete() {
@@ -90,7 +90,6 @@ export default function useList() {
 
     const title = list.byId[targetId].title
     const isChecked = list.byId[targetId].isChecked
-    console.log({ title, isChecked })
     setDeletedListItem({ title, isChecked })
 
     setIsShownUndoButton(true)

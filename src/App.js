@@ -19,32 +19,31 @@ export default function App() {
   return (
     <>
       <List
-        list={list}
         listAllocation={uncheckedIds}
+        list={list}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
       />
       <InputForm addListItem={addListItem} />
       <List
         checked
-        list={list}
         listAllocation={checkedIds}
+        list={list}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
       />
-      {isShownUndoButton && (
-        <AbsoluteWrapper>
-          <UndoButton undoDelete={undoDelete} />
-        </AbsoluteWrapper>
-      )}
+
+      <PositioningWrapper>
+        {isShownUndoButton && <UndoButton undoDelete={undoDelete} />}
+      </PositioningWrapper>
     </>
   )
 }
 
-const AbsoluteWrapper = styled.div`
+const PositioningWrapper = styled.div`
   position: fixed;
   width: calc(100vw - 60px);
   display: flex;
   justify-content: center;
-  bottom: 50px;
+  bottom: 100px;
 `
