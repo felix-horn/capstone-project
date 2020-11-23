@@ -14,7 +14,7 @@ export default function App() {
     toggleIsChecked,
     deleteListItem,
     undoDelete,
-    isShownUndoButton,
+    visibilityUndoButton,
   } = useList()
   return (
     <>
@@ -34,7 +34,7 @@ export default function App() {
       />
 
       <PositioningWrapper>
-        {isShownUndoButton && <UndoButton undoDelete={undoDelete} />}
+        <UndoButton visibility={visibilityUndoButton} undoDelete={undoDelete} />
       </PositioningWrapper>
     </>
   )

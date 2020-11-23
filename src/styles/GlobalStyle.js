@@ -12,6 +12,7 @@ body {
     width: 100%;
     max-width: 450px;
     padding: 30px;
+    padding-top: 50px;
     font-family: 'Roboto', sans-serif;
     font-size: 1em;
     font-weight: 350;

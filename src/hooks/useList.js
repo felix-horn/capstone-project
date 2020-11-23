@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
 export default function useList() {
@@ -14,7 +14,12 @@ export default function useList() {
     title: '',
     isChecked: false,
   })
-  const [isShownUndoButton, setIsShownUndoButton] = useState(false)
+  const [visibilityUndoButton, setIsShownUndoButton] = useState('hidden')
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsShownUndoButton('hidden'), 6000)
+    return () => clearTimeout(timer)
+  }, [visibilityUndoButton])
 
   return {
     list,
@@ -24,7 +29,7 @@ export default function useList() {
     checkedIds,
     deleteListItem,
     undoDelete,
-    isShownUndoButton,
+    visibilityUndoButton,
   }
 
   function addListItem(title, isChecked = false) {
@@ -48,7 +53,7 @@ export default function useList() {
 
   function undoDelete() {
     addListItem(deletedListItem.title, deletedListItem.isChecked)
-    setIsShownUndoButton(false)
+    setIsShownUndoButton('hidden')
   }
 
   function toggleIsChecked(targetId) {
@@ -92,6 +97,9 @@ export default function useList() {
     const isChecked = list.byId[targetId].isChecked
     setDeletedListItem({ title, isChecked })
 
-    setIsShownUndoButton(true)
+    setIsShownUndoButton('shown')
+    /* setTimeout(() => {
+      setIsShownUndoButton('hidden')
+    }, 6000) */
   }
 }
