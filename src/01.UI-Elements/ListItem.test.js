@@ -11,8 +11,14 @@ describe('ListItem', () => {
 
   it('toggles the checkbox by property change', () => {
     const onToggleMock = jest.fn()
+    const onDeleteMock = jest.fn()
     const { rerender, getByLabelText } = render(
-      <ListItem isChecked={true} title="Milk" onToggle={onToggleMock} />
+      <ListItem
+        isChecked={true}
+        title="Milk"
+        onToggle={onToggleMock}
+        onDelete={onDeleteMock}
+      />
     )
     const checkbox = getByLabelText('Milk')
     expect(checkbox).toHaveProperty('checked', true)
@@ -25,8 +31,14 @@ describe('ListItem', () => {
 
   it('calls onToggle', () => {
     const onToggleMock = jest.fn()
+    const onDeleteMock = jest.fn()
     const { getByText } = render(
-      <ListItem onToggle={onToggleMock} title="Bread" isChecked />
+      <ListItem
+        onToggle={onToggleMock}
+        title="Bread"
+        isChecked
+        onDelete={onDeleteMock}
+      />
     )
 
     const listItem = getByText('Bread')
@@ -37,8 +49,9 @@ describe('ListItem', () => {
 
   it('toggles the checkbox', () => {
     const onToggleMock = jest.fn()
+    const onDeleteMock = jest.fn()
     const { getByLabelText } = render(
-      <ListItem title="Milk" onToggle={onToggleMock} />
+      <ListItem title="Milk" onToggle={onToggleMock} onDelete={onDeleteMock} />
     )
     const checkbox = getByLabelText('Milk')
     expect(checkbox).toHaveProperty('checked', false)
@@ -46,5 +59,22 @@ describe('ListItem', () => {
     user.click(checkbox)
 
     expect(checkbox).toHaveProperty('checked', true)
+  })
+  it('calls onDelete', () => {
+    const onToggleMock = jest.fn()
+    const onDeleteMock = jest.fn()
+    const { getByTestId } = render(
+      <ListItem
+        onToggle={onToggleMock}
+        title="Bread"
+        isChecked
+        onDelete={onDeleteMock}
+      />
+    )
+
+    const button = getByTestId('DeleteButton')
+    user.click(button)
+
+    expect(onDeleteMock).toHaveBeenCalledTimes(1)
   })
 })

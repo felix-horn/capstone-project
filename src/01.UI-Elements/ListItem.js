@@ -7,6 +7,7 @@ ListItem.propTypes = {
   title: PropTypes.string.isRequired,
   isChecked: PropTypes.bool.isRequired,
   onToggle: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
 }
 
 export default function ListItem({ title, isChecked, onToggle, onDelete }) {
@@ -19,7 +20,7 @@ export default function ListItem({ title, isChecked, onToggle, onDelete }) {
         onChange={onToggle}
       />
       <TitleStyled>{title}</TitleStyled>
-      <DeleteIconStyled onClick={onDelete} />
+      <DeleteIconStyled onClick={onDelete} data-testid="DeleteButton" />
     </ListItemStyled>
   )
 }
