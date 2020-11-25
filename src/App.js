@@ -45,11 +45,7 @@ const fadeOut = keyframes`
         opacity: 1;
         pointer-events: all;
     }
-    90% {
-        opacity: 1;
-        pointer-events: all;
-    }
-    100%{
+      100%{
         opacity: 0;
         pointer-events: none;
     }
@@ -57,13 +53,16 @@ const fadeOut = keyframes`
 
 const PositioningWrapper = styled.div`
   position: fixed;
+  bottom: 100px;
   width: calc(100vw - 60px);
   display: flex;
   justify-content: center;
-  bottom: 100px;
 
   &.shown {
-    animation: 6s ${fadeOut} ease forwards;
+  }
+
+  &.fadeToHide {
+    animation: 1s ${fadeOut} ease forwards;
   }
 
   &.hidden {

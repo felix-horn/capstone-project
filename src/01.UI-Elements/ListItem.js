@@ -12,15 +12,16 @@ ListItem.propTypes = {
 
 export default function ListItem({ title, isChecked, onToggle, onDelete }) {
   return (
-    <ListItemStyled checked={isChecked}>
+    <ListItemStyled checked={isChecked} data-testid="list-item">
       <Checkbox
         type="checkbox"
         color="default"
         checked={isChecked}
         onChange={onToggle}
+        data-testid="checkbox"
       />
-      <TitleStyled>{title}</TitleStyled>
-      <DeleteIconStyled onClick={onDelete} data-testid="DeleteButton" />
+      <TitleStyled data-testid="title-list-item">{title}</TitleStyled>
+      <DeleteIconStyled onClick={onDelete} data-testid="delete-list-item" />
     </ListItemStyled>
   )
 }

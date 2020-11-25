@@ -3,7 +3,7 @@ import UndoIcon from '@material-ui/icons/Undo'
 
 export default function UndoButton({ onClick }) {
   return (
-    <UndoButtonStyled onClick={onClick} data-testid="UndoButton">
+    <UndoButtonStyled onClick={onClick} data-testid="undo-button">
       <UndoIconStyled />
     </UndoButtonStyled>
   )

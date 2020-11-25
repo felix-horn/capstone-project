@@ -15,6 +15,7 @@ export default function InputForm({ addListItem }) {
           name="title"
           type="text"
           placeholder="Listeneintrag"
+          data-testid="input-form"
         />
       </InputFormStyled>
     </form>

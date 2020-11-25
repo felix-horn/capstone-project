@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
 export default function useList() {
@@ -14,12 +14,9 @@ export default function useList() {
     title: '',
     isChecked: false,
   })
-  const [visibilityUndoButton, setIsShownUndoButton] = useState('hidden')
+  const [visibilityUndoButton, setVisibilityUndoButton] = useState('hidden')
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsShownUndoButton('hidden'), 6000)
-    return () => clearTimeout(timer)
-  }, [visibilityUndoButton])
+  const timer = useRef()
 
   return {
     list,
@@ -53,12 +50,11 @@ export default function useList() {
 
   function undoDelete() {
     addListItem(deletedListItem.title, deletedListItem.isChecked)
-    setIsShownUndoButton('hidden')
+    setVisibilityUndoButton('hidden')
   }
 
   function toggleIsChecked(targetId) {
     //boolean "isChecked" is toggled in the corresponding byId-object
-    //allIds-object stays untouched / list-allocation is dependent on un/checkedIds-array (s.b.)
     setList({
       ...list,
       byId: {
@@ -73,10 +69,10 @@ export default function useList() {
     if (list.byId[targetId].isChecked) {
       //listItem moves up to unchecked items
       setUncheckedIds([...uncheckedIds, targetId])
-      setCheckedIds([...checkedIds.filter((id) => id !== targetId)])
+      setCheckedIds(checkedIds.filter((id) => id !== targetId))
     } else {
       //listItem moves down to checked items
-      setUncheckedIds([...uncheckedIds.filter((id) => id !== targetId)])
+      setUncheckedIds(uncheckedIds.filter((id) => id !== targetId))
       setCheckedIds([targetId, ...checkedIds])
     }
   }
@@ -88,18 +84,24 @@ export default function useList() {
 
     setList({
       byId: byIdWithoutTargetId,
-      allIds: [...list.allIds.filter((id) => id !== targetId)],
+      allIds: list.allIds.filter((id) => id !== targetId),
     })
-    setUncheckedIds([...uncheckedIds.filter((id) => id !== targetId)])
-    setCheckedIds([...checkedIds.filter((id) => id !== targetId)])
+    setUncheckedIds(uncheckedIds.filter((id) => id !== targetId))
+    setCheckedIds(checkedIds.filter((id) => id !== targetId))
 
     const title = list.byId[targetId].title
     const isChecked = list.byId[targetId].isChecked
     setDeletedListItem({ title, isChecked })
 
-    setIsShownUndoButton('shown')
-    /* setTimeout(() => {
-      setIsShownUndoButton('hidden')
-    }, 6000) */
+    setVisibilityUndoButton('shown')
+    resetTimer()
+  }
+
+  function resetTimer() {
+    timer.current && clearTimeout(timer.current)
+    timer.current = setTimeout(
+      () => setVisibilityUndoButton('fadeToHide'),
+      6000
+    )
   }
 }

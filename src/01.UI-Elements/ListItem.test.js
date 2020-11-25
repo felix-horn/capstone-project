@@ -72,7 +72,7 @@ describe('ListItem', () => {
       />
     )
 
-    const button = getByTestId('DeleteButton')
+    const button = getByTestId('delete-list-item')
     user.click(button)
 
     expect(onDeleteMock).toHaveBeenCalledTimes(1)
