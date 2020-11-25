@@ -3,7 +3,7 @@ import useList from './hooks/useList'
 import List from './02.Components/List'
 import InputForm from './01.UI-Elements/InputForm'
 import UndoButton from './01.UI-Elements/UndoButton'
-import styled, { keyframes } from 'styled-components/macro'
+import styled from 'styled-components/macro'
 
 export default function App() {
   const {
@@ -33,28 +33,16 @@ export default function App() {
         deleteListItem={deleteListItem}
       />
 
-      <PositioningWrapper className={visibilityUndoButton}>
-        <UndoButton onClick={undoDelete} />
-      </PositioningWrapper>
+      <UndoButtonStyled className={visibilityUndoButton} onClick={undoDelete} />
     </>
   )
 }
 
-const fadeOut = keyframes`
-    0% {
-        opacity: 1;
-        pointer-events: all;
-    }
-      100%{
-        opacity: 0;
-        pointer-events: none;
-    }
-`
-
-const PositioningWrapper = styled.div`
+const UndoButtonStyled = styled(UndoButton)`
   position: fixed;
   bottom: 100px;
-  width: calc(100vw - 60px);
+  left: 50%;
+  transform: translate(-50%);
   display: flex;
   justify-content: center;
 
@@ -62,10 +50,21 @@ const PositioningWrapper = styled.div`
   }
 
   &.fadeToHide {
-    animation: 1s ${fadeOut} ease forwards;
+    animation: 1s fadeOut ease forwards;
   }
 
   &.hidden {
     display: none;
+  }
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+      pointer-events: all;
+    }
+    100% {
+      opacity: 0;
+      pointer-events: none;
+    }
   }
 `

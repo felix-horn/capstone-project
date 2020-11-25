@@ -9,7 +9,7 @@ describe('ListItem', () => {
     expect(getByText('Butter')).toBeInTheDocument()
   })
 
-  it('toggles the checkbox by property change', () => {
+  it('toggles the checkbox on property change', () => {
     const onToggleMock = jest.fn()
     const onDeleteMock = jest.fn()
     const { rerender, getByLabelText } = render(

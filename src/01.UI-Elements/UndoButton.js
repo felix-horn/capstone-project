@@ -1,9 +1,13 @@
 import styled from 'styled-components/macro'
 import UndoIcon from '@material-ui/icons/Undo'
 
-export default function UndoButton({ onClick }) {
+export default function UndoButton({ onClick, className }) {
   return (
-    <UndoButtonStyled onClick={onClick} data-testid="undo-button">
+    <UndoButtonStyled
+      onClick={onClick}
+      className={className}
+      data-testid="undo-button"
+    >
       <UndoIconStyled />
     </UndoButtonStyled>
   )
@@ -20,5 +24,5 @@ const UndoButtonStyled = styled.div`
 `
 
 const UndoIconStyled = styled(UndoIcon)`
-  color: #757575;
+  color: var(--dark-gray);
 `

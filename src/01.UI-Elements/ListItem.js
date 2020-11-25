@@ -21,7 +21,7 @@ export default function ListItem({ title, isChecked, onToggle, onDelete }) {
         data-testid="checkbox"
       />
       <TitleStyled data-testid="title-list-item">{title}</TitleStyled>
-      <DeleteIconStyled onClick={onDelete} data-testid="delete-list-item" />
+      <DeleteButtonStyled onClick={onDelete} data-testid="delete-list-item" />
     </ListItemStyled>
   )
 }
@@ -36,7 +36,7 @@ const ListItemStyled = styled.label`
 const TitleStyled = styled.span`
   margin-left: 9px;
 `
-const DeleteIconStyled = styled(CloseIcon)`
+const DeleteButtonStyled = styled(CloseIcon)`
   margin-left: auto;
   transform: scale(0.9);
   opacity: 0.4;
