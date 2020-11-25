@@ -1,10 +1,5 @@
 /// <reference types="cypress" />
 
-/* const testId = id => `[data-testid="${id}"]`;
-const TODO_CREATE = testId('todo-create');
-const TODO_NAME = testId('todo-name');
-const TODO_ITEM = testId('todo-item'); */
-
 const testId = (id) => `[data-testid="${id}"]`
 const INPUT_FORM = testId('input-form')
 const LIST_ITEM = testId('list-item')
