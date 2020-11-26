@@ -15,6 +15,7 @@ export default function InputForm({ addListItem }) {
           name="title"
           type="text"
           placeholder="Listeneintrag"
+          data-testid="input-form"
         />
       </InputFormStyled>
     </form>
@@ -35,14 +36,14 @@ const InputFormStyled = styled.label`
   align-items: center;
 `
 const AddIconStyled = styled(AddIcon)`
-  color: #878889;
+  color: var(--mid-gray);
 `
 const InputFieldStyled = styled.input`
   margin-left: 20px;
   border: none;
 
   &::placeholder {
-    color: #b2b2b2;
+    color: var(--light-gray);
   }
 
   &:focus {
