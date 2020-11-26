@@ -94,10 +94,10 @@ export default function useList() {
     setDeletedListItem({ title, isChecked })
 
     setVisibilityUndoButton('shown')
-    resetTimer()
+    setFadeToHideTimer()
   }
 
-  function resetTimer() {
+  function setFadeToHideTimer() {
     timer.current && clearTimeout(timer.current)
     timer.current = setTimeout(
       () => setVisibilityUndoButton('fadeToHide'),
