@@ -4,6 +4,7 @@ import List from './02.Components/List'
 import InputForm from './01.UI-Elements/InputForm'
 import UndoButton from './01.UI-Elements/UndoButton'
 import styled from 'styled-components/macro'
+import AddButton from './01.UI-Elements/AddButton'
 
 export default function App() {
   const {
@@ -11,6 +12,7 @@ export default function App() {
     uncheckedIds,
     checkedIds,
     addListItem,
+    handleChange,
     toggleIsChecked,
     deleteListItem,
     undoDelete,
@@ -21,14 +23,17 @@ export default function App() {
       <List
         listAllocation={uncheckedIds}
         list={list}
+        handleChange={handleChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
       />
-      <InputForm addListItem={addListItem} />
+      {/* <InputForm addListItem={addListItem} /> */}
+      <AddButton onClick={addListItem} />
       <List
         checked
         listAllocation={checkedIds}
         list={list}
+        handleChange={handleChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
       />

@@ -10,7 +10,14 @@ ListItem.propTypes = {
   onDelete: PropTypes.func.isRequired,
 }
 
-export default function ListItem({ title, isChecked, onToggle, onDelete }) {
+export default function ListItem({
+  id,
+  title,
+  isChecked,
+  handleChange,
+  onToggle,
+  onDelete,
+}) {
   return (
     <ListItemStyled checked={isChecked} data-testid="list-item">
       <Checkbox
@@ -20,7 +27,13 @@ export default function ListItem({ title, isChecked, onToggle, onDelete }) {
         onChange={onToggle}
         data-testid="checkbox"
       />
-      <TitleStyled data-testid="title-list-item">{title}</TitleStyled>
+      <TitleStyled
+        name={id}
+        value={title}
+        onChange={handleChange}
+        autoFocus={!title}
+      />
+      {/* <TitleStyled data-testid="title-list-item">{title}</TitleStyled> */}
       <DeleteButtonStyled onClick={onDelete} data-testid="delete-list-item" />
     </ListItemStyled>
   )
@@ -33,8 +46,12 @@ const ListItemStyled = styled.label`
   text-decoration: ${(props) => (props.checked ? 'line-through' : 'none')};
   opacity: ${(props) => (props.checked ? 0.5 : 1)};
 `
-const TitleStyled = styled.span`
+const TitleStyled = styled.input`
   margin-left: 9px;
+  border: none;
+  &:focus {
+    outline: none;
+  }
 `
 const DeleteButtonStyled = styled(CloseIcon)`
   margin-left: auto;

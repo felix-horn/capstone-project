@@ -14,6 +14,7 @@ export default function List({
   listAllocation,
   checked,
   list,
+  handleChange,
   toggleIsChecked,
   deleteListItem,
 }) {
@@ -26,8 +27,10 @@ export default function List({
             return (
               <ListItem
                 key={id}
+                id={id}
                 title={title}
                 isChecked={isChecked}
+                handleChange={handleChange}
                 onToggle={() => toggleIsChecked(id)}
                 onDelete={() => deleteListItem(id)}
               />
@@ -37,6 +40,9 @@ export default function List({
       )}
     </>
   )
+  /* function handleChange(event) {
+    console.log(event.target.value)
+  } */
 }
 
 const ListStyled = styled.div`

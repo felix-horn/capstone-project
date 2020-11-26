@@ -21,12 +21,31 @@ export default function useList() {
   return {
     list,
     addListItem,
+    handleChange,
     toggleIsChecked,
     uncheckedIds,
     checkedIds,
     deleteListItem,
     undoDelete,
     visibilityUndoButton,
+  }
+
+  function handleChange(event) {
+    const fieldValue = event.target.value
+    const targetId = event.target.name
+    console.log(fieldValue)
+    console.log(targetId)
+
+    setList({
+      ...list,
+      byId: {
+        ...list.byId,
+        [targetId]: {
+          ...list.byId[targetId],
+          title: fieldValue,
+        },
+      },
+    })
   }
 
   function addListItem(title, isChecked = false) {
@@ -36,7 +55,7 @@ export default function useList() {
         ...list.byId,
         [newId]: {
           id: newId,
-          title,
+          title: '',
           isChecked,
         },
       },
