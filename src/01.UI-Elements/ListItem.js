@@ -18,6 +18,7 @@ export default function ListItem({
   handleChange,
   onToggle,
   onDelete,
+  onEnter,
 }) {
   const [isDeleteIconShown, setIsDeleteIconShown] = useState(false)
 
@@ -34,11 +35,12 @@ export default function ListItem({
         name={id}
         value={title}
         onChange={handleChange}
+        onKeyUp={(e) => e.key === 'Enter' && onEnter()}
         onFocus={() => setIsDeleteIconShown(true)}
-        onBlur={() => setTimeout(() => setIsDeleteIconShown(false), 10)}
+        onBlur={() => setTimeout(() => setIsDeleteIconShown(false), 100)}
         autoFocus={true}
+        data-testid="title-list-item"
       />
-      {/* <TitleStyled data-testid="title-list-item">{title}</TitleStyled> */}
       {isDeleteIconShown && (
         <DeleteButtonStyled onClick={onDelete} data-testid="delete-list-item" />
       )}

@@ -26,6 +26,7 @@ export default function App() {
         handleChange={handleChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
+        addListItem={addListItem}
       />
       {/* <InputForm addListItem={addListItem} /> */}
       <AddButton onClick={() => addListItem()} />
