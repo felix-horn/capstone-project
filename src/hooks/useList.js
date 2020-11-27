@@ -6,7 +6,6 @@ export default function useList() {
     byId: {},
     allIds: [],
   })
-
   const [uncheckedIds, setUncheckedIds] = useState([])
   const [checkedIds, setCheckedIds] = useState([])
 
@@ -14,9 +13,9 @@ export default function useList() {
     title: '',
     isChecked: false,
   })
-  const [visibilityUndoButton, setVisibilityUndoButton] = useState('hidden')
 
-  const timer = useRef()
+  const [visibilityUndoButton, setVisibilityUndoButton] = useState('hidden')
+  const fadeTimer = useRef()
 
   return {
     list,
@@ -34,8 +33,6 @@ export default function useList() {
   function handleChange(event) {
     const fieldValue = event.target.value
     const targetId = event.target.name
-    console.log(fieldValue)
-    console.log(targetId)
 
     setList({
       ...list,
@@ -70,13 +67,7 @@ export default function useList() {
 
   function addListItemOnEnter(targetId) {
     const lastUncheckedId = uncheckedIds[uncheckedIds.length - 1]
-    console.log({ targetId }, { lastUncheckedId })
     lastUncheckedId === targetId && addListItem()
-  }
-
-  function undoDelete() {
-    addListItem(deletedListItem.title, deletedListItem.isChecked)
-    setVisibilityUndoButton('hidden')
   }
 
   function toggleIsChecked(targetId) {
@@ -120,14 +111,16 @@ export default function useList() {
     setDeletedListItem({ title, isChecked })
 
     setVisibilityUndoButton('shown')
-    setFadeToHideTimer()
+    setFadeTimer()
   }
 
-  function setFadeToHideTimer() {
-    timer.current && clearTimeout(timer.current)
-    timer.current = setTimeout(
-      () => setVisibilityUndoButton('fadeToHide'),
-      6000
-    )
+  function undoDelete() {
+    addListItem(deletedListItem.title, deletedListItem.isChecked)
+    setVisibilityUndoButton('hidden')
+  }
+
+  function setFadeTimer() {
+    fadeTimer.current && clearTimeout(fadeTimer.current)
+    fadeTimer.current = setTimeout(() => setVisibilityUndoButton('fade'), 4000)
   }
 }

@@ -36,7 +36,6 @@ export default function ListItem({
         value={title}
         onChange={handleChange}
         onKeyUp={(e) => e.key === 'Enter' && handleEnter(e)}
-        // onKeyUp={(e) => e.key === 'Enter' && onEnter()}
         onFocus={() => setIsDeleteIconShown(true)}
         onBlur={() => setTimeout(() => setIsDeleteIconShown(false), 1)}
         autoFocus={true}

@@ -1,7 +1,6 @@
 import useList from './hooks/useList'
 
 import List from './02.Components/List'
-import InputForm from './01.UI-Elements/InputForm'
 import UndoButton from './01.UI-Elements/UndoButton'
 import styled from 'styled-components/macro'
 import AddButton from './01.UI-Elements/AddButton'
@@ -27,7 +26,6 @@ export default function App() {
         handleChange={handleChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
-        addListItem={addListItem}
         addListItemOnEnter={addListItemOnEnter}
       />
       <AddButton onClick={() => addListItem()} />
@@ -39,7 +37,6 @@ export default function App() {
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
       />
-
       <UndoButtonStyled className={visibilityUndoButton} onClick={undoDelete} />
     </>
   )
@@ -56,7 +53,7 @@ const UndoButtonStyled = styled(UndoButton)`
   &.shown {
   }
 
-  &.fadeToHide {
+  &.fade {
     animation: 1s fadeOut ease forwards;
   }
 

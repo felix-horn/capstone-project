@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import AddIcon from '@material-ui/icons/Add'
 
 AddButton.propTypes = {
-  addListItem: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 }
 
 export default function AddButton({ onClick }) {
