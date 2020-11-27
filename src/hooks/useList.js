@@ -21,6 +21,7 @@ export default function useList() {
   return {
     list,
     addListItem,
+    addListItemOnEnter,
     handleChange,
     toggleIsChecked,
     uncheckedIds,
@@ -65,6 +66,12 @@ export default function useList() {
     isChecked
       ? setCheckedIds([...checkedIds, newId])
       : setUncheckedIds([...uncheckedIds, newId])
+  }
+
+  function addListItemOnEnter(targetId) {
+    const lastUncheckedId = uncheckedIds[uncheckedIds.length - 1]
+    console.log({ targetId }, { lastUncheckedId })
+    lastUncheckedId === targetId && addListItem()
   }
 
   function undoDelete() {

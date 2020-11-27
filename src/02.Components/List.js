@@ -18,6 +18,7 @@ export default function List({
   toggleIsChecked,
   deleteListItem,
   addListItem,
+  addListItemOnEnter,
 }) {
   return (
     <>
@@ -34,7 +35,7 @@ export default function List({
                 handleChange={handleChange}
                 onToggle={() => toggleIsChecked(id)}
                 onDelete={() => deleteListItem(id)}
-                onEnter={() => addListItem()}
+                onEnter={() => addListItemOnEnter(id)}
               />
             )
           })}

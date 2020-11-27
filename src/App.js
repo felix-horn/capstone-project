@@ -12,6 +12,7 @@ export default function App() {
     uncheckedIds,
     checkedIds,
     addListItem,
+    addListItemOnEnter,
     handleChange,
     toggleIsChecked,
     deleteListItem,
@@ -27,8 +28,8 @@ export default function App() {
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
         addListItem={addListItem}
+        addListItemOnEnter={addListItemOnEnter}
       />
-      {/* <InputForm addListItem={addListItem} /> */}
       <AddButton onClick={() => addListItem()} />
       <List
         checked

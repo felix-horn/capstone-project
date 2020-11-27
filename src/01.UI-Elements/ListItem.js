@@ -37,7 +37,7 @@ export default function ListItem({
         onChange={handleChange}
         onKeyUp={(e) => e.key === 'Enter' && onEnter()}
         onFocus={() => setIsDeleteIconShown(true)}
-        onBlur={() => setTimeout(() => setIsDeleteIconShown(false), 100)}
+        onBlur={() => setTimeout(() => setIsDeleteIconShown(false), 1)}
         autoFocus={true}
         data-testid="title-list-item"
       />
