@@ -55,14 +55,12 @@ export default function useList() {
         ...list.byId,
         [newId]: {
           id: newId,
-          title: '',
+          title,
           isChecked,
         },
       },
       allIds: [...list.allIds, newId],
     })
-
-    console.log('title: ', title)
 
     isChecked
       ? setCheckedIds([...checkedIds, newId])

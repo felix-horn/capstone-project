@@ -44,8 +44,6 @@ export default function ListItem({
       )}
     </ListItemStyled>
   )
-
-  function handleFocus() {}
 }
 
 const ListItemStyled = styled.label`

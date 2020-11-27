@@ -28,7 +28,7 @@ export default function App() {
         deleteListItem={deleteListItem}
       />
       {/* <InputForm addListItem={addListItem} /> */}
-      <AddButton onClick={addListItem} />
+      <AddButton onClick={() => addListItem()} />
       <List
         checked
         listAllocation={checkedIds}
