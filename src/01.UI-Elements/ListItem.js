@@ -35,7 +35,8 @@ export default function ListItem({
         name={id}
         value={title}
         onChange={handleChange}
-        onKeyUp={(e) => e.key === 'Enter' && onEnter()}
+        onKeyUp={(e) => e.key === 'Enter' && handleEnter(e)}
+        // onKeyUp={(e) => e.key === 'Enter' && onEnter()}
         onFocus={() => setIsDeleteIconShown(true)}
         onBlur={() => setTimeout(() => setIsDeleteIconShown(false), 1)}
         autoFocus={true}
@@ -46,6 +47,11 @@ export default function ListItem({
       )}
     </ListItemStyled>
   )
+
+  function handleEnter(event) {
+    event.target.blur()
+    onEnter()
+  }
 }
 
 const ListItemStyled = styled.label`
