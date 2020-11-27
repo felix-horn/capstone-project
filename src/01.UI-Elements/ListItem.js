@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Checkbox from '@material-ui/core/Checkbox'
 import CloseIcon from '@material-ui/icons/Close'
+import { useState } from 'react'
 
 ListItem.propTypes = {
   title: PropTypes.string.isRequired,
@@ -18,6 +19,8 @@ export default function ListItem({
   onToggle,
   onDelete,
 }) {
+  const [isDeleteIconShown, setIsDeleteIconShown] = useState(false)
+
   return (
     <ListItemStyled checked={isChecked} data-testid="list-item">
       <Checkbox
@@ -31,12 +34,18 @@ export default function ListItem({
         name={id}
         value={title}
         onChange={handleChange}
-        autoFocus={!title}
+        onFocus={() => setIsDeleteIconShown(true)}
+        onBlur={() => setTimeout(() => setIsDeleteIconShown(false), 10)}
+        autoFocus={true}
       />
       {/* <TitleStyled data-testid="title-list-item">{title}</TitleStyled> */}
-      <DeleteButtonStyled onClick={onDelete} data-testid="delete-list-item" />
+      {isDeleteIconShown && (
+        <DeleteButtonStyled onClick={onDelete} data-testid="delete-list-item" />
+      )}
     </ListItemStyled>
   )
+
+  function handleFocus() {}
 }
 
 const ListItemStyled = styled.label`

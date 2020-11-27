@@ -48,7 +48,7 @@ export default function useList() {
     })
   }
 
-  function addListItem(title, isChecked = false) {
+  function addListItem(title = '', isChecked = false) {
     const newId = uuid()
     setList({
       byId: {
@@ -61,6 +61,8 @@ export default function useList() {
       },
       allIds: [...list.allIds, newId],
     })
+
+    console.log('title: ', title)
 
     isChecked
       ? setCheckedIds([...checkedIds, newId])

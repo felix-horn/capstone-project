@@ -10,7 +10,7 @@ export default function AddButton({ onClick }) {
   return (
     <AddButtonStyled onClick={onClick} data-testid="add-button">
       <AddIconStyled />
-      Listeneintrag
+      <ButtenTextStyled>Listeneintrag</ButtenTextStyled>
     </AddButtonStyled>
   )
 }
@@ -22,9 +22,12 @@ const AddButtonStyled = styled.button`
   background: none;
   display: flex;
   align-items: center;
-  color: var(--light-gray);
 `
 const AddIconStyled = styled(AddIcon)`
   margin-right: 20px;
   color: var(--mid-gray);
+`
+
+const ButtenTextStyled = styled.span`
+  color: var(--light-gray);
 `
