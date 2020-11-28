@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import UndoIcon from '@material-ui/icons/Undo'
-import PropTypes from 'prop-types'
 
 UndoButton.propTypes = {
   onClick: PropTypes.func.isRequired,

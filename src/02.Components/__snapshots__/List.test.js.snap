@@ -18,6 +18,11 @@ exports[`List renders the list correctly 1`] = `
 
 .c2 {
   margin-left: 9px;
+  border: none;
+}
+
+.c2:focus {
+  outline: none;
 }
 
 .c3 {
@@ -40,10 +45,12 @@ exports[`List renders the list correctly 1`] = `
 >
   <label
     class="c1"
+    data-testid="list-item"
   >
     <span
       aria-disabled="false"
       class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root"
+      data-testid="checkbox"
     >
       <span
         class="MuiIconButton-label"
@@ -69,15 +76,16 @@ exports[`List renders the list correctly 1`] = `
         class="MuiTouchRipple-root"
       />
     </span>
-    <span
+    <input
       class="c2"
-    >
-      friends
-    </span>
+      data-testid="title-list-item"
+      name="a"
+      value="friends"
+    />
     <svg
       aria-hidden="true"
       class="MuiSvgIcon-root c3"
-      data-testid="DeleteButton"
+      data-testid="delete-list-item"
       focusable="false"
       viewBox="0 0 24 24"
     >
@@ -88,10 +96,12 @@ exports[`List renders the list correctly 1`] = `
   </label>
   <label
     class="c1"
+    data-testid="list-item"
   >
     <span
       aria-disabled="false"
       class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-1 MuiCheckbox-root"
+      data-testid="checkbox"
     >
       <span
         class="MuiIconButton-label"
@@ -117,15 +127,16 @@ exports[`List renders the list correctly 1`] = `
         class="MuiTouchRipple-root"
       />
     </span>
-    <span
+    <input
       class="c2"
-    >
-      family
-    </span>
+      data-testid="title-list-item"
+      name="b"
+      value="family"
+    />
     <svg
       aria-hidden="true"
       class="MuiSvgIcon-root c3"
-      data-testid="DeleteButton"
+      data-testid="delete-list-item"
       focusable="false"
       viewBox="0 0 24 24"
     >

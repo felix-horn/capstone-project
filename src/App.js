@@ -1,9 +1,8 @@
 import useList from './hooks/useList'
-
-import List from './02.Components/List'
-import InputForm from './01.UI-Elements/InputForm'
-import UndoButton from './01.UI-Elements/UndoButton'
 import styled from 'styled-components/macro'
+import List from './02.Components/List'
+import UndoButton from './01.UI-Elements/UndoButton'
+import AddItemButton from './01.UI-Elements/AddItemButton'
 
 export default function App() {
   const {
@@ -11,6 +10,8 @@ export default function App() {
     uncheckedIds,
     checkedIds,
     addListItem,
+    addListItemOnEnter,
+    handleInputChange,
     toggleIsChecked,
     deleteListItem,
     undoDelete,
@@ -21,18 +22,21 @@ export default function App() {
       <List
         listAllocation={uncheckedIds}
         list={list}
+        handleInputChange={handleInputChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
+        addListItemOnEnter={addListItemOnEnter}
       />
-      <InputForm addListItem={addListItem} />
+      <AddItemButton onClick={() => addListItem()} />
       <List
         checked
         listAllocation={checkedIds}
         list={list}
+        handleInputChange={handleInputChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
+        addListItemOnEnter={addListItemOnEnter}
       />
-
       <UndoButtonStyled className={visibilityUndoButton} onClick={undoDelete} />
     </>
   )
@@ -49,7 +53,7 @@ const UndoButtonStyled = styled(UndoButton)`
   &.shown {
   }
 
-  &.fadeToHide {
+  &.fade {
     animation: 1s fadeOut ease forwards;
   }
 

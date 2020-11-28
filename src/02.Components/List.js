@@ -6,16 +6,21 @@ import ListItem from '../01.UI-Elements/ListItem'
 List.propTypes = {
   list: PropTypes.object.isRequired,
   listAllocation: PropTypes.array.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
+  deleteListItem: PropTypes.func.isRequired,
+  addListItemOnEnter: PropTypes.func.isRequired,
   checked: PropTypes.bool,
 }
 
 export default function List({
-  listAllocation,
-  checked,
   list,
+  listAllocation,
+  handleInputChange,
   toggleIsChecked,
   deleteListItem,
+  addListItemOnEnter,
+  checked,
 }) {
   return (
     <>
@@ -26,10 +31,13 @@ export default function List({
             return (
               <ListItem
                 key={id}
+                id={id}
                 title={title}
                 isChecked={isChecked}
-                onToggle={() => toggleIsChecked(id)}
+                onInputChange={handleInputChange}
+                onToggleCheckbox={() => toggleIsChecked(id)}
                 onDelete={() => deleteListItem(id)}
+                onEnter={() => addListItemOnEnter(id)}
               />
             )
           })}
