@@ -17,17 +17,21 @@ describe('ListItem', () => {
     expect(checkbox).toHaveProperty('checked', false)
   })
 
-  it('calls onToggle', () => {
-    const onToggleMock = jest.fn()
-    const { getByTestId } = render(<ListItem onToggle={onToggleMock} />)
+  it('calls onToggleCheckbox', () => {
+    const onToggleCheckboxMock = jest.fn()
+    const { getByTestId } = render(
+      <ListItem onToggleCheckbox={onToggleCheckboxMock} />
+    )
     const checkbox = getByTestId('checkbox')
     user.click(checkbox)
-    expect(onToggleMock).toHaveBeenCalled()
+    expect(onToggleCheckboxMock).toHaveBeenCalled()
   })
 
   it('toggles the checkbox', () => {
-    const onToggleMock = jest.fn()
-    const { getByRole } = render(<ListItem onToggle={onToggleMock} />)
+    const onToggleCheckboxMock = jest.fn()
+    const { getByRole } = render(
+      <ListItem onToggleCheckbox={onToggleCheckboxMock} />
+    )
     const checkbox = getByRole('checkbox')
     // const checkbox = getByTestId('checkbox') not working
     // material ui elment
@@ -45,13 +49,13 @@ describe('ListItem', () => {
   })
 
   xit('calls handleChange', () => {
-    const handleChangeMock = jest.fn()
-    const { getByTestId } = render(<ListItem handleChange={handleChangeMock} />)
+    const onInputChange = jest.fn()
+    const { getByTestId } = render(<ListItem handleChange={onInputChange} />)
     const inputField = getByTestId('title-list-item')
     console.log({ inputField })
     user.type(inputField, 't')
-    expect(handleChangeMock).toHaveBeenCalledTimes(1)
-    expect(handleChangeMock).toHaveBeenCalledWith('t')
+    expect(onInputChange).toHaveBeenCalledTimes(1)
+    expect(onInputChange).toHaveBeenCalledWith('t')
   })
 
   xit('calls setIsDeleteIconShown', () => {
