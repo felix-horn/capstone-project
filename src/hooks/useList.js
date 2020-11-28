@@ -117,6 +117,7 @@ export default function useList() {
   function undoDelete() {
     addListItem(deletedListItem.title, deletedListItem.isChecked)
     setVisibilityUndoButton('hidden')
+    clearTimeout(fadeTimer.current)
   }
 
   function setFadeTimer() {

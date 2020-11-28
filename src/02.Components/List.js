@@ -14,13 +14,13 @@ List.propTypes = {
 }
 
 export default function List({
-  listAllocation,
-  checked,
   list,
+  listAllocation,
   handleChange,
   toggleIsChecked,
   deleteListItem,
   addListItemOnEnter,
+  checked,
 }) {
   return (
     <>

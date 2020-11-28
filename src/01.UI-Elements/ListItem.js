@@ -1,8 +1,8 @@
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Checkbox from '@material-ui/core/Checkbox'
 import CloseIcon from '@material-ui/icons/Close'
-import { useState } from 'react'
 
 ListItem.propTypes = {
   id: PropTypes.string.isRequired,
@@ -40,7 +40,7 @@ export default function ListItem({
         onChange={handleChange}
         onKeyUp={(e) => e.key === 'Enter' && handleEnter(e)}
         onFocus={() => setIsDeleteIconShown(true)}
-        onBlur={() => setTimeout(() => setIsDeleteIconShown(false), 1)}
+        onBlur={() => setTimeout(() => setIsDeleteIconShown(false), 0)}
         autoFocus={true}
         data-testid="title-list-item"
       />
