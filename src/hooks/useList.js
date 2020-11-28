@@ -30,9 +30,9 @@ export default function useList() {
     visibilityUndoButton,
   }
 
-  function handleInputChange(event) {
-    const fieldValue = event.target.value
-    const targetId = event.target.name
+  function handleInputChange(e) {
+    const fieldValue = e.target.value
+    const targetId = e.target.name
 
     setList({
       ...list,

@@ -1,9 +1,8 @@
 import useList from './hooks/useList'
 import styled from 'styled-components/macro'
-
 import List from './02.Components/List'
 import UndoButton from './01.UI-Elements/UndoButton'
-import AddButton from './01.UI-Elements/AddButton'
+import AddItemButton from './01.UI-Elements/AddItemButton'
 
 export default function App() {
   const {
@@ -28,7 +27,7 @@ export default function App() {
         deleteListItem={deleteListItem}
         addListItemOnEnter={addListItemOnEnter}
       />
-      <AddButton onClick={() => addListItem()} />
+      <AddItemButton onClick={() => addListItem()} />
       <List
         checked
         listAllocation={checkedIds}

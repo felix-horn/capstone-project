@@ -50,8 +50,8 @@ export default function ListItem({
     </ListItemStyled>
   )
 
-  function handleEnter(event) {
-    event.target.blur()
+  function handleEnter(e) {
+    e.target.blur()
     onEnter()
   }
 }
