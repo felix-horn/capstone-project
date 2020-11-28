@@ -12,7 +12,7 @@ export default function App() {
     checkedIds,
     addListItem,
     addListItemOnEnter,
-    handleChange,
+    handleInputChange,
     toggleIsChecked,
     deleteListItem,
     undoDelete,
@@ -23,7 +23,7 @@ export default function App() {
       <List
         listAllocation={uncheckedIds}
         list={list}
-        handleChange={handleChange}
+        handleInputChange={handleInputChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
         addListItemOnEnter={addListItemOnEnter}
@@ -33,7 +33,7 @@ export default function App() {
         checked
         listAllocation={checkedIds}
         list={list}
-        handleChange={handleChange}
+        handleInputChange={handleInputChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
         addListItemOnEnter={addListItemOnEnter}

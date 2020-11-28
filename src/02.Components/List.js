@@ -6,7 +6,7 @@ import ListItem from '../01.UI-Elements/ListItem'
 List.propTypes = {
   list: PropTypes.object.isRequired,
   listAllocation: PropTypes.array.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
   addListItemOnEnter: PropTypes.func.isRequired,
@@ -16,7 +16,7 @@ List.propTypes = {
 export default function List({
   list,
   listAllocation,
-  handleChange,
+  handleInputChange,
   toggleIsChecked,
   deleteListItem,
   addListItemOnEnter,
@@ -34,8 +34,8 @@ export default function List({
                 id={id}
                 title={title}
                 isChecked={isChecked}
-                handleChange={handleChange}
-                onToggle={() => toggleIsChecked(id)}
+                onInputChange={handleInputChange}
+                onToggleCheckbox={() => toggleIsChecked(id)}
                 onDelete={() => deleteListItem(id)}
                 onEnter={() => addListItemOnEnter(id)}
               />

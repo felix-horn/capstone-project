@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components/macro'
-import InputBase from '@material-ui/core/InputBase'
 
 export default createGlobalStyle`
 

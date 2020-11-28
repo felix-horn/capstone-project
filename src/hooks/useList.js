@@ -21,7 +21,7 @@ export default function useList() {
     list,
     addListItem,
     addListItemOnEnter,
-    handleChange,
+    handleInputChange,
     toggleIsChecked,
     uncheckedIds,
     checkedIds,
@@ -30,7 +30,7 @@ export default function useList() {
     visibilityUndoButton,
   }
 
-  function handleChange(event) {
+  function handleInputChange(event) {
     const fieldValue = event.target.value
     const targetId = event.target.name
 

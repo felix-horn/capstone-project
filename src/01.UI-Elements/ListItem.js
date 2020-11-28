@@ -8,8 +8,8 @@ ListItem.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   isChecked: PropTypes.bool.isRequired,
-  handleChange: PropTypes.func.isRequired,
-  onToggle: PropTypes.func.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onToggleCheckbox: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onEnter: PropTypes.func.isRequired,
 }
@@ -18,8 +18,8 @@ export default function ListItem({
   id,
   title,
   isChecked,
-  handleChange,
-  onToggle,
+  onInputChange,
+  onToggleCheckbox,
   onDelete,
   onEnter,
 }) {
@@ -31,13 +31,13 @@ export default function ListItem({
         type="checkbox"
         color="default"
         checked={isChecked}
-        onChange={onToggle}
+        onChange={onToggleCheckbox}
         data-testid="checkbox"
       />
       <TitleStyled
         name={id}
         value={title}
-        onChange={handleChange}
+        onChange={onInputChange}
         onKeyUp={(e) => e.key === 'Enter' && handleEnter(e)}
         onFocus={() => setIsDeleteIconShown(true)}
         onBlur={() => setTimeout(() => setIsDeleteIconShown(false), 0)}
