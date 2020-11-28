@@ -30,8 +30,8 @@ describe('List', () => {
     )
     expect(container.firstChild).toMatchSnapshot()
   })
-  it('only renders unchecked listItems', () => {
-    const { queryByText } = render(
+  it('only renders allocated listItems', () => {
+    const { queryByDisplayValue, getByDisplayValue } = render(
       <List
         listAllocation={['a']}
         list={{
@@ -42,8 +42,8 @@ describe('List', () => {
               title: 'Milk',
               isChecked: false,
             },
-            b: {
-              id: 'b',
+            c: {
+              id: 'c',
               title: 'Cheese',
               isChecked: true,
             },
@@ -51,35 +51,9 @@ describe('List', () => {
         }}
       />
     )
-    const milkListItem = queryByText(/milk/i)
-    const cheeseListItem = queryByText(/cheese/i)
+    const milkListItem = getByDisplayValue(/milk/i)
+    const cheeseListItem = queryByDisplayValue(/cheese/i)
     expect(milkListItem).toBeInTheDocument()
     expect(cheeseListItem).not.toBeInTheDocument()
-  })
-  it('only renders checked listItems', () => {
-    const { queryByText } = render(
-      <List
-        listAllocation={['b']}
-        list={{
-          allIds: ['a', 'b'],
-          byId: {
-            a: {
-              id: 'a',
-              title: 'Milk',
-              isChecked: false,
-            },
-            b: {
-              id: 'b',
-              title: 'Cheese',
-              isChecked: true,
-            },
-          },
-        }}
-      />
-    )
-    const milkListItem = queryByText(/milk/i)
-    const cheeseListItem = queryByText(/cheese/i)
-    expect(milkListItem).not.toBeInTheDocument()
-    expect(cheeseListItem).toBeInTheDocument()
   })
 })

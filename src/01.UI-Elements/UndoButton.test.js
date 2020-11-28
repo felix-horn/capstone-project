@@ -4,14 +4,10 @@ import UndoButton from './UndoButton'
 
 describe('UndoButton', () => {
   it('calls function on click', () => {
-    const handleClickMock = jest.fn()
-
-    const { getByTestId } = render(<UndoButton onClick={handleClickMock} />)
-
-    const button = getByTestId('UndoButton')
-
+    const onClickMock = jest.fn()
+    const { getByTestId } = render(<UndoButton onClick={onClickMock} />)
+    const button = getByTestId('undo-button')
     user.click(button)
-
-    expect(handleClickMock).toHaveBeenCalledTimes(1)
+    expect(onClickMock).toHaveBeenCalledTimes(1)
   })
 })

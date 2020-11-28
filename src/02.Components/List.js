@@ -6,7 +6,10 @@ import ListItem from '../01.UI-Elements/ListItem'
 List.propTypes = {
   list: PropTypes.object.isRequired,
   listAllocation: PropTypes.array.isRequired,
+  handleChange: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
+  deleteListItem: PropTypes.func.isRequired,
+  addListItemOnEnter: PropTypes.func.isRequired,
   checked: PropTypes.bool,
 }
 
@@ -17,7 +20,6 @@ export default function List({
   handleChange,
   toggleIsChecked,
   deleteListItem,
-  addListItem,
   addListItemOnEnter,
 }) {
   return (

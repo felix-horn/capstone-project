@@ -5,10 +5,13 @@ import CloseIcon from '@material-ui/icons/Close'
 import { useState } from 'react'
 
 ListItem.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   isChecked: PropTypes.bool.isRequired,
+  handleChange: PropTypes.func.isRequired,
   onToggle: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onEnter: PropTypes.func.isRequired,
 }
 
 export default function ListItem({

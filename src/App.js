@@ -36,6 +36,7 @@ export default function App() {
         handleChange={handleChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
+        addListItemOnEnter={addListItemOnEnter}
       />
       <UndoButtonStyled className={visibilityUndoButton} onClick={undoDelete} />
     </>
