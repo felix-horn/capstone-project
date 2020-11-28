@@ -1,7 +1,6 @@
 node_modules
 dist
 .DS_Store
-build
 cypress/screenshots
 cypress/support
 cypress/fixtures
