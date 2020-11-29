@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
 export default function useList() {
@@ -17,6 +17,37 @@ export default function useList() {
   const [visibilityUndoButton, setVisibilityUndoButton] = useState('hidden')
   const fadeTimer = useRef()
 
+  useEffect(() => {
+    setCheckedIds(
+      list.allIds.reduce((acc, cur) => {
+        const curIsChecked = list.byId[cur].isChecked
+        console.log('checked: ', acc)
+        return curIsChecked ? [...acc, cur] : acc
+      }, [])
+    )
+    setUncheckedIds(
+      list.allIds.reduce((acc, cur) => {
+        const curIsNotChecked = !list.byId[cur].isChecked
+        console.log('unchecked: ', acc)
+        return curIsNotChecked ? [...acc, cur] : acc
+      }, [])
+    )
+  }, [list])
+
+  /* useEffect(() => {
+    // const checkedIds = Object.keys(list.byId)
+    list.allIds.map((id) => {
+      const curIsChecked = list.byId[id].isChecked
+      let TESTcheckedIds = ''
+      let TESTuncheckedIds = ''
+      return curIsChecked
+        ? (TESTcheckedIds = [...TESTcheckedIds, id])
+        : (TESTuncheckedIds = [...TESTuncheckedIds, id])
+    })
+    setUncheckedIds(TESTcheckedIds)
+    setCheckedIds(TESTuncheckedIds)
+  }, [list]) */
+
   return {
     list,
     addListItem,
@@ -28,6 +59,30 @@ export default function useList() {
     deleteListItem,
     undoDelete,
     visibilityUndoButton,
+  }
+
+  function addListItem(title = '', isChecked = false) {
+    const newId = uuid()
+    setList({
+      byId: {
+        ...list.byId,
+        [newId]: {
+          id: newId,
+          title,
+          isChecked,
+        },
+      },
+      allIds: [...list.allIds, newId],
+    })
+
+    /* isChecked
+      ? setCheckedIds([...checkedIds, newId])
+      : setUncheckedIds([...uncheckedIds, newId]) */
+  }
+
+  function addListItemOnEnter(targetId) {
+    const lastUncheckedId = uncheckedIds[uncheckedIds.length - 1]
+    lastUncheckedId === targetId && addListItem()
   }
 
   function handleInputChange(e) {
@@ -46,30 +101,6 @@ export default function useList() {
     })
   }
 
-  function addListItem(title = '', isChecked = false) {
-    const newId = uuid()
-    setList({
-      byId: {
-        ...list.byId,
-        [newId]: {
-          id: newId,
-          title,
-          isChecked,
-        },
-      },
-      allIds: [...list.allIds, newId],
-    })
-
-    isChecked
-      ? setCheckedIds([...checkedIds, newId])
-      : setUncheckedIds([...uncheckedIds, newId])
-  }
-
-  function addListItemOnEnter(targetId) {
-    const lastUncheckedId = uncheckedIds[uncheckedIds.length - 1]
-    lastUncheckedId === targetId && addListItem()
-  }
-
   function toggleIsChecked(targetId) {
     //boolean "isChecked" is toggled in the corresponding byId-object
     setList({
@@ -83,7 +114,7 @@ export default function useList() {
       },
     })
 
-    if (list.byId[targetId].isChecked) {
+    /* if (list.byId[targetId].isChecked) {
       //listItem moves up to unchecked items
       setUncheckedIds([...uncheckedIds, targetId])
       setCheckedIds(checkedIds.filter((id) => id !== targetId))
@@ -91,7 +122,7 @@ export default function useList() {
       //listItem moves down to checked items
       setUncheckedIds(uncheckedIds.filter((id) => id !== targetId))
       setCheckedIds([targetId, ...checkedIds])
-    }
+    } */
   }
 
   function deleteListItem(targetId) {
@@ -103,8 +134,8 @@ export default function useList() {
       byId: byIdWithoutTargetId,
       allIds: list.allIds.filter((id) => id !== targetId),
     })
-    setUncheckedIds(uncheckedIds.filter((id) => id !== targetId))
-    setCheckedIds(checkedIds.filter((id) => id !== targetId))
+    // setUncheckedIds(uncheckedIds.filter((id) => id !== targetId))
+    // setCheckedIds(checkedIds.filter((id) => id !== targetId))
 
     const title = list.byId[targetId].title
     const isChecked = list.byId[targetId].isChecked
