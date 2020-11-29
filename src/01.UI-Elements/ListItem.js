@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Checkbox from '@material-ui/core/Checkbox'
 import CloseIcon from '@material-ui/icons/Close'
+import DragHandleIcon from '@material-ui/icons/DragHandle'
 
 ListItem.propTypes = {
   id: PropTypes.string.isRequired,
@@ -27,6 +28,7 @@ export default function ListItem({
 
   return (
     <ListItemStyled checked={isChecked} data-testid="list-item">
+      {/* <DragHandleIcon /> */}
       <Checkbox
         type="checkbox"
         color="default"
