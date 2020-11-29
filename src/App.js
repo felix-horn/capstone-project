@@ -1,6 +1,7 @@
 import useList from './hooks/useList'
 import styled from 'styled-components/macro'
-import List from './02.Components/List'
+import UncheckedList from './02.Components/UncheckedList'
+import CheckedList from './02.Components/CheckedList'
 import UndoButton from './01.UI-Elements/UndoButton'
 import AddItemButton from './01.UI-Elements/AddItemButton'
 
@@ -19,7 +20,7 @@ export default function App() {
   } = useList()
   return (
     <>
-      <List
+      <UncheckedList
         listAllocation={uncheckedIds}
         list={list}
         handleInputChange={handleInputChange}
@@ -28,7 +29,7 @@ export default function App() {
         addListItemOnEnter={addListItemOnEnter}
       />
       <AddItemButton onClick={() => addListItem()} />
-      <List
+      <CheckedList
         checked
         listAllocation={checkedIds}
         list={list}

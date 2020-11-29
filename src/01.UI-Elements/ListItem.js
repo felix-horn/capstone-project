@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Checkbox from '@material-ui/core/Checkbox'
 import CloseIcon from '@material-ui/icons/Close'
-import DragHandleIcon from '@material-ui/icons/DragHandle'
 
 ListItem.propTypes = {
   id: PropTypes.string.isRequired,
@@ -28,7 +27,6 @@ export default function ListItem({
 
   return (
     <ListItemStyled checked={isChecked} data-testid="list-item">
-      {/* <DragHandleIcon /> */}
       <Checkbox
         type="checkbox"
         color="default"
@@ -59,14 +57,15 @@ export default function ListItem({
 }
 
 const ListItemStyled = styled.label`
-  width: 80vw;
+  width: 75vw;
   display: flex;
   align-items: center;
-  text-decoration: ${(props) => (props.checked ? 'line-through' : 'none')};
   opacity: ${(props) => (props.checked ? 0.5 : 1)};
 `
 const TitleStyled = styled.input`
   margin-left: 9px;
+  text-decoration: ${(props) => (props.checked ? 'line-through' : 'none')};
+  text-decoration: 'line-through';
   border: none;
   &:focus {
     outline: none;

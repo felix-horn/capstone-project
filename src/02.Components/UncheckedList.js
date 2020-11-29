@@ -2,10 +2,10 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import ListItem from '../01.UI-Elements/ListItem'
-import DragHandleIcon from '@material-ui/icons/DragHandle'
+// import DragHandleIcon from '@material-ui/icons/DragHandle'
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator'
 
-List.propTypes = {
+UncheckedList.propTypes = {
   list: PropTypes.object.isRequired,
   listAllocation: PropTypes.array.isRequired,
   handleInputChange: PropTypes.func.isRequired,
@@ -15,7 +15,7 @@ List.propTypes = {
   checked: PropTypes.bool,
 }
 
-export default function List({
+export default function UncheckedList({
   list,
   listAllocation,
   handleInputChange,
@@ -24,9 +24,15 @@ export default function List({
   addListItemOnEnter,
   checked,
 }) {
+  function handleOnDragEnd(result) {
+    const indexFrom = result.source.index
+    const indexTo = result.destination.index
+    console.log({ indexFrom }, { indexTo })
+  }
+
   return (
     <>
-      <DragDropContext>
+      <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="listItemsId">
           {(provided) => (
             <ListStyled
