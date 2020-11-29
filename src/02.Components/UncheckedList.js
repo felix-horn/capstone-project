@@ -22,12 +22,15 @@ export default function UncheckedList({
   toggleIsChecked,
   deleteListItem,
   addListItemOnEnter,
+  rearrangeListOrder,
   checked,
 }) {
   function handleOnDragEnd(result) {
+    if (!result.destination) return
     const indexFrom = result.source.index
     const indexTo = result.destination.index
     console.log({ indexFrom }, { indexTo })
+    rearrangeListOrder(indexFrom, indexTo)
   }
 
   return (

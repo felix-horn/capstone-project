@@ -16,6 +16,7 @@ export default function App() {
     toggleIsChecked,
     deleteListItem,
     undoDelete,
+    rearrangeListOrder,
     visibilityUndoButton,
   } = useList()
   return (
@@ -27,6 +28,7 @@ export default function App() {
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
         addListItemOnEnter={addListItemOnEnter}
+        rearrangeListOrder={rearrangeListOrder}
       />
       <AddItemButton onClick={() => addListItem()} />
       <CheckedList

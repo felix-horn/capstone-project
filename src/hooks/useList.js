@@ -58,6 +58,7 @@ export default function useList() {
     checkedIds,
     deleteListItem,
     undoDelete,
+    rearrangeListOrder,
     visibilityUndoButton,
   }
 
@@ -75,9 +76,9 @@ export default function useList() {
       allIds: [...list.allIds, newId],
     })
 
-    /* isChecked
-      ? setCheckedIds([...checkedIds, newId])
-      : setUncheckedIds([...uncheckedIds, newId]) */
+    // isChecked
+    //   ? setCheckedIds([...checkedIds, newId])
+    //   : setUncheckedIds([...uncheckedIds, newId])
   }
 
   function addListItemOnEnter(targetId) {
@@ -123,6 +124,17 @@ export default function useList() {
       setUncheckedIds(uncheckedIds.filter((id) => id !== targetId))
       setCheckedIds([targetId, ...checkedIds])
     } */
+  }
+
+  function rearrangeListOrder(indexFrom, indexTo) {
+    const copyOfAllIds = [...list.allIds]
+    const [targetItem] = copyOfAllIds.splice(indexFrom, 1)
+    copyOfAllIds.splice(indexTo, 0, targetItem)
+
+    setList({
+      ...list,
+      allIds: copyOfAllIds,
+    })
   }
 
   function deleteListItem(targetId) {
