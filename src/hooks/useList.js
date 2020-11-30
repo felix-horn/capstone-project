@@ -6,8 +6,6 @@ export default function useList() {
     byId: {},
     allIds: [],
   })
-  // const checkedIds = list.allIds.filter((id) => list.byId[id].isChecked)
-  // const uncheckedIds = list.allIds.filter((id) => !list.byId[id].isChecked)
 
   const [deletedListItem, setDeletedListItem] = useState({
     title: '',
@@ -23,8 +21,6 @@ export default function useList() {
     addListItemOnEnter,
     handleInputChange,
     toggleIsChecked,
-    // uncheckedIds,
-    // checkedIds,
     deleteListItem,
     undoDelete,
     rearrangeListOrder,
@@ -32,17 +28,17 @@ export default function useList() {
   }
 
   function addListItem(title = '', isChecked = false) {
-    const id = uuid()
+    const targetId = uuid()
     setList({
       byId: {
         ...list.byId,
-        [id]: {
-          id,
+        [targetId]: {
+          targetId,
           title,
           isChecked,
         },
       },
-      allIds: [...list.allIds, id],
+      allIds: [...list.allIds, targetId],
     })
   }
 
@@ -68,7 +64,6 @@ export default function useList() {
   }
 
   function toggleIsChecked(targetId) {
-    //boolean "isChecked" is toggled in the corresponding byId-object
     setList({
       ...list,
       byId: {

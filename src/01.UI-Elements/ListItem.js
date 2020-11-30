@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Checkbox from '@material-ui/core/Checkbox'
@@ -24,17 +24,6 @@ export default function ListItem({
   onEnter,
 }) {
   const [isDeleteIconShown, setIsDeleteIconShown] = useState(false)
-  const [isDeleteIconRendered, setIsDeleteIconRendered] = useState(false)
-
-  useEffect(() => {
-    let timeoutId
-    if (isDeleteIconShown) {
-      setIsDeleteIconRendered(true)
-    } else {
-      timeoutId = setTimeout(() => setIsDeleteIconRendered(false))
-    }
-    return () => clearTimeout(timeoutId)
-  }, [isDeleteIconShown])
 
   return (
     <ListItemStyled checked={isChecked} data-testid="list-item">
@@ -50,12 +39,12 @@ export default function ListItem({
         value={title}
         onChange={onInputChange}
         onKeyUp={(e) => e.key === 'Enter' && handleEnter(e)}
-        onFocus={() => setIsDeleteIconShown(true)}
-        //onBlur={() => setIsDeleteIconShown(false)}
+        onFocus={showDeleteIcon}
+        onBlur={hideDeleteIcon}
         autoFocus={true}
         data-testid="title-list-item"
       />
-      {isDeleteIconRendered && (
+      {isDeleteIconShown && (
         <DeleteButtonStyled onClick={onDelete} data-testid="delete-list-item" />
       )}
     </ListItemStyled>
@@ -64,6 +53,15 @@ export default function ListItem({
   function handleEnter(e) {
     e.target.blur()
     onEnter()
+  }
+
+  function showDeleteIcon() {
+    setIsDeleteIconShown(true)
+  }
+
+  function hideDeleteIcon() {
+    let raceConditionTimer = setTimeout(() => setIsDeleteIconShown(false), 200)
+    return () => clearTimeout(raceConditionTimer)
   }
 }
 
