@@ -86,11 +86,9 @@ export default function useList() {
     const isChecked = list.byId[targetId].isChecked
     setDeletedListItem({ title, isChecked })
 
-    const copyOfById = { ...list.byId }
-    delete copyOfById[targetId]
-    const byIdWithoutTargetId = copyOfById
+    delete list.byId[targetId]
     setList({
-      byId: byIdWithoutTargetId,
+      byId: list.byId,
       allIds: list.allIds.filter((id) => id !== targetId),
     })
 

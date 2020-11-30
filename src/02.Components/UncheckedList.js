@@ -42,10 +42,7 @@ export default function UncheckedList({
                       <ListItemWrapper
                         {...provided.draggableProps}
                         ref={provided.innerRef}
-                        isDragging={
-                          snapshot.isDragging /* && !snapshot.isDropAnimating */
-                        }
-                        // isDropAnimating={snapshot.isDropAnimating}
+                        isDragging={snapshot.isDragging}
                       >
                         <DragIconWrapper {...provided.dragHandleProps}>
                           <DragIndicatorIcon />
