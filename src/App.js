@@ -8,8 +8,8 @@ import AddItemButton from './01.UI-Elements/AddItemButton'
 export default function App() {
   const {
     list,
-    uncheckedIds,
-    checkedIds,
+    // uncheckedIds,
+    // checkedIds,
     addListItem,
     addListItemOnEnter,
     handleInputChange,
@@ -22,7 +22,7 @@ export default function App() {
   return (
     <>
       <UncheckedList
-        listAllocation={uncheckedIds}
+        // listAllocation={uncheckedIds}
         list={list}
         handleInputChange={handleInputChange}
         toggleIsChecked={toggleIsChecked}
@@ -33,7 +33,7 @@ export default function App() {
       <AddItemButton onClick={() => addListItem()} />
       <CheckedList
         checked
-        listAllocation={checkedIds}
+        // listAllocation={checkedIds}
         list={list}
         handleInputChange={handleInputChange}
         toggleIsChecked={toggleIsChecked}

@@ -1,8 +1,17 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  resetServerContext,
+} from 'react-beautiful-dnd'
 import ListItem from '../01.UI-Elements/ListItem'
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator'
+
+// import { resetServerContext } from "react-beautiful-dnd"
+
+resetServerContext()
 
 UncheckedList.propTypes = {
   list: PropTypes.object.isRequired,
@@ -35,35 +44,39 @@ export default function UncheckedList({
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {listAllocation.map((id, index) => {
-                const { title, isChecked } = list.byId[id]
-                return (
-                  <Draggable key={id} draggableId={id} index={index}>
-                    {(provided, snapshot) => (
-                      <ListItemWrapper
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        ref={provided.innerRef}
-                        isDragging={
-                          snapshot.isDragging /* && !snapshot.isDropAnimating */
-                        }
-                        // isDropAnimating={snapshot.isDropAnimating}
-                      >
-                        <DragIndicatorIconStyled />
-                        <ListItem
-                          id={id}
-                          title={title}
-                          isChecked={isChecked}
-                          onInputChange={handleInputChange}
-                          onToggleCheckbox={() => toggleIsChecked(id)}
-                          onDelete={() => deleteListItem(id)}
-                          onEnter={() => addListItemOnEnter(id)}
-                        />
-                      </ListItemWrapper>
-                    )}
-                  </Draggable>
-                )
-              })}
+              {list.allIds
+                .filter((id) => !list.byId[id].isChecked)
+                .map((id, index) => {
+                  const { title, isChecked } = list.byId[id]
+                  return (
+                    <Draggable key={id} draggableId={id} index={index}>
+                      {(provided, snapshot) => (
+                        <ListItemWrapper
+                          {...provided.draggableProps}
+                          ref={provided.innerRef}
+                          isDragging={
+                            snapshot.isDragging /* && !snapshot.isDropAnimating */
+                          }
+                          // isDropAnimating={snapshot.isDropAnimating}
+                        >
+                          <DragIconWrapper {...provided.dragHandleProps}>
+                            <DragIndicatorIcon />
+                          </DragIconWrapper>
+
+                          <ListItem
+                            id={id}
+                            title={title}
+                            isChecked={isChecked}
+                            onInputChange={handleInputChange}
+                            onToggleCheckbox={() => toggleIsChecked(id)}
+                            onDelete={() => deleteListItem(id)}
+                            onEnter={() => addListItemOnEnter(id)}
+                          />
+                        </ListItemWrapper>
+                      )}
+                    </Draggable>
+                  )
+                })}
               {provided.placeholder}
             </ListStyled>
           )}
@@ -88,7 +101,7 @@ const ListItemWrapper = styled.div`
   align-items: center;
 `
 
-const DragIndicatorIconStyled = styled(DragIndicatorIcon)`
+const DragIconWrapper = styled.div`
   opacity: 0.3;
 `
 

@@ -23,23 +23,25 @@ export default function CheckedList({
 }) {
   return (
     <>
-      {listAllocation.length > 0 && (
+      {list.allIds.filter((id) => list.byId[id].isChecked).length > 0 && (
         <ListStyled checked={checked}>
-          {listAllocation.map((id) => {
-            const { title, isChecked } = list.byId[id]
-            return (
-              <ListItem
-                key={id}
-                id={id}
-                title={title}
-                isChecked={isChecked}
-                onInputChange={handleInputChange}
-                onToggleCheckbox={() => toggleIsChecked(id)}
-                onDelete={() => deleteListItem(id)}
-                onEnter={() => addListItemOnEnter(id)}
-              />
-            )
-          })}
+          {list.allIds
+            .filter((id) => list.byId[id].isChecked)
+            .map((id) => {
+              const { title, isChecked } = list.byId[id]
+              return (
+                <ListItem
+                  key={id}
+                  id={id}
+                  title={title}
+                  isChecked={isChecked}
+                  onInputChange={handleInputChange}
+                  onToggleCheckbox={() => toggleIsChecked(id)}
+                  onDelete={() => deleteListItem(id)}
+                  onEnter={() => addListItemOnEnter(id)}
+                />
+              )
+            })}
         </ListStyled>
       )}
     </>
