@@ -60,7 +60,7 @@ export default function ListItem({
   }
 
   function hideDeleteIcon() {
-    let raceConditionTimer = setTimeout(() => setIsDeleteIconShown(false), 200)
+    let raceConditionTimer = setTimeout(() => setIsDeleteIconShown(false), 0)
     return () => clearTimeout(raceConditionTimer)
   }
 }
