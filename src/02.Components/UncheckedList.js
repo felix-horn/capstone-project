@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import ListItem from '../01.UI-Elements/ListItem'
-// import DragHandleIcon from '@material-ui/icons/DragHandle'
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator'
 
 UncheckedList.propTypes = {
@@ -12,6 +11,7 @@ UncheckedList.propTypes = {
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
   addListItemOnEnter: PropTypes.func.isRequired,
+  rearrangeListOrder: PropTypes.func.isRequired,
   checked: PropTypes.bool,
 }
 
@@ -25,18 +25,10 @@ export default function UncheckedList({
   rearrangeListOrder,
   checked,
 }) {
-  function handleOnDragEnd(result) {
-    if (!result.destination) return
-    const indexFrom = result.source.index
-    const indexTo = result.destination.index
-    console.log({ indexFrom }, { indexTo })
-    rearrangeListOrder(indexFrom, indexTo)
-  }
-
   return (
     <>
       <DragDropContext onDragEnd={handleOnDragEnd}>
-        <Droppable droppableId="listItemsId">
+        <Droppable droppableId="listId">
           {(provided) => (
             <ListStyled
               checked={checked}
@@ -47,14 +39,17 @@ export default function UncheckedList({
                 const { title, isChecked } = list.byId[id]
                 return (
                   <Draggable key={id} draggableId={id} index={index}>
-                    {(provided) => (
-                      <Wrapper
+                    {(provided, snapshot) => (
+                      <ListItemWrapper
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
+                        isDragging={
+                          snapshot.isDragging /* && !snapshot.isDropAnimating */
+                        }
+                        // isDropAnimating={snapshot.isDropAnimating}
                       >
                         <DragIndicatorIconStyled />
-                        {/* TEXT */}
                         <ListItem
                           id={id}
                           title={title}
@@ -64,7 +59,7 @@ export default function UncheckedList({
                           onDelete={() => deleteListItem(id)}
                           onEnter={() => addListItemOnEnter(id)}
                         />
-                      </Wrapper>
+                      </ListItemWrapper>
                     )}
                   </Draggable>
                 )
@@ -76,9 +71,19 @@ export default function UncheckedList({
       </DragDropContext>
     </>
   )
+
+  function handleOnDragEnd(result) {
+    if (!result.destination) return
+    const indexFrom = result.source.index
+    const indexTo = result.destination.index
+    rearrangeListOrder(indexFrom, indexTo)
+  }
 }
 
-const Wrapper = styled.div`
+const ListItemWrapper = styled.div`
+  box-shadow: ${(props) => (props.isDragging ? '0 1px 3px #0003' : 'none')};
+  border-radius: 5px;
+  background: white;
   display: flex;
   align-items: center;
 `

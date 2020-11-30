@@ -20,23 +20,20 @@ export default function useList() {
   useEffect(() => {
     setCheckedIds(
       list.allIds.reduce((acc, cur) => {
-        const curIsChecked = list.byId[cur].isChecked
-        console.log('checked: ', acc)
-        return curIsChecked ? [...acc, cur] : acc
+        const checkedIds = list.byId[cur].isChecked ? [...acc, cur] : acc
+        return checkedIds
       }, [])
     )
     setUncheckedIds(
       list.allIds.reduce((acc, cur) => {
-        const curIsNotChecked = !list.byId[cur].isChecked
-        console.log('unchecked: ', acc)
-        return curIsNotChecked ? [...acc, cur] : acc
+        const uncheckedIds = !list.byId[cur].isChecked ? [...acc, cur] : acc
+        return uncheckedIds
       }, [])
     )
   }, [list])
 
   /* useEffect(() => {
-    // const checkedIds = Object.keys(list.byId)
-    list.allIds.map((id) => {
+      list.allIds.map((id) => {
       const curIsChecked = list.byId[id].isChecked
       let TESTcheckedIds = ''
       let TESTuncheckedIds = ''
