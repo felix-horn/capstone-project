@@ -8,10 +8,7 @@ import AddItemButton from './01.UI-Elements/AddItemButton'
 export default function App() {
   const {
     list,
-    // uncheckedIds,
-    // checkedIds,
     addListItem,
-    addListItemOnEnter,
     handleInputChange,
     toggleIsChecked,
     deleteListItem,
@@ -22,23 +19,19 @@ export default function App() {
   return (
     <>
       <UncheckedList
-        // listAllocation={uncheckedIds}
         list={list}
+        addListItem={addListItem}
         handleInputChange={handleInputChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
-        addListItemOnEnter={addListItemOnEnter}
         rearrangeListOrder={rearrangeListOrder}
       />
       <AddItemButton onClick={() => addListItem()} />
       <CheckedList
-        checked
-        // listAllocation={checkedIds}
         list={list}
         handleInputChange={handleInputChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
-        addListItemOnEnter={addListItemOnEnter}
       />
       <UndoButtonStyled className={visibilityUndoButton} onClick={undoDelete} />
     </>

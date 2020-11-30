@@ -1,39 +1,29 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import {
-  DragDropContext,
-  Droppable,
-  Draggable,
-  resetServerContext,
-} from 'react-beautiful-dnd'
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import ListItem from '../01.UI-Elements/ListItem'
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator'
 
-// import { resetServerContext } from "react-beautiful-dnd"
-
-resetServerContext()
-
 UncheckedList.propTypes = {
   list: PropTypes.object.isRequired,
-  listAllocation: PropTypes.array.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
-  addListItemOnEnter: PropTypes.func.isRequired,
+  addListItem: PropTypes.func.isRequired,
   rearrangeListOrder: PropTypes.func.isRequired,
   checked: PropTypes.bool,
 }
 
 export default function UncheckedList({
   list,
-  listAllocation,
   handleInputChange,
   toggleIsChecked,
   deleteListItem,
-  addListItemOnEnter,
+  addListItem,
   rearrangeListOrder,
   checked,
 }) {
+  const uncheckedIds = list.allIds.filter((id) => !list.byId[id].isChecked)
   return (
     <>
       <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -44,39 +34,37 @@ export default function UncheckedList({
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {list.allIds
-                .filter((id) => !list.byId[id].isChecked)
-                .map((id, index) => {
-                  const { title, isChecked } = list.byId[id]
-                  return (
-                    <Draggable key={id} draggableId={id} index={index}>
-                      {(provided, snapshot) => (
-                        <ListItemWrapper
-                          {...provided.draggableProps}
-                          ref={provided.innerRef}
-                          isDragging={
-                            snapshot.isDragging /* && !snapshot.isDropAnimating */
-                          }
-                          // isDropAnimating={snapshot.isDropAnimating}
-                        >
-                          <DragIconWrapper {...provided.dragHandleProps}>
-                            <DragIndicatorIcon />
-                          </DragIconWrapper>
+              {uncheckedIds.map((id, index) => {
+                const { title, isChecked } = list.byId[id]
+                return (
+                  <Draggable key={id} draggableId={id} index={index}>
+                    {(provided, snapshot) => (
+                      <ListItemWrapper
+                        {...provided.draggableProps}
+                        ref={provided.innerRef}
+                        isDragging={
+                          snapshot.isDragging /* && !snapshot.isDropAnimating */
+                        }
+                        // isDropAnimating={snapshot.isDropAnimating}
+                      >
+                        <DragIconWrapper {...provided.dragHandleProps}>
+                          <DragIndicatorIcon />
+                        </DragIconWrapper>
 
-                          <ListItem
-                            id={id}
-                            title={title}
-                            isChecked={isChecked}
-                            onInputChange={handleInputChange}
-                            onToggleCheckbox={() => toggleIsChecked(id)}
-                            onDelete={() => deleteListItem(id)}
-                            onEnter={() => addListItemOnEnter(id)}
-                          />
-                        </ListItemWrapper>
-                      )}
-                    </Draggable>
-                  )
-                })}
+                        <ListItem
+                          id={id}
+                          title={title}
+                          isChecked={isChecked}
+                          onInputChange={handleInputChange}
+                          onToggleCheckbox={() => toggleIsChecked(id)}
+                          onDelete={() => deleteListItem(id)}
+                          onEnter={() => handelEnter(id)}
+                        />
+                      </ListItemWrapper>
+                    )}
+                  </Draggable>
+                )
+              })}
               {provided.placeholder}
             </ListStyled>
           )}
@@ -90,6 +78,11 @@ export default function UncheckedList({
     const indexFrom = result.source.index
     const indexTo = result.destination.index
     rearrangeListOrder(indexFrom, indexTo)
+  }
+
+  function handelEnter(targetId) {
+    const lastUncheckedId = uncheckedIds[uncheckedIds.length - 1]
+    lastUncheckedId === targetId && addListItem()
   }
 }
 

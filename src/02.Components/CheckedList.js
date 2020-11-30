@@ -14,43 +14,41 @@ CheckedList.propTypes = {
 
 export default function CheckedList({
   list,
-  listAllocation,
   handleInputChange,
   toggleIsChecked,
   deleteListItem,
-  addListItemOnEnter,
-  checked,
 }) {
+  const checkedIds = list.allIds.filter((id) => list.byId[id].isChecked)
   return (
     <>
-      {list.allIds.filter((id) => list.byId[id].isChecked).length > 0 && (
-        <ListStyled checked={checked}>
-          {list.allIds
-            .filter((id) => list.byId[id].isChecked)
-            .map((id) => {
-              const { title, isChecked } = list.byId[id]
-              return (
-                <ListItem
-                  key={id}
-                  id={id}
-                  title={title}
-                  isChecked={isChecked}
-                  onInputChange={handleInputChange}
-                  onToggleCheckbox={() => toggleIsChecked(id)}
-                  onDelete={() => deleteListItem(id)}
-                  onEnter={() => addListItemOnEnter(id)}
-                />
-              )
-            })}
+      {checkedIds.length > 0 && (
+        <ListStyled>
+          {checkedIds.map((id) => {
+            const { title, isChecked } = list.byId[id]
+            return (
+              <ListItem
+                key={id}
+                id={id}
+                title={title}
+                isChecked={isChecked}
+                onInputChange={handleInputChange}
+                onToggleCheckbox={() => toggleIsChecked(id)}
+                onDelete={() => deleteListItem(id)}
+                onEnter={onEnter}
+              />
+            )
+          })}
         </ListStyled>
       )}
     </>
   )
+  function onEnter() {}
 }
 
 const ListStyled = styled.div`
-  margin: 3px 2px 10px 26px;
-  padding-top: ${(props) => (props.checked ? '10px' : 'none')};
-  border-top: ${(props) => (props.checked ? '1px solid #dadcdf' : 'none')};
+  margin: 3px 2px 10px 0;
+  padding-top: 10px;
+  padding-left: 26px;
+  border-top: 1px solid #dadcdf;
   display: grid;
 `

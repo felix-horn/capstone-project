@@ -18,7 +18,6 @@ export default function useList() {
   return {
     list,
     addListItem,
-    addListItemOnEnter,
     handleInputChange,
     toggleIsChecked,
     deleteListItem,
@@ -40,11 +39,6 @@ export default function useList() {
       },
       allIds: [...list.allIds, targetId],
     })
-  }
-
-  function addListItemOnEnter(targetId) {
-    // const lastUncheckedId = uncheckedIds[uncheckedIds.length - 1]
-    // lastUncheckedId === targetId && addListItem()
   }
 
   function handleInputChange(e) {
@@ -88,18 +82,17 @@ export default function useList() {
   }
 
   function deleteListItem(targetId) {
+    const title = list.byId[targetId].title
+    const isChecked = list.byId[targetId].isChecked
+    setDeletedListItem({ title, isChecked })
+
     const copyOfById = { ...list.byId }
     delete copyOfById[targetId]
     const byIdWithoutTargetId = copyOfById
-
     setList({
       byId: byIdWithoutTargetId,
       allIds: list.allIds.filter((id) => id !== targetId),
     })
-
-    const title = list.byId[targetId].title
-    const isChecked = list.byId[targetId].isChecked
-    setDeletedListItem({ title, isChecked })
 
     setVisibilityUndoButton('shown')
     setFadeTimer()
