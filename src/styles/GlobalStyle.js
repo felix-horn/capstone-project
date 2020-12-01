@@ -9,8 +9,8 @@ export default createGlobalStyle`
     --dark-gray: #757575; //UndoIcon
     --mid-gray: #878889; //AddIconStyled
     --light-gray: #b2b2b2; //placeholder
-    --border-gray: #dadcdf; //border-top
     --box-shadow: 0 1px 3px #0004; //UndoButton
+    --border: 1px solid #dadcdf; //border-top
 }
 
 * {

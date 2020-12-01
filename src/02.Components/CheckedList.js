@@ -4,7 +4,6 @@ import ListItem from '../01.UI-Elements/ListItem'
 
 CheckedList.propTypes = {
   list: PropTypes.object.isRequired,
-  listAllocation: PropTypes.array.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
@@ -34,7 +33,7 @@ export default function CheckedList({
                 onInputChange={handleInputChange}
                 onToggleCheckbox={() => toggleIsChecked(id)}
                 onDelete={() => deleteListItem(id)}
-                onEnter={onEnter}
+                onEnter={handelEnter}
               />
             )
           })}
@@ -42,13 +41,13 @@ export default function CheckedList({
       )}
     </>
   )
-  function onEnter() {}
+  function handelEnter() {}
 }
 
 const ListStyled = styled.div`
   margin: 3px 2px 10px 0;
   padding-top: 10px;
   padding-left: 26px;
-  border-top: 1px solid #dadcdf;
+  border-top: var(--border);
   display: grid;
 `

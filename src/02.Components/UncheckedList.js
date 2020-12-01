@@ -92,12 +92,12 @@ const ListItemWrapper = styled.div`
 `
 
 const DragIconWrapper = styled.div`
+  display: flex;
+  align-items: center;
   opacity: 0.3;
 `
 
 const ListStyled = styled.div`
   margin: 3px 2px 10px;
-  padding-top: ${(props) => (props.checked ? '10px' : 'none')};
-  border-top: ${(props) => (props.checked ? '1px solid #dadcdf' : 'none')};
   display: grid;
 `

@@ -16,10 +16,6 @@ exports[`UncheckedList renders the list correctly 1`] = `
 
 .c4 {
   margin-left: 9px;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  -webkit-text-decoration: 'line-through';
-  text-decoration: 'line-through';
   border: none;
 }
 
@@ -50,13 +46,19 @@ exports[`UncheckedList renders the list correctly 1`] = `
 }
 
 .c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   opacity: 0.3;
 }
 
 .c0 {
   margin: 3px 2px 10px;
-  padding-top: none;
-  border-top: none;
   display: grid;
 }
 
@@ -127,6 +129,7 @@ exports[`UncheckedList renders the list correctly 1`] = `
         class="c4"
         data-testid="title-list-item"
         name="a"
+        style="text-decoration: none;"
         value="friends"
       />
       <svg
@@ -204,6 +207,7 @@ exports[`UncheckedList renders the list correctly 1`] = `
         class="c4"
         data-testid="title-list-item"
         name="b"
+        style="text-decoration: none;"
         value="family"
       />
       <svg

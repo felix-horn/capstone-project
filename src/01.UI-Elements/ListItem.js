@@ -42,6 +42,7 @@ export default function ListItem({
         onFocus={showDeleteIcon}
         onBlur={hideDeleteIcon}
         autoFocus={true}
+        style={{ textDecoration: isChecked ? 'line-through' : 'none' }}
         data-testid="title-list-item"
       />
       {isDeleteIconShown && (
@@ -60,7 +61,7 @@ export default function ListItem({
   }
 
   function hideDeleteIcon() {
-    let raceConditionTimer = setTimeout(() => setIsDeleteIconShown(false), 0)
+    let raceConditionTimer = setTimeout(() => setIsDeleteIconShown(false), 100)
     return () => clearTimeout(raceConditionTimer)
   }
 }
@@ -73,8 +74,7 @@ const ListItemStyled = styled.label`
 `
 const TitleStyled = styled.input`
   margin-left: 9px;
-  text-decoration: ${(props) => (props.checked ? 'line-through' : 'none')};
-  text-decoration: 'line-through';
+  //text-decoration: ${(props) => (props.checked ? 'line-through' : 'none')};
   border: none;
   &:focus {
     outline: none;
