@@ -53,11 +53,11 @@ describe('ListItem', () => {
     const { getByTestId, debug } = render(
       <ListItem onInputChange={onInputChangeMock} />
     )
-    const inputField = getByTestId('title-list-item')
-    //console.log({ inputField })
-    //user.click(inputField)
-    user.type(inputField, 'test')
-    debug(inputField)
+    const TitleStyled = getByTestId('title-list-item')
+    //console.log({ TitleStyled })
+    //user.click(TitleStyled)
+    user.type(TitleStyled, 'test')
+    debug(TitleStyled)
     expect(onInputChangeMock).toHaveBeenCalled()
     // expect(onInputChangeMock).toHaveBeenCalledTimes(1)
     // expect(onInputChangeMock).toHaveBeenCalledWith('t')

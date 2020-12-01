@@ -9,7 +9,9 @@ export default createGlobalStyle`
     --dark-gray: #757575; //UndoIcon
     --mid-gray: #878889; //AddIconStyled
     --light-gray: #b2b2b2; //placeholder
+    --white: #fff; //background UndoButton and dragged item
     --box-shadow: 0 1px 3px #0004; //UndoButton
+    --light-box-shadow: 0 1px 3px #0003; //dragged item
     --border: 1px solid #dadcdf; //border-top
 }
 

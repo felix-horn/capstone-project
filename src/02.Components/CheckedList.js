@@ -7,8 +7,6 @@ CheckedList.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
-  addListItemOnEnter: PropTypes.func.isRequired,
-  checked: PropTypes.bool,
 }
 
 export default function CheckedList({
@@ -21,7 +19,7 @@ export default function CheckedList({
   return (
     <>
       {checkedIds.length > 0 && (
-        <ListStyled>
+        <CheckedListStyled>
           {checkedIds.map((id) => {
             const { title, isChecked } = list.byId[id]
             return (
@@ -33,18 +31,16 @@ export default function CheckedList({
                 onInputChange={handleInputChange}
                 onToggleCheckbox={() => toggleIsChecked(id)}
                 onDelete={() => deleteListItem(id)}
-                onEnter={handelEnter}
               />
             )
           })}
-        </ListStyled>
+        </CheckedListStyled>
       )}
     </>
   )
-  function handelEnter() {}
 }
 
-const ListStyled = styled.div`
+const CheckedListStyled = styled.div`
   margin: 3px 2px 10px 0;
   padding-top: 10px;
   padding-left: 26px;

@@ -29,7 +29,7 @@ export default function UncheckedList({
       <DragDropContext onDragEnd={handleOnDragEnd}>
         <Droppable droppableId="listId">
           {(provided) => (
-            <ListStyled
+            <UncheckedListStyled
               checked={checked}
               {...provided.droppableProps}
               ref={provided.innerRef}
@@ -54,7 +54,7 @@ export default function UncheckedList({
                           onInputChange={handleInputChange}
                           onToggleCheckbox={() => toggleIsChecked(id)}
                           onDelete={() => deleteListItem(id)}
-                          onEnter={() => handelEnter(id)}
+                          onEnter={() => handleEnter(id)}
                         />
                       </ListItemWrapper>
                     )}
@@ -62,7 +62,7 @@ export default function UncheckedList({
                 )
               })}
               {provided.placeholder}
-            </ListStyled>
+            </UncheckedListStyled>
           )}
         </Droppable>
       </DragDropContext>
@@ -76,16 +76,17 @@ export default function UncheckedList({
     rearrangeListOrder(indexFrom, indexTo)
   }
 
-  function handelEnter(targetId) {
+  function handleEnter(targetId) {
     const lastUncheckedId = uncheckedIds[uncheckedIds.length - 1]
     lastUncheckedId === targetId && addListItem()
   }
 }
 
 const ListItemWrapper = styled.div`
-  box-shadow: ${(props) => (props.isDragging ? '0 1px 3px #0003' : 'none')};
+  box-shadow: ${(props) =>
+    props.isDragging ? 'var(--light-box-shadow)' : 'none'};
   border-radius: 5px;
-  background: white;
+  background: var(--white);
   display: flex;
   align-items: center;
 `
@@ -96,7 +97,7 @@ const DragIconWrapper = styled.div`
   opacity: 0.3;
 `
 
-const ListStyled = styled.div`
+const UncheckedListStyled = styled.div`
   margin: 3px 2px 10px;
   display: grid;
 `
