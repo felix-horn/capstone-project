@@ -4,12 +4,15 @@ import UncheckedList from './02.Components/UncheckedList'
 import CheckedList from './02.Components/CheckedList'
 import AddItemButton from './01.UI-Elements/AddItemButton'
 import UndoButton from './01.UI-Elements/UndoButton'
+import ListTitle from './01.UI-Elements/ListTitle'
 
 export default function App() {
   const {
+    listTitle,
     list,
     addListItem,
-    handleInputChange,
+    handleItemInputChange,
+    handleTitleInputChange,
     toggleIsChecked,
     deleteListItem,
     undoDelete,
@@ -18,10 +21,11 @@ export default function App() {
   } = useList()
   return (
     <>
+      <ListTitle title={listTitle} handleInputChange={handleTitleInputChange} />
       <UncheckedList
         list={list}
         addListItem={addListItem}
-        handleInputChange={handleInputChange}
+        handleInputChange={handleItemInputChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
         rearrangeListOrder={rearrangeListOrder}
@@ -29,7 +33,7 @@ export default function App() {
       <AddItemButton onClick={() => addListItem()} />
       <CheckedList
         list={list}
-        handleInputChange={handleInputChange}
+        handleInputChange={handleItemInputChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
       />

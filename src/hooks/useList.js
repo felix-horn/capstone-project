@@ -2,6 +2,8 @@ import { useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
 export default function useList() {
+  const [listTitle, setListTitle] = useState('')
+
   const [list, setList] = useState({
     byId: {},
     allIds: [],
@@ -16,9 +18,11 @@ export default function useList() {
   const fadeTimer = useRef()
 
   return {
+    listTitle,
     list,
     addListItem,
-    handleInputChange,
+    handleItemInputChange,
+    handleTitleInputChange,
     toggleIsChecked,
     deleteListItem,
     undoDelete,
@@ -41,7 +45,14 @@ export default function useList() {
     })
   }
 
-  function handleInputChange(e) {
+  function handleTitleInputChange(e) {
+    const fieldValue = e.target.value
+    const targetId = e.target.name
+    console.log({ fieldValue }, { targetId })
+    setListTitle(fieldValue)
+  }
+
+  function handleItemInputChange(e) {
     const fieldValue = e.target.value
     const targetId = e.target.name
 
