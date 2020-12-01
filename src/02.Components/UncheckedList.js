@@ -26,7 +26,10 @@ export default function UncheckedList({
   const uncheckedIds = list.allIds.filter((id) => !list.byId[id].isChecked)
   return (
     <>
-      <DragDropContext onDragEnd={handleOnDragEnd}>
+      <DragDropContext
+        onDragStart={giveHapticFeedback}
+        onDragEnd={handleOnDragEnd}
+      >
         <Droppable droppableId="listId">
           {(provided) => (
             <UncheckedListStyled
@@ -68,6 +71,11 @@ export default function UncheckedList({
       </DragDropContext>
     </>
   )
+  function giveHapticFeedback() {
+    if (window.navigator.vibrate) {
+      window.navigator.vibrate(100)
+    }
+  }
 
   function handleOnDragEnd(result) {
     if (!result.destination) return
