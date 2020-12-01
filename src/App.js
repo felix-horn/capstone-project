@@ -1,41 +1,37 @@
 import useList from './hooks/useList'
 import styled from 'styled-components/macro'
-import List from './02.Components/List'
-import UndoButton from './01.UI-Elements/UndoButton'
+import UncheckedList from './02.Components/UncheckedList'
+import CheckedList from './02.Components/CheckedList'
 import AddItemButton from './01.UI-Elements/AddItemButton'
+import UndoButton from './01.UI-Elements/UndoButton'
 
 export default function App() {
   const {
     list,
-    uncheckedIds,
-    checkedIds,
     addListItem,
-    addListItemOnEnter,
     handleInputChange,
     toggleIsChecked,
     deleteListItem,
     undoDelete,
+    rearrangeListOrder,
     visibilityUndoButton,
   } = useList()
   return (
     <>
-      <List
-        listAllocation={uncheckedIds}
+      <UncheckedList
         list={list}
+        addListItem={addListItem}
         handleInputChange={handleInputChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
-        addListItemOnEnter={addListItemOnEnter}
+        rearrangeListOrder={rearrangeListOrder}
       />
       <AddItemButton onClick={() => addListItem()} />
-      <List
-        checked
-        listAllocation={checkedIds}
+      <CheckedList
         list={list}
         handleInputChange={handleInputChange}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
-        addListItemOnEnter={addListItemOnEnter}
       />
       <UndoButtonStyled className={visibilityUndoButton} onClick={undoDelete} />
     </>

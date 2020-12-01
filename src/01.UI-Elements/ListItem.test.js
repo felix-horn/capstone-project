@@ -49,13 +49,34 @@ describe('ListItem', () => {
   })
 
   xit('calls handleChange', () => {
-    const onInputChange = jest.fn()
-    const { getByTestId } = render(<ListItem handleChange={onInputChange} />)
+    const onInputChangeMock = jest.fn()
+    const { getByTestId, debug } = render(
+      <ListItem onInputChange={onInputChangeMock} />
+    )
+    const TitleStyled = getByTestId('title-list-item')
+    //console.log({ TitleStyled })
+    //user.click(TitleStyled)
+    user.type(TitleStyled, 'test')
+    debug(TitleStyled)
+    expect(onInputChangeMock).toHaveBeenCalled()
+    // expect(onInputChangeMock).toHaveBeenCalledTimes(1)
+    // expect(onInputChangeMock).toHaveBeenCalledWith('t')
+  })
+
+  xit('shows typed in input', () => {
+    const onInputChangeMock = jest.fn()
+    const { getByTestId, debug } = render(
+      <ListItem onInputChange={onInputChangeMock} />
+    )
     const inputField = getByTestId('title-list-item')
-    console.log({ inputField })
-    user.type(inputField, 't')
-    expect(onInputChange).toHaveBeenCalledTimes(1)
-    expect(onInputChange).toHaveBeenCalledWith('t')
+    //console.log({ inputField })
+    //user.click(inputField)
+    user.type(inputField, 'test')
+    debug(inputField)
+    //expect(onInputChangeMock).toHaveBeenCalled()
+    // expect(onInputChangeMock).toHaveBeenCalledTimes(1)
+    // expect(onInputChangeMock).toHaveBeenCalledWith('t')
+    //expect(inputField).toHaveValue('test')
   })
 
   xit('calls setIsDeleteIconShown', () => {

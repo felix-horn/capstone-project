@@ -20,11 +20,11 @@ export default function UndoButton({ onClick, className }) {
 }
 
 const UndoButtonStyled = styled.div`
-  box-shadow: 0 1px 3px #0004;
+  box-shadow: var(--box-shadow);
   height: 40px;
   width: 85px;
   border-radius: 20px;
-  background: white;
+  background: var(--white);
   display: grid;
   place-items: center;
 `

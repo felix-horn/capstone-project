@@ -11,7 +11,7 @@ ListItem.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   onToggleCheckbox: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onEnter: PropTypes.func.isRequired,
+  onEnter: PropTypes.func,
 }
 
 export default function ListItem({
@@ -24,7 +24,7 @@ export default function ListItem({
   onEnter,
 }) {
   const [isDeleteIconShown, setIsDeleteIconShown] = useState(false)
-
+  let raceConditionTimer
   return (
     <ListItemStyled checked={isChecked} data-testid="list-item">
       <Checkbox
@@ -38,33 +38,51 @@ export default function ListItem({
         name={id}
         value={title}
         onChange={onInputChange}
-        onKeyUp={(e) => e.key === 'Enter' && handleEnter(e)}
-        onFocus={() => setIsDeleteIconShown(true)}
-        onBlur={() => setTimeout(() => setIsDeleteIconShown(false), 0)}
+        onKeyUp={(event) => event.key === 'Enter' && handleEnter(event)}
+        onFocus={showDeleteIcon}
+        onBlur={hideDeleteIcon}
         autoFocus={true}
+        isCrossedOut={isChecked}
         data-testid="title-list-item"
       />
       {isDeleteIconShown && (
-        <DeleteButtonStyled onClick={onDelete} data-testid="delete-list-item" />
+        <DeleteButtonStyled
+          onClick={handleDelete}
+          data-testid="delete-list-item"
+        />
       )}
     </ListItemStyled>
   )
 
-  function handleEnter(e) {
-    e.target.blur()
-    onEnter()
+  function handleEnter(event) {
+    event.target.blur()
+    !isChecked && onEnter()
+  }
+
+  function showDeleteIcon() {
+    setIsDeleteIconShown(true)
+  }
+
+  function hideDeleteIcon() {
+    raceConditionTimer = setTimeout(() => setIsDeleteIconShown(false), 150)
+    return () => clearTimeout(raceConditionTimer)
+  }
+
+  function handleDelete() {
+    clearTimeout(raceConditionTimer)
+    onDelete()
   }
 }
 
 const ListItemStyled = styled.label`
-  width: 80vw;
+  width: 75vw;
   display: flex;
   align-items: center;
-  text-decoration: ${(props) => (props.checked ? 'line-through' : 'none')};
   opacity: ${(props) => (props.checked ? 0.5 : 1)};
 `
 const TitleStyled = styled.input`
   margin-left: 9px;
+  text-decoration: ${(props) => (props.isCrossedOut ? 'line-through' : 'none')};
   border: none;
   &:focus {
     outline: none;

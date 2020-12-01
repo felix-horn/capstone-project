@@ -1,11 +1,10 @@
 import { render } from '@testing-library/react'
-import List from './List'
+import CheckedList from './CheckedList'
 
-describe('List', () => {
+describe('CheckedList', () => {
   it('renders the list correctly', () => {
     const { container } = render(
-      <List
-        listAllocation={['a', 'b']}
+      <CheckedList
         list={{
           allIds: ['a', 'b', 'c'],
           byId: {
@@ -32,10 +31,9 @@ describe('List', () => {
   })
   it('only renders allocated listItems', () => {
     const { queryByDisplayValue, getByDisplayValue } = render(
-      <List
-        listAllocation={['a']}
+      <CheckedList
         list={{
-          allIds: ['a', 'b'],
+          allIds: ['a', 'c'],
           byId: {
             a: {
               id: 'a',
@@ -51,9 +49,9 @@ describe('List', () => {
         }}
       />
     )
-    const milkListItem = getByDisplayValue(/milk/i)
-    const cheeseListItem = queryByDisplayValue(/cheese/i)
-    expect(milkListItem).toBeInTheDocument()
-    expect(cheeseListItem).not.toBeInTheDocument()
+    const milkListItem = queryByDisplayValue(/milk/i)
+    const cheeseListItem = getByDisplayValue(/cheese/i)
+    expect(milkListItem).not.toBeInTheDocument()
+    expect(cheeseListItem).toBeInTheDocument()
   })
 })

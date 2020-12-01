@@ -1,32 +1,26 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-
 import ListItem from '../01.UI-Elements/ListItem'
 
-List.propTypes = {
+CheckedList.propTypes = {
   list: PropTypes.object.isRequired,
-  listAllocation: PropTypes.array.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
-  addListItemOnEnter: PropTypes.func.isRequired,
-  checked: PropTypes.bool,
 }
 
-export default function List({
+export default function CheckedList({
   list,
-  listAllocation,
   handleInputChange,
   toggleIsChecked,
   deleteListItem,
-  addListItemOnEnter,
-  checked,
 }) {
+  const checkedIds = list.allIds.filter((id) => list.byId[id].isChecked)
   return (
     <>
-      {listAllocation.length > 0 && (
-        <ListStyled checked={checked}>
-          {listAllocation.map((id) => {
+      {checkedIds.length > 0 && (
+        <CheckedListStyled>
+          {checkedIds.map((id) => {
             const { title, isChecked } = list.byId[id]
             return (
               <ListItem
@@ -37,19 +31,19 @@ export default function List({
                 onInputChange={handleInputChange}
                 onToggleCheckbox={() => toggleIsChecked(id)}
                 onDelete={() => deleteListItem(id)}
-                onEnter={() => addListItemOnEnter(id)}
               />
             )
           })}
-        </ListStyled>
+        </CheckedListStyled>
       )}
     </>
   )
 }
 
-const ListStyled = styled.div`
-  margin: 3px 2px 10px;
-  padding-top: ${(props) => (props.checked ? '10px' : 'none')};
-  border-top: ${(props) => (props.checked ? '1px solid #dadcdf' : 'none')};
+const CheckedListStyled = styled.div`
+  margin: 3px 2px 10px 0;
+  padding-top: 10px;
+  padding-left: 26px;
+  border-top: var(--border);
   display: grid;
 `
