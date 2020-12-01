@@ -11,7 +11,7 @@ ListItem.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   onToggleCheckbox: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  onEnter: PropTypes.func,
+  onEnter: PropTypes.func.isRequired,
 }
 
 export default function ListItem({
@@ -61,7 +61,7 @@ export default function ListItem({
   }
 
   function hideDeleteIcon() {
-    let raceConditionTimer = setTimeout(() => setIsDeleteIconShown(false), 100)
+    let raceConditionTimer = setTimeout(() => setIsDeleteIconShown(false), 0)
     return () => clearTimeout(raceConditionTimer)
   }
 }

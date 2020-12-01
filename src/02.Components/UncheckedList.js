@@ -47,7 +47,6 @@ export default function UncheckedList({
                         <DragIconWrapper {...provided.dragHandleProps}>
                           <DragIndicatorIcon />
                         </DragIconWrapper>
-
                         <ListItem
                           id={id}
                           title={title}
