@@ -9,7 +9,7 @@ export default function App() {
     listTitle,
     list,
     addListItem,
-    handleItemInputChange,
+    changeItemTitle,
     handleTitleInputChange,
     toggleIsChecked,
     deleteListItem,
@@ -29,7 +29,7 @@ export default function App() {
             list={list}
             handleTitleInputChange={handleTitleInputChange}
             addListItem={addListItem}
-            handleItemInputChange={handleItemInputChange}
+            changeTitle={changeItemTitle}
             toggleIsChecked={toggleIsChecked}
             deleteListItem={deleteListItem}
             rearrangeListOrder={rearrangeListOrder}

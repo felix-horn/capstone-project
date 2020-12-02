@@ -16,7 +16,7 @@ UncheckedList.propTypes = {
 
 export default function UncheckedList({
   list,
-  handleInputChange,
+  changeTitle,
   toggleIsChecked,
   deleteListItem,
   addListItem,
@@ -54,7 +54,9 @@ export default function UncheckedList({
                           id={id}
                           title={title}
                           isChecked={isChecked}
-                          onInputChange={handleInputChange}
+                          changeTitle={(fieldValue) =>
+                            changeTitle(id, fieldValue)
+                          }
                           onToggleCheckbox={() => toggleIsChecked(id)}
                           onDelete={() => deleteListItem(id)}
                           onEnter={() => handleEnter(id)}

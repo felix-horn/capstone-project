@@ -21,7 +21,7 @@ export default function useList() {
     listTitle,
     list,
     addListItem,
-    handleItemInputChange,
+    changeItemTitle,
     handleTitleInputChange,
     toggleIsChecked,
     deleteListItem,
@@ -52,10 +52,8 @@ export default function useList() {
     setListTitle(fieldValue)
   }
 
-  function handleItemInputChange(e) {
-    const fieldValue = e.target.value
-    const targetId = e.target.name
-
+  function changeItemTitle(targetId, fieldValue) {
+    console.log({ targetId }, { fieldValue })
     setList({
       ...list,
       byId: {

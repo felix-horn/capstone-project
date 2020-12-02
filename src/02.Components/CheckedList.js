@@ -11,7 +11,7 @@ CheckedList.propTypes = {
 
 export default function CheckedList({
   list,
-  handleInputChange,
+  changeTitle,
   toggleIsChecked,
   deleteListItem,
 }) {
@@ -28,7 +28,7 @@ export default function CheckedList({
                 id={id}
                 title={title}
                 isChecked={isChecked}
-                onInputChange={handleInputChange}
+                changeTitle={(fieldValue) => changeTitle(id, fieldValue)}
                 onToggleCheckbox={() => toggleIsChecked(id)}
                 onDelete={() => deleteListItem(id)}
               />

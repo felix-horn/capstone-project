@@ -10,7 +10,7 @@ export default function ShopPage({
   handleTitleInputChange,
   list,
   addListItem,
-  handleItemInputChange,
+  changeTitle,
   toggleIsChecked,
   deleteListItem,
   rearrangeListOrder,
@@ -23,7 +23,7 @@ export default function ShopPage({
       <UncheckedList
         list={list}
         addListItem={addListItem}
-        handleInputChange={handleItemInputChange}
+        changeTitle={changeTitle}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
         rearrangeListOrder={rearrangeListOrder}
@@ -31,7 +31,7 @@ export default function ShopPage({
       <AddItemButton onClick={() => addListItem()} />
       <CheckedList
         list={list}
-        handleInputChange={handleItemInputChange}
+        changeTitle={changeTitle}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
       />

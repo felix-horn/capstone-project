@@ -7,14 +7,13 @@ ListTitle.propTypes = {
   onEnter: PropTypes.func,
 }
 
-export default function ListTitle({ title, handleInputChange /* onEnter */ }) {
+export default function ListTitle({ title, handleInputChange }) {
   return (
     <ListTitleStyled
       type="text"
       placeholder="Geschäft"
       value={title}
       onChange={handleInputChange}
-      //   onKeyUp={(event) => event.key === 'Enter' && handleEnter(event)}
       data-testid="title-list"
     />
   )
