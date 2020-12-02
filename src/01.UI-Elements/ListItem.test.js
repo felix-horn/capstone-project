@@ -1,10 +1,17 @@
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import ListItem from './ListItem'
 import user from '@testing-library/user-event'
 
+const demoProps = {
+  id: 'a',
+  title: 'foo',
+  isChecked: true,
+}
+
 describe('ListItem', () => {
   it('shows the correct title', () => {
-    const { getByTestId } = render(<ListItem title="Butter" />)
+    const props = { ...demoProps, title: 'Butter' }
+    const { getByTestId } = render(<ListItem {...props} />)
     const title = getByTestId('title-list-item')
     expect(title).toHaveValue('Butter')
   })
@@ -56,14 +63,15 @@ describe('ListItem', () => {
     const TitleStyled = getByTestId('title-list-item')
     //console.log({ TitleStyled })
     //user.click(TitleStyled)
-    user.type(TitleStyled, 'test')
+    // user.type(TitleStyled, 'test')
+
     debug(TitleStyled)
     expect(onInputChangeMock).toHaveBeenCalled()
     // expect(onInputChangeMock).toHaveBeenCalledTimes(1)
     // expect(onInputChangeMock).toHaveBeenCalledWith('t')
   })
 
-  xit('shows typed in input', () => {
+  fit('shows typed in input', () => {
     const onInputChangeMock = jest.fn()
     const { getByTestId, debug } = render(
       <ListItem onInputChange={onInputChangeMock} />
@@ -71,9 +79,9 @@ describe('ListItem', () => {
     const inputField = getByTestId('title-list-item')
     //console.log({ inputField })
     //user.click(inputField)
-    user.type(inputField, 'test')
+    fireEvent.change(inputField, { target: { value: 'test' } })
     debug(inputField)
-    //expect(onInputChangeMock).toHaveBeenCalled()
+    expect(onInputChangeMock).toHaveBeenCalled()
     // expect(onInputChangeMock).toHaveBeenCalledTimes(1)
     // expect(onInputChangeMock).toHaveBeenCalledWith('t')
     //expect(inputField).toHaveValue('test')
