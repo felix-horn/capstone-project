@@ -21,7 +21,6 @@ export default function UncheckedList({
   deleteListItem,
   addListItem,
   rearrangeListOrder,
-  checked,
 }) {
   const uncheckedIds = database.items.allIds.filter(
     (id) => !database.items.byId[id].isChecked
@@ -35,7 +34,6 @@ export default function UncheckedList({
         <Droppable droppableId="listId">
           {(provided) => (
             <UncheckedListStyled
-              checked={checked}
               {...provided.droppableProps}
               ref={provided.innerRef}
             >

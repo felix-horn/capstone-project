@@ -39,18 +39,28 @@ const testDatabase = {
   },
 }
 
+const testProps = {
+  changeTitle: jest.fn(),
+  toggleIsChecked: jest.fn(),
+  deleteListItem: jest.fn(),
+  addListItem: jest.fn(),
+  rearrangeListOrder: jest.fn(),
+}
+
 describe('UncheckedList', () => {
   it('renders the list correctly', () => {
-    const { container } = render(<UncheckedList database={testDatabase} />)
+    const { container } = render(
+      <UncheckedList {...testProps} database={testDatabase} />
+    )
     expect(container.firstChild).toMatchSnapshot()
   })
-  fit('only renders allocated listItems', () => {
+  it('only renders unchecked listItems', () => {
     const { queryByDisplayValue, getByDisplayValue } = render(
-      <UncheckedList database={testDatabase} />
+      <UncheckedList {...testProps} database={testDatabase} />
     )
     const milkListItem = getByDisplayValue(/milch/i)
-    const cheeseListItem = queryByDisplayValue(/butter/i)
+    const butterListItem = queryByDisplayValue(/butter/i)
     expect(milkListItem).toBeInTheDocument()
-    expect(cheeseListItem).not.toBeInTheDocument()
+    expect(butterListItem).not.toBeInTheDocument()
   })
 })
