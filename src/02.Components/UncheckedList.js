@@ -73,7 +73,7 @@ export default function UncheckedList({
   )
   function giveHapticFeedback() {
     if (window.navigator.vibrate) {
-      window.navigator.vibrate(20)
+      window.navigator.vibrate(10)
     }
   }
 

@@ -81,7 +81,7 @@ const ListItemStyled = styled.label`
   opacity: ${(props) => (props.checked ? 0.5 : 1)};
 `
 const TitleStyled = styled.input`
-  margin-left: 9px; */
+  margin-left: 9px;
   text-decoration: ${(props) => (props.isCrossedOut ? 'line-through' : 'none')};
   border: none;
   &:focus {
