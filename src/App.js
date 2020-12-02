@@ -1,8 +1,8 @@
 import { Switch, Route } from 'react-router-dom'
 import useList from './hooks/useList'
 import styled from 'styled-components/macro'
-import OverviewPage from './03.Pages/OverviewPage'
-import ShopPage from './03.Pages/ShopPage'
+import OverviewPage from './01.Pages/OverviewPage'
+import ShopPage from './02.ShopPage/ShopPage'
 
 export default function App() {
   const {
