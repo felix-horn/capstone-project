@@ -6,8 +6,8 @@ module.exports = {
   exampleMode: 'expand',
   usageMode: 'expand',
   components: [
-    'src/01.UI-Elements/**/[A-Z]*.js',
-    'src/02.Components/**/[A-Z]*.js',
+    'src/02.ShopPage/01.UI-Elements/**/[A-Z]*.js',
+    'src/02.ShopPage/02.Components/**/[A-Z]*.js',
   ],
   styleguideComponents: {
     Wrapper: path.join(__dirname, 'src/styles/StyleWrapper'),

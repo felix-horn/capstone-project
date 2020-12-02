@@ -1,11 +1,16 @@
 import { useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
-export default function useList() {
+export default function useDatabase() {
   const [database, setDatabase] = useState({
     shops: {
       allIds: [],
-      byId: {},
+      byId: {
+        dummyId: {
+          //this is only the preparation
+          title: '', //for the datastructure for more than one shop
+        },
+      },
     },
     items: {
       allIds: [],

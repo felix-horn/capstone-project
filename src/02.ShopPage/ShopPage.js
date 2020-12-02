@@ -6,9 +6,8 @@ import UndoButton from './01.UI-Elements/UndoButton'
 import ShopTitle from './01.UI-Elements/ShopTitle'
 
 export default function ShopPage({
-  shopTitle,
-  changeShopTitle,
   database,
+  changeShopTitle,
   addListItem,
   changeItemTitle,
   toggleIsChecked,
@@ -19,7 +18,7 @@ export default function ShopPage({
 }) {
   return (
     <>
-      <ShopTitle title={shopTitle} changeTitle={changeShopTitle} />
+      <ShopTitle database={database} changeTitle={changeShopTitle} />
       <UncheckedList
         database={database}
         addListItem={addListItem}

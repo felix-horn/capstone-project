@@ -1,12 +1,11 @@
 import { Switch, Route } from 'react-router-dom'
-import useList from './hooks/useList'
+import useDatabase from './hooks/useDatabase'
 import styled from 'styled-components/macro'
-import OverviewPage from './01.Pages/OverviewPage'
+//import OverviewPage from './01.Pages/OverviewPage'
 import ShopPage from './02.ShopPage/ShopPage'
 
 export default function App() {
   const {
-    shopTitle,
     database,
     addListItem,
     changeItemTitle,
@@ -16,7 +15,7 @@ export default function App() {
     undoDelete,
     rearrangeListOrder,
     visibilityUndoButton,
-  } = useList()
+  } = useDatabase()
   return (
     <AppStyled>
       <Switch>
@@ -25,7 +24,6 @@ export default function App() {
         </Route> */}
         <Route exact path="/">
           <ShopPage
-            shopTitle={shopTitle}
             database={database}
             changeShopTitle={changeShopTitle}
             addListItem={addListItem}
