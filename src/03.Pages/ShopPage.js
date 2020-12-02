@@ -3,14 +3,14 @@ import UncheckedList from '../02.Components/UncheckedList'
 import CheckedList from '../02.Components/CheckedList'
 import AddItemButton from '../01.UI-Elements/AddItemButton'
 import UndoButton from '../01.UI-Elements/UndoButton'
-import ListTitle from '../01.UI-Elements/ListTitle'
+import ShopTitle from '../01.UI-Elements/ShopTitle'
 
 export default function ShopPage({
-  listTitle,
-  handleTitleInputChange,
+  shopTitle,
+  changeShopTitle,
   list,
   addListItem,
-  changeTitle,
+  changeItemTitle,
   toggleIsChecked,
   deleteListItem,
   rearrangeListOrder,
@@ -19,11 +19,11 @@ export default function ShopPage({
 }) {
   return (
     <>
-      <ListTitle title={listTitle} handleInputChange={handleTitleInputChange} />
+      <ShopTitle title={shopTitle} changeTitle={changeShopTitle} />
       <UncheckedList
         list={list}
         addListItem={addListItem}
-        changeTitle={changeTitle}
+        changeTitle={changeItemTitle}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
         rearrangeListOrder={rearrangeListOrder}
@@ -31,7 +31,7 @@ export default function ShopPage({
       <AddItemButton onClick={() => addListItem()} />
       <CheckedList
         list={list}
-        changeTitle={changeTitle}
+        changeTitle={changeItemTitle}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
       />

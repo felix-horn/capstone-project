@@ -6,11 +6,11 @@ import ShopPage from './03.Pages/ShopPage'
 
 export default function App() {
   const {
-    listTitle,
+    shopTitle,
     list,
     addListItem,
     changeItemTitle,
-    handleTitleInputChange,
+    changeShopTitle,
     toggleIsChecked,
     deleteListItem,
     undoDelete,
@@ -25,11 +25,11 @@ export default function App() {
         </Route> */}
         <Route exact path="/">
           <ShopPage
-            listTitle={listTitle}
+            shopTitle={shopTitle}
             list={list}
-            handleTitleInputChange={handleTitleInputChange}
+            changeShopTitle={changeShopTitle}
             addListItem={addListItem}
-            changeTitle={changeItemTitle}
+            changeItemTitle={changeItemTitle}
             toggleIsChecked={toggleIsChecked}
             deleteListItem={deleteListItem}
             rearrangeListOrder={rearrangeListOrder}

@@ -7,8 +7,8 @@ import CloseIcon from '@material-ui/icons/Close'
 ListItem.propTypes = {
   title: PropTypes.string.isRequired,
   isChecked: PropTypes.bool.isRequired,
-  onInputChange: PropTypes.func.isRequired,
-  onToggleCheckbox: PropTypes.func.isRequired,
+  changeTitle: PropTypes.func.isRequired,
+  toggleCheckbox: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onEnter: PropTypes.func,
 }
@@ -17,7 +17,7 @@ export default function ListItem({
   title,
   isChecked,
   changeTitle,
-  onToggleCheckbox,
+  toggleCheckbox,
   onDelete,
   onEnter,
 }) {
@@ -29,7 +29,7 @@ export default function ListItem({
         type="checkbox"
         color="default"
         checked={isChecked}
-        onChange={onToggleCheckbox}
+        onChange={handleCheckboxToggle}
         data-testid="checkbox"
       />
       <TitleStyled
@@ -50,6 +50,11 @@ export default function ListItem({
       )}
     </ListItemStyled>
   )
+
+  function handleCheckboxToggle() {
+    clearTimeout(raceConditionTimer)
+    toggleCheckbox()
+  }
 
   function handleInputChange(event) {
     changeTitle(event.target.value)

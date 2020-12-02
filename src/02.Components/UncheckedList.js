@@ -6,7 +6,7 @@ import DragIndicatorIcon from '@material-ui/icons/DragIndicator'
 
 UncheckedList.propTypes = {
   list: PropTypes.object.isRequired,
-  handleInputChange: PropTypes.func.isRequired,
+  changeTitle: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
   addListItem: PropTypes.func.isRequired,
@@ -57,7 +57,7 @@ export default function UncheckedList({
                           changeTitle={(fieldValue) =>
                             changeTitle(id, fieldValue)
                           }
-                          onToggleCheckbox={() => toggleIsChecked(id)}
+                          toggleCheckbox={() => toggleIsChecked(id)}
                           onDelete={() => deleteListItem(id)}
                           onEnter={() => handleEnter(id)}
                         />

@@ -4,7 +4,7 @@ import ListItem from '../01.UI-Elements/ListItem'
 
 CheckedList.propTypes = {
   list: PropTypes.object.isRequired,
-  handleInputChange: PropTypes.func.isRequired,
+  changeTitle: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
 }
@@ -29,7 +29,7 @@ export default function CheckedList({
                 title={title}
                 isChecked={isChecked}
                 changeTitle={(fieldValue) => changeTitle(id, fieldValue)}
-                onToggleCheckbox={() => toggleIsChecked(id)}
+                toggleCheckbox={() => toggleIsChecked(id)}
                 onDelete={() => deleteListItem(id)}
               />
             )

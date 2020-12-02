@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
-ListTitle.propTypes = {
+ShopTitle.propTypes = {
   title: PropTypes.string.isRequired,
-  onInputChange: PropTypes.func.isRequired,
-  onEnter: PropTypes.func,
+  changeTitle: PropTypes.func.isRequired,
 }
 
-export default function ListTitle({ title, handleInputChange }) {
+export default function ShopTitle({ title, changeTitle }) {
   return (
-    <ListTitleStyled
+    <ShopTitleStyled
       type="text"
       placeholder="Geschäft"
       value={title}
@@ -17,14 +16,12 @@ export default function ListTitle({ title, handleInputChange }) {
       data-testid="title-list"
     />
   )
-
-  /* function handleEnter(event) {
-    event.target.blur()
-    onEnter()
-  } */
+  function handleInputChange(event) {
+    changeTitle(event.target.value)
+  }
 }
 
-const ListTitleStyled = styled.input`
+const ShopTitleStyled = styled.input`
   margin-left: 7px;
   margin-bottom: 10px;
   font-weight: 400 !important;
