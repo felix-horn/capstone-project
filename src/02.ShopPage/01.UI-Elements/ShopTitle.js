@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
 ShopTitle.propTypes = {
-  title: PropTypes.string.isRequired,
+  database: PropTypes.object.isRequired,
   changeTitle: PropTypes.func.isRequired,
 }
 
