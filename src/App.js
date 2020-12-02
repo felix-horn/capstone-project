@@ -7,7 +7,7 @@ import ShopPage from './03.Pages/ShopPage'
 export default function App() {
   const {
     shopTitle,
-    list,
+    database,
     addListItem,
     changeItemTitle,
     changeShopTitle,
@@ -26,7 +26,7 @@ export default function App() {
         <Route exact path="/">
           <ShopPage
             shopTitle={shopTitle}
-            list={list}
+            database={database}
             changeShopTitle={changeShopTitle}
             addListItem={addListItem}
             changeItemTitle={changeItemTitle}

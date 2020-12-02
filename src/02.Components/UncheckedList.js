@@ -5,7 +5,7 @@ import ListItem from '../01.UI-Elements/ListItem'
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator'
 
 UncheckedList.propTypes = {
-  list: PropTypes.object.isRequired,
+  database: PropTypes.object.isRequired,
   changeTitle: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
@@ -15,7 +15,7 @@ UncheckedList.propTypes = {
 }
 
 export default function UncheckedList({
-  list,
+  database,
   changeTitle,
   toggleIsChecked,
   deleteListItem,
@@ -23,7 +23,9 @@ export default function UncheckedList({
   rearrangeListOrder,
   checked,
 }) {
-  const uncheckedIds = list.allIds.filter((id) => !list.byId[id].isChecked)
+  const uncheckedIds = database.items.allIds.filter(
+    (id) => !database.items.byId[id].isChecked
+  )
   return (
     <>
       <DragDropContext
@@ -38,7 +40,7 @@ export default function UncheckedList({
               ref={provided.innerRef}
             >
               {uncheckedIds.map((id, index) => {
-                const { title, isChecked } = list.byId[id]
+                const { title, isChecked } = database.items.byId[id]
                 return (
                   <Draggable key={id} draggableId={id} index={index}>
                     {(provided, snapshot) => (

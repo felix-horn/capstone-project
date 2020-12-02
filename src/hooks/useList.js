@@ -2,11 +2,15 @@ import { useRef, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
 export default function useList() {
-  const [shopTitle, setShopTitle] = useState('')
-
-  const [list, setList] = useState({
-    byId: {},
-    allIds: [],
+  const [database, setDatabase] = useState({
+    shops: {
+      allIds: [],
+      byId: {},
+    },
+    items: {
+      allIds: [],
+      byId: {},
+    },
   })
 
   const [deletedListItem, setDeletedListItem] = useState({
@@ -18,11 +22,10 @@ export default function useList() {
   const fadeTimer = useRef()
 
   return {
-    shopTitle,
-    list,
+    database,
+    changeShopTitle,
     addListItem,
     changeItemTitle,
-    changeShopTitle,
     toggleIsChecked,
     deleteListItem,
     undoDelete,
@@ -31,70 +34,97 @@ export default function useList() {
   }
 
   function addListItem(title = '', isChecked = false) {
-    const targetId = uuid()
-    setList({
-      byId: {
-        ...list.byId,
-        [targetId]: {
-          targetId,
-          title,
-          isChecked,
+    const newId = uuid()
+    setDatabase({
+      ...database,
+      items: {
+        byId: {
+          ...database.items.byId,
+          [newId]: {
+            id: newId,
+            title,
+            isChecked,
+          },
         },
+        allIds: [...database.items.allIds, newId],
       },
-      allIds: [...list.allIds, targetId],
     })
   }
 
   function changeShopTitle(fieldValue) {
-    setShopTitle(fieldValue)
+    setDatabase({
+      ...database,
+      shops: {
+        ...database.shops,
+        byId: {
+          ...database.shops.byId,
+          dummyId: {
+            ...database.shops.byId['dummyId'], //this is only the preparation for the datastructure for more than one shop
+            title: fieldValue,
+          },
+        },
+      },
+    })
   }
 
   function changeItemTitle(targetId, fieldValue) {
-    setList({
-      ...list,
-      byId: {
-        ...list.byId,
-        [targetId]: {
-          ...list.byId[targetId],
-          title: fieldValue,
+    setDatabase({
+      ...database,
+      items: {
+        ...database.items,
+        byId: {
+          ...database.items.byId,
+          [targetId]: {
+            ...database.items.byId[targetId],
+            title: fieldValue,
+          },
         },
       },
     })
   }
 
   function toggleIsChecked(targetId) {
-    setList({
-      ...list,
-      byId: {
-        ...list.byId,
-        [targetId]: {
-          ...list.byId[targetId],
-          isChecked: !list.byId[targetId].isChecked,
+    setDatabase({
+      ...database,
+      items: {
+        ...database.items,
+        byId: {
+          ...database.items.byId,
+          [targetId]: {
+            ...database.items.byId[targetId],
+            isChecked: !database.items.byId[targetId].isChecked,
+          },
         },
       },
     })
   }
 
   function rearrangeListOrder(indexFrom, indexTo) {
-    const copyOfAllIds = [...list.allIds]
+    const copyOfAllIds = [...database.items.allIds]
     const [targetItem] = copyOfAllIds.splice(indexFrom, 1)
     copyOfAllIds.splice(indexTo, 0, targetItem)
 
-    setList({
-      ...list,
-      allIds: copyOfAllIds,
+    setDatabase({
+      ...database,
+      items: {
+        ...database.items,
+        allIds: copyOfAllIds,
+      },
     })
   }
 
   function deleteListItem(targetId) {
-    const title = list.byId[targetId].title
-    const isChecked = list.byId[targetId].isChecked
+    const title = database.items.byId[targetId].title
+    const isChecked = database.items.byId[targetId].isChecked
     setDeletedListItem({ title, isChecked })
 
-    delete list.byId[targetId]
-    setList({
-      byId: list.byId,
-      allIds: list.allIds.filter((id) => id !== targetId),
+    delete database.items.byId[targetId]
+    setDatabase({
+      ...database,
+      items: {
+        byId: database.items.byId,
+        allIds: database.items.allIds.filter((id) => id !== targetId),
+      },
     })
 
     setVisibilityUndoButton('shown')

@@ -8,7 +8,7 @@ import ShopTitle from '../01.UI-Elements/ShopTitle'
 export default function ShopPage({
   shopTitle,
   changeShopTitle,
-  list,
+  database,
   addListItem,
   changeItemTitle,
   toggleIsChecked,
@@ -21,7 +21,7 @@ export default function ShopPage({
     <>
       <ShopTitle title={shopTitle} changeTitle={changeShopTitle} />
       <UncheckedList
-        list={list}
+        database={database}
         addListItem={addListItem}
         changeTitle={changeItemTitle}
         toggleIsChecked={toggleIsChecked}
@@ -30,7 +30,7 @@ export default function ShopPage({
       />
       <AddItemButton onClick={() => addListItem()} />
       <CheckedList
-        list={list}
+        database={database}
         changeTitle={changeItemTitle}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}
