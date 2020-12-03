@@ -28,7 +28,7 @@ body {
     padding-top: 50px;
     font-family: 'Roboto', sans-serif;
     font-size: 1em;
-    font-weight: 350;
+    font-weight: 300;
     color: var(--almost-black);
     }
 
