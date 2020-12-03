@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import UncheckedList from './02.Components/UncheckedList'
@@ -5,16 +6,17 @@ import CheckedList from './02.Components/CheckedList'
 import AddItemButton from './01.UI-Elements/AddItemButton'
 import UndoButton from './01.UI-Elements/UndoButton'
 import ShopTitle from './01.UI-Elements/ShopTitle'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
 ShopPage.propTypes = {
   database: PropTypes.object.isRequired,
   changeShopTitle: PropTypes.func.isRequired,
   addListItem: PropTypes.func.isRequired,
-  changeTitle: PropTypes.func.isRequired,
+  changeItemTitle: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
   rearrangeListOrder: PropTypes.func.isRequired,
-  visibilityUndoButton: PropTypes.bool.isRequired,
+  visibilityUndoButton: PropTypes.string.isRequired,
   undoDelete: PropTypes.func.isRequired,
 }
 
@@ -31,6 +33,9 @@ export default function ShopPage({
 }) {
   return (
     <>
+      <BackButton exact to="/">
+        <ArrowBackIcon />
+      </BackButton>
       <ShopTitle database={database} changeTitle={changeShopTitle} />
       <UncheckedList
         database={database}
@@ -51,6 +56,13 @@ export default function ShopPage({
     </>
   )
 }
+
+const BackButton = styled(NavLink)`
+  margin-left: 5px;
+  margin-bottom: 30px;
+  display: block;
+  color: var(--almost-black);
+`
 
 const UndoButtonStyled = styled(UndoButton)`
   position: fixed;

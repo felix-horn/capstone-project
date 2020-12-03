@@ -29,6 +29,7 @@ const CheckboxStyled = styled(Checkbox)`
 
 const TitleStyled = styled.p`
   margin: 0;
+  font-size: 16px;
   font-weight: 100 !important;
   color: var(--mid-gray);
   /* margin-left: 9px; */

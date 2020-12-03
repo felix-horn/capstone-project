@@ -39,4 +39,8 @@ input, textarea, button, select, link, textarea {
     font-size: inherit;
 }
 
+h1, h2 {
+    margin: 0;
+}
+
 `

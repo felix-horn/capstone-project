@@ -9,7 +9,9 @@ export default function ShopTitle({ title }) {
   return <ShopTitleStyled>{title}</ShopTitleStyled>
 }
 
-const ShopTitleStyled = styled.h1`
+const ShopTitleStyled = styled.h2`
   margin-left: 7px;
-  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 100;
+  /* margin-bottom: 10px; */
 `

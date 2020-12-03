@@ -1,7 +1,7 @@
 import { Switch, Route } from 'react-router-dom'
 import useDatabase from './hooks/useDatabase'
 import styled from 'styled-components/macro'
-//import OverviewPage from './01.Pages/OverviewPage'
+import OverviewPage from './01.OverviewPage/OverviewPage'
 import ShopPage from './02.ShopPage/ShopPage'
 
 export default function App() {
@@ -19,10 +19,10 @@ export default function App() {
   return (
     <AppStyled>
       <Switch>
-        {/* <Route exact path="/">
-          <OverviewPage />
-        </Route> */}
         <Route exact path="/">
+          <OverviewPage database={database} />
+        </Route>
+        <Route exact path="/ShopCard">
           <ShopPage
             database={database}
             changeShopTitle={changeShopTitle}
