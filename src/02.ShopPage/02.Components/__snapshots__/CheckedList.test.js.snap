@@ -16,6 +16,8 @@ exports[`CheckedList renders the list correctly 1`] = `
 
 .c2 {
   margin-left: 9px;
+  -webkit-text-decoration: line-through;
+  text-decoration: line-through;
   border: none;
 }
 
@@ -79,9 +81,7 @@ exports[`CheckedList renders the list correctly 1`] = `
     <input
       class="c2"
       data-testid="title-list-item"
-      name="c"
-      style="text-decoration: line-through;"
-      value="ReactJs"
+      value="Butter"
     />
     <svg
       aria-hidden="true"

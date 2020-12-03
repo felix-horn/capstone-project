@@ -5,21 +5,19 @@ import Checkbox from '@material-ui/core/Checkbox'
 import CloseIcon from '@material-ui/icons/Close'
 
 ListItem.propTypes = {
-  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   isChecked: PropTypes.bool.isRequired,
-  onInputChange: PropTypes.func.isRequired,
-  onToggleCheckbox: PropTypes.func.isRequired,
+  changeTitle: PropTypes.func.isRequired,
+  toggleCheckbox: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onEnter: PropTypes.func,
 }
 
 export default function ListItem({
-  id,
   title,
   isChecked,
-  onInputChange,
-  onToggleCheckbox,
+  changeTitle,
+  toggleCheckbox,
   onDelete,
   onEnter,
 }) {
@@ -31,13 +29,12 @@ export default function ListItem({
         type="checkbox"
         color="default"
         checked={isChecked}
-        onChange={onToggleCheckbox}
+        onChange={handleCheckboxToggle}
         data-testid="checkbox"
       />
       <TitleStyled
-        name={id}
         value={title}
-        onChange={onInputChange}
+        onChange={handleInputChange}
         onKeyUp={(event) => event.key === 'Enter' && handleEnter(event)}
         onFocus={showDeleteIcon}
         onBlur={hideDeleteIcon}
@@ -53,6 +50,15 @@ export default function ListItem({
       )}
     </ListItemStyled>
   )
+
+  function handleCheckboxToggle() {
+    clearTimeout(raceConditionTimer)
+    toggleCheckbox()
+  }
+
+  function handleInputChange(event) {
+    changeTitle(event.target.value)
+  }
 
   function handleEnter(event) {
     event.target.blur()

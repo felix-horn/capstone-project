@@ -1,70 +1,43 @@
-import useList from './hooks/useList'
+import { Switch, Route } from 'react-router-dom'
+import useDatabase from './hooks/useDatabase'
 import styled from 'styled-components/macro'
-import UncheckedList from './02.Components/UncheckedList'
-import CheckedList from './02.Components/CheckedList'
-import AddItemButton from './01.UI-Elements/AddItemButton'
-import UndoButton from './01.UI-Elements/UndoButton'
+//import OverviewPage from './01.Pages/OverviewPage'
+import ShopPage from './02.ShopPage/ShopPage'
 
 export default function App() {
   const {
-    list,
+    database,
     addListItem,
-    handleInputChange,
+    changeItemTitle,
+    changeShopTitle,
     toggleIsChecked,
     deleteListItem,
     undoDelete,
     rearrangeListOrder,
     visibilityUndoButton,
-  } = useList()
+  } = useDatabase()
   return (
-    <>
-      <UncheckedList
-        list={list}
-        addListItem={addListItem}
-        handleInputChange={handleInputChange}
-        toggleIsChecked={toggleIsChecked}
-        deleteListItem={deleteListItem}
-        rearrangeListOrder={rearrangeListOrder}
-      />
-      <AddItemButton onClick={() => addListItem()} />
-      <CheckedList
-        list={list}
-        handleInputChange={handleInputChange}
-        toggleIsChecked={toggleIsChecked}
-        deleteListItem={deleteListItem}
-      />
-      <UndoButtonStyled className={visibilityUndoButton} onClick={undoDelete} />
-    </>
+    <AppStyled>
+      <Switch>
+        {/* <Route exact path="/">
+          <OverviewPage />
+        </Route> */}
+        <Route exact path="/">
+          <ShopPage
+            database={database}
+            changeShopTitle={changeShopTitle}
+            addListItem={addListItem}
+            changeItemTitle={changeItemTitle}
+            toggleIsChecked={toggleIsChecked}
+            deleteListItem={deleteListItem}
+            rearrangeListOrder={rearrangeListOrder}
+            visibilityUndoButton={visibilityUndoButton}
+            undoDelete={undoDelete}
+          />
+        </Route>
+      </Switch>
+    </AppStyled>
   )
 }
 
-const UndoButtonStyled = styled(UndoButton)`
-  position: fixed;
-  bottom: 100px;
-  left: 50%;
-  transform: translate(-50%);
-  display: flex;
-  justify-content: center;
-
-  &.shown {
-  }
-
-  &.fade {
-    animation: 1s fadeOut ease forwards;
-  }
-
-  &.hidden {
-    display: none;
-  }
-
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-      pointer-events: all;
-    }
-    100% {
-      opacity: 0;
-      pointer-events: none;
-    }
-  }
-`
+const AppStyled = styled.div``

@@ -16,6 +16,8 @@ exports[`UncheckedList renders the list correctly 1`] = `
 
 .c4 {
   margin-left: 9px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
   border: none;
 }
 
@@ -34,7 +36,7 @@ exports[`UncheckedList renders the list correctly 1`] = `
 .c1 {
   box-shadow: none;
   border-radius: 5px;
-  background: white;
+  background: var(--white);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -128,9 +130,7 @@ exports[`UncheckedList renders the list correctly 1`] = `
       <input
         class="c4"
         data-testid="title-list-item"
-        name="a"
-        style="text-decoration: none;"
-        value="friends"
+        value="Milch"
       />
       <svg
         aria-hidden="true"
@@ -148,13 +148,13 @@ exports[`UncheckedList renders the list correctly 1`] = `
   <div
     class="c1"
     data-rbd-draggable-context-id="0"
-    data-rbd-draggable-id="b"
+    data-rbd-draggable-id="c"
   >
     <div
       aria-describedby="rbd-hidden-text-0-hidden-text-0"
       class="c2"
       data-rbd-drag-handle-context-id="0"
-      data-rbd-drag-handle-draggable-id="b"
+      data-rbd-drag-handle-draggable-id="c"
       draggable="false"
       role="button"
       tabindex="0"
@@ -206,9 +206,7 @@ exports[`UncheckedList renders the list correctly 1`] = `
       <input
         class="c4"
         data-testid="title-list-item"
-        name="b"
-        style="text-decoration: none;"
-        value="family"
+        value="Shampoo"
       />
       <svg
         aria-hidden="true"

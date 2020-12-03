@@ -5,8 +5,8 @@ import ListItem from '../01.UI-Elements/ListItem'
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator'
 
 UncheckedList.propTypes = {
-  list: PropTypes.object.isRequired,
-  handleInputChange: PropTypes.func.isRequired,
+  database: PropTypes.object.isRequired,
+  changeTitle: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
   addListItem: PropTypes.func.isRequired,
@@ -15,27 +15,30 @@ UncheckedList.propTypes = {
 }
 
 export default function UncheckedList({
-  list,
-  handleInputChange,
+  database,
+  changeTitle,
   toggleIsChecked,
   deleteListItem,
   addListItem,
   rearrangeListOrder,
-  checked,
 }) {
-  const uncheckedIds = list.allIds.filter((id) => !list.byId[id].isChecked)
+  const uncheckedIds = database.items.allIds.filter(
+    (id) => !database.items.byId[id].isChecked
+  )
   return (
     <>
-      <DragDropContext onDragEnd={handleOnDragEnd}>
+      <DragDropContext
+        onDragStart={giveHapticFeedback}
+        onDragEnd={handleOnDragEnd}
+      >
         <Droppable droppableId="listId">
           {(provided) => (
             <UncheckedListStyled
-              checked={checked}
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
               {uncheckedIds.map((id, index) => {
-                const { title, isChecked } = list.byId[id]
+                const { title, isChecked } = database.items.byId[id]
                 return (
                   <Draggable key={id} draggableId={id} index={index}>
                     {(provided, snapshot) => (
@@ -51,8 +54,10 @@ export default function UncheckedList({
                           id={id}
                           title={title}
                           isChecked={isChecked}
-                          onInputChange={handleInputChange}
-                          onToggleCheckbox={() => toggleIsChecked(id)}
+                          changeTitle={(fieldValue) =>
+                            changeTitle(id, fieldValue)
+                          }
+                          toggleCheckbox={() => toggleIsChecked(id)}
                           onDelete={() => deleteListItem(id)}
                           onEnter={() => handleEnter(id)}
                         />
@@ -68,6 +73,11 @@ export default function UncheckedList({
       </DragDropContext>
     </>
   )
+  function giveHapticFeedback() {
+    if (window.navigator.vibrate) {
+      window.navigator.vibrate(10)
+    }
+  }
 
   function handleOnDragEnd(result) {
     if (!result.destination) return
