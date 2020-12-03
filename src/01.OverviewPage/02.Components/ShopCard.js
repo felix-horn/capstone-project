@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import ShopTitle from '../01.UI-Elements/ShopTitle'
@@ -13,7 +14,7 @@ export default function ShopCard({ database }) {
   )
   return (
     <>
-      <ShopCardStyled>
+      <ShopCardStyled exact to="/ShopCard">
         <ShopTitle title="Penny" />
         {uncheckedIds.map((id) => {
           const { title } = database.items.byId[id]
@@ -24,9 +25,10 @@ export default function ShopCard({ database }) {
   )
 }
 
-const ShopCardStyled = styled.div`
+const ShopCardStyled = styled(NavLink)`
   border: var(--border);
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 8px;
+  padding: 15px 10px;
   display: grid;
+  text-decoration: none;
 `

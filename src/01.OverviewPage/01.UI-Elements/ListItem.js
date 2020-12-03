@@ -22,7 +22,6 @@ const ListItemStyled = styled.label`
 `
 
 const CheckboxStyled = styled(Checkbox)`
-  padding: 3px;
   transform: scale(0.9);
   opacity: 0.5;
 `

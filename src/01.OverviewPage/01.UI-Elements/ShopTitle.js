@@ -10,8 +10,9 @@ export default function ShopTitle({ title }) {
 }
 
 const ShopTitleStyled = styled.h2`
-  margin-left: 7px;
+  margin-left: 5px !important;
+  margin-bottom: 5px !important;
   font-size: 18px;
-  font-weight: 100;
-  /* margin-bottom: 10px; */
+  font-weight: 400;
+  color: var(--almost-black);
 `
