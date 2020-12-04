@@ -11,6 +11,9 @@ OverviewPage.propTypes = {
 export default function OverviewPage({ database }) {
   return (
     <OverviewPageStyled>
+      {database.shops.allIds.map((shopID) => (
+        <p>{database.shops.byId[shopID].title}</p>
+      ))}
       <FabWrapper>
         <Fab href="/ShopCard" style={{ backgroundColor: '#ffffff' }}>
           <PostAddIcon />

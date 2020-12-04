@@ -9,7 +9,7 @@ export default function useDatabase() {
   const [database, setDatabase] = useState(
     loadLocally(STORAGE_KEY) ?? {
       shops: {
-        allIds: [],
+        allIds: ['dummyId'],
         byId: {
           dummyId: {
             //this is only the preparation
