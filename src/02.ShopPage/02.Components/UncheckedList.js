@@ -23,18 +23,10 @@ export default function UncheckedList({
   addListItem,
   rearrangeListOrder,
 }) {
-  /* const uncheckedIds = database.items.allIds.filter(
-    (id) => !database.items.byId[id].isChecked
-  ) */
-
-  console.log(shopId)
-  console.log(database.shops.byId[shopId].items)
-
   const uncheckedIds = database.shops.byId[shopId].items.filter(
     (id) => !database.items.byId[id].isChecked
   )
 
-  console.log(uncheckedIds)
   return (
     <>
       <DragDropContext

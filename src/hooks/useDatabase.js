@@ -19,8 +19,6 @@ export default function useDatabase() {
     }
   )
 
-  console.log({ database })
-
   useEffect(() => saveLocally(STORAGE_KEY, database), [database])
 
   const [deletedListItem, setDeletedListItem] = useState({
@@ -62,7 +60,6 @@ export default function useDatabase() {
   }
 
   function changeShopTitle(shopId, fieldValue) {
-    console.log('changeShopTitle: ', shopId, fieldValue)
     setDatabase({
       ...database,
       shops: {
@@ -70,7 +67,7 @@ export default function useDatabase() {
         byId: {
           ...database.shops.byId,
           [shopId]: {
-            ...database.shops.byId[shopId], //this is only the preparation for the datastructure for more than one shop
+            ...database.shops.byId[shopId],
             title: fieldValue,
           },
         },
@@ -78,10 +75,19 @@ export default function useDatabase() {
     })
   }
 
-  function addListItem(title = '', isChecked = false) {
+  function addListItem(shopId, title = '', isChecked = false) {
     const newId = uuid()
     setDatabase({
-      ...database,
+      shops: {
+        ...database.shops,
+        byId: {
+          ...database.shops.byId,
+          [shopId]: {
+            ...database.shops.byId[shopId],
+            items: [...database.shops.byId[shopId].items, newId],
+          },
+        },
+      },
       items: {
         byId: {
           ...database.items.byId,

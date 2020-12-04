@@ -32,9 +32,7 @@ export default function ShopPage({
   undoDelete,
 }) {
   const location = useLocation()
-  //console.log({ location })
   const shopId = location.state.shopId
-  //console.log(location.state.shopId)
   return (
     <>
       <BackButton exact to="/">
@@ -55,7 +53,7 @@ export default function ShopPage({
         deleteListItem={deleteListItem}
         rearrangeListOrder={rearrangeListOrder}
       />
-      <AddItemButton onClick={() => addListItem()} />
+      <AddItemButton onClick={() => addListItem(shopId)} />
       <CheckedList
         shopId={shopId}
         database={database}

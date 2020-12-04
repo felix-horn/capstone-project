@@ -13,8 +13,6 @@ export default function ShopCard({ shopId, database }) {
     (id) => !database.items.byId[id].isChecked
   )
 
-  console.log('length: ', database.shops.allIds)
-
   return (
     <>
       {database.shops.allIds.length > 0 && (
@@ -40,7 +38,6 @@ export default function ShopCard({ shopId, database }) {
     const lengthCheckedIds = database.items.allIds.filter(
       (id) => database.items.byId[id].isChecked
     ).length
-    console.log(lengthCheckedIds)
     // eslint-disable-next-line default-case
     switch (true) {
       case lengthCheckedIds === 0:
