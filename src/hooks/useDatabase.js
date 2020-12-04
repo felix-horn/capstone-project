@@ -1,22 +1,30 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { v4 as uuid } from 'uuid'
+import saveLocally from '../lib/saveLocally'
+import loadLocally from '../lib/loadLocally'
+
+const STORAGE_KEY = 'database'
 
 export default function useDatabase() {
-  const [database, setDatabase] = useState({
-    shops: {
-      allIds: [],
-      byId: {
-        dummyId: {
-          //this is only the preparation
-          title: '', //for the datastructure for more than one shop
+  const [database, setDatabase] = useState(
+    loadLocally(STORAGE_KEY) ?? {
+      shops: {
+        allIds: [],
+        byId: {
+          dummyId: {
+            //this is only the preparation
+            title: '', //for the datastructure for more than one shop
+          },
         },
       },
-    },
-    items: {
-      allIds: [],
-      byId: {},
-    },
-  })
+      items: {
+        allIds: [],
+        byId: {},
+      },
+    }
+  )
+
+  useEffect(() => saveLocally(STORAGE_KEY, database), [database])
 
   const [deletedListItem, setDeletedListItem] = useState({
     title: '',
