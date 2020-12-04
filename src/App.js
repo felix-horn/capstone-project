@@ -22,7 +22,7 @@ export default function App() {
         <Route exact path="/">
           <OverviewPage database={database} />
         </Route>
-        <Route exact path="/ShopCard">
+        <Route exact path="/ShopPage">
           <ShopPage
             database={database}
             changeShopTitle={changeShopTitle}

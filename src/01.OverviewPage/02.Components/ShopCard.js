@@ -14,7 +14,13 @@ export default function ShopCard({ shopId, database }) {
   )
   return (
     <>
-      <ShopCardStyled exact to="/ShopCard">
+      <ShopCardStyled
+        exact
+        to={{
+          pathname: '/ShopPage',
+          state: { name: shopId },
+        }}
+      >
         <ShopTitle title={database.shops.byId[shopId].title} />
         {uncheckedIds.map((id) => {
           const { title } = database.items.byId[id]

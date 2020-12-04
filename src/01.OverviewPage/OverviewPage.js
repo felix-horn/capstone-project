@@ -15,7 +15,7 @@ export default function OverviewPage({ database }) {
       ))}
 
       <ButtonWrapper>
-        <ActionButton href="/ShopCard" />
+        <ActionButton onClick href="/ShopPage" />
       </ButtonWrapper>
     </OverviewPageStyled>
   )

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import UncheckedList from './02.Components/UncheckedList'
@@ -31,11 +31,14 @@ export default function ShopPage({
   visibilityUndoButton,
   undoDelete,
 }) {
+  const location = useLocation()
+  console.log(location.state.name)
   return (
     <>
       <BackButton exact to="/">
         <ArrowBackIcon />
       </BackButton>
+
       <ShopTitle database={database} changeTitle={changeShopTitle} />
       <UncheckedList
         database={database}
