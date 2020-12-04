@@ -10,21 +10,30 @@ OverviewPage.propTypes = {
 
 export default function OverviewPage({ database }) {
   return (
-    <>
+    <OverviewPageStyled>
+      <FabWrapper>
+        <Fab href="/ShopCard" style={{ backgroundColor: '#ffffff' }}>
+          <PostAddIcon />
+        </Fab>
+      </FabWrapper>
       <ShopCard database={database} />
-      <FabStyled href="/ShopCard">
-        <PostAddIcon />
-      </FabStyled>
-    </>
+    </OverviewPageStyled>
   )
 }
 
-const FabStyled = styled(Fab)`
-  position: fixed;
-  bottom: 100px;
-  right: 20px;
+const OverviewPageStyled = styled.div`
+  position: relative;
+  height: calc(100vh - 60px);
+`
 
-  /* transform: translate(-50%); */
-  /* display: flex;
-  justify-content: center; */
+const FabWrapper = styled.div`
+  position: absolute;
+  bottom: 250px;
+  right: 20px;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  height: 70px;
+  width: 70px;
+  opacity: 0.5;
 `

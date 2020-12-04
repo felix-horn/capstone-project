@@ -20,9 +20,26 @@ export default function ShopCard({ database }) {
           const { title } = database.items.byId[id]
           return <ListItem key={id} title={title} />
         })}
+        <CheckedItems>{generateText()}</CheckedItems>
       </ShopCardStyled>
     </>
   )
+
+  function generateText() {
+    const lengthCheckedIds = database.items.allIds.filter(
+      (id) => database.items.byId[id].isChecked
+    ).length
+    console.log(lengthCheckedIds)
+    // eslint-disable-next-line default-case
+    switch (true) {
+      case lengthCheckedIds === 0:
+        return ''
+      case lengthCheckedIds === 1:
+        return 'und 1 abgehakter Eintrag'
+      case lengthCheckedIds > 1:
+        return `und ${lengthCheckedIds} abgehakte Einträge`
+    }
+  }
 }
 
 const ShopCardStyled = styled(NavLink)`
@@ -31,4 +48,9 @@ const ShopCardStyled = styled(NavLink)`
   padding: 15px 10px;
   display: grid;
   text-decoration: none;
+`
+const CheckedItems = styled.p`
+  margin: 10px 5px 0 !important;
+  padding: 0;
+  color: var(--dark-gray);
 `
