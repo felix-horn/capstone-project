@@ -51,7 +51,9 @@ export default function ShopPage({
         changeTitle={changeItemTitle}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={(id) => deleteListItem(id, shopId)}
-        rearrangeListOrder={rearrangeListOrder}
+        rearrangeListOrder={(indexFrom, indexTo) =>
+          rearrangeListOrder(indexFrom, indexTo, shopId)
+        }
       />
       <AddItemButton onClick={() => addListItem(shopId)} />
       <CheckedList

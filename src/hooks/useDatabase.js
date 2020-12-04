@@ -134,7 +134,27 @@ export default function useDatabase() {
     })
   }
 
-  function rearrangeListOrder(indexFrom, indexTo) {
+  function rearrangeListOrder(indexFrom, indexTo, shopId) {
+    const idsShopItems = [...database.shops.byId[shopId].items]
+    const [targetItem] = idsShopItems.splice(indexFrom, 1)
+    idsShopItems.splice(indexTo, 0, targetItem)
+
+    setDatabase({
+      ...database,
+      shops: {
+        ...database.shops,
+        byId: {
+          ...database.shops.byId,
+          [shopId]: {
+            ...database.shops.byId[shopId],
+            items: idsShopItems,
+          },
+        },
+      },
+    })
+  }
+
+  /* function rearrangeListOrder(indexFrom, indexTo) {
     const copyOfAllIds = [...database.items.allIds]
     const [targetItem] = copyOfAllIds.splice(indexFrom, 1)
     copyOfAllIds.splice(indexTo, 0, targetItem)
@@ -146,7 +166,7 @@ export default function useDatabase() {
         allIds: copyOfAllIds,
       },
     })
-  }
+  } */
 
   function deleteListItem(targetId, shopId) {
     const title = database.items.byId[targetId].title
