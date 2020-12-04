@@ -32,17 +32,23 @@ export default function ShopPage({
   undoDelete,
 }) {
   const location = useLocation()
-  console.log(location.state.name)
+  const shopId = location.state.shopId
+  console.log(location)
+  console.log(location.state.shopId)
   return (
     <>
       <BackButton exact to="/">
         <ArrowBackIcon />
       </BackButton>
 
-      <ShopTitle database={database} changeTitle={changeShopTitle} />
+      <ShopTitle
+        shopId={shopId}
+        database={database}
+        changeTitle={changeShopTitle}
+      />
       <UncheckedList
         database={database}
-        addListItem={addListItem}
+        addListItem={addListItem} //needs shopId
         changeTitle={changeItemTitle}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={deleteListItem}

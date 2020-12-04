@@ -6,11 +6,11 @@ ShopTitle.propTypes = {
   changeTitle: PropTypes.func.isRequired,
 }
 
-export default function ShopTitle({ database, changeTitle }) {
+export default function ShopTitle({ shopId, database, changeTitle }) {
   return (
     <ShopTitleStyled
       placeholder="Geschäft"
-      value={database.shops.byId['dummyId'].title} //this is only the preparation for the datastructure for more than one shop
+      value={database.shops.byId[shopId].title}
       onChange={handleInputChange}
       data-testid="title-list"
     />

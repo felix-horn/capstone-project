@@ -18,7 +18,7 @@ export default function ShopCard({ shopId, database }) {
         exact
         to={{
           pathname: '/ShopPage',
-          state: { name: shopId },
+          state: { shopId },
         }}
       >
         <ShopTitle title={database.shops.byId[shopId].title} />
