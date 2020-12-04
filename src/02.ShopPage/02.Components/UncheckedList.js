@@ -5,6 +5,7 @@ import ListItem from '../01.UI-Elements/ListItem'
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator'
 
 UncheckedList.propTypes = {
+  shopId: PropTypes.string.isRequired,
   database: PropTypes.object.isRequired,
   changeTitle: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
