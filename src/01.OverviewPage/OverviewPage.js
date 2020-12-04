@@ -10,10 +10,10 @@ OverviewPage.propTypes = {
 export default function OverviewPage({ database }) {
   return (
     <OverviewPageStyled>
-      {database.shops.allIds.map((shopID) => (
-        <p>{database.shops.byId[shopID].title}</p>
+      {database.shops.allIds.map((shopId) => (
+        <ShopCard key={shopId} shopId={shopId} database={database} />
       ))}
-      <ShopCard database={database} />
+
       <ButtonWrapper>
         <ActionButton href="/ShopCard" />
       </ButtonWrapper>
@@ -36,3 +36,4 @@ const ButtonWrapper = styled.div`
   height: 70px;
   width: 70px;
 `
+// <p>{database.shops.byId[shopID].title}</p>

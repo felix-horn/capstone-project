@@ -8,14 +8,14 @@ ShopCard.propTypes = {
   database: PropTypes.object.isRequired,
 }
 
-export default function ShopCard({ database }) {
+export default function ShopCard({ shopId, database }) {
   const uncheckedIds = database.items.allIds.filter(
     (id) => !database.items.byId[id].isChecked
   )
   return (
     <>
       <ShopCardStyled exact to="/ShopCard">
-        <ShopTitle title="Penny" />
+        <ShopTitle title={database.shops.byId[shopId].title} />
         {uncheckedIds.map((id) => {
           const { title } = database.items.byId[id]
           return <ListItem key={id} title={title} />
