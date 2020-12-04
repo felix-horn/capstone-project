@@ -47,10 +47,10 @@ export default function ShopPage({
       <UncheckedList
         shopId={shopId}
         database={database}
-        addListItem={addListItem} //needs shopId
+        addListItem={() => addListItem(shopId)}
         changeTitle={changeItemTitle}
         toggleIsChecked={toggleIsChecked}
-        deleteListItem={deleteListItem}
+        deleteListItem={(id) => deleteListItem(id, shopId)}
         rearrangeListOrder={rearrangeListOrder}
       />
       <AddItemButton onClick={() => addListItem(shopId)} />
@@ -59,7 +59,7 @@ export default function ShopPage({
         database={database}
         changeTitle={changeItemTitle}
         toggleIsChecked={toggleIsChecked}
-        deleteListItem={deleteListItem}
+        deleteListItem={(id) => deleteListItem(id, shopId)}
       />
       <UndoButtonStyled className={visibilityUndoButton} onClick={undoDelete} />
     </>

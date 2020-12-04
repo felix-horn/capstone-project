@@ -38,6 +38,9 @@ export default function OverviewPage({ database, addShop }) {
 const OverviewPageStyled = styled.div`
   position: relative;
   height: calc(100vh - 60px);
+  display: grid;
+  gap: 10px;
+  grid-auto-rows: minmax(min-content, max-content);
 `
 
 const ButtonWrapper = styled(NavLink)`
@@ -50,4 +53,3 @@ const ButtonWrapper = styled(NavLink)`
   height: 70px;
   width: 70px;
 `
-// <p>{database.shops.byId[shopID].title}</p>

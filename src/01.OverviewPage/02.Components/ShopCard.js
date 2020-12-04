@@ -15,7 +15,7 @@ export default function ShopCard({ shopId, database }) {
 
   return (
     <>
-      {database.shops.allIds.length > 0 && (
+      {database.shops.byId[shopId].items.length > 0 && (
         <ShopCardStyled
           exact
           to={{
@@ -58,7 +58,7 @@ const ShopCardStyled = styled(NavLink)`
   text-decoration: none;
 `
 const CheckedItems = styled.p`
-  margin: 10px 5px 0 !important;
+  margin: 2px 5px 0 !important;
   padding: 0;
   color: var(--dark-gray);
 `

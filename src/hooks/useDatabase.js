@@ -148,14 +148,25 @@ export default function useDatabase() {
     })
   }
 
-  function deleteListItem(targetId) {
+  function deleteListItem(targetId, shopId) {
     const title = database.items.byId[targetId].title
     const isChecked = database.items.byId[targetId].isChecked
-    setDeletedListItem({ title, isChecked })
+    setDeletedListItem({ shopId, title, isChecked })
 
     delete database.items.byId[targetId]
     setDatabase({
-      ...database,
+      shops: {
+        ...database.shops,
+        byId: {
+          ...database.byId,
+          [shopId]: {
+            ...database.shops.byId[shopId],
+            items: database.shops.byId[shopId].items.filter(
+              (id) => id !== targetId
+            ),
+          },
+        },
+      },
       items: {
         byId: database.items.byId,
         allIds: database.items.allIds.filter((id) => id !== targetId),
@@ -167,7 +178,11 @@ export default function useDatabase() {
   }
 
   function undoDelete() {
-    addListItem(deletedListItem.title, deletedListItem.isChecked)
+    addListItem(
+      deletedListItem.shopId,
+      deletedListItem.title,
+      deletedListItem.isChecked
+    )
     setVisibilityUndoButton('hidden')
     clearTimeout(fadeTimer.current)
   }
