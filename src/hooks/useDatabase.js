@@ -9,13 +9,8 @@ export default function useDatabase() {
   const [database, setDatabase] = useState(
     loadLocally(STORAGE_KEY) ?? {
       shops: {
-        allIds: ['dummyId'],
-        byId: {
-          dummyId: {
-            //this is only the preparation
-            title: '', //for the datastructure for more than one shop
-          },
-        },
+        allIds: [],
+        byId: {},
       },
       items: {
         allIds: [],
@@ -23,6 +18,8 @@ export default function useDatabase() {
       },
     }
   )
+
+  console.log({ database })
 
   useEffect(() => saveLocally(STORAGE_KEY, database), [database])
 
@@ -36,6 +33,7 @@ export default function useDatabase() {
 
   return {
     database,
+    addShop,
     changeShopTitle,
     addListItem,
     changeItemTitle,
@@ -44,6 +42,40 @@ export default function useDatabase() {
     undoDelete,
     rearrangeListOrder,
     visibilityUndoButton,
+  }
+
+  function addShop(newId) {
+    setDatabase({
+      ...database,
+      shops: {
+        allIds: [...database.shops.allIds, newId],
+        byId: {
+          ...database.shops.byId,
+          [newId]: {
+            id: newId,
+            title: '',
+            items: [],
+          },
+        },
+      },
+    })
+  }
+
+  function changeShopTitle(shopId, fieldValue) {
+    console.log('changeShopTitle: ', shopId, fieldValue)
+    setDatabase({
+      ...database,
+      shops: {
+        ...database.shops,
+        byId: {
+          ...database.shops.byId,
+          [shopId]: {
+            ...database.shops.byId[shopId], //this is only the preparation for the datastructure for more than one shop
+            title: fieldValue,
+          },
+        },
+      },
+    })
   }
 
   function addListItem(title = '', isChecked = false) {
@@ -60,22 +92,6 @@ export default function useDatabase() {
           },
         },
         allIds: [...database.items.allIds, newId],
-      },
-    })
-  }
-
-  function changeShopTitle(fieldValue) {
-    setDatabase({
-      ...database,
-      shops: {
-        ...database.shops,
-        byId: {
-          ...database.shops.byId,
-          dummyId: {
-            ...database.shops.byId['dummyId'], //this is only the preparation for the datastructure for more than one shop
-            title: fieldValue,
-          },
-        },
       },
     })
   }

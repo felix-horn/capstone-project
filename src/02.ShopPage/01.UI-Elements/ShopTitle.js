@@ -7,6 +7,9 @@ ShopTitle.propTypes = {
 }
 
 export default function ShopTitle({ shopId, database, changeTitle }) {
+  console.log('shopId ShopTitle: ', shopId)
+  console.log('database ShopTitle: ', database)
+  console.log('title ShopTitle: ', database.shops.byId[shopId])
   return (
     <ShopTitleStyled
       placeholder="Geschäft"

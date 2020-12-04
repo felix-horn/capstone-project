@@ -7,6 +7,7 @@ import ShopPage from './02.ShopPage/ShopPage'
 export default function App() {
   const {
     database,
+    addShop,
     addListItem,
     changeItemTitle,
     changeShopTitle,
@@ -20,7 +21,7 @@ export default function App() {
     <AppStyled>
       <Switch>
         <Route exact path="/">
-          <OverviewPage database={database} />
+          <OverviewPage database={database} addShop={addShop} />
         </Route>
         <Route exact path="/ShopPage">
           <ShopPage

@@ -32,8 +32,8 @@ export default function ShopPage({
   undoDelete,
 }) {
   const location = useLocation()
-  const shopId = location.state.shopId
   //console.log({ location })
+  const shopId = location.state.shopId
   //console.log(location.state.shopId)
   return (
     <>
@@ -44,7 +44,7 @@ export default function ShopPage({
       <ShopTitle
         shopId={shopId}
         database={database}
-        changeTitle={changeShopTitle}
+        changeTitle={(fieldValue) => changeShopTitle(shopId, fieldValue)}
       />
       <UncheckedList
         shopId={shopId}

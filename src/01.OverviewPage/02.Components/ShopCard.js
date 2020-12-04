@@ -12,22 +12,27 @@ export default function ShopCard({ shopId, database }) {
   const uncheckedIds = database.items.allIds.filter(
     (id) => !database.items.byId[id].isChecked
   )
+
+  console.log('length: ', database.shops.allIds)
+
   return (
     <>
-      <ShopCardStyled
-        exact
-        to={{
-          pathname: '/ShopPage',
-          state: { shopId },
-        }}
-      >
-        <ShopTitle title={database.shops.byId[shopId].title} />
-        {uncheckedIds.map((id) => {
-          const { title } = database.items.byId[id]
-          return <ListItem key={id} title={title} />
-        })}
-        <CheckedItems>{generateText()}</CheckedItems>
-      </ShopCardStyled>
+      {database.shops.allIds.length > 0 && (
+        <ShopCardStyled
+          exact
+          to={{
+            pathname: '/ShopPage',
+            state: { shopId },
+          }}
+        >
+          <ShopTitle title={database.shops.byId[shopId].title} />
+          {uncheckedIds.map((id) => {
+            const { title } = database.items.byId[id]
+            return <ListItem key={id} title={title} />
+          })}
+          <CheckedItems>{generateText()}</CheckedItems>
+        </ShopCardStyled>
+      )}
     </>
   )
 
