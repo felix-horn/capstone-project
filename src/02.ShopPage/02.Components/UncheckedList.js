@@ -15,6 +15,7 @@ UncheckedList.propTypes = {
 }
 
 export default function UncheckedList({
+  shopId,
   database,
   changeTitle,
   toggleIsChecked,
@@ -22,9 +23,18 @@ export default function UncheckedList({
   addListItem,
   rearrangeListOrder,
 }) {
-  const uncheckedIds = database.items.allIds.filter(
+  /* const uncheckedIds = database.items.allIds.filter(
+    (id) => !database.items.byId[id].isChecked
+  ) */
+
+  console.log(shopId)
+  console.log(database.shops.byId[shopId].items)
+
+  const uncheckedIds = database.shops.byId[shopId].items.filter(
     (id) => !database.items.byId[id].isChecked
   )
+
+  console.log(uncheckedIds)
   return (
     <>
       <DragDropContext
@@ -38,7 +48,7 @@ export default function UncheckedList({
               ref={provided.innerRef}
             >
               {uncheckedIds.map((id, index) => {
-                const { title, isChecked } = database.items.byId[id]
+                const { title, isChecked } = database.items.byId[id] //check whether isChecked is obsolete
                 return (
                   <Draggable key={id} draggableId={id} index={index}>
                     {(provided, snapshot) => (

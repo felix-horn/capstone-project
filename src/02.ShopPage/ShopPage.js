@@ -33,8 +33,8 @@ export default function ShopPage({
 }) {
   const location = useLocation()
   const shopId = location.state.shopId
-  console.log(location)
-  console.log(location.state.shopId)
+  //console.log({ location })
+  //console.log(location.state.shopId)
   return (
     <>
       <BackButton exact to="/">
@@ -47,6 +47,7 @@ export default function ShopPage({
         changeTitle={changeShopTitle}
       />
       <UncheckedList
+        shopId={shopId}
         database={database}
         addListItem={addListItem} //needs shopId
         changeTitle={changeItemTitle}
@@ -56,6 +57,7 @@ export default function ShopPage({
       />
       <AddItemButton onClick={() => addListItem()} />
       <CheckedList
+        shopId={shopId}
         database={database}
         changeTitle={changeItemTitle}
         toggleIsChecked={toggleIsChecked}
