@@ -9,7 +9,7 @@ ShopCard.propTypes = {
 }
 
 export default function ShopCard({ shopId, database }) {
-  const uncheckedIds = database.items.allIds.filter(
+  const uncheckedIds = database.shops.byId[shopId].items.filter(
     (id) => !database.items.byId[id].isChecked
   )
 
@@ -35,7 +35,7 @@ export default function ShopCard({ shopId, database }) {
   )
 
   function generateText() {
-    const lengthCheckedIds = database.items.allIds.filter(
+    const lengthCheckedIds = database.shops.byId[shopId].items.filter(
       (id) => database.items.byId[id].isChecked
     ).length
     // eslint-disable-next-line default-case
