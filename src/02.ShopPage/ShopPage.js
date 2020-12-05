@@ -1,12 +1,12 @@
-import { NavLink, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+import Header from './02.Components/Header'
 import UncheckedList from './02.Components/UncheckedList'
 import CheckedList from './02.Components/CheckedList'
 import AddItemButton from './01.UI-Elements/AddItemButton'
 import UndoButton from './01.UI-Elements/UndoButton'
 import ShopTitle from './01.UI-Elements/ShopTitle'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 
 ShopPage.propTypes = {
   database: PropTypes.object.isRequired,
@@ -35,15 +35,16 @@ export default function ShopPage({
   const shopId = location.state.shopId
   return (
     <>
-      <BackButton exact to="/">
-        <ArrowBackIcon />
-      </BackButton>
-
-      <ShopTitle
-        shopId={shopId}
-        database={database}
-        changeTitle={(fieldValue) => changeShopTitle(shopId, fieldValue)}
-      />
+      <HeaderStyled>
+        <Header />
+      </HeaderStyled>
+      <ShopTitleStlyed>
+        <ShopTitle
+          shopId={shopId}
+          database={database}
+          changeTitle={(fieldValue) => changeShopTitle(shopId, fieldValue)}
+        />
+      </ShopTitleStlyed>
       <UncheckedList
         shopId={shopId}
         database={database}
@@ -67,12 +68,17 @@ export default function ShopPage({
     </>
   )
 }
+const HeaderStyled = styled.div`
+  /* why cant the Header be styled directly? */
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+`
 
-const BackButton = styled(NavLink)`
-  margin-left: 5px;
-  margin-bottom: 30px;
-  display: block;
-  color: var(--almost-black);
+const ShopTitleStlyed = styled.div`
+  margin-top: 20px;
 `
 
 const UndoButtonStyled = styled(UndoButton)`

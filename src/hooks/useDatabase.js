@@ -154,20 +154,6 @@ export default function useDatabase() {
     })
   }
 
-  /* function rearrangeListOrder(indexFrom, indexTo) {
-    const copyOfAllIds = [...database.items.allIds]
-    const [targetItem] = copyOfAllIds.splice(indexFrom, 1)
-    copyOfAllIds.splice(indexTo, 0, targetItem)
-
-    setDatabase({
-      ...database,
-      items: {
-        ...database.items,
-        allIds: copyOfAllIds,
-      },
-    })
-  } */
-
   function deleteListItem(targetId, shopId) {
     const title = database.items.byId[targetId].title
     const isChecked = database.items.byId[targetId].isChecked
@@ -178,7 +164,7 @@ export default function useDatabase() {
       shops: {
         ...database.shops,
         byId: {
-          ...database.byId,
+          ...database.shops.byId,
           [shopId]: {
             ...database.shops.byId[shopId],
             items: database.shops.byId[shopId].items.filter(

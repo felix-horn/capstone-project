@@ -15,7 +15,7 @@ export default function ShopCard({ shopId, database }) {
 
   return (
     <>
-      {database.shops.byId[shopId].items.length > 0 && (
+      {
         <ShopCardStyled
           exact
           to={{
@@ -30,7 +30,7 @@ export default function ShopCard({ shopId, database }) {
           })}
           <CheckedItems>{generateText()}</CheckedItems>
         </ShopCardStyled>
-      )}
+      }
     </>
   )
 

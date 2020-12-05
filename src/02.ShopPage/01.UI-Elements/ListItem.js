@@ -52,7 +52,7 @@ export default function ListItem({
   )
 
   function handleCheckboxToggle() {
-    clearTimeout(raceConditionTimer)
+    //clearTimeout(raceConditionTimer)
     toggleCheckbox()
   }
 
@@ -70,12 +70,12 @@ export default function ListItem({
   }
 
   function hideDeleteIcon() {
-    raceConditionTimer = setTimeout(() => setIsDeleteIconShown(false), 150)
-    return () => clearTimeout(raceConditionTimer)
+    raceConditionTimer = setTimeout(() => setIsDeleteIconShown(false), 0)
+    //return () => clearTimeout(raceConditionTimer)
   }
 
   function handleDelete() {
-    clearTimeout(raceConditionTimer)
+    //clearTimeout(raceConditionTimer)
     onDelete()
   }
 }

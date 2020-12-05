@@ -16,23 +16,18 @@ export default function OverviewPage({ database, addShop }) {
       {database.shops.allIds.map((shopId) => (
         <ShopCard key={shopId} shopId={shopId} database={database} />
       ))}
-
       <ButtonWrapper
         exact
         to={{
           pathname: '/ShopPage',
           state: { shopId: newShopId },
         }}
-        onClick={handleClick}
+        onClick={() => addShop(newShopId)}
       >
         <ActionButton />
       </ButtonWrapper>
     </OverviewPageStyled>
   )
-
-  function handleClick() {
-    addShop(newShopId)
-  }
 }
 
 const OverviewPageStyled = styled.div`
