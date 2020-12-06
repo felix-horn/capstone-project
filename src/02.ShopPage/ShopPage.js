@@ -1,12 +1,14 @@
+import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Header from './02.Components/Header'
 import UncheckedList from './02.Components/UncheckedList'
 import CheckedList from './02.Components/CheckedList'
+import Menu from './02.Components/Menu'
+import ShopTitle from './01.UI-Elements/ShopTitle'
 import AddItemButton from './01.UI-Elements/AddItemButton'
 import UndoButton from './01.UI-Elements/UndoButton'
-import ShopTitle from './01.UI-Elements/ShopTitle'
 
 ShopPage.propTypes = {
   database: PropTypes.object.isRequired,
@@ -33,11 +35,20 @@ export default function ShopPage({
 }) {
   const location = useLocation()
   const shopId = location.state.shopId
+
+  const [isMenuVisible, setIsMenuVisible] = useState(false)
   return (
     <>
       <HeaderStyled>
-        <Header />
+        <Header onClick={toggleMenu} />
       </HeaderStyled>
+      {isMenuVisible && (
+        <ClickableMenuBackground onClick={toggleMenu}>
+          <MenuStyled>
+            <Menu />
+          </MenuStyled>
+        </ClickableMenuBackground>
+      )}
       <ShopTitleStlyed>
         <ShopTitle
           shopId={shopId}
@@ -67,7 +78,28 @@ export default function ShopPage({
       <UndoButtonStyled className={visibilityUndoButton} onClick={undoDelete} />
     </>
   )
+  function toggleMenu() {
+    setIsMenuVisible(!isMenuVisible)
+  }
 }
+
+const ClickableMenuBackground = styled.div`
+  position: fixed;
+  z-index: 150;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  //background-color: green;
+`
+
+const MenuStyled = styled.div`
+  /* why cant the Header be styled directly? */
+  position: fixed;
+  z-index: 200;
+  top: 45px;
+  right: 0;
+`
 const HeaderStyled = styled.div`
   /* why cant the Header be styled directly? */
   position: fixed;

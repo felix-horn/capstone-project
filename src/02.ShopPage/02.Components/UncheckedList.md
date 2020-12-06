@@ -1,13 +1,41 @@
 ```js padded
 <UncheckedList 
+shopId={'x'} 
 database={{
-    items: {
-        allIds: ["a","b"],
-        byId: {
-            "a": { id: "a", title: "Koks", isChecked: false },
-            "b": { id: "b", title: "Nutten", isChecked: false},
-        }
+    shops: {
+    allIds: ['x', 'y'],
+    byId: {
+      x: {
+        id: 'x',
+        title: 'Shop X',
+        items: ['a', 'b'],
+      },
+      y: {
+        id: 'y',
+        title: 'Shop Y',
+        items: ['c'],
+      },
     },
-}}
+  },
+  items: {
+    allIds: ['a', 'b', 'c'],
+    byId: {
+      a: {
+        id: 'a',
+        title: 'Item A',
+        isChecked: false,
+      },
+      b: {
+        id: 'b',
+        title: 'Item B',
+        isChecked: false,
+      },
+      c: {
+        id: 'c',
+        title: 'Item C',
+        isChecked: false,
+      },
+    },
+  },
 />
 ```

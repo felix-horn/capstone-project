@@ -15,18 +15,13 @@ Header.propTypes = {
   checked: PropTypes.bool,
 }
 
-export default function Header({
-  toggleIsChecked,
-  deleteListItem,
-  addListItem,
-  rearrangeListOrder,
-}) {
+export default function Header({ onClick }) {
   return (
     <HeaderStyled>
       <BackButton exact to="/">
         <ArrowBackIcon />
       </BackButton>
-      <MoreVertIconStyled />
+      <MoreVertIconStyled onClick={onClick} />
     </HeaderStyled>
   )
 }

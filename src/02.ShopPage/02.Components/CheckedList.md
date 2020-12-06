@@ -1,13 +1,41 @@
 ```js padded
 <CheckedList 
+shopId={'x'} 
 database={{
-    items: {
-        allIds: ["c","d"],
-        byId: {
-            "c": { id: "c", title: "Gummibärchen", isChecked: true },
-            "d": { id: "d", title: "Pumuckl-Torte", isChecked: true},
-        }
+    shops: {
+    allIds: ['x', 'y'],
+    byId: {
+      x: {
+        id: 'x',
+        title: 'Shop X',
+        items: ['a', 'b'],
+      },
+      y: {
+        id: 'y',
+        title: 'Shop Y',
+        items: ['c'],
+      },
     },
-}}
+  },
+  items: {
+    allIds: ['a', 'b', 'c'],
+    byId: {
+      a: {
+        id: 'a',
+        title: 'Item A',
+        isChecked: true,
+      },
+      b: {
+        id: 'b',
+        title: 'Item B',
+        isChecked: true,
+      },
+      c: {
+        id: 'c',
+        title: 'Item C',
+        isChecked: true,
+      },
+    },
+  },
 />
 ```
