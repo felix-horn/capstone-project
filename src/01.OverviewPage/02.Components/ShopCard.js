@@ -5,6 +5,7 @@ import ShopTitle from '../01.UI-Elements/ShopTitle'
 import ListItem from '../01.UI-Elements/ListItem'
 
 ShopCard.propTypes = {
+  shopId: PropTypes.string.isRequired,
   database: PropTypes.object.isRequired,
 }
 
@@ -12,6 +13,9 @@ export default function ShopCard({ shopId, database }) {
   const uncheckedIds = database.shops.byId[shopId].items.filter(
     (id) => !database.items.byId[id].isChecked
   )
+
+  const lengthCheckedIds =
+    database.shops.byId[shopId].items.length - uncheckedIds.length
 
   return (
     <>
@@ -24,20 +28,18 @@ export default function ShopCard({ shopId, database }) {
           }}
         >
           <ShopTitle title={database.shops.byId[shopId].title} />
-          {uncheckedIds.map((id) => {
-            const { title } = database.items.byId[id]
-            return <ListItem key={id} title={title} />
-          })}
-          <CheckedItems>{generateText()}</CheckedItems>
+          {uncheckedIds.map((id) => (
+            <ListItem key={id} title={database.items.byId[id].title} />
+          ))}
+          {lengthCheckedIds > 0 && (
+            <CheckedItemsSummary>{generateSummary()}</CheckedItemsSummary>
+          )}
         </ShopCardStyled>
       }
     </>
   )
 
-  function generateText() {
-    const lengthCheckedIds = database.shops.byId[shopId].items.filter(
-      (id) => database.items.byId[id].isChecked
-    ).length
+  function generateSummary() {
     // eslint-disable-next-line default-case
     switch (true) {
       case lengthCheckedIds === 0:
@@ -53,12 +55,14 @@ export default function ShopCard({ shopId, database }) {
 const ShopCardStyled = styled(NavLink)`
   border: var(--border);
   border-radius: 8px;
-  padding: 15px 10px;
+  padding: 15px;
   display: grid;
+  gap: 5px;
   text-decoration: none;
 `
-const CheckedItems = styled.p`
-  margin: 2px 5px 0 !important;
+const CheckedItemsSummary = styled.p`
+  margin: 4px 2px 0 !important;
   padding: 0;
-  color: var(--dark-gray);
+  font-size: 0.8rem;
+  color: var(--light-gray);
 `
