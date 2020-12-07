@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import ShopTitle from '../01.UI-Elements/ShopTitle'
 import ListItem from '../01.UI-Elements/ListItem'
+import CheckedItemsSummary from '../01.UI-Elements/CheckedItemsSummary'
 
 ShopCard.propTypes = {
   shopId: PropTypes.string.isRequired,
@@ -32,24 +33,12 @@ export default function ShopCard({ shopId, database }) {
             <ListItem key={id} title={database.items.byId[id].title} />
           ))}
           {lengthCheckedIds > 0 && (
-            <CheckedItemsSummary>{generateSummary()}</CheckedItemsSummary>
+            <CheckedItemsSummary lengthCheckedIds={lengthCheckedIds} />
           )}
         </ShopCardStyled>
       }
     </>
   )
-
-  function generateSummary() {
-    // eslint-disable-next-line default-case
-    switch (true) {
-      case lengthCheckedIds === 0:
-        return ''
-      case lengthCheckedIds === 1:
-        return 'und 1 abgehakter Eintrag'
-      case lengthCheckedIds > 1:
-        return `und ${lengthCheckedIds} abgehakte Einträge`
-    }
-  }
 }
 
 const ShopCardStyled = styled(NavLink)`
@@ -59,10 +48,4 @@ const ShopCardStyled = styled(NavLink)`
   display: grid;
   gap: 5px;
   text-decoration: none;
-`
-const CheckedItemsSummary = styled.p`
-  margin: 4px 2px 0 !important;
-  padding: 0;
-  font-size: 0.8rem;
-  color: var(--light-gray);
 `
