@@ -7,6 +7,7 @@ import ActionButton from './01.UI-Elements/ActionButton'
 
 OverviewPage.propTypes = {
   database: PropTypes.object.isRequired,
+  addShop: PropTypes.func.isRequired,
 }
 
 export default function OverviewPage({ database, addShop }) {
