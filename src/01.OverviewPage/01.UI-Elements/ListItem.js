@@ -7,9 +7,9 @@ ListItem.propTypes = {
 
 export default function ListItem({ title }) {
   return (
-    <ListItemStyled data-testid="list-item">
+    <ListItemStyled>
       <CheckboxDiv />
-      <TitleStyled>{title}</TitleStyled>
+      <TitleStyled data-testid="title-list-item">{title}</TitleStyled>
     </ListItemStyled>
   )
 }

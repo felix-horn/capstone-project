@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItem renders correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.c1 {
+  border: 1px solid var(--light-gray);
+  border-radius: 2px;
+  height: 15px;
+  width: 15px;
+}
+
+.c2 {
+  margin: 0;
+  color: var(--dark-gray);
+}
+
+<label
+  class="c0"
+>
+  <div
+    class="c1"
+  />
+  <p
+    class="c2"
+    data-testid="title-list-item"
+  >
+    foo
+  </p>
+</label>
+`;
