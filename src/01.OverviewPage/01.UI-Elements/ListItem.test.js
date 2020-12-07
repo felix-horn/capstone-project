@@ -69,6 +69,7 @@ xdescribe('ListItem', () => {
     const { getByTestId } = render(<ListItem {...props} />)
     const inputField = getByTestId('title-list-item')
     fireEvent.change(inputField, { target: { value: 'test' } })
+
     expect(changeTitleMock).toHaveBeenCalledTimes(1)
     expect(changeTitleMock).toHaveBeenCalledWith('test')
   })

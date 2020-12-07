@@ -4,7 +4,7 @@ export default createGlobalStyle`
 
 :root {
     
-
+    --warning-red: #de5246;
     --almost-black: #212121; //font-color
     --dark-gray: #757575; //UndoIcon
     --mid-gray: #878889; //AddIconStyled

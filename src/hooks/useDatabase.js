@@ -103,13 +103,11 @@ export default function useDatabase() {
     )
   }
 
-  /* ------------------------------------------------- */
+  /* ---------------------- delete ListItem and undo delete --------------------------- */
 
   function deleteListItem(targetId, shopId) {
     cacheToBeDeletedListItem(targetId, shopId)
-    deleteListItemIdFromShopItems(targetId, shopId)
-    deleteListItemFromAllIds(targetId)
-    deleteListItemFromById(targetId)
+    updateDatabase(targetId, shopId)
     displayUndoButton()
   }
 
@@ -119,37 +117,17 @@ export default function useDatabase() {
     setDeletedListItem({ shopId, title, isChecked })
   }
 
-  function deleteListItemIdFromShopItems(targetId, shopId) {
-    setDatabase({
-      ...database,
-      shops: {
-        ...database.shops,
-        byId: {
-          ...database.shops.byId,
-          [shopId]: {
-            ...database.shops.byId[shopId],
-            items: database.shops.byId[shopId].items.filter(
-              (id) => id !== targetId
-            ),
-          },
-        },
-      },
-    })
-  }
-
-  function deleteListItemFromAllIds(targetId) {
-    setDatabase({
-      ...database,
-      items: {
-        byId: database.items.byId,
-        allIds: database.items.allIds.filter((id) => id !== targetId),
-      },
-    })
-  }
-
-  function deleteListItemFromById(targetId) {
-    delete database.items.byId[targetId]
-    setDatabase(database)
+  function updateDatabase(targetId, shopId) {
+    setDatabase(
+      produce(database, (draft) => {
+        draft.shops.byId[shopId].items.splice(
+          draft.shops.byId[shopId].items.indexOf(targetId),
+          1
+        )
+        draft.items.allIds.splice(draft.items.allIds.indexOf(targetId), 1)
+        delete draft.items.byId[targetId]
+      })
+    )
   }
 
   function displayUndoButton() {
@@ -172,42 +150,18 @@ export default function useDatabase() {
     clearTimeout(fadeTimer.current)
   }
 
-  /* ------------------------------------------------- */
-
-  /* function deleteShop(targetId) {
-      deleteShopIdFromAllIds(targetId)
-      deleteShopFromById(targetId)
-      const shopItems = database.shops.byId[targetId].items
-      deleteShopRelatedItems(shopItems)
-    }
-    function deleteShopIdFromAllIds(targetId) {
-      setDatabase({
-      ...database,
-      shops: {
-        ...database.shops,
-        allIds: database.shops.allIds.filter((id) => id !== targetId),
-      },
-    })
-  }
-  function deleteShopFromById(targetId) {
-    delete database.shops.byId[targetId]
-  }
-  function deleteShopRelatedItems(shopItems) {} */
+  /* ---------------------- / delete ListItem and undo delete --------------------------- */
 
   function deleteShop(targetId) {
     const shopItems = database.shops.byId[targetId].items
-    console.log({ shopItems })
     setDatabase(
       produce(database, (draft) => {
-        // draft.shops.allIds = draft.shops.allIds.filter((id) => id !== targetId)
         draft.shops.allIds.splice(draft.shops.allIds.indexOf(targetId), 1)
         delete draft.shops.byId[targetId]
         draft.items.allIds = draft.items.allIds.filter(
           (id) => !shopItems.includes(id)
         )
         shopItems.forEach((idToBeDeleted) => {
-          console.log({ shopItems })
-          console.log({ idToBeDeleted })
           return delete draft.items.byId[idToBeDeleted]
         })
       })

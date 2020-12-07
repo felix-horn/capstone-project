@@ -12,7 +12,7 @@ export default function Menu({ deleteShop }) {
     <MenuStyled>
       <DeleteEntry onClick={deleteShop} exact to="/">
         <DeleteForeverIcon />
-        Liste Löschen
+        Liste unwideruflich löschen
       </DeleteEntry>
     </MenuStyled>
   )
@@ -32,5 +32,5 @@ const DeleteEntry = styled(NavLink)`
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  color: var(--dark-gray);
+  color: var(--warning-red);
 `

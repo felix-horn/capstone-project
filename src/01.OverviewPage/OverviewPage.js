@@ -41,7 +41,7 @@ const OverviewPageStyled = styled.div`
 
 const ButtonWrapper = styled(NavLink)`
   position: absolute;
-  bottom: 250px;
+  bottom: 50px;
   right: 20px;
   z-index: 10;
   display: grid;

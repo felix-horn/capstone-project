@@ -30,6 +30,7 @@ const HeaderStyled = styled.div`
 `
 
 const BackButton = styled(NavLink)`
+  margin-top: 2px;
   color: var(--dark-gray);
 `
 
