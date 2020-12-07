@@ -9,7 +9,7 @@ export default function ListItem({ title }) {
   return (
     <ListItemStyled>
       <CheckboxDiv />
-      <TitleStyled data-testid="title-list-item">{title}</TitleStyled>
+      <TitleStyled>{title}</TitleStyled>
     </ListItemStyled>
   )
 }

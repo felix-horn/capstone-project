@@ -1,3 +1,3 @@
 ```js padded
-<ShopTitle title="EDEKA" />
+<ShopTitle title="Shop Name" />
 ```

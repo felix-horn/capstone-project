@@ -11,7 +11,7 @@ export default function ShopTitle({ title }) {
 
 const ShopTitleStyled = styled.h2`
   margin-bottom: 8px !important;
-  font-size: 18px;
+  font-size: 1.2rem;
   font-weight: 400;
   color: var(--almost-black);
 `
