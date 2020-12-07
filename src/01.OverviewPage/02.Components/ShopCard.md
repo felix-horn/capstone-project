@@ -8,14 +8,9 @@ database={{
       x: {
         id: 'x',
         title: 'Shop X',
-        items: ['a', 'b'],
+        items: ['a', 'b', 'c'],
       },
-      y: {
-        id: 'y',
-        title: 'Shop Y',
-        items: ['c'],
-      },
-    },
+     },
   },
   items: {
     allIds: ['a', 'b', 'c'],
@@ -33,7 +28,7 @@ database={{
       c: {
         id: 'c',
         title: 'Item C',
-        isChecked: false,
+        isChecked: true,
       },
     },
   },

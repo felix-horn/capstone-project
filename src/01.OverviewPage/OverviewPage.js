@@ -11,6 +11,7 @@ OverviewPage.propTypes = {
 
 export default function OverviewPage({ database, addShop }) {
   const newShopId = uuid()
+  console.log(database)
   return (
     <OverviewPageStyled>
       {database.shops.allIds.map((shopId) => (

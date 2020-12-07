@@ -31,6 +31,7 @@ export default function ShopPage({
   deleteListItem,
   rearrangeListOrder,
   visibilityUndoButton,
+  deleteShop,
   undoDelete,
 }) {
   const location = useLocation()
@@ -45,7 +46,7 @@ export default function ShopPage({
       {isMenuVisible && (
         <ClickableMenuBackground onClick={toggleMenu}>
           <MenuStyled>
-            <Menu />
+            <Menu deleteShop={() => deleteShop(shopId)} />
           </MenuStyled>
         </ClickableMenuBackground>
       )}
@@ -90,7 +91,6 @@ const ClickableMenuBackground = styled.div`
   left: 0;
   height: 100%;
   width: 100%;
-  //background-color: green;
 `
 
 const MenuStyled = styled.div`
@@ -110,7 +110,7 @@ const HeaderStyled = styled.div`
 `
 
 const ShopTitleStlyed = styled.div`
-  margin-top: 20px;
+  margin-top: 40px;
 `
 
 const UndoButtonStyled = styled(UndoButton)`

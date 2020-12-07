@@ -4,25 +4,13 @@ import styled from 'styled-components/macro'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 
 Menu.propTypes = {
-  shopId: PropTypes.string.isRequired,
-  database: PropTypes.object.isRequired,
-  changeTitle: PropTypes.func.isRequired,
-  toggleIsChecked: PropTypes.func.isRequired,
-  deleteListItem: PropTypes.func.isRequired,
-  addListItem: PropTypes.func.isRequired,
-  rearrangeListOrder: PropTypes.func.isRequired,
-  checked: PropTypes.bool,
+  deleteShop: PropTypes.func.isRequired,
 }
 
-export default function Menu({
-  toggleIsChecked,
-  deleteListItem,
-  addListItem,
-  rearrangeListOrder,
-}) {
+export default function Menu({ deleteShop }) {
   return (
     <MenuStyled>
-      <DeleteEntry exact to="/">
+      <DeleteEntry onClick={deleteShop} exact to="/">
         <DeleteForeverIcon />
         Liste Löschen
       </DeleteEntry>

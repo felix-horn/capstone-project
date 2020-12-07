@@ -15,6 +15,7 @@ export default function App() {
     deleteListItem,
     undoDelete,
     rearrangeListOrder,
+    deleteShop,
     visibilityUndoButton,
   } = useDatabase()
   return (
@@ -34,6 +35,7 @@ export default function App() {
             rearrangeListOrder={rearrangeListOrder}
             visibilityUndoButton={visibilityUndoButton}
             undoDelete={undoDelete}
+            deleteShop={deleteShop}
           />
         </Route>
       </Switch>
