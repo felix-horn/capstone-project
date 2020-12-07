@@ -7,12 +7,12 @@ const testDatabase = {
     byId: {
       x: {
         id: 'x',
-        title: 'Penny',
+        title: 'shopX',
         items: ['a', 'b'],
       },
       y: {
         id: 'y',
-        title: 'Budni',
+        title: 'shopY',
         items: ['c'],
       },
     },
@@ -22,17 +22,17 @@ const testDatabase = {
     byId: {
       a: {
         id: 'a',
-        title: 'Milch',
+        title: 'itemA',
         isChecked: false,
       },
       b: {
         id: 'b',
-        title: 'Butter',
+        title: 'itemB',
         isChecked: true,
       },
       c: {
         id: 'c',
-        title: 'Shampoo',
+        title: 'itemC',
         isChecked: false,
       },
     },
@@ -58,9 +58,9 @@ describe('CheckedList', () => {
     const { queryByDisplayValue, getByDisplayValue } = render(
       <CheckedList {...testProps} database={testDatabase} />
     )
-    const milkListItem = queryByDisplayValue(/milch/i)
-    const butterListItem = getByDisplayValue(/butter/i)
-    expect(milkListItem).not.toBeInTheDocument()
-    expect(butterListItem).toBeInTheDocument()
+    const itemA = queryByDisplayValue(/itemA/i)
+    const itemB = getByDisplayValue(/itemB/i)
+    expect(itemA).not.toBeInTheDocument()
+    expect(itemB).toBeInTheDocument()
   })
 })
