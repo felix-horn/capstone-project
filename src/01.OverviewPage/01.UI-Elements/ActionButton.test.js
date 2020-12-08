@@ -26,7 +26,7 @@ describe('ActionButton', () => {
     expect(addShopMock).toHaveBeenCalledTimes(1)
   })
 
-  it('contains correct href', () => {
+  it('links to correct href', () => {
     const addShopMock = jest.fn()
     const { getByTestId } = render(
       <Router>

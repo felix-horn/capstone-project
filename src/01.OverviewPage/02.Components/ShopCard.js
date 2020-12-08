@@ -14,7 +14,6 @@ export default function ShopCard({ shopId, database }) {
   const uncheckedIds = database.shops.byId[shopId].items.filter(
     (id) => !database.items.byId[id].isChecked
   )
-
   const lengthCheckedIds =
     database.shops.byId[shopId].items.length - uncheckedIds.length
 

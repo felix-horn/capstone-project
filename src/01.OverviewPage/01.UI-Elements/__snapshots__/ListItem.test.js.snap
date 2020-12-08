@@ -33,7 +33,6 @@ exports[`ListItem renders correctly 1`] = `
   />
   <p
     class="c2"
-    data-testid="title-list-item"
   >
     foo
   </p>
