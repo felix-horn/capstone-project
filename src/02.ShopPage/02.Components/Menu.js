@@ -7,9 +7,9 @@ Menu.propTypes = {
   deleteShop: PropTypes.func.isRequired,
 }
 
-export default function Menu({ deleteShop }) {
+export default function Menu({ deleteShop, className }) {
   return (
-    <MenuStyled>
+    <MenuStyled className={className}>
       <DeleteEntry onClick={deleteShop} exact to="/">
         <DeleteForeverIcon />
         Liste unwideruflich löschen

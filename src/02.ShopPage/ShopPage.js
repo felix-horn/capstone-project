@@ -40,14 +40,10 @@ export default function ShopPage({
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   return (
     <>
-      <HeaderStyled>
-        <Header onClick={toggleMenu} />
-      </HeaderStyled>
+      <HeaderStyled onClick={toggleMenu} />
       {isMenuVisible && (
         <ClickableMenuBackground onClick={toggleMenu}>
-          <MenuStyled>
-            <Menu deleteShop={() => deleteShop(shopId)} />
-          </MenuStyled>
+          <MenuStyled deleteShop={() => deleteShop(shopId)} />
         </ClickableMenuBackground>
       )}
       <ShopTitleStlyed>
@@ -93,15 +89,13 @@ const ClickableMenuBackground = styled.div`
   width: 100%;
 `
 
-const MenuStyled = styled.div`
-  /* why cant the Header be styled directly? */
+const MenuStyled = styled(Menu)`
   position: fixed;
   z-index: 200;
   top: 45px;
   right: 0;
 `
-const HeaderStyled = styled.div`
-  /* why cant the Header be styled directly? */
+const HeaderStyled = styled(Header)`
   position: fixed;
   z-index: 100;
   top: 0;

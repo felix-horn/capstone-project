@@ -8,9 +8,9 @@ Header.propTypes = {
   onClick: PropTypes.func.isRequired,
 }
 
-export default function Header({ onClick }) {
+export default function Header({ onClick, className }) {
   return (
-    <HeaderStyled>
+    <HeaderStyled className={className}>
       <BackButton exact to="/">
         <ArrowBackIcon />
       </BackButton>

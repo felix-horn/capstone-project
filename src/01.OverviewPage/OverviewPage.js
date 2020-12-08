@@ -1,5 +1,3 @@
-import { NavLink } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import ShopCard from './02.Components/ShopCard'
@@ -11,22 +9,12 @@ OverviewPage.propTypes = {
 }
 
 export default function OverviewPage({ database, addShop }) {
-  const newShopId = uuid()
   return (
     <OverviewPageStyled>
       {database.shops.allIds.map((shopId) => (
         <ShopCard key={shopId} shopId={shopId} database={database} />
       ))}
-      <ButtonWrapper
-        exact
-        to={{
-          pathname: '/ShopPage',
-          state: { shopId: newShopId },
-        }}
-        onClick={() => addShop(newShopId)}
-      >
-        <ActionButton />
-      </ButtonWrapper>
+      <ActionButtonStyled addShop={addShop} />
     </OverviewPageStyled>
   )
 }
@@ -39,13 +27,9 @@ const OverviewPageStyled = styled.div`
   grid-auto-rows: minmax(min-content, max-content);
 `
 
-const ButtonWrapper = styled(NavLink)`
+const ActionButtonStyled = styled(ActionButton)`
   position: absolute;
-  bottom: 50px;
-  right: 20px;
+  bottom: 60px;
+  right: 30px;
   z-index: 10;
-  display: grid;
-  place-items: center;
-  height: 70px;
-  width: 70px;
 `
