@@ -46,13 +46,11 @@ export default function ShopPage({
           <MenuStyled deleteShop={() => deleteShop(shopId)} />
         </ClickableMenuBackground>
       )}
-      <ShopTitleStlyed>
-        <ShopTitle
-          shopId={shopId}
-          database={database}
-          changeTitle={(fieldValue) => changeShopTitle(shopId, fieldValue)}
-        />
-      </ShopTitleStlyed>
+      <ShopTitleStlyed
+        shopId={shopId}
+        database={database}
+        changeTitle={(fieldValue) => changeShopTitle(shopId, fieldValue)}
+      />
       <UncheckedList
         shopId={shopId}
         database={database}
@@ -103,7 +101,7 @@ const HeaderStyled = styled(Header)`
   width: 100%;
 `
 
-const ShopTitleStlyed = styled.div`
+const ShopTitleStlyed = styled(ShopTitle)`
   margin-top: 40px;
 `
 
