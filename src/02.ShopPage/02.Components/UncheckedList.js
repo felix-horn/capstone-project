@@ -29,54 +29,44 @@ export default function UncheckedList({
   )
 
   return (
-    <>
-      {' '}
-      {/* remove? */}
-      <DragDropContext
-        onDragStart={giveHapticFeedback}
-        onDragEnd={handleOnDragEnd}
-      >
-        <Droppable droppableId="listId">
-          {(provided) => (
-            <UncheckedListStyled
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {uncheckedIds.map((id, index) => {
-                const { title, isChecked } = database.items.byId[id] //check whether isChecked is obsolete
-                return (
-                  <Draggable key={id} draggableId={id} index={index}>
-                    {(provided, snapshot) => (
-                      <ListItemWrapper
-                        {...provided.draggableProps}
-                        ref={provided.innerRef}
-                        isDragging={snapshot.isDragging}
-                      >
-                        <DragIconWrapper {...provided.dragHandleProps}>
-                          <DragIndicatorIcon />
-                        </DragIconWrapper>
-                        <ListItem
-                          id={id}
-                          title={title}
-                          isChecked={isChecked}
-                          changeTitle={(fieldValue) =>
-                            changeTitle(id, fieldValue)
-                          }
-                          toggleCheckbox={() => toggleIsChecked(id)}
-                          onDelete={() => deleteListItem(id)}
-                          onEnter={() => handleEnter(id)}
-                        />
-                      </ListItemWrapper>
-                    )}
-                  </Draggable>
-                )
-              })}
-              {provided.placeholder}
-            </UncheckedListStyled>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </>
+    <DragDropContext
+      onDragStart={giveHapticFeedback}
+      onDragEnd={handleOnDragEnd}
+    >
+      <Droppable droppableId="listId">
+        {(provided) => (
+          <UncheckedListStyled
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            {uncheckedIds.map((id, index) => (
+              <Draggable key={id} draggableId={id} index={index}>
+                {(provided, snapshot) => (
+                  <ListItemWrapper
+                    {...provided.draggableProps}
+                    ref={provided.innerRef}
+                    isDragging={snapshot.isDragging}
+                  >
+                    <DragIconWrapper {...provided.dragHandleProps}>
+                      <DragIndicatorIcon />
+                    </DragIconWrapper>
+                    <ListItem
+                      id={id}
+                      title={database.items.byId[id].title}
+                      changeTitle={(fieldValue) => changeTitle(id, fieldValue)}
+                      toggleCheckbox={() => toggleIsChecked(id)}
+                      onDelete={() => deleteListItem(id)}
+                      onEnter={() => handleEnter(id)}
+                    />
+                  </ListItemWrapper>
+                )}
+              </Draggable>
+            ))}
+            {provided.placeholder}
+          </UncheckedListStyled>
+        )}
+      </Droppable>
+    </DragDropContext>
   )
   function giveHapticFeedback() {
     if (window.navigator.vibrate) {

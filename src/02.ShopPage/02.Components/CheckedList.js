@@ -24,20 +24,17 @@ export default function CheckedList({
     <>
       {checkedIds.length > 0 && (
         <CheckedListStyled>
-          {checkedIds.map((id) => {
-            const { title, isChecked } = database.items.byId[id]
-            return (
-              <ListItem
-                key={id}
-                id={id}
-                title={title}
-                isChecked={isChecked}
-                changeTitle={(fieldValue) => changeTitle(id, fieldValue)}
-                toggleCheckbox={() => toggleIsChecked(id)}
-                onDelete={() => deleteListItem(id)}
-              />
-            )
-          })}
+          {checkedIds.map((id) => (
+            <ListItem
+              key={id}
+              isChecked
+              id={id}
+              title={database.items.byId[id].title}
+              changeTitle={(fieldValue) => changeTitle(id, fieldValue)}
+              toggleCheckbox={() => toggleIsChecked(id)}
+              onDelete={() => deleteListItem(id)}
+            />
+          ))}
         </CheckedListStyled>
       )}
     </>

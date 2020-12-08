@@ -81,7 +81,7 @@ exports[`CheckedList renders the list correctly 1`] = `
     <input
       class="c2"
       data-testid="title-list-item"
-      value="Butter"
+      value="itemB"
     />
     <svg
       aria-hidden="true"

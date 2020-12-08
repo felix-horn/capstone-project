@@ -3,7 +3,7 @@ import CheckedList from './CheckedList'
 
 const testDatabase = {
   shops: {
-    allIds: ['x', 'y', 'z'],
+    allIds: ['x', 'y'],
     byId: {
       x: {
         id: 'x',
@@ -40,6 +40,8 @@ const testDatabase = {
 }
 
 const testProps = {
+  shopId: 'x',
+  database: testDatabase,
   changeTitle: jest.fn(),
   toggleIsChecked: jest.fn(),
   deleteListItem: jest.fn(),
@@ -49,12 +51,21 @@ const testProps = {
 
 describe('CheckedList', () => {
   it('renders the list correctly', () => {
-    const { container } = render(
-      <CheckedList {...testProps} database={testDatabase} />
-    )
+    const { container } = render(<CheckedList {...testProps} />)
     expect(container.firstChild).toMatchSnapshot()
   })
-  it('only renders allocated listItems', () => {
+
+  it('only renders listItems of its shop', () => {
+    const { queryByDisplayValue, getByDisplayValue } = render(
+      <CheckedList {...testProps} shopId={'x'} database={testDatabase} />
+    )
+    const itemB = getByDisplayValue(/itemB/i)
+    const itemC = queryByDisplayValue(/itemC/i)
+    expect(itemB).toBeInTheDocument()
+    expect(itemC).not.toBeInTheDocument()
+  })
+
+  it('only renders checked listItems', () => {
     const { queryByDisplayValue, getByDisplayValue } = render(
       <CheckedList {...testProps} database={testDatabase} />
     )

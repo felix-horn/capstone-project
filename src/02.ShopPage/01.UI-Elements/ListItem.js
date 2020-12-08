@@ -5,8 +5,8 @@ import Checkbox from '@material-ui/core/Checkbox'
 import CloseIcon from '@material-ui/icons/Close'
 
 ListItem.propTypes = {
+  isChecked: PropTypes.bool,
   title: PropTypes.string.isRequired,
-  isChecked: PropTypes.bool.isRequired,
   changeTitle: PropTypes.func.isRequired,
   toggleCheckbox: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
