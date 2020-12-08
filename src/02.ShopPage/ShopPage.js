@@ -62,7 +62,7 @@ export default function ShopPage({
           rearrangeListOrder(indexFrom, indexTo, shopId)
         }
       />
-      <AddItemButton onClick={() => addListItem(shopId)} />
+      <AddItemButtonStyled onClick={() => addListItem(shopId)} />
       <CheckedList
         shopId={shopId}
         database={database}
@@ -88,6 +88,11 @@ const HeaderStyled = styled(Header)`
 
 const ShopTitleStlyed = styled(ShopTitle)`
   margin-top: 40px;
+`
+
+const AddItemButtonStyled = styled(AddItemButton)`
+  margin-left: 30px;
+  margin-bottom: 20px;
 `
 
 const UndoButtonStyled = styled(UndoButton)`

@@ -4,11 +4,16 @@ import AddIcon from '@material-ui/icons/Add'
 
 AddItemButton.propTypes = {
   onClick: PropTypes.func.isRequired,
+  className: PropTypes.string,
 }
 
-export default function AddItemButton({ onClick }) {
+export default function AddItemButton({ onClick, className }) {
   return (
-    <AddItemButtonStyled onClick={onClick} data-testid="add-button">
+    <AddItemButtonStyled
+      onClick={onClick}
+      className={className}
+      data-testid="add-button"
+    >
       <AddIconStyled />
       <ButtonTextStyled>Listeneintrag</ButtonTextStyled>
     </AddItemButtonStyled>
@@ -16,8 +21,8 @@ export default function AddItemButton({ onClick }) {
 }
 
 const AddItemButtonStyled = styled.button`
-  margin-left: 27px;
-  margin-bottom: 20px;
+  //margin-left: 27px;
+  //margin-bottom: 20px;
   border: none;
   background: none;
   display: flex;
