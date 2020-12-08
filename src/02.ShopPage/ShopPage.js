@@ -36,7 +36,6 @@ export default function ShopPage({
 }) {
   const location = useLocation()
   const shopId = location.state.shopId
-
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   return (
     <>
