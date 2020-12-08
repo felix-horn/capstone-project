@@ -5,12 +5,18 @@ import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 
 Menu.propTypes = {
   deleteShop: PropTypes.func.isRequired,
+  className: PropTypes.string,
 }
 
 export default function Menu({ deleteShop, className }) {
   return (
     <MenuStyled className={className}>
-      <DeleteEntry onClick={deleteShop} exact to="/">
+      <DeleteEntry
+        onClick={deleteShop}
+        exact
+        to="/"
+        data-testid="delete-button"
+      >
         <DeleteForeverIcon />
         Liste unwideruflich löschen
       </DeleteEntry>

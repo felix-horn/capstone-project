@@ -1,7 +1,12 @@
 const path = require('path')
 
 module.exports = {
-  ignore: ['**/App.js', '**/*.test.js', '**/GlobalStyle.js'],
+  ignore: [
+    '**/App.js',
+    '**/*.test.js',
+    '**/GlobalStyle.js',
+    '**/MenuWrapped.js',
+  ],
   defaultExample: true,
   exampleMode: 'collapse',
   usageMode: 'collapse',

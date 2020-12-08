@@ -3,9 +3,9 @@ import { useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Header from './02.Components/Header'
+import MenuWrapped from './02.Components/MenuWrapped'
 import UncheckedList from './02.Components/UncheckedList'
 import CheckedList from './02.Components/CheckedList'
-import Menu from './02.Components/Menu'
 import ShopTitle from './01.UI-Elements/ShopTitle'
 import AddItemButton from './01.UI-Elements/AddItemButton'
 import UndoButton from './01.UI-Elements/UndoButton'
@@ -42,9 +42,10 @@ export default function ShopPage({
     <>
       <HeaderStyled onClick={toggleMenu} />
       {isMenuVisible && (
-        <ClickableMenuBackground onClick={toggleMenu}>
-          <MenuStyled deleteShop={() => deleteShop(shopId)} />
-        </ClickableMenuBackground>
+        <MenuWrapped
+          toggleMenu={toggleMenu}
+          deleteShop={() => deleteShop(shopId)}
+        />
       )}
       <ShopTitleStlyed
         shopId={shopId}
@@ -78,21 +79,6 @@ export default function ShopPage({
   }
 }
 
-const ClickableMenuBackground = styled.div`
-  position: fixed;
-  z-index: 150;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-`
-
-const MenuStyled = styled(Menu)`
-  position: fixed;
-  z-index: 200;
-  top: 45px;
-  right: 0;
-`
 const HeaderStyled = styled(Header)`
   position: fixed;
   z-index: 100;
