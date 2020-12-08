@@ -24,4 +24,15 @@ describe('ActionButton', () => {
     user.click(button)
     expect(addShopMock).toHaveBeenCalledTimes(1)
   })
+  it('contains correct href', () => {
+    const addShopMock = jest.fn()
+    const { getByTestId } = render(
+      <Router>
+        <ActionButton addShop={addShopMock} />
+      </Router>
+    )
+    const button = getByTestId('action-button')
+    user.click(button)
+    expect(button).toHaveProperty('href', 'http://localhost/ShopPage')
+  })
 })
