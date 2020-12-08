@@ -3,16 +3,16 @@ import UncheckedList from './UncheckedList'
 
 const testDatabase = {
   shops: {
-    allIds: ['x', 'y', 'z'],
+    allIds: ['x', 'y'],
     byId: {
       x: {
         id: 'x',
-        title: 'Penny',
+        title: 'shopX',
         items: ['a', 'b'],
       },
       y: {
         id: 'y',
-        title: 'Budni',
+        title: 'shopY',
         items: ['c'],
       },
     },
@@ -22,17 +22,17 @@ const testDatabase = {
     byId: {
       a: {
         id: 'a',
-        title: 'Milch',
+        title: 'itemA',
         isChecked: false,
       },
       b: {
         id: 'b',
-        title: 'Butter',
+        title: 'itemB',
         isChecked: true,
       },
       c: {
         id: 'c',
-        title: 'Shampoo',
+        title: 'itemC',
         isChecked: false,
       },
     },
@@ -40,6 +40,8 @@ const testDatabase = {
 }
 
 const testProps = {
+  shopId: 'x',
+  database: testDatabase,
   changeTitle: jest.fn(),
   toggleIsChecked: jest.fn(),
   deleteListItem: jest.fn(),
@@ -49,18 +51,27 @@ const testProps = {
 
 describe('UncheckedList', () => {
   it('renders the list correctly', () => {
-    const { container } = render(
-      <UncheckedList {...testProps} database={testDatabase} />
-    )
+    const { container } = render(<UncheckedList {...testProps} />)
     expect(container.firstChild).toMatchSnapshot()
   })
+
+  it('only renders listItems of its shop', () => {
+    const { queryByDisplayValue, getByDisplayValue } = render(
+      <UncheckedList {...testProps} shopId={'x'} database={testDatabase} />
+    )
+    const itemA = getByDisplayValue(/itemA/i)
+    const itemC = queryByDisplayValue(/itemC/i)
+    expect(itemA).toBeInTheDocument()
+    expect(itemC).not.toBeInTheDocument()
+  })
+
   it('only renders unchecked listItems', () => {
     const { queryByDisplayValue, getByDisplayValue } = render(
       <UncheckedList {...testProps} database={testDatabase} />
     )
-    const milkListItem = getByDisplayValue(/milch/i)
-    const butterListItem = queryByDisplayValue(/butter/i)
-    expect(milkListItem).toBeInTheDocument()
-    expect(butterListItem).not.toBeInTheDocument()
+    const itemA = getByDisplayValue(/itemA/i)
+    const itemB = queryByDisplayValue(/itemB/i)
+    expect(itemA).toBeInTheDocument()
+    expect(itemB).not.toBeInTheDocument()
   })
 })

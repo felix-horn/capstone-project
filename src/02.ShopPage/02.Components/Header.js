@@ -6,15 +6,16 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 Header.propTypes = {
   onClick: PropTypes.func.isRequired,
+  className: PropTypes.string,
 }
 
 export default function Header({ onClick, className }) {
   return (
     <HeaderStyled className={className}>
-      <BackButton exact to="/">
+      <BackButtonStyled exact to="/" data-testid="back-button">
         <ArrowBackIcon />
-      </BackButton>
-      <MoreVertIconStyled onClick={onClick} />
+      </BackButtonStyled>
+      <MoreVertIconStyled onClick={onClick} data-testid="menu-button" />
     </HeaderStyled>
   )
 }
@@ -29,7 +30,8 @@ const HeaderStyled = styled.div`
   box-shadow: var(--light-box-shadow);
 `
 
-const BackButton = styled(NavLink)`
+const BackButtonStyled = styled(NavLink)`
+  grid-column: 1;
   margin-top: 2px;
   color: var(--dark-gray);
 `
