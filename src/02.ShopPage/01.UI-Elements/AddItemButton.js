@@ -21,8 +21,6 @@ export default function AddItemButton({ onClick, className }) {
 }
 
 const AddItemButtonStyled = styled.button`
-  //margin-left: 27px;
-  //margin-bottom: 20px;
   border: none;
   background: none;
   display: flex;
