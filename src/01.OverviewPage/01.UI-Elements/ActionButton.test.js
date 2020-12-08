@@ -13,6 +13,7 @@ describe('ActionButton', () => {
     )
     expect(container.firstChild).toMatchSnapshot()
   })
+
   it('calls function addShop', () => {
     const addShopMock = jest.fn()
     const { getByTestId } = render(
@@ -24,6 +25,7 @@ describe('ActionButton', () => {
     user.click(button)
     expect(addShopMock).toHaveBeenCalledTimes(1)
   })
+
   it('contains correct href', () => {
     const addShopMock = jest.fn()
     const { getByTestId } = render(

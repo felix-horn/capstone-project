@@ -31,5 +31,5 @@ const ActionButtonStyled = styled(ActionButton)`
   position: absolute;
   bottom: 60px;
   right: 30px;
-  z-index: 10;
+  z-index: 100;
 `

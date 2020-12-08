@@ -51,6 +51,7 @@ exports[`ShopCard renders correctly 1`] = `
 
 <a
   class="c0"
+  data-testid="shop-card"
   href="/ShopPage"
 >
   <h2

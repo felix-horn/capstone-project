@@ -27,6 +27,7 @@ export default function ShopCard({ shopId, database }) {
             pathname: '/ShopPage',
             state: { shopId },
           }}
+          data-testid="shop-card"
         >
           <ShopTitle title={database.shops.byId[shopId].title} />
           {uncheckedIds.map((id) => (

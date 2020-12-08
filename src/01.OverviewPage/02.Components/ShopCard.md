@@ -3,7 +3,7 @@
 shopId={'x'} 
 database={{
     shops: {
-    allIds: ['x', 'y'],
+    allIds: ['x'],
     byId: {
       x: {
         id: 'x',

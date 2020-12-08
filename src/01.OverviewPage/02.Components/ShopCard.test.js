@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react'
+import user from '@testing-library/user-event'
 import { BrowserRouter as Router } from 'react-router-dom'
 import ShopCard from './ShopCard'
 
@@ -49,6 +50,7 @@ describe('ShopCard', () => {
     )
     expect(container.firstChild).toMatchSnapshot()
   })
+
   it('renders the correct shop title', () => {
     const { getByText } = render(
       <Router>
@@ -58,6 +60,7 @@ describe('ShopCard', () => {
     const title = getByText('shopX')
     expect(title).toBeInTheDocument()
   })
+
   it('only renders allocated listItems', () => {
     const { getByText, queryByText } = render(
       <Router>
@@ -71,6 +74,7 @@ describe('ShopCard', () => {
     expect(itemB).not.toBeInTheDocument()
     expect(itemC).not.toBeInTheDocument()
   })
+
   it('renders the correct summary text', () => {
     const { getByText } = render(
       <Router>
@@ -79,5 +83,16 @@ describe('ShopCard', () => {
     )
     const summaryText = getByText('und 1 abgehakter Eintrag')
     expect(summaryText).toBeInTheDocument()
+  })
+
+  it('links to correct href', () => {
+    const { getByTestId } = render(
+      <Router>
+        <ShopCard shopId={'x'} database={testDatabase} />
+      </Router>
+    )
+    const card = getByTestId('shop-card')
+    user.click(card)
+    expect(card).toHaveProperty('href', 'http://localhost/ShopPage')
   })
 })
