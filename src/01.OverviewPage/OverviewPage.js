@@ -15,8 +15,8 @@ export default function OverviewPage({ database, addShop }) {
       {database.shops.allIds.map((shopId) => (
         <ShopCard key={shopId} shopId={shopId} database={database} />
       ))}
-      <ActionButtonStyled addShop={addShop} data-testid="acton-button" />
-      <ScannerButtonStyled addShop={addShop} data-testid="acton-button" />
+      <ActionButtonStyled addShop={addShop} />
+      <ScannerButtonStyled />
     </OverviewPageStyled>
   )
 }

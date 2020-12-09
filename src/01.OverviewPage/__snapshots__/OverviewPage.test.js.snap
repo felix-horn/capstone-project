@@ -64,6 +64,21 @@ exports[`OverviewPage renders correctly 1`] = `
   color: var(--dark-gray);
 }
 
+.c10 {
+  box-shadow: var(--box-shadow);
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+  background-color: var(--white);
+  opacity: 0.5;
+  display: grid;
+  place-items: center;
+}
+
+.c12 {
+  color: var(--dark-gray);
+}
+
 .c0 {
   position: relative;
   height: calc(100vh - 60px);
@@ -75,6 +90,13 @@ exports[`OverviewPage renders correctly 1`] = `
 .c8 {
   position: absolute;
   bottom: 60px;
+  right: 30px;
+  z-index: 100;
+}
+
+.c11 {
+  position: absolute;
+  bottom: 120px;
   right: 30px;
   z-index: 100;
 }
@@ -149,6 +171,22 @@ exports[`OverviewPage renders correctly 1`] = `
       />
       <path
         d="M19 2h-2v3h-3c.01.01 0 2 0 2h3v2.99c.01.01 2 0 2 0V7h3V5h-3V2zM7 9h8v2H7zM7 12v2h8v-2h-3zM7 15h8v2H7z"
+      />
+    </svg>
+  </a>
+  <a
+    class="c10 c11"
+    data-testid="scanner-button"
+    href="/ScannerPage"
+  >
+    <svg
+      aria-hidden="true"
+      class="MuiSvgIcon-root c12"
+      focusable="false"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M3 5v4h2V5h4V3H5c-1.1 0-2 .9-2 2zm2 10H3v4c0 1.1.9 2 2 2h4v-2H5v-4zm14 4h-4v2h4c1.1 0 2-.9 2-2v-4h-2v4zm0-16h-4v2h4v4h2V5c0-1.1-.9-2-2-2z"
       />
     </svg>
   </a>

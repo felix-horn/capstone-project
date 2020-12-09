@@ -5,7 +5,6 @@ import styled from 'styled-components/macro'
 import CropFreeIcon from '@material-ui/icons/CropFree'
 
 ScannerButton.propTypes = {
-  addShop: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
 
@@ -15,7 +14,7 @@ export default function ScannerButton({ className }) {
       exact
       to="/ScannerPage"
       className={className}
-      data-testid="action-button"
+      data-testid="scanner-button"
     >
       <ScannerIconStyled />
     </ScannerButtonStyled>
