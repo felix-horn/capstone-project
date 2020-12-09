@@ -3,6 +3,7 @@ import useDatabase from './hooks/useDatabase'
 import styled from 'styled-components/macro'
 import OverviewPage from './01.OverviewPage/OverviewPage'
 import ShopPage from './02.ShopPage/ShopPage'
+import ScannerPage from './03.ScannerPage/ScannerPage'
 
 export default function App() {
   const {
@@ -24,7 +25,7 @@ export default function App() {
         <Route exact path="/">
           <OverviewPage database={database} addShop={addShop} />
         </Route>
-        <Route exact path="/ShopPage">
+        <Route path="/ShopPage">
           <ShopPage
             database={database}
             changeShopTitle={changeShopTitle}
@@ -37,6 +38,9 @@ export default function App() {
             undoDelete={undoDelete}
             deleteShop={deleteShop}
           />
+        </Route>
+        <Route path="/ScannerPage">
+          <ScannerPage />
         </Route>
       </Switch>
     </AppStyled>

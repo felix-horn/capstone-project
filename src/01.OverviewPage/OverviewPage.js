@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import ShopCard from './02.Components/ShopCard'
 import ActionButton from './01.UI-Elements/ActionButton'
+import ScannerButton from './01.UI-Elements/ScannerButton'
 
 OverviewPage.propTypes = {
   database: PropTypes.object.isRequired,
@@ -15,6 +16,7 @@ export default function OverviewPage({ database, addShop }) {
         <ShopCard key={shopId} shopId={shopId} database={database} />
       ))}
       <ActionButtonStyled addShop={addShop} data-testid="acton-button" />
+      <ScannerButtonStyled addShop={addShop} data-testid="acton-button" />
     </OverviewPageStyled>
   )
 }
@@ -30,6 +32,12 @@ const OverviewPageStyled = styled.div`
 const ActionButtonStyled = styled(ActionButton)`
   position: absolute;
   bottom: 60px;
+  right: 30px;
+  z-index: 100;
+`
+const ScannerButtonStyled = styled(ScannerButton)`
+  position: absolute;
+  bottom: 120px;
   right: 30px;
   z-index: 100;
 `
