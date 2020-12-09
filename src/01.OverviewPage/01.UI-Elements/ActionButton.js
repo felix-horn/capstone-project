@@ -12,7 +12,7 @@ ActionButton.propTypes = {
 export default function ActionButton({ addShop, className }) {
   const newShopId = uuid()
   return (
-    <FabStyled
+    <ActionButtonStyled
       exact
       to={{
         pathname: '/ShopPage',
@@ -23,11 +23,11 @@ export default function ActionButton({ addShop, className }) {
       data-testid="action-button"
     >
       <PostAddIconStyled />
-    </FabStyled>
+    </ActionButtonStyled>
   )
 }
 
-const FabStyled = styled(NavLink)`
+const ActionButtonStyled = styled(NavLink)`
   box-shadow: var(--box-shadow);
   border-radius: 100%;
   height: 50px;

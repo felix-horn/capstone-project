@@ -18,7 +18,7 @@ export default function Menu({ deleteShop, className }) {
         data-testid="delete-button"
       >
         <DeleteForeverIcon />
-        Liste unwideruflich löschen
+        Liste unwiderruflich löschen
       </DeleteEntry>
     </MenuStyled>
   )

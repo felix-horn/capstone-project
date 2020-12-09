@@ -22,7 +22,7 @@ const testProps = {
 
 describe('ShopTitle', () => {
   it('shows the correct title', () => {
-    const props = { ...testProps, title: 'shopX' }
+    const props = { ...testProps, shopId: 'x' }
     const { getByTestId } = render(<ShopTitle {...props} />)
     const title = getByTestId('title-shop')
     expect(title).toHaveValue('shopX')

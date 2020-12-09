@@ -54,7 +54,7 @@ describe('ShopCard', () => {
   it('renders the correct shop title', () => {
     const { getByText } = render(
       <Router>
-        <ShopCard shopId={'x'} database={testDatabase} />
+        <ShopCard shopId="x" database={testDatabase} />
       </Router>
     )
     const title = getByText('shopX')
@@ -64,7 +64,7 @@ describe('ShopCard', () => {
   it('only renders allocated listItems', () => {
     const { getByText, queryByText } = render(
       <Router>
-        <ShopCard shopId={'x'} database={testDatabase} />
+        <ShopCard shopId="x" database={testDatabase} />
       </Router>
     )
     const itemA = getByText('itemA')
@@ -78,7 +78,7 @@ describe('ShopCard', () => {
   it('renders the correct summary text', () => {
     const { getByText } = render(
       <Router>
-        <ShopCard shopId={'x'} database={testDatabase} />
+        <ShopCard shopId="x" database={testDatabase} />
       </Router>
     )
     const summaryText = getByText('und 1 abgehakter Eintrag')
@@ -88,7 +88,7 @@ describe('ShopCard', () => {
   it('links to correct href', () => {
     const { getByTestId } = render(
       <Router>
-        <ShopCard shopId={'x'} database={testDatabase} />
+        <ShopCard shopId="x" database={testDatabase} />
       </Router>
     )
     const card = getByTestId('shop-card')

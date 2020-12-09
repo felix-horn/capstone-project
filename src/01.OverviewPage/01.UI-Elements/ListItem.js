@@ -8,7 +8,7 @@ ListItem.propTypes = {
 export default function ListItem({ title }) {
   return (
     <ListItemStyled>
-      <CheckboxDiv />
+      <CheckboxStyled />
       <TitleStyled>{title}</TitleStyled>
     </ListItemStyled>
   )
@@ -20,7 +20,7 @@ const ListItemStyled = styled.label`
   gap: 5px;
 `
 
-const CheckboxDiv = styled.div`
+const CheckboxStyled = styled.div`
   border: 1px solid var(--light-gray);
   border-radius: 2px;
   height: 15px;

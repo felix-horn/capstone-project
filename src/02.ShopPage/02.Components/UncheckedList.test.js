@@ -57,7 +57,7 @@ describe('UncheckedList', () => {
 
   it('only renders listItems of its shop', () => {
     const { queryByDisplayValue, getByDisplayValue } = render(
-      <UncheckedList {...testProps} shopId={'x'} database={testDatabase} />
+      <UncheckedList {...testProps} shopId="x" database={testDatabase} />
     )
     const itemA = getByDisplayValue(/itemA/i)
     const itemC = queryByDisplayValue(/itemC/i)
