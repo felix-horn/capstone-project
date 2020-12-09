@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import ListItem from '../01.UI-Elements/ListItem'
 
 CheckedList.propTypes = {
+  shopId: PropTypes.string.isRequired,
   database: PropTypes.object.isRequired,
   changeTitle: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
@@ -10,32 +11,30 @@ CheckedList.propTypes = {
 }
 
 export default function CheckedList({
+  shopId,
   database,
   changeTitle,
   toggleIsChecked,
   deleteListItem,
 }) {
-  const checkedIds = database.items.allIds.filter(
+  const checkedIds = database.shops.byId[shopId].items.filter(
     (id) => database.items.byId[id].isChecked
   )
   return (
     <>
       {checkedIds.length > 0 && (
         <CheckedListStyled>
-          {checkedIds.map((id) => {
-            const { title, isChecked } = database.items.byId[id]
-            return (
-              <ListItem
-                key={id}
-                id={id}
-                title={title}
-                isChecked={isChecked}
-                changeTitle={(fieldValue) => changeTitle(id, fieldValue)}
-                toggleCheckbox={() => toggleIsChecked(id)}
-                onDelete={() => deleteListItem(id)}
-              />
-            )
-          })}
+          {checkedIds.map((id) => (
+            <ListItem
+              key={id}
+              isChecked
+              id={id}
+              title={database.items.byId[id].title}
+              changeTitle={(fieldValue) => changeTitle(id, fieldValue)}
+              toggleCheckbox={() => toggleIsChecked(id)}
+              onDelete={() => deleteListItem(id)}
+            />
+          ))}
         </CheckedListStyled>
       )}
     </>

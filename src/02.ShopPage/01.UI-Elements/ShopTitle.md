@@ -1,9 +1,11 @@
 ShopTitle Placeholder
 ```js padded
-<ShopTitle database={{
+<ShopTitle 
+shopId={'x'}
+database={{
   shops: {
     byId: {
-      dummyId: {
+      x: {
         title: ""
       }
     }
@@ -13,11 +15,13 @@ ShopTitle Placeholder
 
 ShopTitle filled
 ```js padded
-<ShopTitle database={{
+<ShopTitle 
+shopId={'x'}
+database={{
   shops: {
     byId: {
-      dummyId: {
-        title: "Penny"
+      x: {
+        title: "Shop Name"
       }
     }
   }

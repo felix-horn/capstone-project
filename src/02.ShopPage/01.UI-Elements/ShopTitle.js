@@ -2,17 +2,25 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
 ShopTitle.propTypes = {
+  shopId: PropTypes.string.isRequired,
   database: PropTypes.object.isRequired,
   changeTitle: PropTypes.func.isRequired,
+  className: PropTypes.string,
 }
 
-export default function ShopTitle({ database, changeTitle }) {
+export default function ShopTitle({
+  shopId,
+  database,
+  changeTitle,
+  className,
+}) {
   return (
     <ShopTitleStyled
       placeholder="Geschäft"
-      value={database.shops.byId['dummyId'].title} //this is only the preparation for the datastructure for more than one shop
+      value={database.shops.byId[shopId].title}
       onChange={handleInputChange}
-      data-testid="title-list"
+      className={className}
+      data-testid="title-shop"
     />
   )
   function handleInputChange(event) {

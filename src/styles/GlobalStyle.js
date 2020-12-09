@@ -4,12 +4,13 @@ export default createGlobalStyle`
 
 :root {
     
-
+    --warning-red: #de5246;
     --almost-black: #212121; //font-color
     --dark-gray: #757575; //UndoIcon
     --mid-gray: #878889; //AddIconStyled
     --light-gray: #b2b2b2; //placeholder
     --white: #fff; //background UndoButton and dragged item
+    //--white-transparent: #fff; //background UndoButton and dragged item
     --box-shadow: 0 1px 3px #0004; //UndoButton
     --light-box-shadow: 0 1px 3px #0003; //dragged item
     --border: 1px solid #dadcdf; //border-top
@@ -24,11 +25,11 @@ body {
     margin: 0;
     width: 100%;
     max-width: 450px;
-    padding: 30px;
+    padding: 10px;
     padding-top: 50px;
     font-family: 'Roboto', sans-serif;
     font-size: 1em;
-    font-weight: 350;
+    font-weight: 300;
     color: var(--almost-black);
     }
 
@@ -37,6 +38,10 @@ input, textarea, button, select, link, textarea {
     font-weight: inherit;
     color: inherit;
     font-size: inherit;
+}
+
+h1, h2 {
+    margin: 0;
 }
 
 `

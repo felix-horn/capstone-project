@@ -1,20 +1,24 @@
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+import Header from './02.Components/Header'
+import MenuWrapped from './02.Components/MenuWrapped'
 import UncheckedList from './02.Components/UncheckedList'
 import CheckedList from './02.Components/CheckedList'
+import ShopTitle from './01.UI-Elements/ShopTitle'
 import AddItemButton from './01.UI-Elements/AddItemButton'
 import UndoButton from './01.UI-Elements/UndoButton'
-import ShopTitle from './01.UI-Elements/ShopTitle'
 
 ShopPage.propTypes = {
   database: PropTypes.object.isRequired,
   changeShopTitle: PropTypes.func.isRequired,
   addListItem: PropTypes.func.isRequired,
-  changeTitle: PropTypes.func.isRequired,
+  changeItemTitle: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
   rearrangeListOrder: PropTypes.func.isRequired,
-  visibilityUndoButton: PropTypes.bool.isRequired,
+  visibilityUndoButton: PropTypes.string.isRequired,
   undoDelete: PropTypes.func.isRequired,
 }
 
@@ -27,30 +31,69 @@ export default function ShopPage({
   deleteListItem,
   rearrangeListOrder,
   visibilityUndoButton,
+  deleteShop,
   undoDelete,
 }) {
+  const location = useLocation()
+  const shopId = location.state.shopId
+  const [isMenuVisible, setIsMenuVisible] = useState(false)
   return (
     <>
-      <ShopTitle database={database} changeTitle={changeShopTitle} />
-      <UncheckedList
+      <HeaderStyled onClick={toggleMenu} />
+      {isMenuVisible && (
+        <MenuWrapped
+          toggleMenu={toggleMenu}
+          deleteShop={() => deleteShop(shopId)}
+        />
+      )}
+      <ShopTitleStlyed
+        shopId={shopId}
         database={database}
-        addListItem={addListItem}
-        changeTitle={changeItemTitle}
-        toggleIsChecked={toggleIsChecked}
-        deleteListItem={deleteListItem}
-        rearrangeListOrder={rearrangeListOrder}
+        changeTitle={(fieldValue) => changeShopTitle(shopId, fieldValue)}
       />
-      <AddItemButton onClick={() => addListItem()} />
+      <UncheckedList
+        shopId={shopId}
+        database={database}
+        addListItem={() => addListItem(shopId)}
+        changeTitle={changeItemTitle}
+        toggleIsChecked={toggleIsChecked}
+        deleteListItem={(id) => deleteListItem(id, shopId)}
+        rearrangeListOrder={(indexFrom, indexTo) =>
+          rearrangeListOrder(indexFrom, indexTo, shopId)
+        }
+      />
+      <AddItemButtonStyled onClick={() => addListItem(shopId)} />
       <CheckedList
+        shopId={shopId}
         database={database}
         changeTitle={changeItemTitle}
         toggleIsChecked={toggleIsChecked}
-        deleteListItem={deleteListItem}
+        deleteListItem={(id) => deleteListItem(id, shopId)}
       />
       <UndoButtonStyled className={visibilityUndoButton} onClick={undoDelete} />
     </>
   )
+  function toggleMenu() {
+    setIsMenuVisible(!isMenuVisible)
+  }
 }
+
+const HeaderStyled = styled(Header)`
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+`
+
+const ShopTitleStlyed = styled(ShopTitle)`
+  margin-top: 40px;
+`
+
+const AddItemButtonStyled = styled(AddItemButton)`
+  margin-left: 30px;
+  margin-bottom: 20px;
+`
 
 const UndoButtonStyled = styled(UndoButton)`
   position: fixed;

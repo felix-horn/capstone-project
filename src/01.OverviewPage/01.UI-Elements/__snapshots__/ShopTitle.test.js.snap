@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShopTitle renders correctly 1`] = `
+.c0 {
+  margin-bottom: 8px !important;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--almost-black);
+}
+
+<h2
+  class="c0"
+>
+  foo
+</h2>
+`;
