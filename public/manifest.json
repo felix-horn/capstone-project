@@ -5,15 +5,15 @@
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
-      "src": "logo252.png",
+      "src": "logos/logo252.png",
       "type": "image/png",
       "sizes": "252x252"
     },
     {
-      "src": "logo672.png",
+      "src": "logos/logo672.png",
       "type": "image/png",
       "sizes": "672x672"
     }
