@@ -18,15 +18,17 @@ export default function ScannerPage() {
 
   // useEffect(() => {})
 
+  console.log(result)
+
   return (
-    <>
+    <ScannerPageStyled>
       <HeaderStyled onClick={toggleMenu} />
       {isMenuVisible && <MenuWrapped toggleMenu={toggleMenu} />}
       <ExplanationStlyed>
         Um einen Artikel wieder auf die Einkaufsliste zu setzen, scanne dessen
         Barcode.
       </ExplanationStlyed>
-      <p>{result ? result : 'Scanning...'}</p>
+      <div>{result ? '' : 'Scanning...'}</div>
       {camera ? (
         <ScannerWrapper>
           <div className={'container'}>
@@ -36,9 +38,8 @@ export default function ScannerPage() {
       ) : (
         <OutputWrapper>{result} wurde der Liste XY hinzugefügt.</OutputWrapper>
       )}
-      <OutputWrapper>{result} wurde der Liste XY hinzugefügt.</OutputWrapper>
       <button onClick={scanAgain}>Weiteres Produkt scannen</button>
-    </>
+    </ScannerPageStyled>
   )
 
   function onDetected(result) {
@@ -57,15 +58,22 @@ export default function ScannerPage() {
 }
 
 const OutputWrapper = styled.div`
+  grid-row: 3;
+  align-self: flex-start;
+  margin: 0 auto;
+  border-radius: 5px;
+  border: var(--border);
+  height: 60vw;
+  width: calc(65vw * 640 / 480);
+  /* background-color: gray; */
   display: grid;
   place-items: center;
-  width: 60vw;
-  height: 60vw;
-  /* height: 480px; */
-  background-color: gray;
 `
 
 const ScannerWrapper = styled.div`
+  grid-row: 3;
+  align-self: flex-start;
+
   .container {
     position: relative;
     display: grid;
@@ -75,7 +83,7 @@ const ScannerWrapper = styled.div`
   .container,
   #interactive.viewport {
     height: 65vw;
-    background-color: #3cba5466; /* green */
+    /* background-color: #3cba5466; green */
 
     #interactive.viewport canvas,
     video {
@@ -84,15 +92,9 @@ const ScannerWrapper = styled.div`
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background-color: #de524666; /* red */
       border-radius: 5px;
+      /* background-color: #de524666; red */
     }
-
-    /* #interactive.viewport canvas.drawingBuffer,
-    video.drawingBuffer {
-      height: 60vw;
-      background-color: #3cba5466; /* green 
-    } */
   }
 `
 
@@ -105,4 +107,12 @@ const HeaderStyled = styled(Header)`
 `
 const ExplanationStlyed = styled.p`
   padding: 15px;
+  grid-row: 1;
+`
+const ScannerPageStyled = styled.div`
+  height: calc(100vh - 60px);
+  display: grid;
+  place-items: center;
+  gap: 20px;
+  grid-template-rows: 10% 5% auto 20%;
 `

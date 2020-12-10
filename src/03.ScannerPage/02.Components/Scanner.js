@@ -33,7 +33,7 @@ export default function Scanner({ onDetected }) {
             })
             .forEach(function (box) {
               Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, {
-                color: '#ffffff00',
+                color: '#ffffff',
                 lineWidth: 1,
               })
             })
