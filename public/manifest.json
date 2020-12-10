@@ -29,9 +29,9 @@
       "url": "/ScannerPage",
       "icons": [
         {
-          "src": "logos/scanner.svg",
-          "type": "image/svg+xml",
-          "purpose": "any"
+          "src": "logos/scanner.png",
+          "sizes": "96x96",
+          "type": "image/png"
         }
       ]
     }
