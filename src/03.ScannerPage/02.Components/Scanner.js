@@ -16,8 +16,8 @@ export default function Scanner({ onDetected }) {
 
     //detecting boxes on stream
     Quagga.onProcessed((result) => {
-      var drawingCtx = Quagga.canvas.ctx.overlay,
-        drawingCanvas = Quagga.canvas.dom.overlay
+      const drawingCtx = Quagga.canvas.ctx.overlay
+      const drawingCanvas = Quagga.canvas.dom.overlay
 
       if (result) {
         if (result.boxes) {
@@ -33,16 +33,16 @@ export default function Scanner({ onDetected }) {
             })
             .forEach(function (box) {
               Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, {
-                color: 'green',
-                lineWidth: 2,
+                color: '#ffffff00',
+                lineWidth: 1,
               })
             })
         }
 
         if (result.box) {
           Quagga.ImageDebug.drawPath(result.box, { x: 0, y: 1 }, drawingCtx, {
-            color: '#00F',
-            lineWidth: 2,
+            color: '#3cba54',
+            lineWidth: 10,
           })
         }
 
@@ -51,7 +51,7 @@ export default function Scanner({ onDetected }) {
             result.line,
             { x: 'x', y: 'y' },
             drawingCtx,
-            { color: 'red', lineWidth: 3 }
+            { color: '#3cba54', lineWidth: 3 }
           )
         }
       }
