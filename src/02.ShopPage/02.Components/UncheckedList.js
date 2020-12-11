@@ -51,7 +51,8 @@ export default function UncheckedList({
                       <DragIndicatorIcon />
                     </DragIconWrapper>
                     <ListItem
-                      id={id}
+                      itemId={id}
+                      shopId={shopId}
                       title={database.items.byId[id].title}
                       changeTitle={(fieldValue) => changeTitle(id, fieldValue)}
                       toggleCheckbox={() => toggleIsChecked(id)}

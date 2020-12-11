@@ -3,8 +3,9 @@ import { createGlobalStyle } from 'styled-components/macro'
 export default createGlobalStyle`
 
 :root {
-    
+    --CTA-blue: #4285F4;
     --warning-red: #de5246;
+    --confirmation-green: #3cba5433;
     --almost-black: #212121; //font-color
     --dark-gray: #757575; //UndoIcon
     --mid-gray: #878889; //AddIconStyled

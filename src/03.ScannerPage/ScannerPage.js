@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 // import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import MenuWrapped from '../00.SharedComponents/01.UI-Elements/02.Components/MenuWrapped'
 import Scanner from './02.Components/Scanner'
+
+import CropFreeIcon from '@material-ui/icons/CropFree'
+import SaveIcon from '@material-ui/icons/Save'
 
 ScannerPage.propTypes = {
   // database: PropTypes.object.isRequired,
@@ -19,10 +23,12 @@ export default function ScannerPage({ database, changeBarcode }) {
   const [barcode, setBarcode] = useState('')
 
   const location = useLocation()
-  const itemId = location.state.id
+  const itemId = location.state.itemId
+  const shopId = location.state.shopId
   const selectedItemTitle = database.items.byId[itemId].title
 
   console.log(barcode)
+  console.log(selectedItemTitle)
 
   return (
     <ScannerPageStyled>
@@ -32,7 +38,7 @@ export default function ScannerPage({ database, changeBarcode }) {
         Scanne den Barcode des Artikels {selectedItemTitle} ein, um diesen
         zukünftig über die Scanner-Funktion der App auf dessen Liste zu setzen.
       </ExplanationStlyed>
-      <ScanningStatusStyled>{barcode ? '' : 'Scanne...'}</ScanningStatusStyled>
+      <ScanningStatusStyled>{barcode ? '' : 'Scant...'}</ScanningStatusStyled>
       <SelectedItemTitleStyled>{selectedItemTitle}</SelectedItemTitleStyled>
       {camera ? (
         <ScannerWrapper>
@@ -42,12 +48,27 @@ export default function ScannerPage({ database, changeBarcode }) {
         </ScannerWrapper>
       ) : (
         <OutputWrapper>
-          {' '}
-          Dem Artikel {selectedItemTitle} wurde mit dem Barcode {barcode}{' '}
-          verknüpft.
+          <span>
+            Der Artikel {selectedItemTitle} wurde mit dem Barcode verknüpft.
+          </span>
+          Bitte überprüfe, ob die Nummer auf dem Barcode mit dieser
+          übereinstimmt:
+          <strong>{barcode}</strong>
         </OutputWrapper>
       )}
-      <ButtonStyled onClick={scanAgain}>Nochmal scannen</ButtonStyled>
+      <PrimaryButtonStyled
+        to={{
+          pathname: '/ShopPage',
+          state: { shopId },
+        }}
+      >
+        <SaveIcon />
+        Speichern
+      </PrimaryButtonStyled>
+      <SecondaryButtonStyled onClick={scanAgain}>
+        <CropFreeIcon />
+        Erneut scannen
+      </SecondaryButtonStyled>
     </ScannerPageStyled>
   )
 
@@ -75,7 +96,8 @@ const OutputWrapper = styled.div`
   border: var(--border);
   height: 60vw;
   width: calc(65vw * 640 / 480);
-  /* background-color: gray; */
+  background-color: var(--confirmation-green);
+  padding: 30px;
   display: grid;
   place-items: center;
 `
@@ -121,7 +143,7 @@ const ScannerPageStyled = styled.div`
   display: grid;
   place-items: center;
   //gap: 20px;
-  grid-template-rows: 10% 5% 5% auto 20%;
+  grid-template-rows: 10% 5% 5% auto 5% 15%;
 `
 
 const ExplanationStlyed = styled.p`
@@ -139,4 +161,28 @@ const SelectedItemTitleStyled = styled.h2`
   margin-bottom: 15px !important;
 `
 
-const ButtonStyled = styled.button``
+const PrimaryButtonStyled = styled(NavLink)`
+  grid-row: 5;
+  box-shadow: var(--light-box-shadow);
+  border-radius: 5px;
+  border: none;
+  background-color: var(--CTA-blue);
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--white) !important;
+  text-decoration: none;
+`
+const SecondaryButtonStyled = styled.button`
+  grid-row: 6;
+  border-radius: 5px;
+  border: var(--border);
+  outline: none;
+  background-color: var(--white);
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--dark-gray) !important;
+`

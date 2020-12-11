@@ -18,7 +18,8 @@ ListItem.propTypes = {
 
 export default function ListItem({
   isChecked,
-  id,
+  itemId,
+  shopId,
   title,
   changeTitle,
   toggleCheckbox,
@@ -55,7 +56,7 @@ export default function ListItem({
           <NavLink
             to={{
               pathname: '/ScannerPage',
-              state: { id },
+              state: { itemId, shopId },
             }}
           >
             <BarcodeScannerButtonStyled />
