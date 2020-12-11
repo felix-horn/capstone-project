@@ -95,6 +95,7 @@ const HeaderStyled = styled(Header)`
 `
 
 const ScannerPageStyled = styled.div`
+  position: relative;
   height: calc(100vh - 60px);
   display: grid;
   place-items: center;
@@ -118,7 +119,9 @@ const SelectedItemTitleStyled = styled.h2`
 `
 
 const PrimaryButtonStyled = styled(NavLink)`
-  grid-row: 5;
+  position: absolute;
+  bottom: 120px;
+  //grid-row: 5;
   box-shadow: var(--light-box-shadow);
   border-radius: 5px;
   border: none;
@@ -131,7 +134,9 @@ const PrimaryButtonStyled = styled(NavLink)`
   text-decoration: none;
 `
 const SecondaryButtonStyled = styled.button`
-  grid-row: 6;
+  position: absolute;
+  bottom: 60px;
+  //grid-row: 6;
   border-radius: 5px;
   border: var(--border);
   outline: none;
@@ -167,7 +172,7 @@ const ScannerWrapper = styled.div`
     position: relative;
     display: grid;
     place-items: center;
-    height: 85vw;
+    height: calc(85vw * 480 / 640);
   }
 
   .container,
