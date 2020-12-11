@@ -53,14 +53,14 @@ export default function ListItem({
             onClick={handleDelete}
             data-testid="delete-list-item"
           />
-          <ScannerButtonStyled
+          <ButtonScannerStyled
             to={{
               pathname: '/ScannerPage',
               state: { itemId, shopId },
             }}
           >
-            <BarcodeScannerButtonStyled />
-          </ScannerButtonStyled>
+            <ScannerIconStyled />
+          </ButtonScannerStyled>
         </>
       )}
     </ListItemStyled>
@@ -115,9 +115,9 @@ const DeleteButtonStyled = styled(CloseIcon)`
   opacity: 0.4;
 `
 
-const ScannerButtonStyled = styled(NavLink)``
+const ButtonScannerStyled = styled(NavLink)``
 
-const BarcodeScannerButtonStyled = styled(CropFreeIcon)`
+const ScannerIconStyled = styled(CropFreeIcon)`
   margin-top: 3px;
   margin-left: 5px;
   transform: scale(0.9);

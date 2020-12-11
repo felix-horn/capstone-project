@@ -1,14 +1,14 @@
 import { render } from '@testing-library/react'
 import user from '@testing-library/user-event'
 import { BrowserRouter as Router } from 'react-router-dom'
-import ActionButton from './ActionButton'
+import ButtonAddShop from './ButtonAddShop'
 
-describe('ActionButton', () => {
+describe('ButtonAddShop', () => {
   it('renders correctly', () => {
     const addShopMock = jest.fn()
     const { container } = render(
       <Router>
-        <ActionButton addShop={addShopMock} />
+        <ButtonAddShop addShop={addShopMock} />
       </Router>
     )
     expect(container.firstChild).toMatchSnapshot()
@@ -18,7 +18,7 @@ describe('ActionButton', () => {
     const addShopMock = jest.fn()
     const { getByTestId } = render(
       <Router>
-        <ActionButton addShop={addShopMock} />
+        <ButtonAddShop addShop={addShopMock} />
       </Router>
     )
     const button = getByTestId('action-button')
@@ -30,7 +30,7 @@ describe('ActionButton', () => {
     const addShopMock = jest.fn()
     const { getByTestId } = render(
       <Router>
-        <ActionButton addShop={addShopMock} />
+        <ButtonAddShop addShop={addShopMock} />
       </Router>
     )
     const button = getByTestId('action-button')
