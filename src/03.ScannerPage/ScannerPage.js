@@ -1,21 +1,17 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
-import { ReactComponent as ScannerFrame } from '../Assets/ScannerFrame.svg'
-
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
-import MenuWrapped from '../00.SharedComponents/01.UI-Elements/02.Components/MenuWrapped'
 import Scanner from './02.Components/Scanner'
-
+import { ReactComponent as ScannerFrame } from '../Assets/ScannerFrame.svg'
 import CropFreeIcon from '@material-ui/icons/CropFree'
 import SaveIcon from '@material-ui/icons/Save'
 
 ScannerPage.propTypes = {
-  // database: PropTypes.object.isRequired,
-  // changeShopTitle: PropTypes.func.isRequired,
-  // visibilityUndoButton: PropTypes.string.isRequired,
+  database: PropTypes.object.isRequired,
+  changeBarcode: PropTypes.func.isRequired,
 }
 
 export default function ScannerPage({ database, changeBarcode }) {
@@ -34,10 +30,10 @@ export default function ScannerPage({ database, changeBarcode }) {
   return (
     <ScannerPageStyled>
       <HeaderStyled onClick={toggleMenu} />
-      {isMenuVisible && <MenuWrapped toggleMenu={toggleMenu} />}
       <ExplanationStlyed>
         Scanne den Barcode des Artikels {selectedItemTitle} ein, um diesen
-        zukünftig über die Scanner-Funktion der App auf dessen Liste zu setzen.
+        zukünftig über die Scanner-Funktion der App wieder auf dessen Liste zu
+        setzen.
       </ExplanationStlyed>
       <ScanningStatusStyled>{barcode ? '' : 'Scant...'}</ScanningStatusStyled>
       <SelectedItemTitleStyled>{selectedItemTitle}</SelectedItemTitleStyled>
@@ -102,13 +98,12 @@ const ScannerPageStyled = styled.div`
   height: calc(100vh - 60px);
   display: grid;
   place-items: center;
-  //gap: 20px;
-  grid-template-rows: 10% 5% 5% auto 5% 15%;
+  grid-template-rows: 15% 5% 5% auto 5% 15%;
 `
 
 const ExplanationStlyed = styled.p`
   grid-row: 1;
-  padding: 15px;
+  padding: 15px 20px;
   font-size: 0.8rem;
   color: var(--dark-gray);
 `
@@ -154,8 +149,10 @@ const OutputWrapper = styled.div`
   margin: 0 auto;
   border-radius: 5px;
   border: var(--border);
-  height: 60vw;
-  width: calc(65vw * 640 / 480);
+  /* height: 60vw;
+  width: calc(65vw * 640 / 480); */
+
+  width: 85vw;
   background-color: var(--confirmation-green);
   padding: 30px;
   display: grid;
@@ -170,18 +167,21 @@ const ScannerWrapper = styled.div`
     position: relative;
     display: grid;
     place-items: center;
+    height: 85vw;
   }
 
   .container,
   #interactive.viewport {
-    height: 65vw;
-    width: 80vw;
+    //height: 65vw; desktop
+
+    width: 85vw;
     /* background-color: #3cba5466; green */
 
     #interactive.viewport canvas,
     video {
-      height: 65vw;
-      width: 80vw;
+      //height: 65vw; desktop
+
+      width: 85vw;
       position: absolute;
       top: 50%;
       left: 50%;
