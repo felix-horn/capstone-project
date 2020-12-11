@@ -99,7 +99,7 @@ const ScannerPageStyled = styled.div`
   height: calc(100vh - 60px);
   display: grid;
   place-items: center;
-  grid-template-rows: 15% 5% 5% auto 5% 15%;
+  grid-template-rows: 15% auto 20%;
 `
 
 const ExplanationStlyed = styled.p`
@@ -110,18 +110,21 @@ const ExplanationStlyed = styled.p`
 `
 
 const ScanningStatusStyled = styled.div`
-  grid-row: 2;
+  position: absolute;
+  z-index: 200;
+  top: 110px;
 `
 
 const SelectedItemTitleStyled = styled.h2`
-  grid-row: 3;
-  margin-bottom: 15px !important;
+  position: absolute;
+  z-index: 200;
+  top: 140px;
 `
 
 const PrimaryButtonStyled = styled(NavLink)`
   position: absolute;
+  z-index: 200;
   bottom: 120px;
-  //grid-row: 5;
   box-shadow: var(--light-box-shadow);
   border-radius: 5px;
   border: none;
@@ -135,8 +138,8 @@ const PrimaryButtonStyled = styled(NavLink)`
 `
 const SecondaryButtonStyled = styled.button`
   position: absolute;
+  z-index: 200;
   bottom: 60px;
-  //grid-row: 6;
   border-radius: 5px;
   border: var(--border);
   outline: none;
@@ -149,8 +152,8 @@ const SecondaryButtonStyled = styled.button`
 `
 
 const OutputWrapper = styled.div`
-  grid-row: 4;
-  align-self: flex-start;
+  grid-row: 2;
+  align-self: center;
   margin: 0 auto;
   border-radius: 5px;
   border: var(--border);
@@ -165,8 +168,8 @@ const OutputWrapper = styled.div`
 `
 
 const ScannerWrapper = styled.div`
-  grid-row: 4;
-  align-self: flex-start;
+  grid-row: 2;
+  align-self: center;
 
   .container {
     position: relative;
@@ -177,15 +180,11 @@ const ScannerWrapper = styled.div`
 
   .container,
   #interactive.viewport {
-    //height: 65vw; desktop
-
     width: 85vw;
     /* background-color: #3cba5466; green */
 
     #interactive.viewport canvas,
     video {
-      //height: 65vw; desktop
-
       width: 85vw;
       position: absolute;
       top: 50%;
