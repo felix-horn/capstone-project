@@ -1,11 +1,14 @@
+import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Checkbox from '@material-ui/core/Checkbox'
 import CloseIcon from '@material-ui/icons/Close'
+import CropFreeIcon from '@material-ui/icons/CropFree'
 
 ListItem.propTypes = {
   isChecked: PropTypes.bool,
+  id: PropTypes.string,
   title: PropTypes.string.isRequired,
   changeTitle: PropTypes.func.isRequired,
   toggleCheckbox: PropTypes.func.isRequired,
@@ -14,8 +17,9 @@ ListItem.propTypes = {
 }
 
 export default function ListItem({
-  title,
   isChecked,
+  id,
+  title,
   changeTitle,
   toggleCheckbox,
   onDelete,
@@ -36,17 +40,27 @@ export default function ListItem({
         value={title}
         onChange={handleInputChange}
         onKeyUp={(event) => event.key === 'Enter' && handleEnter(event)}
-        onFocus={showDeleteIcon}
-        onBlur={hideDeleteIcon}
+        onFocus={showIcons}
+        onBlur={hideIcons}
         autoFocus={true}
         isCrossedOut={isChecked}
         data-testid="title-list-item"
       />
       {isDeleteIconShown && (
-        <DeleteButtonStyled
-          onClick={handleDelete}
-          data-testid="delete-list-item"
-        />
+        <>
+          <DeleteButtonStyled
+            onClick={handleDelete}
+            data-testid="delete-list-item"
+          />
+          <NavLink
+            to={{
+              pathname: '/ScannerPage',
+              state: { id },
+            }}
+          >
+            <BarcodeScannerButtonStyled />
+          </NavLink>
+        </>
       )}
     </ListItemStyled>
   )
@@ -65,11 +79,11 @@ export default function ListItem({
     !isChecked && onEnter()
   }
 
-  function showDeleteIcon() {
+  function showIcons() {
     setIsDeleteIconShown(true)
   }
 
-  function hideDeleteIcon() {
+  function hideIcons() {
     raceConditionTimer = setTimeout(() => setIsDeleteIconShown(false), 0)
     //return () => clearTimeout(raceConditionTimer)
   }
@@ -78,10 +92,12 @@ export default function ListItem({
     //clearTimeout(raceConditionTimer)
     onDelete()
   }
+
+  function openScanner() {}
 }
 
 const ListItemStyled = styled.label`
-  width: 75vw;
+  width: 85vw;
   display: flex;
   align-items: center;
   opacity: ${(props) => (props.checked ? 0.5 : 1)};
@@ -96,6 +112,11 @@ const TitleStyled = styled.input`
 `
 const DeleteButtonStyled = styled(CloseIcon)`
   margin-left: auto;
+  transform: scale(0.9);
+  opacity: 0.4;
+`
+const BarcodeScannerButtonStyled = styled(CropFreeIcon)`
+  margin-left: 5px;
   transform: scale(0.9);
   opacity: 0.4;
 `

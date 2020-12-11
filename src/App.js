@@ -18,6 +18,7 @@ export default function App() {
     rearrangeListOrder,
     deleteShop,
     visibilityUndoButton,
+    changeBarcode,
   } = useDatabase()
   return (
     <AppStyled>
@@ -40,7 +41,7 @@ export default function App() {
           />
         </Route>
         <Route path="/ScannerPage">
-          <ScannerPage />
+          <ScannerPage database={database} changeBarcode={changeBarcode} />
         </Route>
       </Switch>
     </AppStyled>

@@ -22,6 +22,7 @@ export default function useDatabase() {
 
   useEffect(() => {
     saveLocally(STORAGE_KEY, database)
+    console.log(database)
   }, [database])
 
   const [deletedListItem, setDeletedListItem] = useState({
@@ -44,6 +45,15 @@ export default function useDatabase() {
     rearrangeListOrder,
     deleteShop,
     visibilityUndoButton,
+    changeBarcode,
+  }
+
+  function changeBarcode(targetId, barcode) {
+    setDatabase(
+      produce(database, (draft) => {
+        draft.items.byId[targetId].barcode = barcode
+      })
+    )
   }
 
   function addShop(newId) {

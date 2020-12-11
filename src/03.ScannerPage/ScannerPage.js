@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+
 // import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
@@ -11,24 +13,27 @@ ScannerPage.propTypes = {
   // visibilityUndoButton: PropTypes.string.isRequired,
 }
 
-export default function ScannerPage() {
+export default function ScannerPage({ database, changeBarcode }) {
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const [camera, setCamera] = useState(true)
-  const [result, setResult] = useState('')
+  const [barcode, setBarcode] = useState('')
 
-  // useEffect(() => {})
+  const location = useLocation()
+  const itemId = location.state.id
+  const selectedItemTitle = database.items.byId[itemId].title
 
-  console.log(result)
+  console.log(barcode)
 
   return (
     <ScannerPageStyled>
       <HeaderStyled onClick={toggleMenu} />
       {isMenuVisible && <MenuWrapped toggleMenu={toggleMenu} />}
       <ExplanationStlyed>
-        Um einen Artikel wieder auf die Einkaufsliste zu setzen, scanne dessen
-        Barcode.
+        Scanne den Barcode des Artikels {selectedItemTitle} ein, um diesen
+        zukünftig über die Scanner-Funktion der App auf dessen Liste zu setzen.
       </ExplanationStlyed>
-      <div>{result ? '' : 'Scanning...'}</div>
+      <ScanningStatusStyled>{barcode ? '' : 'Scanne...'}</ScanningStatusStyled>
+      <SelectedItemTitleStyled>{selectedItemTitle}</SelectedItemTitleStyled>
       {camera ? (
         <ScannerWrapper>
           <div className={'container'}>
@@ -36,20 +41,25 @@ export default function ScannerPage() {
           </div>
         </ScannerWrapper>
       ) : (
-        <OutputWrapper>{result} wurde der Liste XY hinzugefügt.</OutputWrapper>
+        <OutputWrapper>
+          {' '}
+          Dem Artikel {selectedItemTitle} wurde mit dem Barcode {barcode}{' '}
+          verknüpft.
+        </OutputWrapper>
       )}
-      <button onClick={scanAgain}>Weiteres Produkt scannen</button>
+      <ButtonStyled onClick={scanAgain}>Nochmal scannen</ButtonStyled>
     </ScannerPageStyled>
   )
 
-  function onDetected(result) {
-    setResult(result)
+  function onDetected(barcode) {
+    setBarcode(barcode)
     setCamera(false)
+    changeBarcode(itemId, barcode)
   }
 
   function scanAgain() {
     setCamera(true)
-    setResult('')
+    setBarcode('')
   }
 
   function toggleMenu() {
@@ -58,7 +68,7 @@ export default function ScannerPage() {
 }
 
 const OutputWrapper = styled.div`
-  grid-row: 3;
+  grid-row: 4;
   align-self: flex-start;
   margin: 0 auto;
   border-radius: 5px;
@@ -71,7 +81,7 @@ const OutputWrapper = styled.div`
 `
 
 const ScannerWrapper = styled.div`
-  grid-row: 3;
+  grid-row: 4;
   align-self: flex-start;
 
   .container {
@@ -105,14 +115,28 @@ const HeaderStyled = styled(Header)`
   left: 0;
   width: 100%;
 `
-const ExplanationStlyed = styled.p`
-  padding: 15px;
-  grid-row: 1;
-`
+
 const ScannerPageStyled = styled.div`
   height: calc(100vh - 60px);
   display: grid;
   place-items: center;
-  gap: 20px;
-  grid-template-rows: 10% 5% auto 20%;
+  //gap: 20px;
+  grid-template-rows: 10% 5% 5% auto 20%;
 `
+
+const ExplanationStlyed = styled.p`
+  grid-row: 1;
+  padding: 15px;
+  font-size: 0.8rem;
+`
+
+const ScanningStatusStyled = styled.div`
+  grid-row: 2;
+`
+
+const SelectedItemTitleStyled = styled.h2`
+  grid-row: 3;
+  margin-bottom: 15px !important;
+`
+
+const ButtonStyled = styled.button``
