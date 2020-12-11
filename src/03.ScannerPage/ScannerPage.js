@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
+import { ReactComponent as ScannerFrame } from '../Assets/ScannerFrame.svg'
 
 // import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
@@ -44,6 +45,7 @@ export default function ScannerPage({ database, changeBarcode }) {
         <ScannerWrapper>
           <div className={'container'}>
             {camera && <Scanner onDetected={onDetected} />}
+            <ScannerFrameStyled />
           </div>
         </ScannerWrapper>
       ) : (
@@ -88,6 +90,64 @@ export default function ScannerPage({ database, changeBarcode }) {
   }
 }
 
+const HeaderStyled = styled(Header)`
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+`
+
+const ScannerPageStyled = styled.div`
+  height: calc(100vh - 60px);
+  display: grid;
+  place-items: center;
+  //gap: 20px;
+  grid-template-rows: 10% 5% 5% auto 5% 15%;
+`
+
+const ExplanationStlyed = styled.p`
+  grid-row: 1;
+  padding: 15px;
+  font-size: 0.8rem;
+  color: var(--dark-gray);
+`
+
+const ScanningStatusStyled = styled.div`
+  grid-row: 2;
+`
+
+const SelectedItemTitleStyled = styled.h2`
+  grid-row: 3;
+  margin-bottom: 15px !important;
+`
+
+const PrimaryButtonStyled = styled(NavLink)`
+  grid-row: 5;
+  box-shadow: var(--light-box-shadow);
+  border-radius: 5px;
+  border: none;
+  background-color: var(--CTA-blue);
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--white) !important;
+  text-decoration: none;
+`
+const SecondaryButtonStyled = styled.button`
+  grid-row: 6;
+  border-radius: 5px;
+  border: var(--border);
+  outline: none;
+  background-color: var(--white);
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--dark-gray) !important;
+`
+
 const OutputWrapper = styled.div`
   grid-row: 4;
   align-self: flex-start;
@@ -129,60 +189,8 @@ const ScannerWrapper = styled.div`
     }
   }
 `
-
-const HeaderStyled = styled(Header)`
-  position: fixed;
+const ScannerFrameStyled = styled(ScannerFrame)`
+  height: 65vw;
+  position: absolute;
   z-index: 100;
-  top: 0;
-  left: 0;
-  width: 100%;
-`
-
-const ScannerPageStyled = styled.div`
-  height: calc(100vh - 60px);
-  display: grid;
-  place-items: center;
-  //gap: 20px;
-  grid-template-rows: 10% 5% 5% auto 5% 15%;
-`
-
-const ExplanationStlyed = styled.p`
-  grid-row: 1;
-  padding: 15px;
-  font-size: 0.8rem;
-`
-
-const ScanningStatusStyled = styled.div`
-  grid-row: 2;
-`
-
-const SelectedItemTitleStyled = styled.h2`
-  grid-row: 3;
-  margin-bottom: 15px !important;
-`
-
-const PrimaryButtonStyled = styled(NavLink)`
-  grid-row: 5;
-  box-shadow: var(--light-box-shadow);
-  border-radius: 5px;
-  border: none;
-  background-color: var(--CTA-blue);
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--white) !important;
-  text-decoration: none;
-`
-const SecondaryButtonStyled = styled.button`
-  grid-row: 6;
-  border-radius: 5px;
-  border: var(--border);
-  outline: none;
-  background-color: var(--white);
-  padding: 5px 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--dark-gray) !important;
 `
