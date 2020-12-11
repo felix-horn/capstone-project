@@ -26,7 +26,7 @@ export default function ListItem({
   onDelete,
   onEnter,
 }) {
-  const [isDeleteIconShown, setIsDeleteIconShown] = useState(false)
+  const [isIconsShown, setIsIconsShown] = useState(false)
   let raceConditionTimer
   return (
     <ListItemStyled checked={isChecked} data-testid="list-item">
@@ -47,20 +47,20 @@ export default function ListItem({
         isCrossedOut={isChecked}
         data-testid="title-list-item"
       />
-      {isDeleteIconShown && (
+      {isIconsShown && (
         <>
           <DeleteButtonStyled
             onClick={handleDelete}
             data-testid="delete-list-item"
           />
-          <NavLink
+          <ScannerButtonStyled
             to={{
               pathname: '/ScannerPage',
               state: { itemId, shopId },
             }}
           >
             <BarcodeScannerButtonStyled />
-          </NavLink>
+          </ScannerButtonStyled>
         </>
       )}
     </ListItemStyled>
@@ -81,11 +81,11 @@ export default function ListItem({
   }
 
   function showIcons() {
-    setIsDeleteIconShown(true)
+    setIsIconsShown(true)
   }
 
   function hideIcons() {
-    raceConditionTimer = setTimeout(() => setIsDeleteIconShown(false), 0)
+    raceConditionTimer = setTimeout(() => setIsIconsShown(false), 0)
     //return () => clearTimeout(raceConditionTimer)
   }
 
@@ -93,8 +93,6 @@ export default function ListItem({
     //clearTimeout(raceConditionTimer)
     onDelete()
   }
-
-  function openScanner() {}
 }
 
 const ListItemStyled = styled.label`
@@ -116,8 +114,13 @@ const DeleteButtonStyled = styled(CloseIcon)`
   transform: scale(0.9);
   opacity: 0.4;
 `
+
+const ScannerButtonStyled = styled(NavLink)``
+
 const BarcodeScannerButtonStyled = styled(CropFreeIcon)`
+  margin-top: 3px;
   margin-left: 5px;
   transform: scale(0.9);
+  color: black;
   opacity: 0.4;
 `
