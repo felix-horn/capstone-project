@@ -15,7 +15,10 @@ export default function OverviewPage({ database, addShop }) {
   return (
     <OverviewPageStyled>
       {isOverlayVisible && (
-        <ActionButtonOverlayStyled onClick={() => setIsOverlayVisible(false)} />
+        <ActionButtonOverlayStyled
+          onClick={() => setIsOverlayVisible(false)}
+          addShop={addShop}
+        />
       )}
       {database.shops.allIds.map((shopId) => (
         <ShopCard key={shopId} shopId={shopId} database={database} />

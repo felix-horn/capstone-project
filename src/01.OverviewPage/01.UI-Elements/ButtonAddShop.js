@@ -39,6 +39,19 @@ const ButtonAddShopStyled = styled(NavLink)`
   color: var(--almost-black);
   font-weight: 400;
   font-size: 0.8rem;
+
+  animation: 0.2s ease-in-out 0s 1 slideUp;
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
 `
 
 const IconWrapperStyled = styled.div`

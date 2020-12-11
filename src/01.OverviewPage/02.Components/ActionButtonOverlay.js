@@ -5,18 +5,14 @@ import ButtonScanner from '../01.UI-Elements/ButtonScanner'
 
 ActionButtonOverlay.propTypes = {
   onClick: PropTypes.func.isRequired,
-  deleteShop: PropTypes.func.isRequired,
+  addShop: PropTypes.func.isRequired,
 }
 
-export default function ActionButtonOverlay({
-  onClick,
-  deleteShop,
-  className,
-}) {
+export default function ActionButtonOverlay({ onClick, addShop, className }) {
   return (
     <ClickableOverlayBackground onClick={onClick} className={className}>
       <BackgroundStyled />
-      <ButtonAddShopStyled /* addShop={addShop} */ />
+      <ButtonAddShopStyled addShop={addShop} />
       <ButtonScannerStyled />
     </ClickableOverlayBackground>
   )

@@ -47,4 +47,15 @@ const IconWrapperStyled = styled.div`
 
 const ScannerIconStyled = styled(CropFreeIcon)`
   color: var(--white);
+
+  animation: 0.1s ease-in-out 0s 1 rotate;
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(90deg);
+    }
+  }
 `
