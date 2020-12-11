@@ -175,11 +175,13 @@ const ScannerWrapper = styled.div`
   .container,
   #interactive.viewport {
     height: 65vw;
+    width: 80vw;
     /* background-color: #3cba5466; green */
 
     #interactive.viewport canvas,
     video {
       height: 65vw;
+      width: 80vw;
       position: absolute;
       top: 50%;
       left: 50%;
