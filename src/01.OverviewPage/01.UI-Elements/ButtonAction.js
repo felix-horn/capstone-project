@@ -1,6 +1,4 @@
-import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { v4 as uuid } from 'uuid'
 import styled from 'styled-components/macro'
 import MenuIcon from '@material-ui/icons/Menu'
 

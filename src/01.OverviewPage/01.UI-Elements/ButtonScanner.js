@@ -1,6 +1,5 @@
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { v4 as uuid } from 'uuid'
 import styled from 'styled-components/macro'
 import CropFreeIcon from '@material-ui/icons/CropFree'
 
@@ -17,9 +16,9 @@ export default function ButtonScanner({ className }) {
       data-testid="scanner-button"
     >
       Barcode scannen
-      <IconWrapperStyled>
+      <IconBackgroundStyled>
         <ScannerIconStyled />
-      </IconWrapperStyled>
+      </IconBackgroundStyled>
     </ButtonScannerStyled>
   )
 }
@@ -29,13 +28,13 @@ const ButtonScannerStyled = styled(NavLink)`
   justify-content: end;
   align-items: center;
   gap: 15px;
-  text-decoration: none;
   color: var(--almost-black);
   font-weight: 400;
   font-size: 0.8rem;
+  text-decoration: none;
 `
 
-const IconWrapperStyled = styled.div`
+const IconBackgroundStyled = styled.div`
   box-shadow: var(--strong-box-shadow);
   border-radius: 100%;
   height: 50px;

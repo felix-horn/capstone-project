@@ -23,9 +23,9 @@ export default function ButtonAddShop({ addShop, className }) {
       data-testid="action-button"
     >
       Neues Geschäft hinzufügen
-      <IconWrapperStyled>
+      <IconBackgroundStyled>
         <PostAddIconStyled />
-      </IconWrapperStyled>
+      </IconBackgroundStyled>
     </ButtonAddShopStyled>
   )
 }
@@ -35,10 +35,10 @@ const ButtonAddShopStyled = styled(NavLink)`
   justify-content: end;
   align-items: center;
   gap: 20px;
-  text-decoration: none;
   color: var(--almost-black);
   font-weight: 400;
   font-size: 0.8rem;
+  text-decoration: none;
 
   animation: 0.2s ease-in-out 0s 1 slideUp;
 
@@ -54,7 +54,7 @@ const ButtonAddShopStyled = styled(NavLink)`
   }
 `
 
-const IconWrapperStyled = styled.div`
+const IconBackgroundStyled = styled.div`
   box-shadow: var(--strong-box-shadow);
   border-radius: 100%;
   height: 40px;

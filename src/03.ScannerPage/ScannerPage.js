@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
+import { useLocation, NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import Scanner from './02.Components/Scanner'
+import ButtonSave from './01.UI-Elements/ButtonSave'
 import { ReactComponent as ScannerFrame } from '../Assets/ScannerFrame.svg'
 import CropFreeIcon from '@material-ui/icons/CropFree'
 import SaveIcon from '@material-ui/icons/Save'
@@ -54,15 +54,8 @@ export default function ScannerPage({ database, changeBarcode }) {
           <strong>{barcode}</strong>
         </OutputWrapper>
       )}
-      <PrimaryButtonStyled
-        to={{
-          pathname: '/ShopPage',
-          state: { shopId },
-        }}
-      >
-        <SaveIcon />
-        Speichern
-      </PrimaryButtonStyled>
+      <ButtonSaveStyled shopId={shopId} />
+
       <SecondaryButtonStyled onClick={scanAgain}>
         <CropFreeIcon />
         Erneut scannen
@@ -121,20 +114,10 @@ const SelectedItemTitleStyled = styled.h2`
   top: 140px;
 `
 
-const PrimaryButtonStyled = styled(NavLink)`
+const ButtonSaveStyled = styled(ButtonSave)`
   position: absolute;
   z-index: 200;
   bottom: 120px;
-  box-shadow: var(--light-box-shadow);
-  border-radius: 5px;
-  border: none;
-  background-color: var(--CTA-blue);
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--white) !important;
-  text-decoration: none;
 `
 const SecondaryButtonStyled = styled.button`
   position: absolute;

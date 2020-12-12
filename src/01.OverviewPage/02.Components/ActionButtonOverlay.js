@@ -6,6 +6,7 @@ import ButtonScanner from '../01.UI-Elements/ButtonScanner'
 ActionButtonOverlay.propTypes = {
   onClick: PropTypes.func.isRequired,
   addShop: PropTypes.func.isRequired,
+  className: PropTypes.string,
 }
 
 export default function ActionButtonOverlay({ onClick, addShop, className }) {
@@ -26,15 +27,14 @@ const BackgroundStyled = styled.div`
   height: 100%;
   width: 100%;
   background-color: var(--white);
-  /* background-color: green; */
   opacity: 0.8;
 `
 
 const ButtonAddShopStyled = styled(ButtonAddShop)`
   position: absolute;
+  z-index: 300;
   bottom: calc(120px + 10px + 5px);
   right: calc(30px + 10px + 5px);
-  z-index: 300;
 `
 const ButtonScannerStyled = styled(ButtonScanner)`
   position: absolute;
