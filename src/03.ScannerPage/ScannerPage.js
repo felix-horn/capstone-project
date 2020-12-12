@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
@@ -19,6 +19,12 @@ ScannerPage.propTypes = {
 export default function ScannerPage({ database, changeBarcode }) {
   const [isScanning, setisScanning] = useState(true)
   const [barcode, setBarcode] = useState('')
+
+  useEffect(() => {
+    if (window.navigator.vibrate) {
+      window.navigator.vibrate(10)
+    }
+  }, [barcode])
 
   const location = useLocation()
   const itemId = location.state.itemId
@@ -51,12 +57,7 @@ export default function ScannerPage({ database, changeBarcode }) {
   function onDetected(barcode) {
     setBarcode(barcode)
     setisScanning(false)
-    return () => {
-      changeBarcode(itemId, barcode)
-      if (window.navigator.vibrate) {
-        window.navigator.vibrate(10)
-      }
-    }
+    changeBarcode(itemId, barcode)
   }
 
   function scanAgain() {

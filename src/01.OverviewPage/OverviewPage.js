@@ -60,19 +60,4 @@ const ButtonActionStyled = styled(ButtonAction)`
   bottom: 60px;
   right: 30px;
   z-index: 100;
-
-  //how could this be included in the component itself?
-
-  &.rotate {
-    animation: 0.2s rotateBack ease-in-out;
-
-    @keyframes rotateBack {
-      0% {
-        transform: rotate(90deg);
-      }
-      100% {
-        transform: rotate(0deg);
-      }
-    }
-  }
 `
