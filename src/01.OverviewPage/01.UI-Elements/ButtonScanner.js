@@ -36,7 +36,7 @@ const ButtonScannerStyled = styled(NavLink)`
 `
 
 const IconWrapperStyled = styled.div`
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--strong-box-shadow);
   border-radius: 100%;
   height: 50px;
   width: 50px;
@@ -48,7 +48,7 @@ const IconWrapperStyled = styled.div`
 const ScannerIconStyled = styled(CropFreeIcon)`
   color: var(--white);
 
-  animation: 0.1s ease-in-out 0s 1 rotate;
+  animation: 0.2s ease-in-out 0s 1 rotate;
 
   @keyframes rotate {
     0% {

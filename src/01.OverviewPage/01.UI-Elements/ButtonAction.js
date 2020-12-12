@@ -17,7 +17,7 @@ export default function ButtonAction({ onClick, className }) {
 }
 
 const ButtonActionStyled = styled.div`
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--strong-box-shadow);
   border-radius: 100%;
   height: 50px;
   width: 50px;
@@ -27,10 +27,4 @@ const ButtonActionStyled = styled.div`
 `
 const MenuIconStyled = styled(MenuIcon)`
   color: var(--CTA-blue);
-
-  /* .crossRotate:active {
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-  } */
 `

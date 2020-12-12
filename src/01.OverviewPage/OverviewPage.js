@@ -12,20 +12,34 @@ OverviewPage.propTypes = {
 
 export default function OverviewPage({ database, addShop }) {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false)
+  const [buttonActionClass, setButtonActionClass] = useState('')
   return (
     <OverviewPageStyled>
       {isOverlayVisible && (
         <ActionButtonOverlayStyled
-          onClick={() => setIsOverlayVisible(false)}
+          onClick={handleOverlayClick}
           addShop={addShop}
         />
       )}
       {database.shops.allIds.map((shopId) => (
         <ShopCard key={shopId} shopId={shopId} database={database} />
       ))}
-      <ButtonActionStyled onClick={() => setIsOverlayVisible(true)} />
+      <ButtonActionStyled
+        onClick={handleButtonActionClick}
+        className={buttonActionClass}
+      />
     </OverviewPageStyled>
   )
+
+  function handleOverlayClick() {
+    setIsOverlayVisible(false)
+    setButtonActionClass('rotate')
+  }
+
+  function handleButtonActionClick() {
+    setIsOverlayVisible(true)
+    setButtonActionClass('')
+  }
 }
 
 const OverviewPageStyled = styled.div`
@@ -46,4 +60,17 @@ const ButtonActionStyled = styled(ButtonAction)`
   bottom: 60px;
   right: 30px;
   z-index: 100;
+
+  &.rotate {
+    animation: 0.2s rotateBack ease-in-out;
+
+    @keyframes rotateBack {
+      0% {
+        transform: rotate(90deg);
+      }
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+  }
 `

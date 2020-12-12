@@ -55,7 +55,7 @@ const ButtonAddShopStyled = styled(NavLink)`
 `
 
 const IconWrapperStyled = styled.div`
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--strong-box-shadow);
   border-radius: 100%;
   height: 40px;
   width: 40px;

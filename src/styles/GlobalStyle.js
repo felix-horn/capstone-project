@@ -12,6 +12,7 @@ export default createGlobalStyle`
     --light-gray: #b2b2b2; //placeholder
     --white: #fff; //background UndoButton and dragged item
     //--white-transparent: #fff; //background UndoButton and dragged item
+    --strong-box-shadow: 0 3px 8px #0005; //UndoButton
     --box-shadow: 0 1px 3px #0004; //UndoButton
     --light-box-shadow: 0 1px 3px #0003; //dragged item
     --border: 1px solid #dadcdf; //border-top
