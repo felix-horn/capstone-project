@@ -8,6 +8,7 @@ import Explanation from './01.UI-Elements/Explanation'
 import ButtonSave from './01.UI-Elements/ButtonSave'
 import ButtonScanAgain from './01.UI-Elements/ButtonScanAgain'
 import { ReactComponent as ScannerFrame } from '../Assets/ScannerFrame.svg'
+import ConfirmationCard from './01.UI-Elements/ConfirmationCard'
 
 ScannerPage.propTypes = {
   database: PropTypes.object.isRequired,
@@ -15,7 +16,6 @@ ScannerPage.propTypes = {
 }
 
 export default function ScannerPage({ database, changeBarcode }) {
-  const [isMenuVisible, setIsMenuVisible] = useState(false)
   const [camera, setCamera] = useState(true)
   const [barcode, setBarcode] = useState('')
 
@@ -24,14 +24,11 @@ export default function ScannerPage({ database, changeBarcode }) {
   const shopId = location.state.shopId
   const selectedItemTitle = database.items.byId[itemId].title
 
-  console.log(barcode)
-  console.log(selectedItemTitle)
-
   return (
     <ScannerPageStyled>
-      <HeaderStyled onClick={toggleMenu} />
+      <HeaderStyled shopId={shopId} />
       <Explanation />
-      <ScanningStatusStyled>{barcode ? '' : 'Scant...'}</ScanningStatusStyled>
+      <ScanningStatusStyled>{barcode ? '' : 'Scanne:'}</ScanningStatusStyled>
       <SelectedItemTitleStyled>{selectedItemTitle}</SelectedItemTitleStyled>
       {camera ? (
         <ScannerWrapper>
@@ -41,14 +38,7 @@ export default function ScannerPage({ database, changeBarcode }) {
           </div>
         </ScannerWrapper>
       ) : (
-        <OutputWrapper>
-          <span>
-            Der Artikel {selectedItemTitle} wurde mit dem Barcode verknüpft.
-          </span>
-          Bitte überprüfe, ob die Nummer auf dem Barcode mit dieser
-          übereinstimmt:
-          <strong>{barcode}</strong>
-        </OutputWrapper>
+        <ConfirmationCard barcode={barcode} />
       )}
       <ButtonSaveStyled shopId={shopId} />
       <ButtonScanAgainStyled onClick={scanAgain} />
@@ -64,10 +54,6 @@ export default function ScannerPage({ database, changeBarcode }) {
   function scanAgain() {
     setCamera(true)
     setBarcode('')
-  }
-
-  function toggleMenu() {
-    setIsMenuVisible(!isMenuVisible)
   }
 }
 
@@ -108,22 +94,6 @@ const ButtonScanAgainStyled = styled(ButtonScanAgain)`
   position: absolute;
   z-index: 200;
   bottom: 60px;
-`
-
-const OutputWrapper = styled.div`
-  grid-row: 2;
-  align-self: center;
-  margin: 0 auto;
-  border-radius: 5px;
-  border: var(--border);
-  /* height: 60vw;
-  width: calc(65vw * 640 / 480); */
-
-  width: 85vw;
-  background-color: var(--confirmation-green);
-  padding: 30px;
-  display: grid;
-  place-items: center;
 `
 
 const ScannerWrapper = styled.div`

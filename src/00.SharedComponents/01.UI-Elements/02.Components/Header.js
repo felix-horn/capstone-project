@@ -5,14 +5,16 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 Header.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   className: PropTypes.string,
+  shopId: PropTypes.string,
 }
 
-export default function Header({ onClick, className }) {
+export default function Header({ onClick, shopId, className }) {
+  const location = shopId ? { pathname: '/ShopPage', state: { shopId } } : '/'
   return (
     <HeaderStyled className={className}>
-      <BackButtonStyled exact to="/" data-testid="back-button">
+      <BackButtonStyled exact to={location} data-testid="back-button">
         <ArrowBackIcon />
       </BackButtonStyled>
       <MoreVertIconStyled onClick={onClick} data-testid="menu-button" />

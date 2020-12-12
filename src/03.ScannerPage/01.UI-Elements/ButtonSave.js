@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 import SaveIcon from '@material-ui/icons/Save'
 
 ButtonSave.propTypes = {
-  addShop: PropTypes.func.isRequired,
+  shopId: PropTypes.string.isRequired,
   className: PropTypes.string,
 }
 

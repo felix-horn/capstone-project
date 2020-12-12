@@ -8,9 +8,9 @@ Explanation.propTypes = {
 export default function Explanation({ selectedItemTitle, className }) {
   return (
     <ExplanationStyled className={className}>
-      Scanne den Barcode des Artikels {selectedItemTitle} ein, um diesen
-      zukünftig über die Scanner-Funktion der App wieder auf dessen Liste zu
-      setzen.
+      Scanne den Barcode des Artikels {selectedItemTitle} einmalig ein, um
+      diesen zukünftig über die Scanner-Funktion der App wieder auf dessen Liste
+      zu setzen.
     </ExplanationStyled>
   )
 }

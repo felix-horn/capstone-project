@@ -22,7 +22,6 @@ export default function useDatabase() {
 
   useEffect(() => {
     saveLocally(STORAGE_KEY, database)
-    console.log(database)
   }, [database])
 
   const [deletedListItem, setDeletedListItem] = useState({

@@ -62,6 +62,7 @@ export default function Scanner({ onDetected }) {
 
   function detected(result) {
     onDetected(result.codeResult.code)
+    console.log(result)
   }
 
   return (
