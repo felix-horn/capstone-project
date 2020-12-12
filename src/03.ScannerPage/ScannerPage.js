@@ -51,9 +51,11 @@ export default function ScannerPage({ database, changeBarcode }) {
   function onDetected(barcode) {
     setBarcode(barcode)
     setisScanning(false)
-    changeBarcode(itemId, barcode)
-    if (window.navigator.vibrate) {
-      window.navigator.vibrate(10)
+    return () => {
+      changeBarcode(itemId, barcode)
+      if (window.navigator.vibrate) {
+        window.navigator.vibrate(10)
+      }
     }
   }
 
