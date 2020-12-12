@@ -8,8 +8,9 @@ import CropFreeIcon from '@material-ui/icons/CropFree'
 
 ListItem.propTypes = {
   isChecked: PropTypes.bool,
-  id: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  itemId: PropTypes.string.isRequired,
+  shopId: PropTypes.string.isRequired,
+  database: PropTypes.object.isRequired,
   changeTitle: PropTypes.func.isRequired,
   toggleCheckbox: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
@@ -17,16 +18,18 @@ ListItem.propTypes = {
 }
 
 export default function ListItem({
-  isChecked,
   itemId,
   shopId,
-  title,
+  database,
   changeTitle,
   toggleCheckbox,
   onDelete,
   onEnter,
 }) {
   const [isIconsShown, setIsIconsShown] = useState(false)
+  const title = database.items.byId[itemId].title
+  const isChecked = database.items.byId[itemId].isChecked
+  const hasBarcode = !!database.items.byId[itemId].barcode
   let raceConditionTimer
   return (
     <ListItemStyled checked={isChecked} data-testid="list-item">
@@ -49,18 +52,18 @@ export default function ListItem({
       />
       {isIconsShown && (
         <>
-          <DeleteButtonStyled
-            onClick={handleDelete}
-            data-testid="delete-list-item"
-          />
           <ButtonScannerStyled
             to={{
               pathname: '/ScannerPage',
               state: { itemId, shopId },
             }}
           >
-            <ScannerIconStyled />
+            <ScannerIconStyled hasBarcode={hasBarcode} />
           </ButtonScannerStyled>
+          <DeleteButtonStyled
+            onClick={handleDelete}
+            data-testid="delete-list-item"
+          />
         </>
       )}
     </ListItemStyled>
@@ -110,17 +113,18 @@ const TitleStyled = styled.input`
   }
 `
 const DeleteButtonStyled = styled(CloseIcon)`
-  margin-left: auto;
+  margin-left: 5px;
   transform: scale(0.9);
   opacity: 0.4;
 `
 
-const ButtonScannerStyled = styled(NavLink)``
+const ButtonScannerStyled = styled(NavLink)`
+  margin-left: auto;
+`
 
 const ScannerIconStyled = styled(CropFreeIcon)`
   margin-top: 3px;
-  margin-left: 5px;
   transform: scale(0.9);
-  color: black;
-  opacity: 0.4;
+  color: ${(props) => (props.hasBarcode ? 'black' : '#4285F4')};
+  opacity: ${(props) => (props.hasBarcode ? '0.1' : '1')};
 `

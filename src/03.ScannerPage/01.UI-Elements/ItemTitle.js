@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 ItemTitle.propTypes = {
   itemTitle: PropTypes.string.isRequired,
-  isScanning: PropTypes.string.isRequired,
+  isScanning: PropTypes.bool.isRequired,
 }
 
 export default function ItemTitle({ itemTitle, isScanning }) {

@@ -2,10 +2,10 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
 Explanation.propTypes = {
-  selectedItemTitle: PropTypes.string.isRequired,
+  className: PropTypes.string,
 }
 
-export default function Explanation({ selectedItemTitle, className }) {
+export default function Explanation({ className }) {
   return (
     <ExplanationStyled className={className}>
       Scanne den Barcode des Artikels einmalig ein, um diesen zukünftig über die

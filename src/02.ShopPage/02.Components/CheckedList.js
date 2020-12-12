@@ -27,9 +27,9 @@ export default function CheckedList({
           {checkedIds.map((id) => (
             <ListItem
               key={id}
-              isChecked
               itemId={id}
               shopId={shopId}
+              database={database}
               title={database.items.byId[id].title}
               changeTitle={(fieldValue) => changeTitle(id, fieldValue)}
               toggleCheckbox={() => toggleIsChecked(id)}

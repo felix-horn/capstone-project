@@ -33,26 +33,10 @@ export default function Scanner({ onDetected }) {
             })
             .forEach(function (box) {
               Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, {
-                color: '#ffffff',
-                lineWidth: 1,
+                color: '#4285F4',
+                lineWidth: 2,
               })
             })
-        }
-
-        if (result.box) {
-          Quagga.ImageDebug.drawPath(result.box, { x: 0, y: 1 }, drawingCtx, {
-            color: '#3cba54',
-            lineWidth: 10,
-          })
-        }
-
-        if (result.codeResult && result.codeResult.code) {
-          Quagga.ImageDebug.drawPath(
-            result.line,
-            { x: 'x', y: 'y' },
-            drawingCtx,
-            { color: '#3cba54', lineWidth: 3 }
-          )
         }
       }
     })
@@ -64,10 +48,5 @@ export default function Scanner({ onDetected }) {
     onDetected(result.codeResult.code)
   }
 
-  return (
-    // If you do not specify a target,
-    // QuaggaJS would look for an element that matches
-    // the CSS selector #interactive.viewport
-    <div id="interactive" className="viewport" />
-  )
+  return <div id="interactive" className="viewport" />
 }

@@ -33,7 +33,7 @@ export default function ScannerPage({ database, changeBarcode }) {
       {isScanning && (
         <ScannerWrapper>
           <div className={'container'}>
-            {isScanning && <Scanner onDetected={onDetected} />}
+            <Scanner onDetected={onDetected} />
             <ScannerFrameStyled />
           </div>
         </ScannerWrapper>
@@ -74,8 +74,8 @@ const ScannerPageStyled = styled.div`
   height: calc(100vh - 50px - 10px);
   display: grid;
   grid-auto-rows: minmax(min-content, max-content);
-  place-items: center;
   gap: 35px;
+  place-items: center;
 `
 
 const ButtonSaveStyled = styled(ButtonSave)`
@@ -101,17 +101,15 @@ const ScannerWrapper = styled.div`
   .container,
   #interactive.viewport {
     width: 85vw;
-    /* background-color: #3cba5466; green */
 
     #interactive.viewport canvas,
     video {
-      width: 85vw;
       position: absolute;
+      width: 85vw;
+      transform: translate(-50%, -50%);
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
       border-radius: 5px;
-      /* background-color: #de524666; red */
     }
   }
 `

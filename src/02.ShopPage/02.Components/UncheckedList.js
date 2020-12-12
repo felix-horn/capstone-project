@@ -53,7 +53,7 @@ export default function UncheckedList({
                     <ListItem
                       itemId={id}
                       shopId={shopId}
-                      title={database.items.byId[id].title}
+                      database={database}
                       changeTitle={(fieldValue) => changeTitle(id, fieldValue)}
                       toggleCheckbox={() => toggleIsChecked(id)}
                       onDelete={() => deleteListItem(id)}
