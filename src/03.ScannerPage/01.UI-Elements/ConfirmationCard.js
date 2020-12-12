@@ -3,8 +3,8 @@ import styled from 'styled-components/macro'
 export default function ConfirmationCard({ barcode }) {
   return (
     <ConfirmationCardStyled>
-      Ist dies die Nummer auf dem Barcode?
       <strong>{barcode}</strong>
+      Ist dies die Nummer unter dem Barcode des Produktes?
     </ConfirmationCardStyled>
   )
 }

@@ -9,6 +9,7 @@ import ButtonSave from './01.UI-Elements/ButtonSave'
 import ButtonScanAgain from './01.UI-Elements/ButtonScanAgain'
 import { ReactComponent as ScannerFrame } from '../Assets/ScannerFrame.svg'
 import ConfirmationCard from './01.UI-Elements/ConfirmationCard'
+import ItemTitle from './01.UI-Elements/ItemTitle'
 
 ScannerPage.propTypes = {
   database: PropTypes.object.isRequired,
@@ -16,43 +17,45 @@ ScannerPage.propTypes = {
 }
 
 export default function ScannerPage({ database, changeBarcode }) {
-  const [camera, setCamera] = useState(true)
+  const [isScanning, setisScanning] = useState(true)
   const [barcode, setBarcode] = useState('')
 
   const location = useLocation()
   const itemId = location.state.itemId
   const shopId = location.state.shopId
-  const selectedItemTitle = database.items.byId[itemId].title
+  const itemTitle = database.items.byId[itemId].title
 
   return (
     <ScannerPageStyled>
       <HeaderStyled shopId={shopId} />
       <Explanation />
-      <ScanningStatusStyled>{barcode ? '' : 'Scanne:'}</ScanningStatusStyled>
-      <SelectedItemTitleStyled>{selectedItemTitle}</SelectedItemTitleStyled>
-      {camera ? (
+      <ItemTitle itemTitle={itemTitle} isScanning={isScanning} />
+      {isScanning && (
         <ScannerWrapper>
           <div className={'container'}>
-            {camera && <Scanner onDetected={onDetected} />}
+            {isScanning && <Scanner onDetected={onDetected} />}
             <ScannerFrameStyled />
           </div>
         </ScannerWrapper>
-      ) : (
-        <ConfirmationCard barcode={barcode} />
       )}
-      <ButtonSaveStyled shopId={shopId} />
-      <ButtonScanAgainStyled onClick={scanAgain} />
+      {!isScanning && (
+        <>
+          <ConfirmationCard barcode={barcode} />
+          <ButtonSaveStyled shopId={shopId} />
+          <ButtonScanAgainStyled onClick={scanAgain} />
+        </>
+      )}
     </ScannerPageStyled>
   )
 
   function onDetected(barcode) {
     setBarcode(barcode)
-    setCamera(false)
+    setisScanning(false)
     changeBarcode(itemId, barcode)
   }
 
   function scanAgain() {
-    setCamera(true)
+    setisScanning(true)
     setBarcode('')
   }
 }
@@ -67,44 +70,32 @@ const HeaderStyled = styled(Header)`
 
 const ScannerPageStyled = styled.div`
   position: relative;
-  height: calc(100vh - 60px);
+  margin-top: 35px;
+  height: calc(100vh - 50px - 10px);
   display: grid;
+  grid-auto-rows: minmax(min-content, max-content);
   place-items: center;
-  grid-template-rows: 15% auto 20%;
-`
-
-const ScanningStatusStyled = styled.div`
-  position: absolute;
-  z-index: 200;
-  top: 110px;
-`
-
-const SelectedItemTitleStyled = styled.h2`
-  position: absolute;
-  z-index: 200;
-  top: 140px;
+  gap: 35px;
 `
 
 const ButtonSaveStyled = styled(ButtonSave)`
   position: absolute;
   z-index: 200;
-  bottom: 120px;
+  bottom: 160px;
 `
 const ButtonScanAgainStyled = styled(ButtonScanAgain)`
   position: absolute;
   z-index: 200;
-  bottom: 60px;
+  bottom: 100px;
 `
 
 const ScannerWrapper = styled.div`
-  grid-row: 2;
-  align-self: center;
-
   .container {
-    position: relative;
+    position: absolute;
     display: grid;
     place-items: center;
-    height: calc(85vw * 480 / 640);
+    transform: translate(-50%, -50%);
+    bottom: 40vh;
   }
 
   .container,
