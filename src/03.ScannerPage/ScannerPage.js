@@ -1,13 +1,13 @@
 import { useState } from 'react'
-import { useLocation, NavLink } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import Scanner from './02.Components/Scanner'
+import Explanation from './01.UI-Elements/Explanation'
 import ButtonSave from './01.UI-Elements/ButtonSave'
+import ButtonScanAgain from './01.UI-Elements/ButtonScanAgain'
 import { ReactComponent as ScannerFrame } from '../Assets/ScannerFrame.svg'
-import CropFreeIcon from '@material-ui/icons/CropFree'
-import SaveIcon from '@material-ui/icons/Save'
 
 ScannerPage.propTypes = {
   database: PropTypes.object.isRequired,
@@ -30,11 +30,7 @@ export default function ScannerPage({ database, changeBarcode }) {
   return (
     <ScannerPageStyled>
       <HeaderStyled onClick={toggleMenu} />
-      <ExplanationStlyed>
-        Scanne den Barcode des Artikels {selectedItemTitle} ein, um diesen
-        zukünftig über die Scanner-Funktion der App wieder auf dessen Liste zu
-        setzen.
-      </ExplanationStlyed>
+      <Explanation />
       <ScanningStatusStyled>{barcode ? '' : 'Scant...'}</ScanningStatusStyled>
       <SelectedItemTitleStyled>{selectedItemTitle}</SelectedItemTitleStyled>
       {camera ? (
@@ -55,11 +51,7 @@ export default function ScannerPage({ database, changeBarcode }) {
         </OutputWrapper>
       )}
       <ButtonSaveStyled shopId={shopId} />
-
-      <SecondaryButtonStyled onClick={scanAgain}>
-        <CropFreeIcon />
-        Erneut scannen
-      </SecondaryButtonStyled>
+      <ButtonScanAgainStyled onClick={scanAgain} />
     </ScannerPageStyled>
   )
 
@@ -95,13 +87,6 @@ const ScannerPageStyled = styled.div`
   grid-template-rows: 15% auto 20%;
 `
 
-const ExplanationStlyed = styled.p`
-  grid-row: 1;
-  padding: 15px 20px;
-  font-size: 0.8rem;
-  color: var(--dark-gray);
-`
-
 const ScanningStatusStyled = styled.div`
   position: absolute;
   z-index: 200;
@@ -119,19 +104,10 @@ const ButtonSaveStyled = styled(ButtonSave)`
   z-index: 200;
   bottom: 120px;
 `
-const SecondaryButtonStyled = styled.button`
+const ButtonScanAgainStyled = styled(ButtonScanAgain)`
   position: absolute;
   z-index: 200;
   bottom: 60px;
-  border-radius: 5px;
-  border: var(--border);
-  outline: none;
-  background-color: var(--white);
-  padding: 5px 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--dark-gray) !important;
 `
 
 const OutputWrapper = styled.div`
