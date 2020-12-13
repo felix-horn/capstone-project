@@ -20,7 +20,7 @@ export default function FeedbackCard({
           <strong>
             {itemIdsToBarcode
               .map((id) => database.items.byId[id]?.title)
-              .toString()}
+              .join(' / ')}
           </strong>
           wurde{' '}
           {itemIdsToBarcode
@@ -32,7 +32,7 @@ export default function FeedbackCard({
                   )
                 ].title
             )
-            .toString()}{' '}
+            .join(' / ')}{' '}
           hinzugefügt.
         </FeedbackCardStyled>
       )}

@@ -60,7 +60,7 @@ export default function ScannerPage({
             barcode={barcode}
             database={database}
           />
-          <ButtonSaveStyled shopId={shopId} />
+          <PrimaryButtonStyled shopId={shopId} />
           <ButtonScanAgainStyled onClick={scanAgain} />
         </>
       )}
@@ -109,7 +109,7 @@ const ScannerPageStyled = styled.div`
   place-items: center;
 `
 
-const ButtonSaveStyled = styled(ButtonSave)`
+const PrimaryButtonStyled = styled(ButtonSave)`
   position: absolute;
   z-index: 200;
   bottom: 160px;
