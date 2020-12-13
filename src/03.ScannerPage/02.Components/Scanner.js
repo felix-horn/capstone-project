@@ -46,7 +46,6 @@ export default function Scanner({ onDetected }) {
 
   function detected(result) {
     onDetected(result.codeResult.code)
-    Quagga.stop()
   }
 
   return <div id="interactive" className="viewport" />

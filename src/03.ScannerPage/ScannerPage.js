@@ -10,6 +10,7 @@ import FeedbackCard from './01.UI-Elements/FeedbackCard'
 import ButtonBack from './01.UI-Elements/ButtonBack'
 import ButtonScanAgain from './01.UI-Elements/ButtonScanAgain'
 import { ReactComponent as ScannerFrame } from '../Assets/ScannerFrame.svg'
+import Quagga from 'quagga'
 
 ScannerPage.propTypes = {
   database: PropTypes.object.isRequired,
@@ -38,6 +39,9 @@ export default function ScannerPage({
     }
   }, [isScanning])
 
+  useEffect(() => {
+    Quagga.stop()
+  }, [barcode])
   return (
     <ScannerPageStyled>
       <HeaderStyled shopId={shopId} />
