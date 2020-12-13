@@ -7,23 +7,26 @@ ButtonScanAgain.propTypes = {
   className: PropTypes.string,
 }
 
-export default function ButtonScanAgain({ onClick, className }) {
+export default function ButtonScanAgain({
+  onClick,
+  isBarcodeInDatabase,
+  className,
+}) {
   return (
     <ButtonScanAgainStyled onClick={onClick} className={className}>
       <CropFreeIcon />
-      Erneut scannen
+      {isBarcodeInDatabase ? 'weiteren Code scannen' : 'erneut scannen'}
     </ButtonScanAgainStyled>
   )
 }
 
 const ButtonScanAgainStyled = styled.button`
   border-radius: 5px;
-  border: var(--border);
+  border: none;
   outline: none;
-  background-color: var(--white);
-  padding: 5px 15px;
+  background-color: inherit;
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--dark-gray) !important;
+  white-space: nowrap;
 `

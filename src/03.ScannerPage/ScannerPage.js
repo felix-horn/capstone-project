@@ -7,7 +7,7 @@ import Explanation from './01.UI-Elements/Explanation'
 import Status from './01.UI-Elements/Status'
 import Scanner from './02.Components/Scanner'
 import FeedbackCard from './01.UI-Elements/FeedbackCard'
-import ButtonSave from './01.UI-Elements/ButtonSave'
+import ButtonBack from './01.UI-Elements/ButtonBack'
 import ButtonScanAgain from './01.UI-Elements/ButtonScanAgain'
 import { ReactComponent as ScannerFrame } from '../Assets/ScannerFrame.svg'
 
@@ -60,8 +60,24 @@ export default function ScannerPage({
             barcode={barcode}
             database={database}
           />
-          <PrimaryButtonStyled shopId={shopId} />
-          <ButtonScanAgainStyled onClick={scanAgain} />
+          <ButtonWrapperStyled className="primary">
+            {useCase === 'setup' && <ButtonBack shopId={shopId} />}
+            {useCase === 'uncheckItem' && (
+              <ButtonScanAgain
+                onClick={scanAgain}
+                isBarcodeInDatabase={isBarcodeInDatabase}
+              />
+            )}
+          </ButtonWrapperStyled>
+          <ButtonWrapperStyled className="secondary">
+            {useCase === 'setup' && <ButtonScanAgain onClick={scanAgain} />}
+            {useCase === 'uncheckItem' && (
+              <ButtonBack
+                shopId={shopId}
+                isBarcodeInDatabase={isBarcodeInDatabase}
+              />
+            )}
+          </ButtonWrapperStyled>
         </>
       )}
     </ScannerPageStyled>
@@ -109,15 +125,27 @@ const ScannerPageStyled = styled.div`
   place-items: center;
 `
 
-const PrimaryButtonStyled = styled(ButtonSave)`
-  position: absolute;
+const ButtonWrapperStyled = styled.div`
   z-index: 200;
-  bottom: 160px;
-`
-const ButtonScanAgainStyled = styled(ButtonScanAgain)`
   position: absolute;
-  z-index: 200;
-  bottom: 100px;
+  bottom: 200px;
+
+  &.primary > * {
+    box-shadow: var(--strong-box-shadow);
+    background-color: var(--CTA-blue);
+    color: var(--white) !important;
+    padding: 10px 15px;
+  }
+
+  &.secondary > * {
+    position: absolute;
+    top: 40px;
+    transform: translate(-50%, -50%);
+    border: var(--border);
+    background-color: var(--white) !important;
+    padding: 5px 15px;
+    color: var(--dark-gray) !important;
+  }
 `
 
 const ScannerWrapper = styled.div`
