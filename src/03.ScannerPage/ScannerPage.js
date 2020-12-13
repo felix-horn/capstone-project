@@ -3,13 +3,13 @@ import { useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
-import Scanner from './02.Components/Scanner'
 import Explanation from './01.UI-Elements/Explanation'
+import ItemTitle from './01.UI-Elements/ItemTitle'
+import Scanner from './02.Components/Scanner'
+import ConfirmationCard from './01.UI-Elements/ConfirmationCard'
 import ButtonSave from './01.UI-Elements/ButtonSave'
 import ButtonScanAgain from './01.UI-Elements/ButtonScanAgain'
 import { ReactComponent as ScannerFrame } from '../Assets/ScannerFrame.svg'
-import ConfirmationCard from './01.UI-Elements/ConfirmationCard'
-import ItemTitle from './01.UI-Elements/ItemTitle'
 
 ScannerPage.propTypes = {
   database: PropTypes.object.isRequired,
@@ -21,10 +21,10 @@ export default function ScannerPage({ database, changeBarcode }) {
   const [barcode, setBarcode] = useState('')
 
   useEffect(() => {
-    if (window.navigator.vibrate) {
+    if (!isScanning && window.navigator.vibrate) {
       window.navigator.vibrate(10)
     }
-  }, [barcode])
+  }, [isScanning])
 
   const location = useLocation()
   const itemId = location.state.itemId

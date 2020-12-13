@@ -17,7 +17,9 @@ export default function Header({ onClick, shopId, className }) {
       <BackButtonStyled exact to={location} data-testid="back-button">
         <ArrowBackIcon />
       </BackButtonStyled>
-      <MoreVertIconStyled onClick={onClick} data-testid="menu-button" />
+      {onClick && (
+        <MoreVertIconStyled onClick={onClick} data-testid="menu-button" />
+      )}
     </HeaderStyled>
   )
 }
