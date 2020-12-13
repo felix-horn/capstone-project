@@ -10,8 +10,10 @@ ButtonScanner.propTypes = {
 export default function ButtonScanner({ className }) {
   return (
     <ButtonScannerStyled
-      exact
-      to="/ScannerPage"
+      to={{
+        pathname: '/ScannerPage',
+        state: { useCase: 'uncheckItem' },
+      }}
       className={className}
       data-testid="scanner-button"
     >

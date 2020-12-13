@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import Explanation from './01.UI-Elements/Explanation'
-import ItemTitle from './01.UI-Elements/ItemTitle'
+import Status from './01.UI-Elements/Status'
 import Scanner from './02.Components/Scanner'
 import ConfirmationCard from './01.UI-Elements/ConfirmationCard'
 import ButtonSave from './01.UI-Elements/ButtonSave'
@@ -27,15 +27,15 @@ export default function ScannerPage({ database, changeBarcode }) {
   }, [isScanning])
 
   const location = useLocation()
+  const useCase = location.state.useCase
   const itemId = location.state.itemId
   const shopId = location.state.shopId
-  const itemTitle = database.items.byId[itemId].title
-
+  const itemTitle = database.items.byId[itemId]?.title
   return (
     <ScannerPageStyled>
       <HeaderStyled shopId={shopId} />
-      <Explanation />
-      <ItemTitle itemTitle={itemTitle} isScanning={isScanning} />
+      <Explanation useCase={useCase} />
+      <Status useCase={useCase} itemTitle={itemTitle} isScanning={isScanning} />
       {isScanning && (
         <ScannerWrapper>
           <div className={'container'}>

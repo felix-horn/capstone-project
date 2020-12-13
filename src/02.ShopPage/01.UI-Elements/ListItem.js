@@ -55,7 +55,7 @@ export default function ListItem({
           <ButtonScannerStyled
             to={{
               pathname: '/ScannerPage',
-              state: { itemId, shopId },
+              state: { itemId, shopId, useCase: 'setup' },
             }}
           >
             <ScannerIconStyled hasBarcode={hasBarcode} />
