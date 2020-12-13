@@ -11,7 +11,7 @@ export default function ItemTitle({ useCase, itemTitle, isScanning }) {
   console.log({ useCase })
   return (
     <StatusStyled>
-      {useCase === 'uncheckItem' && 'Scannt...'}
+      {useCase === 'uncheckItem' && isScanning && 'Scannt...'}
       {useCase === 'setup' && (
         <>
           {isScanning && <span>Scanne:</span>}

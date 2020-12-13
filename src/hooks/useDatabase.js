@@ -39,6 +39,7 @@ export default function useDatabase() {
     addListItem,
     changeItemTitle,
     toggleIsChecked,
+    uncheckItemViaBarcode,
     deleteListItem,
     undoDelete,
     rearrangeListOrder,
@@ -96,6 +97,15 @@ export default function useDatabase() {
       produce(database, (draft) => {
         draft.items.byId[targetId].isChecked = !draft.items.byId[targetId]
           .isChecked
+      })
+    )
+  }
+  function uncheckItemViaBarcode(targetIds) {
+    setDatabase(
+      produce(database, (draft) => {
+        targetIds.map(
+          (targetId) => (draft.items.byId[targetId].isChecked = false)
+        )
       })
     )
   }

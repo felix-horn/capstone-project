@@ -6,6 +6,7 @@ export default createGlobalStyle`
     --CTA-blue: #4285F4;
     --warning-red: #de5246;
     --confirmation-green: #3cba5433;
+    --attention-yellow: #f4b400;
     --almost-black: #212121; //font-color
     --dark-gray: #757575; //UndoIcon
     --mid-gray: #878889; //AddIconStyled

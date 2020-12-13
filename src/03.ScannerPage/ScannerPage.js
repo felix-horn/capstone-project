@@ -6,7 +6,7 @@ import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import Explanation from './01.UI-Elements/Explanation'
 import Status from './01.UI-Elements/Status'
 import Scanner from './02.Components/Scanner'
-import ConfirmationCard from './01.UI-Elements/ConfirmationCard'
+import FeedbackCard from './01.UI-Elements/FeedbackCard'
 import ButtonSave from './01.UI-Elements/ButtonSave'
 import ButtonScanAgain from './01.UI-Elements/ButtonScanAgain'
 import { ReactComponent as ScannerFrame } from '../Assets/ScannerFrame.svg'
@@ -16,9 +16,21 @@ ScannerPage.propTypes = {
   changeBarcode: PropTypes.func.isRequired,
 }
 
-export default function ScannerPage({ database, changeBarcode }) {
+export default function ScannerPage({
+  database,
+  changeBarcode,
+  uncheckItemViaBarcode,
+}) {
   const [isScanning, setisScanning] = useState(true)
   const [barcode, setBarcode] = useState('')
+  const [itemIdsToBarcode, setItemIdsToBarcode] = useState(false)
+  const [isBarcodeInDatabase, setIsBarcodeInDatabase] = useState(false)
+
+  const location = useLocation()
+  const useCase = location.state.useCase
+  const itemId = location.state.itemId
+  const shopId = location.state.shopId
+  const itemTitle = database.items.byId[itemId]?.title
 
   useEffect(() => {
     if (!isScanning && window.navigator.vibrate) {
@@ -26,11 +38,6 @@ export default function ScannerPage({ database, changeBarcode }) {
     }
   }, [isScanning])
 
-  const location = useLocation()
-  const useCase = location.state.useCase
-  const itemId = location.state.itemId
-  const shopId = location.state.shopId
-  const itemTitle = database.items.byId[itemId]?.title
   return (
     <ScannerPageStyled>
       <HeaderStyled shopId={shopId} />
@@ -46,7 +53,13 @@ export default function ScannerPage({ database, changeBarcode }) {
       )}
       {!isScanning && (
         <>
-          <ConfirmationCard barcode={barcode} />
+          <FeedbackCard
+            useCase={useCase}
+            isBarcodeInDatabase={isBarcodeInDatabase}
+            itemIdsToBarcode={itemIdsToBarcode}
+            barcode={barcode}
+            database={database}
+          />
           <ButtonSaveStyled shopId={shopId} />
           <ButtonScanAgainStyled onClick={scanAgain} />
         </>
@@ -57,7 +70,19 @@ export default function ScannerPage({ database, changeBarcode }) {
   function onDetected(barcode) {
     setBarcode(barcode)
     setisScanning(false)
-    changeBarcode(itemId, barcode)
+    if (useCase === 'setup') {
+      changeBarcode(itemId, barcode)
+    }
+    const itemIdsToBarcode = database.items.allIds.filter(
+      (id) => database.items.byId[id]?.barcode === barcode
+    )
+    if (useCase === 'uncheckItem' && itemIdsToBarcode.length > 0) {
+      uncheckItemViaBarcode(itemIdsToBarcode)
+      setItemIdsToBarcode(itemIdsToBarcode)
+      setIsBarcodeInDatabase(true)
+    } else {
+      setIsBarcodeInDatabase(false)
+    }
   }
 
   function scanAgain() {

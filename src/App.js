@@ -13,6 +13,7 @@ export default function App() {
     changeItemTitle,
     changeShopTitle,
     toggleIsChecked,
+    uncheckItemViaBarcode,
     deleteListItem,
     undoDelete,
     rearrangeListOrder,
@@ -41,7 +42,11 @@ export default function App() {
           />
         </Route>
         <Route path="/ScannerPage">
-          <ScannerPage database={database} changeBarcode={changeBarcode} />
+          <ScannerPage
+            database={database}
+            changeBarcode={changeBarcode}
+            uncheckItemViaBarcode={uncheckItemViaBarcode}
+          />
         </Route>
       </Switch>
     </AppStyled>
