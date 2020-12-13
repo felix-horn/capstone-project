@@ -39,9 +39,9 @@ export default function ScannerPage({
     }
   }, [isScanning])
 
-  useEffect(() => {
+  /* useEffect(() => {
     Quagga.stop()
-  }, [barcode])
+  }, [barcode]) */
   return (
     <ScannerPageStyled>
       <HeaderStyled shopId={shopId} />
