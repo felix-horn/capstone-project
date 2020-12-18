@@ -28,10 +28,10 @@ export default function ButtonBack({ shopId, isBarcodeInDatabase, className }) {
           <span>zurück zur Übersicht</span>
         </>
       )}
-      {!isBarcodeInDatabase && (
+      {!isBarcodeInDatabase && !shopId && (
         <>
           <ListIcon />
-          <span>Barcod über Geschäft hinzufügen</span>
+          <span>Barcod über Liste hinzufügen</span>
         </>
       )}
     </ButtonBackStyled>
