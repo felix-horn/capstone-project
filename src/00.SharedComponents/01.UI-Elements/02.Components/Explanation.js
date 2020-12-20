@@ -10,7 +10,7 @@ export default function Explanation({ useCase, className }) {
   return (
     <ExplanationStyled className={className}>
       {useCase === 'uncheckItem' &&
-        'Um einen Artikel wieder auf dessen Einkaufsliste zu setzen, scanne seinen Barcode.'}
+        'Um einen Artikel wieder auf dessen Einkaufsliste zu setzen, scanne dessen Barcode.'}
       {useCase === 'setup' &&
         'Scanne den Barcode des Artikels einmalig ein, um diesen zukünftig über die Scanner-Funktion der App wieder auf dessen Liste zu setzen.'}
     </ExplanationStyled>

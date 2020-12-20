@@ -2,8 +2,7 @@ import styled from 'styled-components/macro'
 
 export default function FeedbackCard({
   feedback,
-  itemIdsToBarcode,
-  isBarcodeInDatabase,
+  matchingIds,
   barcode,
   database,
 }) {
@@ -15,15 +14,16 @@ export default function FeedbackCard({
           Ist dies die Nummer unter dem Barcode des Produkts?
         </FeedbackCardStyled>
       )}
-      {feedback === 'success' && isBarcodeInDatabase && (
+      {feedback === 'success' && (
         <FeedbackCardStyled className="green">
           <strong>
-            {itemIdsToBarcode
+            {/* the same barcode can be allocated to more than one item - even in differen shops */}
+            {matchingIds
               .map((id) => database.items.byId[id]?.title)
               .join(' / ')}
           </strong>
-          wurde{' '}
-          {itemIdsToBarcode
+          wurde {/* find shop names via item ids */}
+          {matchingIds
             .map(
               (itemId) =>
                 database.shops.byId[
@@ -36,7 +36,7 @@ export default function FeedbackCard({
           hinzugefügt.
         </FeedbackCardStyled>
       )}
-      {feedback === 'failure' && !isBarcodeInDatabase && (
+      {feedback === 'failure' && (
         <FeedbackCardStyled className="red">
           <strong>{barcode}</strong>
           Keinem Deiner Produkte ist dieser Barcode zugeordnet.
@@ -47,8 +47,6 @@ export default function FeedbackCard({
 }
 
 const FeedbackCardStyled = styled.div`
-  /* --box-shadow-color: fff; */
-  /* box-shadow: 0 1px 3px var(--box-shadow-color); */
   box-shadow: var(--light-box-shadow);
   border-radius: 5px;
   border: var(--border);
@@ -60,7 +58,6 @@ const FeedbackCardStyled = styled.div`
   gap: 15px;
 
   &.yellow {
-    /* --box-shadow-color: green; */
     background-color: var(--attention-yellow);
   }
   &.green {

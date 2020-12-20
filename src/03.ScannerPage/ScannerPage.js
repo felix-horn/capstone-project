@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useLocation, Redirect, useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import Quagga from 'quagga'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
-import Explanation from './02.UI-Elements/Explanation'
+import Explanation from '../00.SharedComponents/01.UI-Elements/02.Components/Explanation'
 import Status from './02.UI-Elements/Status'
 import Scanner from './03.Components/Scanner'
 import { ReactComponent as ScannerFrame } from './01.Assets/ScannerFrame.svg'
@@ -27,6 +28,7 @@ export default function ScannerPage() {
         state: { itemId, shopId, barcode },
       })
     }
+    Quagga.stop()
   }, [barcode])
 
   return (

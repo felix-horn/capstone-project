@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 import OverviewPage from './01.OverviewPage/OverviewPage'
 import ShopPage from './02.ShopPage/ShopPage'
 import ScannerPage from './03.ScannerPage/ScannerPage'
-import ScanFeedbackPage from './04.FeedbackPages/ScanFeedbackPage'
+import PageFeedbackScan from './04.FeedbackPages/PageFeedbackScan'
 import PageFeedbackSetup from './04.FeedbackPages/PageFeedbackSetup'
 
 export default function App() {
@@ -48,23 +48,17 @@ export default function App() {
           onEnter={() => console.log('entered')}
           onLeave={() => console.log('left')}
         >
-          <ScannerPage
-            database={database}
-            changeBarcode={changeBarcode}
-            uncheckItemViaBarcode={uncheckItemViaBarcode}
-          />
+          <ScannerPage />
         </Route>
         <Route path="/feedback-setup">
           <PageFeedbackSetup
             database={database}
             changeBarcode={changeBarcode}
-            uncheckItemViaBarcode={uncheckItemViaBarcode}
           />
         </Route>
         <Route path="/feedback-scan">
-          <ScanFeedbackPage
+          <PageFeedbackScan
             database={database}
-            changeBarcode={changeBarcode}
             uncheckItemViaBarcode={uncheckItemViaBarcode}
           />
         </Route>

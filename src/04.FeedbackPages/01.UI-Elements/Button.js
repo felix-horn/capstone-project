@@ -15,7 +15,10 @@ export default function Button({ title, onClick, className }) {
   return (
     <ButtonStyled onClick={onClick} className={className}>
       {title === 'Speichern' && <SaveIcon />}
-      {title === 'Erneut scannen' && <CropFreeIcon />}
+      {(title === 'Erneut scannen' || title === 'Weiteren Code scannen') && (
+        <CropFreeIcon />
+      )}
+      {title === 'Zurück zur Übersicht' && <StorageIcon />}
       {title}
     </ButtonStyled>
   )
