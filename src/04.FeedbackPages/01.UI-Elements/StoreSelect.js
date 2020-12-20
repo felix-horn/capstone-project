@@ -1,14 +1,16 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import { useLocation, useHistory } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
-import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
-import { makeStyles } from '@material-ui/core/styles'
+StoreSelect.propTypes = {
+  matchingShopIds: PropTypes.array.isRequired,
+  matchingShopTitles: PropTypes.array.isRequired,
+  className: PropTypes.string,
+}
 
 export default function StoreSelect({
   matchingShopIds,
