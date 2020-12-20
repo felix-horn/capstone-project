@@ -8,6 +8,14 @@ import Explanation from '../00.SharedComponents/01.UI-Elements/02.Components/Exp
 import FeedbackCard from './01.UI-Elements/FeedbackCard'
 import Button from './01.UI-Elements/Button'
 
+import InputLabel from '@material-ui/core/InputLabel'
+import MenuItem from '@material-ui/core/MenuItem'
+import FormHelperText from '@material-ui/core/FormHelperText'
+import FormControl from '@material-ui/core/FormControl'
+import Select from '@material-ui/core/Select'
+import { makeStyles } from '@material-ui/core/styles'
+import StorageIcon from '@material-ui/icons/Storage'
+
 PageFeedbackScan.propTypes = {
   database: PropTypes.object.isRequired,
   changeBarcode: PropTypes.func.isRequired,
@@ -53,6 +61,14 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
     }
   }, [])
 
+  const [age, setAge] = useState('')
+
+  const handleChange = (event) => {
+    setAge(event.target.value)
+  }
+
+  // const classes = useStyles()
+
   return (
     <PageFeedbackScanStyled>
       <HeaderStyled />
@@ -81,6 +97,33 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
           }
         />
       )}
+
+      <SelectWrapper variant="outlined">
+        <InputLabel id="selectId">Zum Geschäft</InputLabel>
+        <Select
+          labelId="selectId"
+          id="demo-simple-select-outlined"
+          value={age}
+          onChange={handleChange}
+          label="Zum Geschäft"
+        >
+          {matchingShopIds.map((shopId, index) => {
+            const shopTitle = matchingShopTitles[index]
+            return (
+              <MenuItem
+                onClick={() =>
+                  history.push({
+                    pathname: `/ShopPage/${shopTitle}`,
+                    state: { shopId },
+                  })
+                }
+              >
+                {shopTitle}
+              </MenuItem>
+            )
+          })}
+        </Select>
+      </SelectWrapper>
     </PageFeedbackScanStyled>
   )
 }
@@ -111,4 +154,14 @@ const ButtonPositioned = styled(Button)`
   &.primary {
     bottom: 230px;
   }
+`
+
+const SelectWrapper = styled(FormControl)`
+  display: inline-block;
+  width: 200px;
+  z-index: 200;
+  /* position: relative; */
+  /* bottom: 160px; */
+  top: 190px;
+  height: 30px;
 `
