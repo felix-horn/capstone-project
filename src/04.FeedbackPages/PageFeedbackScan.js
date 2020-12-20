@@ -17,8 +17,25 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
   const history = useHistory()
   const location = useLocation()
   const barcode = location.state.barcode
-  const matchingIds = database.items.allIds.filter(
+  const matchingItemIds = database.items.allIds.filter(
     (id) => database.items.byId[id]?.barcode === barcode
+  )
+
+  /* the same barcode can be allocated to more than one item - even in differen shops */
+  const matchingItemTitles = matchingItemIds.map(
+    (id) => database.items.byId[id]?.title
+  )
+  /* find shop names via item ids */
+  const matchingShopIds = matchingItemIds.map(
+    (itemId) =>
+      database.shops.byId[
+        database.shops.allIds.find((shopId) =>
+          database.shops.byId[shopId].items.includes(itemId)
+        )
+      ].id
+  )
+  const matchingShopTitles = matchingShopIds.map(
+    (id) => database.shops.byId[id].title
   )
 
   const [feedback, setFeedback] = useState('')
@@ -28,8 +45,8 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
       window.navigator.vibrate(10)
     }
     Quagga.stop()
-    if (matchingIds.length > 0) {
-      uncheckItemViaBarcode(matchingIds)
+    if (matchingItemIds.length > 0) {
+      uncheckItemViaBarcode(matchingItemIds)
       setFeedback('success')
     } else {
       setFeedback('failure')
@@ -42,9 +59,9 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
       <Explanation useCase="uncheckItem" />
       <FeedbackCard
         feedback={feedback}
-        database={database}
         barcode={barcode}
-        matchingIds={matchingIds}
+        matchingItemTitles={matchingItemTitles}
+        matchingShopTitles={matchingShopTitles}
       />
       <ButtonPositioned
         title={
@@ -53,10 +70,17 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
         onClick={() => history.goBack()}
         className="primary"
       />
-      <ButtonPositioned
-        title={'Zurück zur Übersicht'}
-        onClick={() => history.go(-2)}
-      />
+      {matchingShopIds.length === 1 && (
+        <ButtonPositioned
+          title={`Zur Liste "${matchingShopTitles[0]}"`}
+          onClick={() =>
+            history.push({
+              pathname: `/ShopPage/${matchingShopTitles[0]}`,
+              state: { shopId: matchingShopIds[0] },
+            })
+          }
+        />
+      )}
     </PageFeedbackScanStyled>
   )
 }

@@ -2,9 +2,9 @@ import styled from 'styled-components/macro'
 
 export default function FeedbackCard({
   feedback,
-  matchingIds,
   barcode,
-  database,
+  matchingItemTitles,
+  matchingShopTitles,
 }) {
   return (
     <>
@@ -16,24 +16,8 @@ export default function FeedbackCard({
       )}
       {feedback === 'success' && (
         <FeedbackCardStyled className="green">
-          <strong>
-            {/* the same barcode can be allocated to more than one item - even in differen shops */}
-            {matchingIds
-              .map((id) => database.items.byId[id]?.title)
-              .join(' / ')}
-          </strong>
-          wurde {/* find shop names via item ids */}
-          {matchingIds
-            .map(
-              (itemId) =>
-                database.shops.byId[
-                  database.shops.allIds.find((shopId) =>
-                    database.shops.byId[shopId].items.includes(itemId)
-                  )
-                ].title
-            )
-            .join(' / ')}{' '}
-          hinzugefügt.
+          <strong>{matchingItemTitles.join(' / ')}</strong>
+          {`wurde ${matchingShopTitles.join(' / ')} hinzugefügt.`}
         </FeedbackCardStyled>
       )}
       {feedback === 'failure' && (

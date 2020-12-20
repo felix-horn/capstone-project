@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useLocation, Redirect, useHistory } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import Explanation from '../00.SharedComponents/01.UI-Elements/02.Components/Explanation'
@@ -31,13 +31,13 @@ export default function ScannerPage() {
 
   return (
     <ScannerPageStyled>
-      <HeaderStyled shopId={shopId} />
+      <HeaderPositioned shopId={shopId} />
       <Explanation useCase={useCase} />
       <Status useCase={useCase} itemTitle={itemTitle} />
       <ScannerWrapper>
         <div className={'container'}>
           <Scanner onDetected={onDetected} />
-          <ScannerFrameStyled />
+          <ScannerFramePositioned />
         </div>
       </ScannerWrapper>
     </ScannerPageStyled>
@@ -48,7 +48,7 @@ export default function ScannerPage() {
   }
 }
 
-const HeaderStyled = styled(Header)`
+const HeaderPositioned = styled(Header)`
   position: fixed;
   z-index: 100;
   top: 0;
@@ -90,7 +90,7 @@ const ScannerWrapper = styled.div`
     }
   }
 `
-const ScannerFrameStyled = styled(ScannerFrame)`
+const ScannerFramePositioned = styled(ScannerFrame)`
   height: 65vw;
   position: absolute;
   z-index: 100;

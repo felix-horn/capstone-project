@@ -18,7 +18,7 @@ export default function Button({ title, onClick, className }) {
       {(title === 'Erneut scannen' || title === 'Weiteren Code scannen') && (
         <CropFreeIcon />
       )}
-      {title === 'Zurück zur Übersicht' && <StorageIcon />}
+      {title.includes('Zur Liste') && <StorageIcon />}
       {title}
     </ButtonStyled>
   )

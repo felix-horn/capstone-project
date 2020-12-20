@@ -21,7 +21,6 @@ export default function ShopCard({ shopId, database }) {
 
   return (
     <ShopCardStyled
-      exact
       to={{
         pathname: `/ShopPage/${shopTitle}`,
         state: { shopId },

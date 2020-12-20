@@ -33,7 +33,6 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
     <PageFeedbackSetupStyled>
       <HeaderStyled shopId={shopId} />
       <ItemTitle>{itemTitle}</ItemTitle>
-      {/* <FeedbackCardSetup barcode={barcode} /> */}
       <FeedbackCard feedback="validate" barcode={barcode} />
       <ButtonPositioned
         title={'Speichern'}

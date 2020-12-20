@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import Quagga from 'quagga'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import ShopCard from './02.Components/ShopCard'
@@ -11,6 +13,10 @@ OverviewPage.propTypes = {
 }
 
 export default function OverviewPage({ database, addShop }) {
+  const history = useHistory()
+  useEffect(() => {
+    history.replace('/')
+  }, [])
   const [isOverlayVisible, setIsOverlayVisible] = useState(false)
   const [buttonActionClass, setButtonActionClass] = useState('')
   return (
