@@ -49,7 +49,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
     if (window.navigator.vibrate) {
       window.navigator.vibrate(10)
     }
-    setTimeout(Quagga.stop(), 500)
+    setTimeout(Quagga.stop(), 3000)
 
     if (matchingItemIds.length > 0) {
       uncheckItemViaBarcode(matchingItemIds)
