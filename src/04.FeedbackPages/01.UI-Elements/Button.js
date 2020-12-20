@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import CropFreeIcon from '@material-ui/icons/CropFree'
 import SaveIcon from '@material-ui/icons/Save'
-import StorageIcon from '@material-ui/icons/Storage'
 import ListIcon from '@material-ui/icons/List'
 
 Button.propTypes = {
@@ -18,7 +17,7 @@ export default function Button({ title, onClick, className }) {
       {(title === 'Erneut scannen' || title === 'Weiteren Code scannen') && (
         <CropFreeIcon />
       )}
-      {title.includes('Zur Liste') && <StorageIcon />}
+      {title.includes('Zur Liste') && <ListIcon />}
       {title}
     </ButtonStyled>
   )
