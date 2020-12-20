@@ -26,7 +26,7 @@
     {
       "name": "Barcode Scanner",
       "description": "Artikel direkt auf die Liste setzen",
-      "url": "/ScannerPage",
+      "url": "/scanner",
       "icons": [
         {
           "src": "logos/shortcut.png",

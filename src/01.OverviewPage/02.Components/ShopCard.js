@@ -17,27 +17,25 @@ export default function ShopCard({ shopId, database }) {
   const lengthCheckedIds =
     database.shops.byId[shopId].items.length - uncheckedIds.length
 
+  const shopTitle = database.shops.byId[shopId].title
+
   return (
-    <>
-      {
-        <ShopCardStyled
-          exact
-          to={{
-            pathname: '/ShopPage',
-            state: { shopId },
-          }}
-          data-testid="shop-card"
-        >
-          <ShopTitle title={database.shops.byId[shopId].title} />
-          {uncheckedIds.map((id) => (
-            <ListItem key={id} title={database.items.byId[id].title} />
-          ))}
-          {lengthCheckedIds > 0 && (
-            <CheckedItemsSummary lengthCheckedIds={lengthCheckedIds} />
-          )}
-        </ShopCardStyled>
-      }
-    </>
+    <ShopCardStyled
+      exact
+      to={{
+        pathname: `/ShopPage/${shopTitle}`,
+        state: { shopId },
+      }}
+      data-testid="shop-card"
+    >
+      <ShopTitle title={shopTitle} />
+      {uncheckedIds.map((id) => (
+        <ListItem key={id} title={database.items.byId[id].title} />
+      ))}
+      {lengthCheckedIds > 0 && (
+        <CheckedItemsSummary lengthCheckedIds={lengthCheckedIds} />
+      )}
+    </ShopCardStyled>
   )
 }
 

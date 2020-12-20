@@ -4,6 +4,8 @@ import styled from 'styled-components/macro'
 import OverviewPage from './01.OverviewPage/OverviewPage'
 import ShopPage from './02.ShopPage/ShopPage'
 import ScannerPage from './03.ScannerPage/ScannerPage'
+import ScanFeedbackPage from './04.FeedbackPages/ScanFeedbackPage'
+import PageFeedbackSetup from './04.FeedbackPages/PageFeedbackSetup'
 
 export default function App() {
   const {
@@ -41,8 +43,26 @@ export default function App() {
             deleteShop={deleteShop}
           />
         </Route>
-        <Route path="/ScannerPage">
+        <Route
+          path="/scanner"
+          onEnter={() => console.log('entered')}
+          onLeave={() => console.log('left')}
+        >
           <ScannerPage
+            database={database}
+            changeBarcode={changeBarcode}
+            uncheckItemViaBarcode={uncheckItemViaBarcode}
+          />
+        </Route>
+        <Route path="/feedback-setup">
+          <PageFeedbackSetup
+            database={database}
+            changeBarcode={changeBarcode}
+            uncheckItemViaBarcode={uncheckItemViaBarcode}
+          />
+        </Route>
+        <Route path="/feedback-scan">
+          <ScanFeedbackPage
             database={database}
             changeBarcode={changeBarcode}
             uncheckItemViaBarcode={uncheckItemViaBarcode}

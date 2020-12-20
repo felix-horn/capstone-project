@@ -4,17 +4,15 @@ import PropTypes from 'prop-types'
 ItemTitle.propTypes = {
   useCase: PropTypes.string.isRequired,
   itemTitle: PropTypes.string.isRequired,
-  isScanning: PropTypes.bool.isRequired,
 }
 
-export default function ItemTitle({ useCase, itemTitle, isScanning }) {
-  console.log({ useCase })
+export default function ItemTitle({ useCase, itemTitle }) {
   return (
     <StatusStyled>
-      {useCase === 'uncheckItem' && isScanning && 'Scannt...'}
+      {useCase === 'uncheckItem' && 'Scannt...'}
       {useCase === 'setup' && (
         <>
-          {isScanning && <span>Scanne:</span>}
+          <span>Scanne:</span>
           <TitleStyled>{itemTitle}</TitleStyled>
         </>
       )}

@@ -11,7 +11,7 @@ export default function ButtonScanner({ className }) {
   return (
     <ButtonScannerStyled
       to={{
-        pathname: '/ScannerPage',
+        pathname: '/scanner',
         state: { useCase: 'uncheckItem' },
       }}
       className={className}
