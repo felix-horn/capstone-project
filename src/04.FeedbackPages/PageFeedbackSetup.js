@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
-import FeedbackCardSetup from './01.UI-Elements/FeedbackCardSetup'
 import Button from './01.UI-Elements/Button'
 import Quagga from 'quagga'
 import FeedbackCard from './01.UI-Elements/FeedbackCard'
+import SaveIcon from '@material-ui/icons/Save'
+import ScanIcon from '@material-ui/icons/CropFree'
 
 PageFeedbackSetup.propTypes = {
   database: PropTypes.object.isRequired,
@@ -25,7 +26,8 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
     if (window.navigator.vibrate) {
       window.navigator.vibrate(10)
     }
-    setTimeout(() => Quagga.stop(), 500)
+    //setTimeout prevents camera crash on smartphone
+    setTimeout(() => Quagga.stop())
     changeBarcode(itemId, barcode)
   }, [])
 
@@ -38,11 +40,15 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
         title={'Speichern'}
         onClick={() => history.go(-2)}
         className="primary"
-      />
+      >
+        <SaveIcon />
+      </ButtonPositioned>
       <ButtonPositioned
         title={'Erneut scannen'}
         onClick={() => history.goBack()}
-      />
+      >
+        <ScanIcon />
+      </ButtonPositioned>
     </PageFeedbackSetupStyled>
   )
 }

@@ -1,8 +1,5 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import CropFreeIcon from '@material-ui/icons/CropFree'
-import SaveIcon from '@material-ui/icons/Save'
-import ListIcon from '@material-ui/icons/List'
 
 Button.propTypes = {
   title: PropTypes.string.isRequired,
@@ -10,14 +7,10 @@ Button.propTypes = {
   className: PropTypes.string,
 }
 
-export default function Button({ title, onClick, className }) {
+export default function Button({ title, onClick, className, children }) {
   return (
     <ButtonStyled onClick={onClick} className={className}>
-      {title === 'Speichern' && <SaveIcon />}
-      {(title === 'Erneut scannen' || title === 'Weiteren Code scannen') && (
-        <CropFreeIcon />
-      )}
-      {title.includes('Zur Liste') && <ListIcon />}
+      {children}
       {title}
     </ButtonStyled>
   )

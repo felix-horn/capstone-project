@@ -44,6 +44,5 @@ export default function StoreSelect({
 }
 
 const SelectWrapper = styled(FormControl)`
-  display: inline-block;
-  width: 200px;
+  width: 160px;
 `

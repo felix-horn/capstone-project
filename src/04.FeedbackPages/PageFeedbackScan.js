@@ -9,6 +9,7 @@ import FeedbackCard from './01.UI-Elements/FeedbackCard'
 import Button from './01.UI-Elements/Button'
 import StoreSelect from './01.UI-Elements/StoreSelect'
 import ListIcon from '@material-ui/icons/List'
+import ScanIcon from '@material-ui/icons/CropFree'
 
 PageFeedbackScan.propTypes = {
   database: PropTypes.object.isRequired,
@@ -49,6 +50,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
     if (window.navigator.vibrate) {
       window.navigator.vibrate(10)
     }
+    //setTimeout prevents camera crash on smartphone
     setTimeout(() => Quagga.stop())
 
     if (matchingItemIds.length > 0) {
@@ -75,30 +77,38 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
         }
         onClick={() => history.goBack()}
         className="primary"
-      />
-      {matchingShopIds.length === 1 && (
-        <ButtonPositioned
-          title={`Zur Liste "${matchingShopTitles[0]}"`}
-          onClick={() =>
-            history.push({
-              pathname: `/ShopPage/${matchingShopTitles[0]}`,
-              state: { shopId: matchingShopIds[0] },
-            })
-          }
-        />
-      )}
-      {matchingShopIds.length > 1 && (
-        <SelectPositoned
-          matchingShopIds={matchingShopIds}
-          matchingShopTitles={matchingShopTitles}
-        />
-      )}
-      {matchingShopIds.length === 0 && (
-        <SelectPositoned
-          matchingShopIds={allShopIds}
-          matchingShopTitles={allShopTitles}
-        />
-      )}
+      >
+        <ScanIcon />
+      </ButtonPositioned>
+      <SecondaryPositoned>
+        {matchingShopIds.length === 1 && (
+          <Button
+            title={`Zur Liste "${matchingShopTitles[0]}"`}
+            onClick={() =>
+              history.push({
+                pathname: `/ShopPage/${matchingShopTitles[0]}`,
+                state: { shopId: matchingShopIds[0] },
+              })
+            }
+          >
+            <ListIcon />
+          </Button>
+        )}
+
+        {matchingShopIds.length > 1 && (
+          <StoreSelect
+            matchingShopIds={matchingShopIds}
+            matchingShopTitles={matchingShopTitles}
+          />
+        )}
+
+        {matchingShopIds.length === 0 && (
+          <StoreSelect
+            matchingShopIds={allShopIds}
+            matchingShopTitles={allShopTitles}
+          />
+        )}
+      </SecondaryPositoned>
     </PageFeedbackScanStyled>
   )
 }
@@ -124,17 +134,11 @@ const PageFeedbackScanStyled = styled.div`
 const ButtonPositioned = styled(Button)`
   z-index: 200;
   position: absolute;
-  bottom: 160px;
-
-  &.primary {
-    bottom: 230px;
-  }
+  bottom: 230px;
 `
 
-const SelectPositoned = styled(StoreSelect)`
+const SecondaryPositoned = styled.div`
   z-index: 200;
   position: absolute;
-  top: 180px;
-  display: inline-block;
-  width: 160px;
+  bottom: 160px;
 `
