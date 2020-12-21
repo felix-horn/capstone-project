@@ -25,7 +25,7 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
     if (window.navigator.vibrate) {
       window.navigator.vibrate(10)
     }
-    setTimeout(Quagga.stop(), 500)
+    setTimeout(() => Quagga.stop(), 500)
     changeBarcode(itemId, barcode)
   }, [])
 
