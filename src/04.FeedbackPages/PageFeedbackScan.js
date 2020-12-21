@@ -28,7 +28,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
   const matchingItemTitles = matchingItemIds.map(
     (id) => database.items.byId[id]?.title
   )
-  /* find shop names via item ids */
+
   const matchingShopIds = matchingItemIds.map(
     (itemId) =>
       database.shops.byId[
@@ -71,7 +71,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
         matchingItemTitles={matchingItemTitles}
         matchingShopTitles={matchingShopTitles}
       />
-      <ButtonPositioned
+      <PrimaryPositioned
         title={
           feedback === 'success' ? 'Weiteren Code scannen' : 'Erneut scannen'
         }
@@ -79,8 +79,8 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
         className="primary"
       >
         <ScanIcon />
-      </ButtonPositioned>
-      <SecondaryPositoned>
+      </PrimaryPositioned>
+      <SecondaryPositon>
         {matchingShopIds.length === 1 && (
           <Button
             title={`Zur Liste "${matchingShopTitles[0]}"`}
@@ -108,7 +108,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
             matchingShopTitles={allShopTitles}
           />
         )}
-      </SecondaryPositoned>
+      </SecondaryPositon>
     </PageFeedbackScanStyled>
   )
 }
@@ -131,13 +131,13 @@ const PageFeedbackScanStyled = styled.div`
   place-items: center;
 `
 
-const ButtonPositioned = styled(Button)`
+const PrimaryPositioned = styled(Button)`
   z-index: 200;
   position: absolute;
   bottom: 230px;
 `
-
-const SecondaryPositoned = styled.div`
+//material ui select component cannot be positioned without wrapper
+const SecondaryPositon = styled.div`
   z-index: 200;
   position: absolute;
   bottom: 160px;

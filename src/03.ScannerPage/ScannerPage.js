@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import Explanation from '../00.SharedComponents/01.UI-Elements/02.Components/Explanation'
 import Status from './02.UI-Elements/Status'
-import Scanner from './03.Components/Scanner'
+import Scanner from './02.UI-Elements/Scanner'
 import { ReactComponent as ScannerFrame } from './01.Assets/ScannerFrame.svg'
 
 export default function ScannerPage() {
