@@ -16,10 +16,8 @@ export default function App() {
     toggleIsChecked,
     uncheckItemViaBarcode,
     deleteListItem,
-    undoDelete,
     rearrangeListOrder,
     deleteShop,
-    visibilityUndoButton,
     changeBarcode,
   } = useDatabase()
   return (
@@ -36,8 +34,6 @@ export default function App() {
           toggleIsChecked={toggleIsChecked}
           deleteListItem={deleteListItem}
           rearrangeListOrder={rearrangeListOrder}
-          visibilityUndoButton={visibilityUndoButton}
-          undoDelete={undoDelete}
           deleteShop={deleteShop}
         />
       </Route>

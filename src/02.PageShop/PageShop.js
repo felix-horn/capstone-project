@@ -8,7 +8,7 @@ import UncheckedList from './02.Components/UncheckedList'
 import CheckedList from './02.Components/CheckedList'
 import ShopTitle from './01.UI-Elements/ShopTitle'
 import ButtonAddItem from './01.UI-Elements/ButtonAddItem'
-import ButtonUndo from './01.UI-Elements/ButtonUndo'
+import Footer from '../00.SharedComponents/01.UI-Elements/02.Components/Footer'
 
 ShopPage.propTypes = {
   database: PropTypes.object.isRequired,
@@ -18,8 +18,6 @@ ShopPage.propTypes = {
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
   rearrangeListOrder: PropTypes.func.isRequired,
-  visibilityButtonUndo: PropTypes.string.isRequired,
-  undoDelete: PropTypes.func.isRequired,
 }
 
 export default function ShopPage({
@@ -30,13 +28,16 @@ export default function ShopPage({
   toggleIsChecked,
   deleteListItem,
   rearrangeListOrder,
-  visibilityButtonUndo,
   deleteShop,
-  undoDelete,
 }) {
   const location = useLocation()
   const shopId = location.state.shopId
   const [isMenuVisible, setIsMenuVisible] = useState(false)
+  const [isButtonUndoActive, setIsButtonUndoActive] = useState(false)
+  const [deletedListItem, setDeletedListItem] = useState({
+    title: '',
+    isChecked: false,
+  })
   return (
     <>
       <HeaderPositioned onClick={toggleMenu} />
@@ -57,7 +58,7 @@ export default function ShopPage({
         addListItem={() => addListItem(shopId)}
         changeTitle={changeItemTitle}
         toggleIsChecked={toggleIsChecked}
-        deleteListItem={(id) => deleteListItem(id, shopId)}
+        deleteListItem={(id) => handelDeleteListItem(id, shopId)}
         rearrangeListOrder={(indexFrom, indexTo) =>
           rearrangeListOrder(indexFrom, indexTo, shopId)
         }
@@ -68,14 +69,34 @@ export default function ShopPage({
         database={database}
         changeTitle={changeItemTitle}
         toggleIsChecked={toggleIsChecked}
-        deleteListItem={(id) => deleteListItem(id, shopId)}
+        deleteListItem={(id) => handelDeleteListItem(id, shopId)}
       />
-      <ButtonUndoPositioned className={visibilityButtonUndo} onClick={undoDelete} />
+      <FooterPositioned onClick={undoDelete} isButtonUndoActive={isButtonUndoActive}/>
     </>
   )
   function toggleMenu() {
     setIsMenuVisible(!isMenuVisible)
   }
+  function undoDelete(){
+    setIsButtonUndoActive(!isButtonUndoActive)
+    addListItem(
+      deletedListItem.shopId,
+      deletedListItem.title,
+      deletedListItem.isChecked
+    )
+    console.log('clicked')
+  }
+  function handelDeleteListItem(itemId, shopId){
+    deleteListItem(itemId, shopId)
+    cacheDeletedListItem(itemId, shopId)
+    setIsButtonUndoActive(true)
+  }
+  function cacheDeletedListItem(targetId, shopId) {
+    const title = database.items.byId[targetId].title
+    const isChecked = database.items.byId[targetId].isChecked
+    setDeletedListItem({ shopId, title, isChecked })
+  }
+
 }
 
 const HeaderPositioned = styled(Header)`
@@ -84,44 +105,21 @@ const HeaderPositioned = styled(Header)`
   top: 0;
   left: 0;
   width: 100%;
-`
-
-const ShopTitlePositioned = styled(ShopTitle)`
+  `
+  
+  const ShopTitlePositioned = styled(ShopTitle)`
   margin-top: 40px;
-`
+  `
 
-const ButtonAddItemPositioned = styled(ButtonAddItem)`
+  const ButtonAddItemPositioned = styled(ButtonAddItem)`
   margin-left: 30px;
   margin-bottom: 20px;
-`
-
-const ButtonUndoPositioned = styled(ButtonUndo)`
+  `
+  
+  const FooterPositioned = styled(Footer)`
   position: fixed;
-  bottom: 100px;
-  left: 50%;
-  transform: translate(-50%);
-  display: flex;
-  justify-content: center;
-
-  &.shown {
-  }
-
-  &.fade {
-    animation: 1s fadeOut ease forwards;
-  }
-
-  &.hidden {
-    display: none;
-  }
-
-  @keyframes fadeOut {
-    0% {
-      opacity: 1;
-      pointer-events: all;
-    }
-    100% {
-      opacity: 0;
-      pointer-events: none;
-    }
-  }
-`
+  z-index: var(--z-index-header);
+  bottom: 0;
+  left: 0;
+  width: 100%;
+    `

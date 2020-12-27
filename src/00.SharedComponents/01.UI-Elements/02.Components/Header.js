@@ -13,16 +13,16 @@ Header.propTypes = {
 export default function Header({ onClick, shopId, className }) {
   const location = shopId ? { pathname: '/shop', state: { shopId } } : '/'
   return (
-    <HeaderStyled className={className}>
+    <HeaderLayout className={className}>
       <BackButton exact to={location} data-testid="back-button">
         <ArrowBackIcon />
       </BackButton>
       {onClick && <MenuButton onClick={onClick} data-testid="menu-button" />}
-    </HeaderStyled>
+    </HeaderLayout>
   )
 }
 
-const HeaderStyled = styled.div`
+const HeaderLayout = styled.div`
   height: 60px;
   max-width: 450px;
   background-color: var(--white);

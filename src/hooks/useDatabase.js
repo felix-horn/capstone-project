@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import produce from 'immer'
 import { v4 as uuid } from 'uuid'
 import saveLocally from '../lib/saveLocally'
@@ -24,13 +24,6 @@ export default function useDatabase() {
     saveLocally(STORAGE_KEY, database)
   }, [database])
 
-  const [deletedListItem, setDeletedListItem] = useState({
-    title: '',
-    isChecked: false,
-  })
-
-  const [visibilityUndoButton, setVisibilityUndoButton] = useState('hidden')
-  const fadeTimer = useRef()
 
   return {
     database,
@@ -41,10 +34,8 @@ export default function useDatabase() {
     toggleIsChecked,
     uncheckItemViaBarcode,
     deleteListItem,
-    undoDelete,
     rearrangeListOrder,
     deleteShop,
-    visibilityUndoButton,
     changeBarcode,
   }
 
@@ -122,21 +113,7 @@ export default function useDatabase() {
     )
   }
 
-  /* ---------------------- delete ListItem and undo delete --------------------------- */
-
   function deleteListItem(targetId, shopId) {
-    cacheToBeDeletedListItem(targetId, shopId)
-    updateDatabase(targetId, shopId)
-    displayUndoButton()
-  }
-
-  function cacheToBeDeletedListItem(targetId, shopId) {
-    const title = database.items.byId[targetId].title
-    const isChecked = database.items.byId[targetId].isChecked
-    setDeletedListItem({ shopId, title, isChecked })
-  }
-
-  function updateDatabase(targetId, shopId) {
     setDatabase(
       produce(database, (draft) => {
         draft.shops.byId[shopId].items.splice(
@@ -148,28 +125,6 @@ export default function useDatabase() {
       })
     )
   }
-
-  function displayUndoButton() {
-    setVisibilityUndoButton('shown')
-    setFadeTimer()
-  }
-
-  function setFadeTimer() {
-    fadeTimer.current && clearTimeout(fadeTimer.current)
-    fadeTimer.current = setTimeout(() => setVisibilityUndoButton('fade'), 4000)
-  }
-
-  function undoDelete() {
-    addListItem(
-      deletedListItem.shopId,
-      deletedListItem.title,
-      deletedListItem.isChecked
-    )
-    setVisibilityUndoButton('hidden')
-    clearTimeout(fadeTimer.current)
-  }
-
-  /* ---------------------- / delete ListItem and undo delete --------------------------- */
 
   function deleteShop(targetId) {
     const shopItems = database.shops.byId[targetId].items

@@ -13,7 +13,7 @@ import ScanIcon from '@material-ui/icons/CropFree'
 
 PageFeedbackScan.propTypes = {
   database: PropTypes.object.isRequired,
-  changeBarcode: PropTypes.func.isRequired,
+  uncheckItemViaBarcode: PropTypes.func.isRequired,
 }
 
 export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {

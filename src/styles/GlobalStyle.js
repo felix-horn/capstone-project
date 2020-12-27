@@ -15,6 +15,7 @@ export default createGlobalStyle`
     --strong-box-shadow: 0 3px 8px #0005; //UndoButton
     --box-shadow: 0 1px 3px #0004; //UndoButton
     --light-box-shadow: 0 1px 3px #0003; //dragged item
+    --light-box-shadow-up: 0 -1px 3px #0002; //dragged item
     --border: 1px solid #dadcdf; //border-top
 
     /* z-indices */
