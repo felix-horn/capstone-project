@@ -50,7 +50,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
     if (window.navigator.vibrate) {
       window.navigator.vibrate(10)
     }
-    //setTimeout prevents camera crash on smartphone
+    //racecondition prevents camera crash on smartphone
     setTimeout(() => Quagga.stop())
 
     if (matchingItemIds.length > 0) {
@@ -59,11 +59,12 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
     } else {
       setFeedback('failure')
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
-    <PageFeedbackScanStyled>
-      <HeaderStyled />
+    <PageGrid>
+      <HeaderPositioned />
       <Explanation useCase="uncheckItem" />
       <FeedbackCard
         feedback={feedback}
@@ -71,7 +72,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
         matchingItemTitles={matchingItemTitles}
         matchingShopTitles={matchingShopTitles}
       />
-      <PrimaryPositioned
+      <Button
         title={
           feedback === 'success' ? 'Weiteren Code scannen' : 'Erneut scannen'
         }
@@ -79,8 +80,8 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
         className="primary"
       >
         <ScanIcon />
-      </PrimaryPositioned>
-      <SecondaryPositon>
+      </Button>
+      
         {matchingShopIds.length === 1 && (
           <Button
             title={`Zur Liste "${matchingShopTitles[0]}"`}
@@ -108,37 +109,23 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
             matchingShopTitles={allShopTitles}
           />
         )}
-      </SecondaryPositon>
-    </PageFeedbackScanStyled>
+    </PageGrid>
   )
 }
 
-const HeaderStyled = styled(Header)`
-  position: absolute;
-  z-index: 100;
+const HeaderPositioned = styled(Header)`
+  position: fixed;
+  z-index: var(--z-index-header);
   top: 0;
   left: 0;
   width: 100%;
 `
 
-const PageFeedbackScanStyled = styled.div`
-  position: relative;
+const PageGrid = styled.div`
   margin-top: 35px;
-  height: calc(100vh - 50px - 10px);
   display: grid;
-  grid-auto-rows: minmax(min-content, max-content);
-  gap: 35px;
-  place-items: center;
-`
-
-const PrimaryPositioned = styled(Button)`
-  z-index: 200;
-  position: absolute;
-  bottom: 230px;
-`
-//material ui select component cannot be positioned without wrapper
-const SecondaryPositon = styled.div`
-  z-index: 200;
-  position: absolute;
-  bottom: 160px;
+  grid-template-rows: auto 40vh auto auto;
+  gap: 25px;
+  align-items: start;
+  justify-items: center;
 `

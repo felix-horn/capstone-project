@@ -26,36 +26,37 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
     if (window.navigator.vibrate) {
       window.navigator.vibrate(10)
     }
-    //setTimeout prevents camera crash on smartphone
+    //racecondition prevents camera crash on smartphone
     setTimeout(() => Quagga.stop())
     changeBarcode(itemId, barcode)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
-    <PageFeedbackSetupStyled>
-      <HeaderStyled shopId={shopId} />
+    <PageGrid>
+      <HeaderPositioned shopId={shopId} />
       <ItemTitle>{itemTitle}</ItemTitle>
       <FeedbackCard feedback="validate" barcode={barcode} />
-      <ButtonPositioned
+      <Button
         title={'Speichern'}
         onClick={() => history.go(-2)}
         className="primary"
       >
         <SaveIcon />
-      </ButtonPositioned>
-      <ButtonPositioned
+      </Button>
+      <Button
         title={'Erneut scannen'}
         onClick={() => history.goBack()}
       >
         <ScanIcon />
-      </ButtonPositioned>
-    </PageFeedbackSetupStyled>
+      </Button>
+    </PageGrid>
   )
 }
 
-const HeaderStyled = styled(Header)`
+const HeaderPositioned = styled(Header)`
   position: fixed;
-  z-index: 100;
+  z-index: var(--z-index-header);
   top: 0;
   left: 0;
   width: 100%;
@@ -65,22 +66,12 @@ const ItemTitle = styled.strong`
   font-size: 1.2rem;
 `
 
-const PageFeedbackSetupStyled = styled.div`
-  position: relative;
-  margin-top: 35px;
-  height: calc(100vh - 50px - 10px);
-  display: grid;
-  grid-auto-rows: minmax(min-content, max-content);
-  gap: 35px;
-  place-items: center;
+const PageGrid = styled.div`
+margin-top: 35px;
+display: grid;
+grid-template-rows: auto 40vh auto auto;
+gap: 25px;
+align-items: start;
+justify-items: center;
 `
 
-const ButtonPositioned = styled(Button)`
-  z-index: 200;
-  position: absolute;
-  bottom: 160px;
-
-  &.primary {
-    bottom: 230px;
-  }
-`

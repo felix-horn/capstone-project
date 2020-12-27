@@ -49,7 +49,7 @@ export default function ScannerPage() {
 }
 
 const HeaderPositioned = styled(Header)`
-  position: absolute;
+  position: fixed;
   z-index: var(--z-index-header);
   top: 0;
   left: 0;
