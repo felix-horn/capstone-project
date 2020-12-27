@@ -32,13 +32,13 @@ const BackgroundStyled = styled.div`
 
 const ButtonAddShopStyled = styled(ButtonAddShop)`
   position: absolute;
-  z-index: 300;
+  z-index: var(--z-index-item-on-overlay);
   bottom: calc(120px + 10px + 5px);
   right: calc(30px + 10px + 5px);
 `
 const ButtonScannerStyled = styled(ButtonScanner)`
   position: absolute;
-  z-index: 300;
+  z-index: var(--z-index-item-on-overlay);
   bottom: calc(60px + 10px);
   right: calc(30px + 10px);
 `

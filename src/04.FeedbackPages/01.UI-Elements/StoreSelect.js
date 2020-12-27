@@ -29,7 +29,7 @@ export default function StoreSelect({
             <MenuItem
               onClick={() =>
                 history.push({
-                  pathname: `/ShopPage/${shopTitle}`,
+                  pathname: `/shop/${shopTitle}`,
                   state: { shopId },
                 })
               }

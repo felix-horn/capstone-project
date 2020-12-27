@@ -86,7 +86,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
             title={`Zur Liste "${matchingShopTitles[0]}"`}
             onClick={() =>
               history.push({
-                pathname: `/ShopPage/${matchingShopTitles[0]}`,
+                pathname: `/shop/${matchingShopTitles[0]}`,
                 state: { shopId: matchingShopIds[0] },
               })
             }
@@ -114,7 +114,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
 }
 
 const HeaderStyled = styled(Header)`
-  position: fixed;
+  position: absolute;
   z-index: 100;
   top: 0;
   left: 0;

@@ -15,7 +15,7 @@ export default function ButtonAddShop({ addShop, className }) {
     <ButtonAddShopStyled
       exact
       to={{
-        pathname: '/ShopPage',
+        pathname: '/shop',
         state: { shopId: newShopId },
       }}
       onClick={() => addShop(newShopId)}

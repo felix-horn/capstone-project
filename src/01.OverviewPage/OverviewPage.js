@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import Quagga from 'quagga'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import ShopCard from './02.Components/ShopCard'
@@ -37,27 +36,27 @@ export default function OverviewPage({ database, addShop }) {
     </OverviewPageStyled>
   )
 
-  function handleOverlayClick() {
-    setIsOverlayVisible(false)
-    setButtonActionClass('rotate')
-  }
-
   function handleButtonActionClick() {
     setIsOverlayVisible(true)
     setButtonActionClass('')
+  }
+
+  function handleOverlayClick() {
+    setIsOverlayVisible(false)
+    setButtonActionClass('rotate')
   }
 }
 
 const OverviewPageStyled = styled.div`
   position: relative;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 50px - 10px);
   display: grid;
   gap: 10px;
   grid-auto-rows: minmax(min-content, max-content);
 `
 const ActionButtonOverlayStyled = styled(ActionButtonOverlay)`
   position: fixed;
-  z-index: 200;
+  z-index: var(--z-index-overlay);
   top: 0;
   left: 0;
 `
@@ -65,5 +64,5 @@ const ButtonActionStyled = styled(ButtonAction)`
   position: absolute;
   bottom: 60px;
   right: 30px;
-  z-index: 100;
+  z-index: var(--z-index-floating-item);
 `

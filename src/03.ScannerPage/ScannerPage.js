@@ -49,8 +49,8 @@ export default function ScannerPage() {
 }
 
 const HeaderPositioned = styled(Header)`
-  position: fixed;
-  z-index: 100;
+  position: absolute;
+  z-index: var(--z-index-header);
   top: 0;
   left: 0;
   width: 100%;
@@ -93,5 +93,5 @@ const ScannerWrapper = styled.div`
 const ScannerFramePositioned = styled(ScannerFrame)`
   height: 65vw;
   position: absolute;
-  z-index: 100;
+  z-index: var(--z-index-floating-item);
 `

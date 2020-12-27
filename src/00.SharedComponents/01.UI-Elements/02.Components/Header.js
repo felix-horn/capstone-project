@@ -11,7 +11,7 @@ Header.propTypes = {
 }
 
 export default function Header({ onClick, shopId, className }) {
-  const location = shopId ? { pathname: '/ShopPage', state: { shopId } } : '/'
+  const location = shopId ? { pathname: '/shop', state: { shopId } } : '/'
   return (
     <HeaderStyled className={className}>
       <BackButton exact to={location} data-testid="back-button">

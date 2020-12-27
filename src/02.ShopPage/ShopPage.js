@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
-import MenuWrapped from '../00.SharedComponents/01.UI-Elements/02.Components/MenuWrapped'
+import MenuWithOverlay from '../00.SharedComponents/01.UI-Elements/02.Components/MenuWithOverlay'
 import UncheckedList from './02.Components/UncheckedList'
 import CheckedList from './02.Components/CheckedList'
 import ShopTitle from './01.UI-Elements/ShopTitle'
@@ -41,7 +41,7 @@ export default function ShopPage({
     <>
       <HeaderStyled onClick={toggleMenu} />
       {isMenuVisible && (
-        <MenuWrapped
+        <MenuWithOverlay
           toggleMenu={toggleMenu}
           deleteShop={() => deleteShop(shopId)}
         />
@@ -80,7 +80,7 @@ export default function ShopPage({
 
 const HeaderStyled = styled(Header)`
   position: fixed;
-  z-index: 100;
+  z-index: var(--z-index-header);
   top: 0;
   left: 0;
   width: 100%;

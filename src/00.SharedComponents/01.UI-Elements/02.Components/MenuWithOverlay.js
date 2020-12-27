@@ -2,12 +2,12 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Menu from './Menu'
 
-MenuWrapped.propTypes = {
+MenuWithOverlay.propTypes = {
   toggleMenu: PropTypes.func.isRequired,
   deleteShop: PropTypes.func.isRequired,
 }
 
-export default function MenuWrapped({ toggleMenu, deleteShop }) {
+export default function MenuWithOverlay({ toggleMenu, deleteShop }) {
   return (
     <ClickableMenuBackground onClick={toggleMenu} data-testid="background">
       <MenuStyled deleteShop={deleteShop} />
@@ -16,8 +16,8 @@ export default function MenuWrapped({ toggleMenu, deleteShop }) {
 }
 
 const ClickableMenuBackground = styled.div`
-  position: fixed;
-  z-index: 150;
+  position: absolute;
+  z-index: var(--z-index-overlay);
   top: 0;
   left: 0;
   height: 100%;
@@ -25,8 +25,8 @@ const ClickableMenuBackground = styled.div`
 `
 
 const MenuStyled = styled(Menu)`
-  position: fixed;
-  z-index: 200;
+  position: absolute;
+  z-index: var(--z-index-item-on-overlay);
   top: 45px;
   right: 0;
 `

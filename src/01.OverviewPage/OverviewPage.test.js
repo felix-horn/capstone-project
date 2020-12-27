@@ -73,6 +73,6 @@ describe('OverviewPage', () => {
     )
     const button = getByTestId('action-button')
     user.click(button)
-    expect(button).toHaveProperty('href', 'http://localhost/ShopPage')
+    expect(button).toHaveProperty('href', 'http://localhost/shop')
   })
 })

@@ -22,7 +22,7 @@ export default function ShopCard({ shopId, database }) {
   return (
     <ShopCardStyled
       to={{
-        pathname: `/ShopPage/${shopTitle}`,
+        pathname: `/shop/${shopTitle}`,
         state: { shopId },
       }}
       data-testid="shop-card"

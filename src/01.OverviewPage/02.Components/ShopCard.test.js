@@ -93,6 +93,6 @@ describe('ShopCard', () => {
     )
     const card = getByTestId('shop-card')
     user.click(card)
-    expect(card).toHaveProperty('href', 'http://localhost/ShopPage')
+    expect(card).toHaveProperty('href', 'http://localhost/shop')
   })
 })

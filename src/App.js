@@ -24,47 +24,40 @@ export default function App() {
     changeBarcode,
   } = useDatabase()
   return (
-    <AppStyled>
-      <Switch>
-        <Route exact path="/">
-          <OverviewPage database={database} addShop={addShop} />
-        </Route>
-        <Route path="/ShopPage">
-          <ShopPage
-            database={database}
-            changeShopTitle={changeShopTitle}
-            addListItem={addListItem}
-            changeItemTitle={changeItemTitle}
-            toggleIsChecked={toggleIsChecked}
-            deleteListItem={deleteListItem}
-            rearrangeListOrder={rearrangeListOrder}
-            visibilityUndoButton={visibilityUndoButton}
-            undoDelete={undoDelete}
-            deleteShop={deleteShop}
-          />
-        </Route>
-        <Route
-          path="/scanner"
-          onEnter={() => console.log('entered')}
-          onLeave={() => console.log('left')}
-        >
-          <ScannerPage />
-        </Route>
-        <Route path="/feedback-setup">
-          <PageFeedbackSetup
-            database={database}
-            changeBarcode={changeBarcode}
-          />
-        </Route>
-        <Route path="/feedback-scan">
-          <PageFeedbackScan
-            database={database}
-            uncheckItemViaBarcode={uncheckItemViaBarcode}
-          />
-        </Route>
-      </Switch>
-    </AppStyled>
+    <Switch>
+      <Route exact path="/">
+        <OverviewPage database={database} addShop={addShop} />
+      </Route>
+      <Route path="/shop">
+        <ShopPage
+          database={database}
+          changeShopTitle={changeShopTitle}
+          addListItem={addListItem}
+          changeItemTitle={changeItemTitle}
+          toggleIsChecked={toggleIsChecked}
+          deleteListItem={deleteListItem}
+          rearrangeListOrder={rearrangeListOrder}
+          visibilityUndoButton={visibilityUndoButton}
+          undoDelete={undoDelete}
+          deleteShop={deleteShop}
+        />
+      </Route>
+      <Route
+        path="/scanner"
+        onEnter={() => console.log('entered')}
+        onLeave={() => console.log('left')}
+      >
+        <ScannerPage />
+      </Route>
+      <Route path="/feedback-setup">
+        <PageFeedbackSetup database={database} changeBarcode={changeBarcode} />
+      </Route>
+      <Route path="/feedback-scan">
+        <PageFeedbackScan
+          database={database}
+          uncheckItemViaBarcode={uncheckItemViaBarcode}
+        />
+      </Route>
+    </Switch>
   )
 }
-
-const AppStyled = styled.div``
