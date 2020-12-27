@@ -1,8 +1,7 @@
 import { Switch, Route } from 'react-router-dom'
 import useDatabase from './hooks/useDatabase'
-import styled from 'styled-components/macro'
 import PageOverview from './01.PageOverview/PageOverview'
-import ShopPage from './02.ShopPage/ShopPage'
+import PageShop from './02.PageShop/PageShop'
 import ScannerPage from './03.ScannerPage/ScannerPage'
 import PageFeedbackScan from './04.FeedbackPages/PageFeedbackScan'
 import PageFeedbackSetup from './04.FeedbackPages/PageFeedbackSetup'
@@ -29,7 +28,7 @@ export default function App() {
         <PageOverview database={database} addShop={addShop} />
       </Route>
       <Route path="/shop">
-        <ShopPage
+        <PageShop
           database={database}
           changeShopTitle={changeShopTitle}
           addListItem={addListItem}

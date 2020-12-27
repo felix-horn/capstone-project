@@ -42,6 +42,7 @@ export default function Scanner({ onDetected }) {
     })
 
     Quagga.onDetected(detected)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function detected(result) {

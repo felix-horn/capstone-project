@@ -3,12 +3,12 @@ import { useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
-import MenuWithOverlay from '../00.SharedComponents/01.UI-Elements/02.Components/MenuWithOverlay'
+import OverlayMenu from '../00.SharedComponents/01.UI-Elements/02.Components/OverlayMenu'
 import UncheckedList from './02.Components/UncheckedList'
 import CheckedList from './02.Components/CheckedList'
 import ShopTitle from './01.UI-Elements/ShopTitle'
-import AddItemButton from './01.UI-Elements/AddItemButton'
-import UndoButton from './01.UI-Elements/UndoButton'
+import ButtonAddItem from './01.UI-Elements/ButtonAddItem'
+import ButtonUndo from './01.UI-Elements/ButtonUndo'
 
 ShopPage.propTypes = {
   database: PropTypes.object.isRequired,
@@ -18,7 +18,7 @@ ShopPage.propTypes = {
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
   rearrangeListOrder: PropTypes.func.isRequired,
-  visibilityUndoButton: PropTypes.string.isRequired,
+  visibilityButtonUndo: PropTypes.string.isRequired,
   undoDelete: PropTypes.func.isRequired,
 }
 
@@ -30,7 +30,7 @@ export default function ShopPage({
   toggleIsChecked,
   deleteListItem,
   rearrangeListOrder,
-  visibilityUndoButton,
+  visibilityButtonUndo,
   deleteShop,
   undoDelete,
 }) {
@@ -39,14 +39,14 @@ export default function ShopPage({
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   return (
     <>
-      <HeaderStyled onClick={toggleMenu} />
+      <HeaderPositioned onClick={toggleMenu} />
       {isMenuVisible && (
-        <MenuWithOverlay
+        <OverlayMenu
           toggleMenu={toggleMenu}
           deleteShop={() => deleteShop(shopId)}
         />
       )}
-      <ShopTitleStlyed
+      <ShopTitlePositioned
         shopId={shopId}
         database={database}
         changeTitle={(fieldValue) => changeShopTitle(shopId, fieldValue)}
@@ -62,7 +62,7 @@ export default function ShopPage({
           rearrangeListOrder(indexFrom, indexTo, shopId)
         }
       />
-      <AddItemButtonStyled onClick={() => addListItem(shopId)} />
+      <ButtonAddItemPositioned onClick={() => addListItem(shopId)} />
       <CheckedList
         shopId={shopId}
         database={database}
@@ -70,7 +70,7 @@ export default function ShopPage({
         toggleIsChecked={toggleIsChecked}
         deleteListItem={(id) => deleteListItem(id, shopId)}
       />
-      <UndoButtonStyled className={visibilityUndoButton} onClick={undoDelete} />
+      <ButtonUndoPositioned className={visibilityButtonUndo} onClick={undoDelete} />
     </>
   )
   function toggleMenu() {
@@ -78,7 +78,7 @@ export default function ShopPage({
   }
 }
 
-const HeaderStyled = styled(Header)`
+const HeaderPositioned = styled(Header)`
   position: fixed;
   z-index: var(--z-index-header);
   top: 0;
@@ -86,16 +86,16 @@ const HeaderStyled = styled(Header)`
   width: 100%;
 `
 
-const ShopTitleStlyed = styled(ShopTitle)`
+const ShopTitlePositioned = styled(ShopTitle)`
   margin-top: 40px;
 `
 
-const AddItemButtonStyled = styled(AddItemButton)`
+const ButtonAddItemPositioned = styled(ButtonAddItem)`
   margin-left: 30px;
   margin-bottom: 20px;
 `
 
-const UndoButtonStyled = styled(UndoButton)`
+const ButtonUndoPositioned = styled(ButtonUndo)`
   position: fixed;
   bottom: 100px;
   left: 50%;

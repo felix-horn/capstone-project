@@ -2,25 +2,25 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import AddIcon from '@material-ui/icons/Add'
 
-AddItemButton.propTypes = {
+ButtonAddItem.propTypes = {
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
 
-export default function AddItemButton({ onClick, className }) {
+export default function ButtonAddItem({ onClick, className }) {
   return (
-    <AddItemButtonStyled
+    <Button
       onClick={onClick}
       className={className}
       data-testid="add-button"
     >
       <AddIconStyled />
       <ButtonTextStyled>Listeneintrag</ButtonTextStyled>
-    </AddItemButtonStyled>
+    </Button>
   )
 }
 
-const AddItemButtonStyled = styled.button`
+const Button = styled.button`
   border: none;
   background: none;
   display: flex;

@@ -2,12 +2,12 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Menu from './Menu'
 
-MenuWithOverlay.propTypes = {
+OverlayMenu.propTypes = {
   toggleMenu: PropTypes.func.isRequired,
   deleteShop: PropTypes.func.isRequired,
 }
 
-export default function MenuWithOverlay({ toggleMenu, deleteShop }) {
+export default function OverlayMenu({ toggleMenu, deleteShop }) {
   return (
     <ClickableMenuBackground onClick={toggleMenu} data-testid="background">
       <MenuStyled deleteShop={deleteShop} />

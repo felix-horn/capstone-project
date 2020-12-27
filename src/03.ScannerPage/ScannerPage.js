@@ -27,6 +27,7 @@ export default function ScannerPage() {
         state: { itemId, shopId, barcode },
       })
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [barcode])
 
   return (

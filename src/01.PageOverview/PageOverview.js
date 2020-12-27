@@ -44,8 +44,7 @@ export default function OverviewPage({ database, addShop }) {
 
 const PageGrid = styled.div`
   position: relative;
-  // height less top and bottom
-  height: calc(100vh - 50px - 10px);
+  height: calc(100vh - 50px - 10px); // 50px top and 10px bottom
   display: grid;
   gap: 10px;
   grid-auto-rows: minmax(min-content, max-content);
