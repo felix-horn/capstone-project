@@ -1,10 +1,9 @@
-import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import ShopCard from './02.Components/ShopCard'
-import ButtonAction from './01.UI-Elements/ButtonAction'
-import ActionButtonOverlay from './02.Components/ActionButtonOverlay'
+import ButtonNavigation from './01.UI-Elements/ButtonNavigation'
+import OverlayNavigation from './02.Components/OverlayNavigation'
 
 OverviewPage.propTypes = {
   database: PropTypes.object.isRequired,
@@ -12,16 +11,12 @@ OverviewPage.propTypes = {
 }
 
 export default function OverviewPage({ database, addShop }) {
-  const history = useHistory()
-  useEffect(() => {
-    history.replace('/')
-  }, [])
   const [isOverlayVisible, setIsOverlayVisible] = useState(false)
-  const [buttonActionClass, setButtonActionClass] = useState('')
+  const [buttonNavigationClass, setButtonNavigationClass] = useState('')
   return (
-    <OverviewPageStyled>
+    <PageGrid>
       {isOverlayVisible && (
-        <ActionButtonOverlayStyled
+        <OverlayNavigationPositioned
           onClick={handleOverlayClick}
           addShop={addShop}
         />
@@ -29,38 +24,39 @@ export default function OverviewPage({ database, addShop }) {
       {database.shops.allIds.map((shopId) => (
         <ShopCard key={shopId} shopId={shopId} database={database} />
       ))}
-      <ButtonActionStyled
-        onClick={handleButtonActionClick}
-        className={buttonActionClass}
+      <ButtonNavigationPositioned
+        onClick={handleButtonNavigationClick}
+        className={buttonNavigationClass}
       />
-    </OverviewPageStyled>
+    </PageGrid>
   )
 
-  function handleButtonActionClick() {
+  function handleButtonNavigationClick() {
     setIsOverlayVisible(true)
-    setButtonActionClass('')
+    setButtonNavigationClass('')
   }
 
   function handleOverlayClick() {
     setIsOverlayVisible(false)
-    setButtonActionClass('rotate')
+    setButtonNavigationClass('rotate-back')
   }
 }
 
-const OverviewPageStyled = styled.div`
+const PageGrid = styled.div`
   position: relative;
+  // height less top and bottom
   height: calc(100vh - 50px - 10px);
   display: grid;
   gap: 10px;
   grid-auto-rows: minmax(min-content, max-content);
 `
-const ActionButtonOverlayStyled = styled(ActionButtonOverlay)`
+const OverlayNavigationPositioned = styled(OverlayNavigation)`
   position: fixed;
   z-index: var(--z-index-overlay);
   top: 0;
   left: 0;
 `
-const ButtonActionStyled = styled(ButtonAction)`
+const ButtonNavigationPositioned = styled(ButtonNavigation)`
   position: absolute;
   bottom: 60px;
   right: 30px;

@@ -3,13 +3,13 @@ import styled from 'styled-components/macro'
 import ButtonAddShop from '../01.UI-Elements/ButtonAddShop'
 import ButtonScanner from '../01.UI-Elements/ButtonScanner'
 
-ActionButtonOverlay.propTypes = {
+OverlayNavigation.propTypes = {
   onClick: PropTypes.func.isRequired,
   addShop: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
 
-export default function ActionButtonOverlay({ onClick, addShop, className }) {
+export default function OverlayNavigation({ onClick, addShop, className }) {
   return (
     <ClickableOverlayBackground onClick={onClick} className={className}>
       <BackgroundStyled />

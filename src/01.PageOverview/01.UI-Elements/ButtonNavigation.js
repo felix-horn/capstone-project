@@ -1,20 +1,21 @@
+
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import MenuIcon from '@material-ui/icons/Menu'
 
-ButtonAction.propTypes = {
+ButtonNavigation.propTypes = {
   className: PropTypes.string,
 }
 
-export default function ButtonAction({ onClick, className }) {
+export default function ButtonNavigation({ onClick, className }) {
   return (
-    <ButtonActionStyled onClick={onClick} className={className}>
+    <ButtonNavigationStyled onClick={onClick} className={className}>
       <MenuIconStyled className={className} />
-    </ButtonActionStyled>
+    </ButtonNavigationStyled>
   )
 }
 
-const ButtonActionStyled = styled.div`
+const ButtonNavigationStyled = styled.div`
   box-shadow: var(--strong-box-shadow);
   border-radius: 100%;
   height: 50px;
@@ -29,7 +30,7 @@ const MenuIconStyled = styled(MenuIcon)`
   right: 0px !important;
   color: var(--CTA-blue);
 
-  &.rotate {
+  &.rotate-back {
     animation: 0.2s rotateBack ease-in-out;
 
     @keyframes rotateBack {
