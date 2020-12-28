@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+import useUndoDelete from '../hooks/useUndoDelete'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import OverlayMenu from '../00.SharedComponents/01.UI-Elements/02.Components/OverlayMenu'
 import UncheckedList from './02.Components/UncheckedList'
@@ -30,14 +31,16 @@ export default function ShopPage({
   rearrangeListOrder,
   deleteShop,
 }) {
+  const {
+    isButtonUndoActive,
+    cacheDeletedListItem,
+    undoDelete,
+  } = useUndoDelete(database, addListItem)
+
   const location = useLocation()
   const shopId = location.state.shopId
   const [isMenuVisible, setIsMenuVisible] = useState(false)
-  const [isButtonUndoActive, setIsButtonUndoActive] = useState(false)
-  const [deletedListItem, setDeletedListItem] = useState({
-    title: '',
-    isChecked: false,
-  })
+
   return (
     <>
       <HeaderPositioned onClick={toggleMenu} />
@@ -71,32 +74,19 @@ export default function ShopPage({
         toggleIsChecked={toggleIsChecked}
         deleteListItem={(id) => handelDeleteListItem(id, shopId)}
       />
-      <FooterPositioned onClick={undoDelete} isButtonUndoActive={isButtonUndoActive}/>
+      <FooterPositioned
+        onClick={undoDelete}
+        isButtonUndoActive={isButtonUndoActive}
+      />
     </>
   )
   function toggleMenu() {
     setIsMenuVisible(!isMenuVisible)
   }
-  function undoDelete(){
-    setIsButtonUndoActive(!isButtonUndoActive)
-    addListItem(
-      deletedListItem.shopId,
-      deletedListItem.title,
-      deletedListItem.isChecked
-    )
-    console.log('clicked')
-  }
-  function handelDeleteListItem(itemId, shopId){
+  function handelDeleteListItem(itemId, shopId) {
     deleteListItem(itemId, shopId)
     cacheDeletedListItem(itemId, shopId)
-    setIsButtonUndoActive(true)
   }
-  function cacheDeletedListItem(targetId, shopId) {
-    const title = database.items.byId[targetId].title
-    const isChecked = database.items.byId[targetId].isChecked
-    setDeletedListItem({ shopId, title, isChecked })
-  }
-
 }
 
 const HeaderPositioned = styled(Header)`
@@ -105,21 +95,21 @@ const HeaderPositioned = styled(Header)`
   top: 0;
   left: 0;
   width: 100%;
-  `
-  
-  const ShopTitlePositioned = styled(ShopTitle)`
-  margin-top: 40px;
-  `
+`
 
-  const ButtonAddItemPositioned = styled(ButtonAddItem)`
+const ShopTitlePositioned = styled(ShopTitle)`
+  margin-top: 40px;
+`
+
+const ButtonAddItemPositioned = styled(ButtonAddItem)`
   margin-left: 30px;
   margin-bottom: 20px;
-  `
-  
-  const FooterPositioned = styled(Footer)`
+`
+
+const FooterPositioned = styled(Footer)`
   position: fixed;
   z-index: var(--z-index-header);
   bottom: 0;
   left: 0;
   width: 100%;
-    `
+`

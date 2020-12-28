@@ -24,27 +24,18 @@ export default function useDatabase() {
     saveLocally(STORAGE_KEY, database)
   }, [database])
 
-
   return {
     database,
     addShop,
     changeShopTitle,
     addListItem,
     changeItemTitle,
+    changeBarcode,
     toggleIsChecked,
     uncheckItemViaBarcode,
-    deleteListItem,
     rearrangeListOrder,
+    deleteListItem,
     deleteShop,
-    changeBarcode,
-  }
-
-  function changeBarcode(targetId, barcode) {
-    setDatabase(
-      produce(database, (draft) => {
-        draft.items.byId[targetId].barcode = barcode
-      })
-    )
   }
 
   function addShop(newId) {
@@ -83,6 +74,14 @@ export default function useDatabase() {
     )
   }
 
+  function changeBarcode(targetId, barcode) {
+    setDatabase(
+      produce(database, (draft) => {
+        draft.items.byId[targetId].barcode = barcode
+      })
+    )
+  }
+
   function toggleIsChecked(targetId) {
     setDatabase(
       produce(database, (draft) => {
@@ -91,6 +90,7 @@ export default function useDatabase() {
       })
     )
   }
+
   function uncheckItemViaBarcode(targetIds) {
     setDatabase(
       produce(database, (draft) => {
@@ -113,25 +113,25 @@ export default function useDatabase() {
     )
   }
 
-  function deleteListItem(targetId, shopId) {
+  function deleteListItem(itemId, shopId) {
     setDatabase(
       produce(database, (draft) => {
         draft.shops.byId[shopId].items.splice(
-          draft.shops.byId[shopId].items.indexOf(targetId),
+          draft.shops.byId[shopId].items.indexOf(itemId),
           1
         )
-        draft.items.allIds.splice(draft.items.allIds.indexOf(targetId), 1)
-        delete draft.items.byId[targetId]
+        draft.items.allIds.splice(draft.items.allIds.indexOf(itemId), 1)
+        delete draft.items.byId[itemId]
       })
     )
   }
 
-  function deleteShop(targetId) {
-    const shopItems = database.shops.byId[targetId].items
+  function deleteShop(shopId) {
+    const shopItems = database.shops.byId[shopId].items
     setDatabase(
       produce(database, (draft) => {
-        draft.shops.allIds.splice(draft.shops.allIds.indexOf(targetId), 1)
-        delete draft.shops.byId[targetId]
+        draft.shops.allIds.splice(draft.shops.allIds.indexOf(shopId), 1)
+        delete draft.shops.byId[shopId]
         draft.items.allIds = draft.items.allIds.filter(
           (id) => !shopItems.includes(id)
         )
