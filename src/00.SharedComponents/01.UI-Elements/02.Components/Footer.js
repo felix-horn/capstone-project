@@ -3,17 +3,18 @@ import styled from 'styled-components/macro'
 import UndoIcon from '@material-ui/icons/Undo'
 
 Footer.propTypes = {
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
-  isButtonUndoActive: PropTypes.bool,
+  visibilityButtonUndo: PropTypes.string,
 }
 
-export default function Footer({ onClick, className, isButtonUndoActive }) {
+export default function Footer({ onClick, className, visibilityButtonUndo }) {
+  console.log({ visibilityButtonUndo })
   return (
     <FooterLayout className={className}>
       <DynamicUndoIcon
         onClick={onClick}
-        isButtonUndoActive={isButtonUndoActive}
+        visibilityButtonUndo={visibilityButtonUndo}
       />
     </FooterLayout>
   )
@@ -29,6 +30,15 @@ const FooterLayout = styled.div`
 `
 
 const DynamicUndoIcon = styled(UndoIcon)`
-  color: ${(props) =>
-    props.isButtonUndoActive ? 'var(--dark-gray)' : 'var(--light-gray)'};
+  color: ${(props) => {
+    // eslint-disable-next-line default-case
+    switch (props.visibilityButtonUndo) {
+      case 'hidden':
+        return 'var(--white)'
+      case 'grayedOut':
+        return 'var(--light-gray)'
+      case 'shown':
+        return 'var(--dark-gray)'
+    }
+  }};
 `

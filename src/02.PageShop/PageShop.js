@@ -32,7 +32,7 @@ export default function ShopPage({
   deleteShop,
 }) {
   const {
-    isButtonUndoActive,
+    visibilityButtonUndo,
     cacheDeletedListItem,
     undoDelete,
   } = useUndoDelete(database, addListItem)
@@ -76,7 +76,7 @@ export default function ShopPage({
       />
       <FooterPositioned
         onClick={undoDelete}
-        isButtonUndoActive={isButtonUndoActive}
+        visibilityButtonUndo={visibilityButtonUndo}
       />
     </>
   )
