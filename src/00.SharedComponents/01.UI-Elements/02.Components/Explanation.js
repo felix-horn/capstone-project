@@ -8,7 +8,7 @@ Explanation.propTypes = {
 
 export default function Explanation({ useCase }) {
   return (
-    <LayoutWrapper data-testid="component">
+    <LayoutWrapper>
       {useCase === 'uncheckItem' &&
         'Um einen Artikel wieder auf dessen Einkaufsliste zu setzen, scanne dessen Barcode.'}
       {useCase === 'setup' &&

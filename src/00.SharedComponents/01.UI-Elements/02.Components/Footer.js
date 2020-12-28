@@ -14,6 +14,7 @@ export default function Footer({ onClick, className, visibilityButtonUndo }) {
       <DynamicUndoIcon
         onClick={onClick}
         visibilityButtonUndo={visibilityButtonUndo}
+        data-testid="undo-button"
       />
     </FooterLayout>
   )
