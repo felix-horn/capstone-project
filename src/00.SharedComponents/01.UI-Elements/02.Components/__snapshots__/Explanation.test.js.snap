@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Explanation renders correctly 1`] = `
+.c0 {
+  padding: 0 30px;
+  display: grid;
+  place-items: center;
+  font-size: 0.8rem;
+  color: var(--dark-gray);
+}
+
+<div
+  class="c0"
+  data-testid="component"
+>
+  Scanne den Barcode des Artikels einmalig ein, um diesen zukünftig über die Scanner-Funktion der App wieder auf dessen Liste zu setzen.
+</div>
+`;

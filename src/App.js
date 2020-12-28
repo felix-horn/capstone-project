@@ -1,24 +1,24 @@
 import { Switch, Route } from 'react-router-dom'
 import useDatabase from './hooks/useDatabase'
-import PageOverview from './01.PageOverview/PageOverview'
-import PageShop from './02.PageShop/PageShop'
-import ScannerPage from './03.ScannerPage/ScannerPage'
-import PageFeedbackScan from './04.FeedbackPages/PageFeedbackScan'
-import PageFeedbackSetup from './04.FeedbackPages/PageFeedbackSetup'
+import PageOverview from './01.Overview/PageOverview'
+import PageShop from './02.Shop/PageShop'
+import PageScanner from './03.Scanner/PageScanner'
+import PageFeedbackScan from './04.Feedback/PageFeedbackScan'
+import PageFeedbackSetup from './04.Feedback/PageFeedbackSetup'
 
 export default function App() {
   const {
     database,
     addShop,
+    changeShopTitle,
     addListItem,
     changeItemTitle,
-    changeShopTitle,
+    changeBarcode,
     toggleIsChecked,
     uncheckItemViaBarcode,
-    deleteListItem,
     rearrangeListOrder,
+    deleteListItem,
     deleteShop,
-    changeBarcode,
   } = useDatabase()
   return (
     <Switch>
@@ -42,7 +42,7 @@ export default function App() {
         onEnter={() => console.log('entered')}
         onLeave={() => console.log('left')}
       >
-        <ScannerPage />
+        <PageScanner />
       </Route>
       <Route path="/feedback-setup">
         <PageFeedbackSetup database={database} changeBarcode={changeBarcode} />

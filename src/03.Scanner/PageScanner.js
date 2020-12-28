@@ -7,7 +7,7 @@ import Status from './02.UI-Elements/Status'
 import Scanner from './02.UI-Elements/Scanner'
 import { ReactComponent as ScannerFrame } from './01.Assets/ScannerFrame.svg'
 
-export default function ScannerPage() {
+export default function PageScanner() {
   const [barcode, setBarcode] = useState('')
   const location = useLocation()
   const history = useHistory()
@@ -31,7 +31,7 @@ export default function ScannerPage() {
   }, [barcode])
 
   return (
-    <ScannerPageStyled>
+    <PageScannerLayout>
       <HeaderPositioned shopId={shopId} />
       <Explanation useCase={useCase} />
       <Status useCase={useCase} itemTitle={itemTitle} />
@@ -41,7 +41,7 @@ export default function ScannerPage() {
           <ScannerFramePositioned />
         </div>
       </ScannerWrapper>
-    </ScannerPageStyled>
+    </PageScannerLayout>
   )
 
   function onDetected(barcode) {
@@ -57,7 +57,7 @@ const HeaderPositioned = styled(Header)`
   width: 100%;
 `
 
-const ScannerPageStyled = styled.div`
+const PageScannerLayout = styled.div`
   position: relative;
   margin-top: 35px;
   height: calc(100vh - 50px - 10px);

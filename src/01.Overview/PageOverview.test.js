@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react'
 import user from '@testing-library/user-event'
-import { BrowserRouter as Router } from 'react-router-dom'
-import OverviewPage from './OverviewPage'
+import { MemoryRouter as Router } from 'react-router-dom'
+import PageOverview from './PageOverview'
 
 const testDatabase = {
   shops: {
@@ -41,13 +41,17 @@ const testDatabase = {
   },
 }
 
-describe('OverviewPage', () => {
+/* export as global helper function */
+
+function renderWithRouter(children) {
+  return render(<Router>{children}</Router>)
+}
+
+describe('PageOverview', () => {
   it('renders correctly', () => {
     const addShopMock = jest.fn()
-    const { container } = render(
-      <Router>
-        <OverviewPage database={testDatabase} addShop={addShopMock} />
-      </Router>
+    const { container } = renderWithRouter(
+      <PageOverview database={testDatabase} addShop={addShopMock} />
     )
     expect(container.firstChild).toMatchSnapshot()
   })
@@ -56,7 +60,7 @@ describe('OverviewPage', () => {
     const addShopMock = jest.fn()
     const { getByTestId } = render(
       <Router>
-        <OverviewPage database={testDatabase} addShop={addShopMock} />
+        <PageOverview database={testDatabase} addShop={addShopMock} />
       </Router>
     )
     const button = getByTestId('action-button')
@@ -68,11 +72,12 @@ describe('OverviewPage', () => {
     const addShopMock = jest.fn()
     const { getByTestId } = render(
       <Router>
-        <OverviewPage database={testDatabase} addShop={addShopMock} />
+        <PageOverview database={testDatabase} addShop={addShopMock} />
       </Router>
     )
     const button = getByTestId('action-button')
     user.click(button)
-    expect(button).toHaveProperty('href', 'http://localhost/shop')
+    const href = button.href
+    expect(href).toMatch('/shop')
   })
 })

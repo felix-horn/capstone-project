@@ -6,18 +6,18 @@ Explanation.propTypes = {
   className: PropTypes.string,
 }
 
-export default function Explanation({ useCase, className }) {
+export default function Explanation({ useCase }) {
   return (
-    <ExplanationStyled className={className}>
+    <LayoutWrapper data-testid="component">
       {useCase === 'uncheckItem' &&
         'Um einen Artikel wieder auf dessen Einkaufsliste zu setzen, scanne dessen Barcode.'}
       {useCase === 'setup' &&
         'Scanne den Barcode des Artikels einmalig ein, um diesen zukünftig über die Scanner-Funktion der App wieder auf dessen Liste zu setzen.'}
-    </ExplanationStyled>
+    </LayoutWrapper>
   )
 }
 
-const ExplanationStyled = styled.div`
+const LayoutWrapper = styled.div`
   padding: 0 30px;
   display: grid;
   place-items: center;

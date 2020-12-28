@@ -5,10 +5,10 @@ import styled from 'styled-components/macro'
 import useUndoDelete from '../hooks/useUndoDelete'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import OverlayMenu from '../00.SharedComponents/01.UI-Elements/02.Components/OverlayMenu'
-import UncheckedList from './02.Components/UncheckedList'
-import CheckedList from './02.Components/CheckedList'
 import ShopTitle from './01.UI-Elements/ShopTitle'
+import UncheckedList from './02.Components/UncheckedList'
 import ButtonAddItem from './01.UI-Elements/ButtonAddItem'
+import CheckedList from './02.Components/CheckedList'
 import Footer from '../00.SharedComponents/01.UI-Elements/02.Components/Footer'
 
 ShopPage.propTypes = {

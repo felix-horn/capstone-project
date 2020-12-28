@@ -9,7 +9,6 @@ Footer.propTypes = {
 }
 
 export default function Footer({ onClick, className, visibilityButtonUndo }) {
-  console.log({ visibilityButtonUndo })
   return (
     <FooterLayout className={className}>
       <DynamicUndoIcon
