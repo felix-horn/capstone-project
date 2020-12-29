@@ -1,25 +1,18 @@
-import { render } from '@testing-library/react'
+/* eslint-disable no-undef */
 import user from '@testing-library/user-event'
-import { BrowserRouter as Router } from 'react-router-dom'
 import Menu from './Menu'
 
 describe('Menu', () => {
   it('renders correctly', () => {
     const deleteShopMock = jest.fn()
-    const { container } = render(
-      <Router>
-        <Menu deleteShop={deleteShopMock} />
-      </Router>
-    )
+    const { container } = renderWithRouter(<Menu deleteShop={deleteShopMock} />)
     expect(container.firstChild).toMatchSnapshot()
   })
 
   it('calls function deleteShop', () => {
     const deleteShopMock = jest.fn()
-    const { getByTestId } = render(
-      <Router>
-        <Menu deleteShop={deleteShopMock} />
-      </Router>
+    const { getByTestId } = renderWithRouter(
+      <Menu deleteShop={deleteShopMock} />
     )
     const deleteButton = getByTestId('delete-button')
     user.click(deleteButton)
@@ -28,13 +21,12 @@ describe('Menu', () => {
 
   it('links to correct href', () => {
     const deleteShopMock = jest.fn()
-    const { getByTestId } = render(
-      <Router>
-        <Menu deleteShop={deleteShopMock} />
-      </Router>
+    const { getByTestId } = renderWithRouter(
+      <Menu deleteShop={deleteShopMock} />
     )
     const deleteButton = getByTestId('delete-button')
     user.click(deleteButton)
-    expect(deleteButton).toHaveProperty('href', 'http://localhost/')
+    const href = deleteButton.href
+    expect(href).toMatch('/')
   })
 })
