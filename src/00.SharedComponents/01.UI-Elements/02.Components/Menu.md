@@ -1,3 +1,3 @@
 ```js padded
-<Menu/>
+<Menu deleteShop={() => {}} />
 ```
