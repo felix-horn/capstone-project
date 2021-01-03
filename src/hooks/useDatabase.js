@@ -109,6 +109,15 @@ export default function useDatabase() {
     // insert id in new position
     idsShopItems.splice(indexTo, 0, targetItem)
 
+    console.log(
+      { indexFrom },
+      { indexTo },
+      'before: ',
+      database.shops.byId[shopId].items,
+      'after: ',
+      idsShopItems
+    )
+
     setDatabase(
       produce(database, (draft) => {
         draft.shops.byId[shopId].items = idsShopItems

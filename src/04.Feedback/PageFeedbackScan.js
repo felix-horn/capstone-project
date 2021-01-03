@@ -114,9 +114,8 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
 
       {
         /* in the case of no match,
-        the user has the option to navigate to any shop,
-        in order to start the setup process from there
-        via a dropdown select */
+        the user has the option to navigate to any shop via a dropdown select ,
+        in order to start the setup process from there*/
         shopIdsToMatchingItems.length === 0 && (
           <StoreSelect
             shopIdsToMatchingItems={allShopIds}
