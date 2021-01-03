@@ -10,8 +10,8 @@ Menu.propTypes = {
 
 export default function Menu({ deleteShop, className }) {
   return (
-    <MenuStyled className={className}>
-      <DeleteEntry
+    <LayoutWrapper className={className}>
+      <NavDeleteButton
         onClick={deleteShop}
         exact
         to="/"
@@ -19,12 +19,12 @@ export default function Menu({ deleteShop, className }) {
       >
         <DeleteForeverIcon />
         Liste unwiderruflich löschen
-      </DeleteEntry>
-    </MenuStyled>
+      </NavDeleteButton>
+    </LayoutWrapper>
   )
 }
 
-const MenuStyled = styled.div`
+const LayoutWrapper = styled.div`
   box-shadow: var(--light-box-shadow);
   border-radius: 3px;
   background-color: var(--white);
@@ -33,7 +33,7 @@ const MenuStyled = styled.div`
   justify-items: start;
 `
 
-const DeleteEntry = styled(NavLink)`
+const NavDeleteButton = styled(NavLink)`
   display: flex;
   align-items: center;
   gap: 10px;

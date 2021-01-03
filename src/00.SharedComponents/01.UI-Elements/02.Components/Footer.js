@@ -10,17 +10,17 @@ Footer.propTypes = {
 
 export default function Footer({ onClick, className, visibilityButtonUndo }) {
   return (
-    <FooterLayout className={className}>
+    <LayoutWrapper className={className}>
       <DynamicUndoIcon
         onClick={onClick}
         visibilityButtonUndo={visibilityButtonUndo}
         data-testid="undo-button"
       />
-    </FooterLayout>
+    </LayoutWrapper>
   )
 }
 
-const FooterLayout = styled.div`
+const LayoutWrapper = styled.div`
   height: 60px;
   max-width: 450px;
   background-color: var(--white);

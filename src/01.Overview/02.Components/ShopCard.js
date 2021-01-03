@@ -4,6 +4,11 @@ import styled from 'styled-components/macro'
 import ShopTitle from '../01.UI-Elements/ShopTitle'
 import ListItem from '../01.UI-Elements/ListItem'
 import CheckedItemsSummary from '../01.UI-Elements/CheckedItemsSummary'
+import {
+  getUncheckedItemIds,
+  getQuantityCheckedItems,
+  getShopTitle,
+} from '../../services/filter.services'
 
 ShopCard.propTypes = {
   shopId: PropTypes.string.isRequired,
@@ -11,13 +16,9 @@ ShopCard.propTypes = {
 }
 
 export default function ShopCard({ shopId, database }) {
-  const uncheckedIds = database.shops.byId[shopId].items.filter(
-    (id) => !database.items.byId[id].isChecked
-  )
-  const lengthCheckedIds =
-    database.shops.byId[shopId].items.length - uncheckedIds.length
-
-  const shopTitle = database.shops.byId[shopId].title
+  const uncheckedIds = getUncheckedItemIds(database, shopId)
+  const lengthCheckedIds = getQuantityCheckedItems(database, shopId)
+  const shopTitle = getShopTitle(database, shopId)
 
   return (
     <ShopCardStyled

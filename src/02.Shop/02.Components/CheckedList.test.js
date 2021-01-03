@@ -24,11 +24,13 @@ const testDatabase = {
         id: 'a',
         title: 'itemA',
         isChecked: false,
+        shop: 'x',
       },
       b: {
         id: 'b',
         title: 'itemB',
         isChecked: true,
+        shop: 'x',
       },
       c: {
         id: 'c',

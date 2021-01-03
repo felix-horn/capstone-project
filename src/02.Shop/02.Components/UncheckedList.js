@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import ListItem from '../01.UI-Elements/ListItem'
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator'
+import { getUncheckedItemIds } from '../../services/filter.services'
 
 UncheckedList.propTypes = {
   shopId: PropTypes.string.isRequired,
@@ -24,9 +25,7 @@ export default function UncheckedList({
   addListItem,
   rearrangeListOrder,
 }) {
-  const uncheckedIds = database.shops.byId[shopId].items.filter(
-    (id) => !database.items.byId[id].isChecked
-  )
+  const uncheckedIds = getUncheckedItemIds(database, shopId)
 
   return (
     <DragDropContext
@@ -83,6 +82,7 @@ export default function UncheckedList({
   }
 
   function handleEnter(targetId) {
+    // only for the last item of the unchecked list enter creates new item
     const lastUncheckedId = uncheckedIds[uncheckedIds.length - 1]
     lastUncheckedId === targetId && addListItem()
   }

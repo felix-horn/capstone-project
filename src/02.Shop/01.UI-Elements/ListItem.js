@@ -5,6 +5,11 @@ import styled from 'styled-components/macro'
 import Checkbox from '@material-ui/core/Checkbox'
 import CloseIcon from '@material-ui/icons/Close'
 import CropFreeIcon from '@material-ui/icons/CropFree'
+import {
+  getItemBarcodeStatus,
+  getItemCheckStatus,
+  getItemTitle,
+} from '../../services/filter.services'
 
 ListItem.propTypes = {
   isChecked: PropTypes.bool,
@@ -27,9 +32,9 @@ export default function ListItem({
   onEnter,
 }) {
   const [isIconsShown, setIsIconsShown] = useState(false)
-  const title = database.items.byId[itemId].title
-  const isChecked = database.items.byId[itemId].isChecked
-  const hasBarcode = !!database.items.byId[itemId].barcode
+  const title = getItemTitle(database, itemId)
+  const isChecked = getItemCheckStatus(database, itemId)
+  const hasBarcode = getItemBarcodeStatus(database, itemId)
   let raceConditionTimer
   return (
     <ListItemStyled checked={isChecked} data-testid="list-item">

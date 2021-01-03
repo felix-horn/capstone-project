@@ -13,16 +13,16 @@ Header.propTypes = {
 export default function Header({ onClick, shopId, className }) {
   const location = shopId ? { pathname: '/shop', state: { shopId } } : '/'
   return (
-    <HeaderLayout className={className}>
-      <BackButton exact to={location} data-testid="back-button">
+    <LayoutWrapper className={className}>
+      <NavBackButton exact to={location} data-testid="back-button">
         <ArrowBackIcon />
-      </BackButton>
+      </NavBackButton>
       {onClick && <MenuButton onClick={onClick} data-testid="menu-button" />}
-    </HeaderLayout>
+    </LayoutWrapper>
   )
 }
 
-const HeaderLayout = styled.div`
+const LayoutWrapper = styled.div`
   height: 60px;
   max-width: 450px;
   background-color: var(--white);
@@ -32,7 +32,7 @@ const HeaderLayout = styled.div`
   box-shadow: var(--light-box-shadow);
 `
 
-const BackButton = styled(NavLink)`
+const NavBackButton = styled(NavLink)`
   grid-column: 1;
   margin-top: 2px;
   color: var(--dark-gray);

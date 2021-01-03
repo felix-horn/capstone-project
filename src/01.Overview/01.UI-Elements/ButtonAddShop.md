@@ -1,3 +1,3 @@
 ```js padded
-<ButtonAddShop/>
+<ButtonAddShop addShop={() => {}} />
 ```

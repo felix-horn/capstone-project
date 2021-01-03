@@ -103,7 +103,10 @@ export default function useDatabase() {
 
   function rearrangeListOrder(indexFrom, indexTo, shopId) {
     const idsShopItems = [...database.shops.byId[shopId].items]
-    const [targetItem] = idsShopItems.splice(indexFrom, 1)
+    const targetItem = idsShopItems[indexFrom]
+    // remove id from initial position
+    idsShopItems.splice(indexFrom, 1)
+    // insert id in new position
     idsShopItems.splice(indexTo, 0, targetItem)
 
     setDatabase(
@@ -116,10 +119,12 @@ export default function useDatabase() {
   function deleteListItem(itemId, shopId) {
     setDatabase(
       produce(database, (draft) => {
+        // remove item's shop allocation
         draft.shops.byId[shopId].items.splice(
           draft.shops.byId[shopId].items.indexOf(itemId),
           1
         )
+        // remove item
         draft.items.allIds.splice(draft.items.allIds.indexOf(itemId), 1)
         delete draft.items.byId[itemId]
       })
@@ -127,15 +132,17 @@ export default function useDatabase() {
   }
 
   function deleteShop(shopId) {
-    const shopItems = database.shops.byId[shopId].items
+    const idsShopItems = database.shops.byId[shopId].items
     setDatabase(
       produce(database, (draft) => {
+        // remove shop
         draft.shops.allIds.splice(draft.shops.allIds.indexOf(shopId), 1)
         delete draft.shops.byId[shopId]
+        // remove all items allocated to the shop
         draft.items.allIds = draft.items.allIds.filter(
-          (id) => !shopItems.includes(id)
+          (id) => !idsShopItems.includes(id)
         )
-        shopItems.forEach((idToBeDeleted) => {
+        idsShopItems.forEach((idToBeDeleted) => {
           return delete draft.items.byId[idToBeDeleted]
         })
       })

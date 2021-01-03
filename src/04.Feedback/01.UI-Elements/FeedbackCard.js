@@ -3,8 +3,8 @@ import styled from 'styled-components/macro'
 export default function FeedbackCard({
   feedback,
   barcode,
-  matchingItemTitles,
-  matchingShopTitles,
+  itemTitlesMatchingBarcode,
+  shopTitlesToMatchingItems,
 }) {
   return (
     <>
@@ -16,8 +16,8 @@ export default function FeedbackCard({
       )}
       {feedback === 'success' && (
         <FeedbackCardStyled className="green">
-          <strong>{matchingItemTitles.join(' / ')}</strong>
-          {`wurde ${matchingShopTitles.join(' / ')} hinzugefügt.`}
+          <strong>{itemTitlesMatchingBarcode.join(' / ')}</strong>
+          {`wurde ${shopTitlesToMatchingItems.join(' / ')} hinzugefügt.`}
         </FeedbackCardStyled>
       )}
       {feedback === 'failure' && (

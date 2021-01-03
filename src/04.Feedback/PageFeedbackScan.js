@@ -10,6 +10,13 @@ import Button from './01.UI-Elements/Button'
 import StoreSelect from './01.UI-Elements/StoreSelect'
 import ListIcon from '@material-ui/icons/List'
 import ScanIcon from '@material-ui/icons/CropFree'
+import {
+  getAllShopIds,
+  getAllShopTitles,
+  getItemIdsByBarcode,
+  getItemTitles,
+  getShopIdsByItemIds,
+} from '../services/filter.services'
 
 PageFeedbackScan.propTypes = {
   database: PropTypes.object.isRequired,
@@ -20,29 +27,22 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
   const history = useHistory()
   const location = useLocation()
   const barcode = location.state.barcode
-  const matchingItemIds = database.items.allIds.filter(
-    (id) => database.items.byId[id]?.barcode === barcode
-  )
 
   /* the same barcode can be allocated to more than one item - even in differen shops */
-  const matchingItemTitles = matchingItemIds.map(
-    (id) => database.items.byId[id]?.title
+  const itemIdsMatchingBarcode = getItemIdsByBarcode(database, barcode)
+  const itemTitlesMatchingBarcode = getItemTitles(
+    database,
+    itemIdsMatchingBarcode
   )
-
-  const matchingShopIds = matchingItemIds.map(
-    (itemId) =>
-      database.shops.byId[
-        database.shops.allIds.find((shopId) =>
-          database.shops.byId[shopId].items.includes(itemId)
-        )
-      ].id
+  const shopIdsToMatchingItems = getShopIdsByItemIds(
+    database,
+    itemIdsMatchingBarcode
   )
-  const matchingShopTitles = matchingShopIds.map(
+  const shopTitlesToMatchingItems = shopIdsToMatchingItems.map(
     (id) => database.shops.byId[id].title
   )
-
-  const allShopIds = database.shops.allIds
-  const allShopTitles = allShopIds.map((id) => database.shops.byId[id].title)
+  const allShopIds = getAllShopIds(database)
+  const allShopTitles = getAllShopTitles(database)
 
   const [feedback, setFeedback] = useState('')
 
@@ -53,8 +53,8 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
     //racecondition prevents camera crash on smartphone
     setTimeout(() => Quagga.stop())
 
-    if (matchingItemIds.length > 0) {
-      uncheckItemViaBarcode(matchingItemIds)
+    if (itemIdsMatchingBarcode.length > 0) {
+      uncheckItemViaBarcode(itemIdsMatchingBarcode)
       setFeedback('success')
     } else {
       setFeedback('failure')
@@ -69,8 +69,8 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
       <FeedbackCard
         feedback={feedback}
         barcode={barcode}
-        matchingItemTitles={matchingItemTitles}
-        matchingShopTitles={matchingShopTitles}
+        itemTitlesMatchingBarcode={itemTitlesMatchingBarcode}
+        shopTitlesToMatchingItems={shopTitlesToMatchingItems}
       />
       <Button
         title={
@@ -81,34 +81,49 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
       >
         <ScanIcon />
       </Button>
-      
-        {matchingShopIds.length === 1 && (
+
+      {
+        /* in the case of one match,
+        the user has the option to navigate to that shop via a button*/
+        shopIdsToMatchingItems.length === 1 && (
           <Button
-            title={`Zur Liste "${matchingShopTitles[0]}"`}
+            title={`Zur Liste "${shopTitlesToMatchingItems[0]}"`}
             onClick={() =>
               history.push({
-                pathname: `/shop/${matchingShopTitles[0]}`,
-                state: { shopId: matchingShopIds[0] },
+                pathname: `/shop/${shopTitlesToMatchingItems[0]}`,
+                state: { shopId: shopIdsToMatchingItems[0] },
               })
             }
           >
             <ListIcon />
           </Button>
-        )}
+        )
+      }
 
-        {matchingShopIds.length > 1 && (
+      {
+        /* in the case of more than one match,
+        the user has the option to navigate to any of these shops
+        via a dropdown select*/
+        shopIdsToMatchingItems.length > 1 && (
           <StoreSelect
-            matchingShopIds={matchingShopIds}
-            matchingShopTitles={matchingShopTitles}
+            shopIdsToMatchingItems={shopIdsToMatchingItems}
+            shopTitlesToMatchingItems={shopTitlesToMatchingItems}
           />
-        )}
+        )
+      }
 
-        {matchingShopIds.length === 0 && (
+      {
+        /* in the case of no match,
+        the user has the option to navigate to any shop,
+        in order to start the setup process from there
+        via a dropdown select */
+        shopIdsToMatchingItems.length === 0 && (
           <StoreSelect
-            matchingShopIds={allShopIds}
-            matchingShopTitles={allShopTitles}
+            shopIdsToMatchingItems={allShopIds}
+            shopTitlesToMatchingItems={allShopTitles}
           />
-        )}
+        )
+      }
     </PageGrid>
   )
 }

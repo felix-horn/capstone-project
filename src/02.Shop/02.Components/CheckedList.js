@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+import { getCheckedItemIds } from '../../services/filter.services'
 import ListItem from '../01.UI-Elements/ListItem'
 
 CheckedList.propTypes = {
@@ -17,9 +18,8 @@ export default function CheckedList({
   toggleIsChecked,
   deleteListItem,
 }) {
-  const checkedIds = database.shops.byId[shopId].items.filter(
-    (id) => database.items.byId[id].isChecked
-  )
+  const checkedIds = getCheckedItemIds(database, shopId)
+
   return (
     <>
       {checkedIds.length > 0 && (
