@@ -12,7 +12,7 @@ export default function PageScanner() {
   const location = useLocation()
   const history = useHistory()
 
-  //entering via app shortcut (manifest.json)
+  //entering via app shortcut (manifest.json) does not pass a state/useCase
   const useCase = !location.state ? 'uncheckItem' : location.state.useCase
 
   const itemId = location.state?.itemId
