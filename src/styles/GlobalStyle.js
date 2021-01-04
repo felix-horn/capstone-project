@@ -42,17 +42,8 @@ body {
     color: var(--almost-black);
     }
 
-/* input, textarea, button, select, link, textarea {
-    font-family: inherit;
-    font-weight: inherit;
-    color: inherit;
-    font-size: inherit;
-} */
-
 h1, h2 {
     margin: 0;
 }
-
-
 
 `

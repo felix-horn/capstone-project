@@ -1,4 +1,4 @@
-import { NavLink, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
@@ -12,7 +12,6 @@ Header.propTypes = {
 
 export default function Header({ onClick, shopId, className }) {
   const history = useHistory()
-  const location = shopId ? { pathname: '/shop', state: { shopId } } : '/'
   return (
     <LayoutWrapper className={className}>
       <BackButton onClick={navigateBack} data-testid="back-button">
@@ -23,6 +22,7 @@ export default function Header({ onClick, shopId, className }) {
   )
   function navigateBack() {
     history.replace(shopId ? { pathname: '/shop', state: { shopId } } : '/')
+    console.log({ history })
   }
 }
 

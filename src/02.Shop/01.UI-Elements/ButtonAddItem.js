@@ -9,11 +9,7 @@ ButtonAddItem.propTypes = {
 
 export default function ButtonAddItem({ onClick, className }) {
   return (
-    <Button
-      onClick={onClick}
-      className={className}
-      data-testid="add-button"
-    >
+    <Button onClick={onClick} className={className} data-testid="add-button">
       <AddIconStyled />
       <ButtonTextStyled>Listeneintrag</ButtonTextStyled>
     </Button>
@@ -32,5 +28,8 @@ const AddIconStyled = styled(AddIcon)`
 `
 
 const ButtonTextStyled = styled.span`
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
   color: var(--light-gray);
 `

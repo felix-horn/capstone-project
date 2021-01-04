@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Checkbox from '@material-ui/core/Checkbox'
@@ -35,6 +36,7 @@ export default function ListItem({
   const title = getItemTitle(database, itemId)
   const isChecked = getItemCheckStatus(database, itemId)
   const hasBarcode = getItemBarcodeStatus(database, itemId)
+  const history = useHistory()
   let raceConditionTimer
   return (
     <ListItemStyled checked={isChecked} data-testid="list-item">
@@ -57,14 +59,10 @@ export default function ListItem({
       />
       {isIconsShown && (
         <>
-          <ButtonScannerStyled
-            to={{
-              pathname: '/scanner',
-              state: { itemId, title, shopId, useCase: 'setup' },
-            }}
-          >
-            <ScannerIconStyled hasBarcode={hasBarcode} />
-          </ButtonScannerStyled>
+          <ScannerIconStyled
+            onClick={navigateToScanner}
+            hasBarcode={hasBarcode}
+          />
           <DeleteButtonStyled
             onClick={handleDelete}
             data-testid="delete-list-item"
@@ -73,6 +71,13 @@ export default function ListItem({
       )}
     </ListItemStyled>
   )
+
+  function navigateToScanner() {
+    history.push({
+      pathname: '/scanner',
+      state: { itemId, title, shopId, useCase: 'setup' },
+    })
+  }
 
   function handleCheckboxToggle() {
     //clearTimeout(raceConditionTimer)
@@ -111,6 +116,10 @@ const ListItemStyled = styled.label`
 `
 const TitleStyled = styled.input`
   margin-left: 9px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  font-weight: 300;
+  color: var(--almost-black);
   text-decoration: ${(props) => (props.isCrossedOut ? 'line-through' : 'none')};
   border: none;
   &:focus {
@@ -123,12 +132,8 @@ const DeleteButtonStyled = styled(CloseIcon)`
   opacity: 0.4;
 `
 
-const ButtonScannerStyled = styled(NavLink)`
-  margin-left: auto;
-`
-
 const ScannerIconStyled = styled(CropFreeIcon)`
-  margin-top: 3px;
+  margin-left: auto;
   transform: scale(0.9);
   color: ${(props) => (props.hasBarcode ? 'black' : '#4285F4')};
   opacity: ${(props) => (props.hasBarcode ? '0.1' : '1')};
