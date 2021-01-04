@@ -14,7 +14,7 @@ export default function OverviewPage({ database, addShop }) {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false)
   const [buttonNavigationClass, setButtonNavigationClass] = useState('')
   return (
-    <PageGrid>
+    <PageLayout>
       {isOverlayVisible && (
         <OverlayNavigationPositioned
           onClick={handleOverlayClick}
@@ -28,7 +28,7 @@ export default function OverviewPage({ database, addShop }) {
         onClick={handleButtonNavigationClick}
         className={buttonNavigationClass}
       />
-    </PageGrid>
+    </PageLayout>
   )
 
   function handleButtonNavigationClick() {
@@ -42,9 +42,9 @@ export default function OverviewPage({ database, addShop }) {
   }
 }
 
-const PageGrid = styled.div`
+const PageLayout = styled.div`
   position: relative;
-  height: calc(100vh - 50px - 10px); // 50px top and 10px bottom
+  height: calc(100vh - 50px - 50px); // 50px top and bottom
   display: grid;
   gap: 10px;
   grid-auto-rows: minmax(min-content, max-content);
@@ -56,8 +56,8 @@ const OverlayNavigationPositioned = styled(OverlayNavigation)`
   left: 0;
 `
 const ButtonNavigationPositioned = styled(ButtonNavigation)`
-  position: absolute;
-  bottom: 60px;
-  right: 30px;
+  position: fixed;
+  bottom: 70px;
+  right: 40px;
   z-index: var(--z-index-floating-item);
 `

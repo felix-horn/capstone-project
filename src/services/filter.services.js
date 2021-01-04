@@ -1,5 +1,13 @@
 /* shops */
 
+function getShopItemIds(database, shopId) {
+  return database.shops.byId[shopId].items
+}
+
+function getShopItemIndex(database, shopId, itemId) {
+  return getShopItemIds(database, shopId).indexOf(itemId)
+}
+
 function getCheckedItemIds(database, shopId) {
   return database.shops.byId[shopId].items.filter(
     (id) => database.items.byId[id].isChecked
@@ -61,6 +69,8 @@ function getItemIdsByBarcode(database, barcode) {
 }
 
 export {
+  getShopItemIds,
+  getShopItemIndex,
   getCheckedItemIds,
   getUncheckedItemIds,
   getQuantityCheckedItems,

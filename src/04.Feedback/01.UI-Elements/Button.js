@@ -9,14 +9,14 @@ Button.propTypes = {
 
 export default function Button({ title, onClick, className, children }) {
   return (
-    <ButtonStyled onClick={onClick} className={className}>
+    <ButtonLayout onClick={onClick} className={className}>
       {children}
       {title}
-    </ButtonStyled>
+    </ButtonLayout>
   )
 }
 
-const ButtonStyled = styled.button`
+const ButtonLayout = styled.button`
   border-radius: 5px;
   border: var(--border);
   outline: none;

@@ -1,7 +1,8 @@
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import CropFreeIcon from '@material-ui/icons/CropFree'
+import CircleButton from './CircleButton'
+import ScannerIcon from '@material-ui/icons/CropFree'
 
 ButtonScanner.propTypes = {
   className: PropTypes.string,
@@ -9,7 +10,7 @@ ButtonScanner.propTypes = {
 
 export default function ButtonScanner({ className }) {
   return (
-    <ButtonScannerStyled
+    <ButtonLayout
       to={{
         pathname: '/scanner',
         state: { useCase: 'uncheckItem' },
@@ -18,14 +19,14 @@ export default function ButtonScanner({ className }) {
       data-testid="scanner-button"
     >
       Barcode scannen
-      <IconBackgroundStyled>
-        <ScannerIconStyled />
-      </IconBackgroundStyled>
-    </ButtonScannerStyled>
+      <CircleButton className="primary">
+        <ScannerIconAnimated />
+      </CircleButton>
+    </ButtonLayout>
   )
 }
 
-const ButtonScannerStyled = styled(NavLink)`
+const ButtonLayout = styled(NavLink)`
   display: flex;
   justify-content: end;
   align-items: center;
@@ -36,19 +37,7 @@ const ButtonScannerStyled = styled(NavLink)`
   text-decoration: none;
 `
 
-const IconBackgroundStyled = styled.div`
-  box-shadow: var(--strong-box-shadow);
-  border-radius: 100%;
-  height: 50px;
-  width: 50px;
-  background-color: var(--CTA-blue);
-  display: grid;
-  place-items: center;
-`
-
-const ScannerIconStyled = styled(CropFreeIcon)`
-  color: var(--white);
-
+const ScannerIconAnimated = styled(ScannerIcon)`
   animation: 0.2s ease-in-out 0s 1 rotate;
 
   @keyframes rotate {

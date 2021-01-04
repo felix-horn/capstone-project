@@ -3,7 +3,10 @@ import styled from 'styled-components/macro'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import ListItem from '../01.UI-Elements/ListItem'
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator'
-import { getUncheckedItemIds } from '../../services/filter.services'
+import {
+  getShopItemIndex,
+  getUncheckedItemIds,
+} from '../../services/filter.services'
 
 UncheckedList.propTypes = {
   shopId: PropTypes.string.isRequired,
@@ -34,7 +37,7 @@ export default function UncheckedList({
     >
       <Droppable droppableId="listId">
         {(provided) => (
-          <UncheckedListStyled
+          <UncheckedListLayout
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
@@ -63,7 +66,7 @@ export default function UncheckedList({
               </Draggable>
             ))}
             {provided.placeholder}
-          </UncheckedListStyled>
+          </UncheckedListLayout>
         )}
       </Droppable>
     </DragDropContext>
@@ -83,7 +86,7 @@ export default function UncheckedList({
     // new index within all IDs of the shop (including checked IDs) must be determined
     const newIdPrecedingDraggedId = uncheckedIds[newIndexInUncheckedIds - 1]
     const newIndexInShopIds =
-      database.shops.byId[shopId].items.indexOf(newIdPrecedingDraggedId) + 1
+      getShopItemIndex(database, shopId, newIdPrecedingDraggedId) + 1
     rearrangeListOrder(draggedId, newIndexInShopIds)
   }
 
@@ -109,7 +112,7 @@ const DragIconWrapper = styled.div`
   opacity: 0.3;
 `
 
-const UncheckedListStyled = styled.div`
+const UncheckedListLayout = styled.div`
   margin: 3px 2px 10px;
   display: grid;
 `

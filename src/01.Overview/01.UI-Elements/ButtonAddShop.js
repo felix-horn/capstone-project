@@ -1,8 +1,9 @@
-import { NavLink } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { v4 as uuid } from 'uuid'
 import styled from 'styled-components/macro'
-import PostAddIcon from '@material-ui/icons/PostAdd'
+import AddShopIcon from '@material-ui/icons/PostAdd'
+import CircleButton from './CircleButton'
 
 ButtonAddShop.propTypes = {
   addShop: PropTypes.func.isRequired,
@@ -11,26 +12,29 @@ ButtonAddShop.propTypes = {
 
 export default function ButtonAddShop({ addShop, className }) {
   const newShopId = uuid()
+  const history = useHistory()
   return (
-    <ButtonAddShopStyled
-      exact
-      to={{
-        pathname: '/shop',
-        state: { shopId: newShopId },
-      }}
-      onClick={() => addShop(newShopId)}
+    <ButtonLayout
+      onClick={handleClick}
       className={className}
       data-testid="action-button"
     >
       Neues Geschäft hinzufügen
-      <IconBackgroundStyled>
-        <PostAddIconStyled />
-      </IconBackgroundStyled>
-    </ButtonAddShopStyled>
+      <CircleButton className="small">
+        <AddShopIcon />
+      </CircleButton>
+    </ButtonLayout>
   )
+  function handleClick() {
+    history.push({
+      pathname: '/shop',
+      state: { shopId: newShopId },
+    })
+    addShop(newShopId)
+  }
 }
 
-const ButtonAddShopStyled = styled(NavLink)`
+const ButtonLayout = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;
@@ -52,18 +56,4 @@ const ButtonAddShopStyled = styled(NavLink)`
       opacity: 1;
     }
   }
-`
-
-const IconBackgroundStyled = styled.div`
-  box-shadow: var(--strong-box-shadow);
-  border-radius: 100%;
-  height: 40px;
-  width: 40px;
-  background-color: var(--white);
-  display: grid;
-  place-items: center;
-`
-
-const PostAddIconStyled = styled(PostAddIcon)`
-  color: var(--CTA-blue);
 `

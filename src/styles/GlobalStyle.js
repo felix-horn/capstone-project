@@ -35,8 +35,7 @@ body {
     margin: 0;
     width: 100%;
     max-width: 450px;
-    padding: 10px;
-    padding-top: 50px;
+    padding: 50px 10px;
     font-family: 'Roboto', sans-serif;
     font-size: 1em;
     font-weight: 300;
