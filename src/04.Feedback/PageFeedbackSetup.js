@@ -39,19 +39,22 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
       <FeedbackCard feedback="validate" barcode={barcode} />
       <Button
         title={'Speichern'}
-        onClick={() => history.go(-2)}
+        onClick={() => history.goBack()}
         className="primary"
       >
         <SaveIcon />
       </Button>
-      <Button
-        title={'Erneut scannen'}
-        onClick={() => history.goBack()}
-      >
+      <Button title={'Erneut scannen'} onClick={navigateToScanner}>
         <ScanIcon />
       </Button>
     </PageGrid>
   )
+  function navigateToScanner() {
+    history.push({
+      pathname: '/scanner',
+      state: { itemId, itemTitle, shopId, useCase: 'setup' },
+    })
+  }
 }
 
 const HeaderPositioned = styled(Header)`
@@ -67,11 +70,10 @@ const ItemTitle = styled.strong`
 `
 
 const PageGrid = styled.div`
-margin-top: 35px;
-display: grid;
-grid-template-rows: auto 40vh auto auto;
-gap: 25px;
-align-items: start;
-justify-items: center;
+  margin-top: 35px;
+  display: grid;
+  grid-template-rows: auto 40vh auto auto;
+  gap: 25px;
+  align-items: start;
+  justify-items: center;
 `
-

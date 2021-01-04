@@ -29,7 +29,7 @@ export default function StoreSelect({
           return (
             <MenuItem
               onClick={() =>
-                history.push({
+                history.replace({
                   pathname: `/shop/${shopTitle}`,
                   state: { shopId },
                 })

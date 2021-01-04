@@ -22,7 +22,7 @@ export default function PageScanner() {
   const pathname = useCase === 'setup' ? '/feedback-setup' : '/feedback-scan'
   useEffect(() => {
     if (barcode !== '') {
-      history.push({
+      history.replace({
         pathname,
         state: { itemId, shopId, barcode },
       })

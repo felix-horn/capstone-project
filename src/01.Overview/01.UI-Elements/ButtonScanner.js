@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import CircleButton from './CircleButton'
@@ -9,12 +9,10 @@ ButtonScanner.propTypes = {
 }
 
 export default function ButtonScanner({ className }) {
+  const history = useHistory()
   return (
     <ButtonLayout
-      to={{
-        pathname: '/scanner',
-        state: { useCase: 'uncheckItem' },
-      }}
+      onClick={navigateToScanner}
       className={className}
       data-testid="scanner-button"
     >
@@ -24,9 +22,15 @@ export default function ButtonScanner({ className }) {
       </CircleButton>
     </ButtonLayout>
   )
+  function navigateToScanner() {
+    history.push({
+      pathname: '/scanner',
+      state: { useCase: 'uncheckItem' },
+    })
+  }
 }
 
-const ButtonLayout = styled(NavLink)`
+const ButtonLayout = styled.div`
   display: flex;
   justify-content: end;
   align-items: center;

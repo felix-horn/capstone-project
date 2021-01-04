@@ -76,7 +76,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
         title={
           feedback === 'success' ? 'Weiteren Code scannen' : 'Erneut scannen'
         }
-        onClick={() => history.goBack()}
+        onClick={navigateToScanner}
         className="primary"
       >
         <ScanIcon />
@@ -89,7 +89,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
           <Button
             title={`Zur Liste "${shopTitlesToMatchingItems[0]}"`}
             onClick={() =>
-              history.push({
+              history.replace({
                 pathname: `/shop/${shopTitlesToMatchingItems[0]}`,
                 state: { shopId: shopIdsToMatchingItems[0] },
               })
@@ -102,8 +102,9 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
 
       {
         /* in the case of more than one match,
-        the user has the option to navigate to any of these shops
-        via a dropdown select*/
+        the user has the option to navigate to any of the shops
+        (via a dropdown select)
+        which contain the matched item*/
         shopIdsToMatchingItems.length > 1 && (
           <StoreSelect
             shopIdsToMatchingItems={shopIdsToMatchingItems}
@@ -114,7 +115,8 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
 
       {
         /* in the case of no match,
-        the user has the option to navigate to any shop via a dropdown select ,
+        the user has the option to navigate to any shop
+        (via a dropdown select)
         in order to start the setup process from there*/
         shopIdsToMatchingItems.length === 0 && (
           <StoreSelect
@@ -125,6 +127,12 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
       }
     </PageGrid>
   )
+  function navigateToScanner() {
+    history.push({
+      pathname: '/scanner',
+      state: { useCase: 'uncheckItem' },
+    })
+  }
 }
 
 const HeaderPositioned = styled(Header)`
