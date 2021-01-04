@@ -43,7 +43,6 @@ export default function OverviewPage({ database, addShop }) {
 }
 
 const PageLayout = styled.div`
-  position: relative;
   height: calc(100vh - 50px - 50px); // 50px top and bottom
   display: grid;
   gap: 10px;
@@ -57,7 +56,7 @@ const OverlayNavigationPositioned = styled(OverlayNavigation)`
 `
 const ButtonNavigationPositioned = styled(ButtonNavigation)`
   position: fixed;
+  z-index: var(--z-index-floating-item);
   bottom: 70px;
   right: 40px;
-  z-index: var(--z-index-floating-item);
 `

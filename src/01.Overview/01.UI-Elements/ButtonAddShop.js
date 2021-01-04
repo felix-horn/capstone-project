@@ -2,8 +2,8 @@ import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { v4 as uuid } from 'uuid'
 import styled from 'styled-components/macro'
-import AddShopIcon from '@material-ui/icons/PostAdd'
 import CircleButton from './CircleButton'
+import AddShopIcon from '@material-ui/icons/PostAdd'
 
 ButtonAddShop.propTypes = {
   addShop: PropTypes.func.isRequired,

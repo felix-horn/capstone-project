@@ -3,8 +3,12 @@ import styled from 'styled-components/macro'
 
 CircleButton.propTypes = {}
 
-export default function CircleButton({ className, children }) {
-  return <ButtonLayout className={className}>{children}</ButtonLayout>
+export default function CircleButton({ className, children, onClick }) {
+  return (
+    <ButtonLayout className={className} onClick={onClick}>
+      {children}
+    </ButtonLayout>
+  )
 }
 
 const ButtonLayout = styled.div`

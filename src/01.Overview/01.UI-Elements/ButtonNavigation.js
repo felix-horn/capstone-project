@@ -1,6 +1,7 @@
-
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+import CircleButton from './CircleButton'
+
 import MenuIcon from '@material-ui/icons/Menu'
 
 ButtonNavigation.propTypes = {
@@ -9,26 +10,16 @@ ButtonNavigation.propTypes = {
 
 export default function ButtonNavigation({ onClick, className }) {
   return (
-    <ButtonNavigationStyled onClick={onClick} className={className}>
-      <MenuIconStyled className={className} />
-    </ButtonNavigationStyled>
+    <CircleButton onClick={onClick} className={className}>
+      <MenuIconAnimated className={className} />
+    </CircleButton>
   )
 }
 
-const ButtonNavigationStyled = styled.div`
-  box-shadow: var(--strong-box-shadow);
-  border-radius: 100%;
-  height: 50px;
-  width: 50px;
-  background-color: var(--white);
-  display: grid;
-  place-items: center;
-`
-const MenuIconStyled = styled(MenuIcon)`
+const MenuIconAnimated = styled(MenuIcon)`
   position: relative !important;
   bottom: 0px !important;
   right: 0px !important;
-  color: var(--CTA-blue);
 
   &.rotate-back {
     animation: 0.2s rotateBack ease-in-out;
