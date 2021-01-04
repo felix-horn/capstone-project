@@ -101,26 +101,18 @@ export default function useDatabase() {
     )
   }
 
-  function rearrangeListOrder(indexFrom, indexTo, shopId) {
-    const idsShopItems = [...database.shops.byId[shopId].items]
-    const targetItem = idsShopItems[indexFrom]
+  function rearrangeListOrder(draggedId, indexToShopIds, shopId) {
+    const shopItemIds = [...database.shops.byId[shopId].items]
     // remove id from initial position
-    idsShopItems.splice(indexFrom, 1)
-    // insert id in new position
-    idsShopItems.splice(indexTo, 0, targetItem)
-
-    console.log(
-      { indexFrom },
-      { indexTo },
-      'before: ',
-      database.shops.byId[shopId].items,
-      'after: ',
-      idsShopItems
+    const shopItemIdsWithoutTargetId = shopItemIds.filter(
+      (id) => id !== draggedId
     )
+    // insert id in new position
+    shopItemIdsWithoutTargetId.splice(indexToShopIds, 0, draggedId)
 
     setDatabase(
       produce(database, (draft) => {
-        draft.shops.byId[shopId].items = idsShopItems
+        draft.shops.byId[shopId].items = shopItemIdsWithoutTargetId
       })
     )
   }

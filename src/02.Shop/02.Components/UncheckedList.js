@@ -75,10 +75,16 @@ export default function UncheckedList({
   }
 
   function handleOnDragEnd(result) {
+    // return early if item is dragged outside droppable area
     if (!result.destination) return
-    const indexFrom = result.source.index
-    const indexTo = result.destination.index
-    rearrangeListOrder(indexFrom, indexTo)
+    const draggedId = result.draggableId
+    // new index within unchecked IDs is returned
+    const newIndexInUncheckedIds = result.destination.index
+    // new index within all IDs of the shop (including checked IDs) must be determined
+    const newIdPrecedingDraggedId = uncheckedIds[newIndexInUncheckedIds - 1]
+    const newIndexInShopIds =
+      database.shops.byId[shopId].items.indexOf(newIdPrecedingDraggedId) + 1
+    rearrangeListOrder(draggedId, newIndexInShopIds)
   }
 
   function handleEnter(targetId) {
