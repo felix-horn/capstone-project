@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import ShopTitle from '../01.UI-Elements/ShopTitle'
@@ -16,18 +16,13 @@ ShopCard.propTypes = {
 }
 
 export default function ShopCard({ shopId, database }) {
+  const history = useHistory()
   const uncheckedIds = getUncheckedItemIds(database, shopId)
   const lengthCheckedIds = getQuantityCheckedItems(database, shopId)
   const shopTitle = getShopTitle(database, shopId)
 
   return (
-    <ShopCardStyled
-      to={{
-        pathname: `/shop/${shopTitle}`,
-        state: { shopId },
-      }}
-      data-testid="shop-card"
-    >
+    <CardLayout onClick={navigateToShop} data-testid="shop-card">
       <ShopTitle title={shopTitle} />
       {uncheckedIds.map((id) => (
         <ListItem key={id} title={database.items.byId[id].title} />
@@ -35,11 +30,17 @@ export default function ShopCard({ shopId, database }) {
       {lengthCheckedIds > 0 && (
         <CheckedItemsSummary lengthCheckedIds={lengthCheckedIds} />
       )}
-    </ShopCardStyled>
+    </CardLayout>
   )
+  function navigateToShop() {
+    history.replace({
+      pathname: `/shop/${shopTitle}`,
+      state: { shopId },
+    })
+  }
 }
 
-const ShopCardStyled = styled(NavLink)`
+const CardLayout = styled.div`
   border: var(--border);
   border-radius: 8px;
   padding: 15px;

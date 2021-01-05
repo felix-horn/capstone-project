@@ -47,7 +47,7 @@ function getAllShopTitles(database) {
 /* items */
 
 function getItemTitle(database, itemId) {
-  return database.items.byId[itemId].title
+  return database.items.byId[itemId]?.title
 }
 
 function getItemTitles(database, itemIds) {

@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
@@ -9,19 +9,24 @@ Menu.propTypes = {
 }
 
 export default function Menu({ deleteShop, className }) {
+  const history = useHistory()
   return (
     <LayoutWrapper className={className}>
-      <NavDeleteButton
-        onClick={deleteShop}
+      <OptionDelete
+        onClick={handleClick}
         exact
         to="/"
         data-testid="delete-button"
       >
         <DeleteForeverIcon />
         Liste unwiderruflich löschen
-      </NavDeleteButton>
+      </OptionDelete>
     </LayoutWrapper>
   )
+  function handleClick() {
+    deleteShop()
+    history.replace('/')
+  }
 }
 
 const LayoutWrapper = styled.div`
@@ -33,7 +38,7 @@ const LayoutWrapper = styled.div`
   justify-items: start;
 `
 
-const NavDeleteButton = styled(NavLink)`
+const OptionDelete = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;

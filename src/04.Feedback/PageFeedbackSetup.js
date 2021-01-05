@@ -8,6 +8,7 @@ import Quagga from 'quagga'
 import FeedbackCard from './01.UI-Elements/FeedbackCard'
 import SaveIcon from '@material-ui/icons/Save'
 import ScanIcon from '@material-ui/icons/CropFree'
+import { getItemTitle, getShopTitle } from '../services/filter.services'
 
 PageFeedbackSetup.propTypes = {
   database: PropTypes.object.isRequired,
@@ -20,7 +21,7 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
   const itemId = location.state.itemId
   const shopId = location.state.shopId
   const barcode = location.state.barcode
-  const itemTitle = database.items.byId[itemId]?.title
+  const itemTitle = getItemTitle(database, itemId)
 
   useEffect(() => {
     if (window.navigator.vibrate) {
@@ -39,7 +40,7 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
       <FeedbackCard feedback="validate" barcode={barcode} />
       <Button
         title={'Speichern'}
-        onClick={() => history.goBack()}
+        onClick={navigateBackToShop}
         className="primary"
       >
         <SaveIcon />
@@ -49,6 +50,13 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
       </Button>
     </PageGrid>
   )
+
+  function navigateBackToShop() {
+    history.replace({
+      pathname: `/shop/${getShopTitle(database, shopId)}`,
+      state: { shopId },
+    })
+  }
   function navigateToScanner() {
     history.push({
       pathname: '/scanner',

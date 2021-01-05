@@ -22,7 +22,6 @@ export default function Header({ onClick, shopId, className }) {
   )
   function navigateBack() {
     history.replace(shopId ? { pathname: '/shop', state: { shopId } } : '/')
-    console.log({ history })
   }
 }
 

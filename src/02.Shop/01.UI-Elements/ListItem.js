@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -73,7 +72,7 @@ export default function ListItem({
   )
 
   function navigateToScanner() {
-    history.push({
+    history.replace({
       pathname: '/scanner',
       state: { itemId, title, shopId, useCase: 'setup' },
     })
