@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
+
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import Explanation from '../00.SharedComponents/01.UI-Elements/02.Components/Explanation'
 import Status from './02.UI-Elements/Status'
@@ -21,17 +22,16 @@ export default function PageScanner() {
 
   const pathname = useCase === 'setup' ? '/feedback-setup' : '/feedback-scan'
   useEffect(() => {
-    if (barcode !== '') {
-      history.replace({
-        pathname,
-        state: { itemId, shopId, barcode },
-      })
-    }
+    if (barcode === '') return
+    history.replace({
+      pathname,
+      state: { itemId, shopId, barcode },
+    })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [barcode])
 
   return (
-    <PageScannerLayout>
+    <PageLayout>
       <HeaderPositioned shopId={shopId} />
       <Explanation useCase={useCase} />
       <Status useCase={useCase} itemTitle={itemTitle} />
@@ -41,7 +41,7 @@ export default function PageScanner() {
           <ScannerFramePositioned />
         </div>
       </ScannerWrapper>
-    </PageScannerLayout>
+    </PageLayout>
   )
 
   function onDetected(barcode) {
@@ -57,7 +57,7 @@ const HeaderPositioned = styled(Header)`
   width: 100%;
 `
 
-const PageScannerLayout = styled.div`
+const PageLayout = styled.div`
   position: relative;
   margin-top: 35px;
   height: calc(100vh - 50px - 10px);

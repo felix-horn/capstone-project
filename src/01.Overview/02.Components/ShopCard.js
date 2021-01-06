@@ -33,7 +33,7 @@ export default function ShopCard({ shopId, database }) {
     </CardLayout>
   )
   function navigateToShop() {
-    history.replace({
+    history.push({
       pathname: `/shop/${shopTitle}`,
       state: { shopId },
     })
