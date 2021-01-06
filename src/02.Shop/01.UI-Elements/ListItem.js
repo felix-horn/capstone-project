@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
@@ -30,13 +30,21 @@ export default function ListItem({
   toggleCheckbox,
   onDelete,
   onEnter,
+  isFocused,
 }) {
   const [isIconsShown, setIsIconsShown] = useState(false)
+  const [isFocusedNew, setIsFocusedNew] = useState(isFocused)
   const title = getItemTitle(database, itemId)
   const isChecked = getItemCheckStatus(database, itemId)
   const hasBarcode = getItemBarcodeStatus(database, itemId)
   const history = useHistory()
-  let raceConditionTimer
+
+  useEffect(() => {
+    setIsFocusedNew(isFocused)
+  }, [])
+
+  console.log({ isFocusedNew })
+
   return (
     <ListItemStyled checked={isChecked} data-testid="list-item">
       <Checkbox
@@ -52,7 +60,7 @@ export default function ListItem({
         onKeyUp={(event) => event.key === 'Enter' && handleEnter(event)}
         onFocus={showIcons}
         onBlur={hideIcons}
-        autoFocus={true}
+        autoFocus={isFocusedNew}
         isCrossedOut={isChecked}
         data-testid="title-list-item"
       />
@@ -81,6 +89,7 @@ export default function ListItem({
   function handleCheckboxToggle() {
     //clearTimeout(raceConditionTimer)
     toggleCheckbox()
+    setIsFocusedNew(false)
   }
 
   function handleInputChange(event) {
@@ -97,7 +106,8 @@ export default function ListItem({
   }
 
   function hideIcons() {
-    raceConditionTimer = setTimeout(() => setIsIconsShown(false), 0)
+    // raceConditionTimer = setTimeout(() => setIsIconsShown(false), 0)
+    setTimeout(() => setIsIconsShown(false), 0)
     //return () => clearTimeout(raceConditionTimer)
   }
 

@@ -27,6 +27,7 @@ export default function UncheckedList({
   deleteListItem,
   addListItem,
   rearrangeListOrder,
+  isFocused,
 }) {
   const uncheckedIds = getUncheckedItemIds(database, shopId)
 
@@ -60,6 +61,7 @@ export default function UncheckedList({
                       toggleCheckbox={() => toggleIsChecked(id)}
                       onDelete={() => deleteListItem(id)}
                       onEnter={() => handleEnter(id)}
+                      isFocused={isFocused}
                     />
                   </ListItemWrapper>
                 )}

@@ -17,6 +17,7 @@ export default function ButtonAddItem({ onClick, className }) {
 }
 
 const Button = styled.button`
+  outline: none;
   border: none;
   background: none;
   display: flex;
