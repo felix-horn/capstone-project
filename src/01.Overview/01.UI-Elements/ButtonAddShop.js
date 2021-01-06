@@ -2,7 +2,7 @@ import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { v4 as uuid } from 'uuid'
 import styled from 'styled-components/macro'
-import CircleButton from './CircleButton'
+import ButtonCircle from './ButtonCircle'
 import AddShopIcon from '@material-ui/icons/PostAdd'
 
 ButtonAddShop.propTypes = {
@@ -20,9 +20,9 @@ export default function ButtonAddShop({ addShop, className }) {
       data-testid="action-button"
     >
       Neues Geschäft hinzufügen
-      <CircleButton className="small">
+      <ButtonCircle className="small">
         <AddShopIcon />
-      </CircleButton>
+      </ButtonCircle>
     </ButtonLayout>
   )
   function handleClick() {

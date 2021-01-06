@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import CircleButton from './CircleButton'
+import ButtonCircle from './ButtonCircle'
 import ScannerIcon from '@material-ui/icons/CropFree'
 
 ButtonScanner.propTypes = {
@@ -17,9 +17,9 @@ export default function ButtonScanner({ className }) {
       data-testid="scanner-button"
     >
       Barcode scannen
-      <CircleButton className="primary">
+      <ButtonCircle className="primary">
         <ScannerIconAnimated />
-      </CircleButton>
+      </ButtonCircle>
     </ButtonLayout>
   )
   function navigateToScanner() {

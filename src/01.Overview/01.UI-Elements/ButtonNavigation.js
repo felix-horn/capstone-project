@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import CircleButton from './CircleButton'
+import ButtonCircle from './ButtonCircle'
 
 import MenuIcon from '@material-ui/icons/Menu'
 
@@ -10,9 +10,9 @@ ButtonNavigation.propTypes = {
 
 export default function ButtonNavigation({ onClick, className }) {
   return (
-    <CircleButton onClick={onClick} className={className}>
+    <ButtonCircle onClick={onClick} className={className}>
       <MenuIconAnimated className={className} />
-    </CircleButton>
+    </ButtonCircle>
   )
 }
 

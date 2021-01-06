@@ -2,8 +2,9 @@ import { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import ShopCard from './02.Components/ShopCard'
-import ButtonNavigation from './01.UI-Elements/ButtonNavigation'
 import OverlayNavigation from './02.Components/OverlayNavigation'
+import ButtonCircle from './01.UI-Elements/ButtonCircle'
+import MenuIcon from '@material-ui/icons/Menu'
 
 OverviewPage.propTypes = {
   database: PropTypes.object.isRequired,
@@ -24,10 +25,12 @@ export default function OverviewPage({ database, addShop }) {
       {database.shops.allIds.map((shopId) => (
         <ShopCard key={shopId} shopId={shopId} database={database} />
       ))}
-      <ButtonNavigationPositioned
+      <ButtonNavigation
         onClick={handleButtonNavigationClick}
         className={buttonNavigationClass}
-      />
+      >
+        <MenuIconAnimated className={buttonNavigationClass} />
+      </ButtonNavigation>
     </PageLayout>
   )
 
@@ -54,9 +57,23 @@ const OverlayNavigationPositioned = styled(OverlayNavigation)`
   top: 0;
   left: 0;
 `
-const ButtonNavigationPositioned = styled(ButtonNavigation)`
+const ButtonNavigation = styled(ButtonCircle)`
   position: fixed;
   z-index: var(--z-index-floating-item);
   bottom: 70px;
   right: 40px;
+`
+const MenuIconAnimated = styled(MenuIcon)`
+  &.rotate-back {
+    animation: 0.2s rotateBack ease-in-out;
+
+    @keyframes rotateBack {
+      0% {
+        transform: rotate(90deg);
+      }
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+  }
 `
