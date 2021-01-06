@@ -84,7 +84,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
 
       {
         /* in the case of one match,
-        the user has the option to navigate to that shop via a button*/
+        the user has the option to navigate to the corresponding shop via a button*/
         shopIdsToMatchingItems.length === 1 && (
           <Button
             title={`Zur Liste "${shopTitlesToMatchingItems[0]}"`}

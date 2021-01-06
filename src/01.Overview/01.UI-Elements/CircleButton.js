@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
-CircleButton.propTypes = {}
+CircleButton.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.element.isRequired,
+  onClick: PropTypes.func,
+}
 
 export default function CircleButton({ className, children, onClick }) {
   return (

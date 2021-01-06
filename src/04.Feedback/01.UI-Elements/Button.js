@@ -5,6 +5,7 @@ Button.propTypes = {
   title: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
+  children: PropTypes.element.isRequired,
 }
 
 export default function Button({ title, onClick, className, children }) {
