@@ -6,7 +6,7 @@ import Quagga from 'quagga'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import Explanation from '../00.SharedComponents/01.UI-Elements/02.Components/Explanation'
 import FeedbackCard from './01.UI-Elements/FeedbackCard'
-import Button from './01.UI-Elements/Button'
+import ButtonRectangle from './01.UI-Elements/ButtonRectangle'
 import StoreSelect from './01.UI-Elements/StoreSelect'
 import ListIcon from '@material-ui/icons/List'
 import ScanIcon from '@material-ui/icons/CropFree'
@@ -72,7 +72,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
         itemTitlesMatchingBarcode={itemTitlesMatchingBarcode}
         shopTitlesToMatchingItems={shopTitlesToMatchingItems}
       />
-      <Button
+      <ButtonRectangle
         title={
           feedback === 'success' ? 'Weiteren Code scannen' : 'Erneut scannen'
         }
@@ -80,13 +80,13 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
         className="primary"
       >
         <ScanIcon />
-      </Button>
+      </ButtonRectangle>
 
       {
         /* in the case of one match,
         the user has the option to navigate to the corresponding shop via a button*/
         shopIdsToMatchingItems.length === 1 && (
-          <Button
+          <ButtonRectangle
             title={`Zur Liste "${shopTitlesToMatchingItems[0]}"`}
             onClick={() =>
               history.replace({
@@ -96,7 +96,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
             }
           >
             <ListIcon />
-          </Button>
+          </ButtonRectangle>
         )
       }
 

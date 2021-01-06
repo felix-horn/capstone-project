@@ -1,3 +1,0 @@
-```js padded
-<ButtonAddShop addShop={() => {}} />
-```

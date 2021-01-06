@@ -3,7 +3,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
-import Button from './01.UI-Elements/Button'
+import ButtonRectangle from './01.UI-Elements/ButtonRectangle'
 import Quagga from 'quagga'
 import FeedbackCard from './01.UI-Elements/FeedbackCard'
 import SaveIcon from '@material-ui/icons/Save'
@@ -38,16 +38,16 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
       <HeaderPositioned shopId={shopId} />
       <ItemTitle>{itemTitle}</ItemTitle>
       <FeedbackCard feedback="validate" barcode={barcode} />
-      <Button
+      <ButtonRectangle
         title={'Speichern'}
         onClick={navigateBackToShop}
         className="primary"
       >
         <SaveIcon />
-      </Button>
-      <Button title={'Erneut scannen'} onClick={navigateToScanner}>
+      </ButtonRectangle>
+      <ButtonRectangle title={'Erneut scannen'} onClick={navigateToScanner}>
         <ScanIcon />
-      </Button>
+      </ButtonRectangle>
     </PageGrid>
   )
 
