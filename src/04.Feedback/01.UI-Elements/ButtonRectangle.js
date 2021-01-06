@@ -19,8 +19,8 @@ export default function Button({ title, onClick, className, children }) {
 
 const ButtonLayout = styled.button`
   border-radius: 5px;
-  border: var(--border);
   outline: none;
+  border: var(--border);
   background-color: var(--white);
   padding: 5px 15px;
   display: flex;
