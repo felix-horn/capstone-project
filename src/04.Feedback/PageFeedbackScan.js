@@ -66,12 +66,20 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
     <PageLayout>
       <HeaderPositioned />
       <Explanation useCase="uncheckItem" />
-      <FeedbackCard
-        feedback={feedback}
-        barcode={barcode}
-        itemTitlesMatchingBarcode={itemTitlesMatchingBarcode}
-        shopTitlesToMatchingItems={shopTitlesToMatchingItems}
-      />
+      {feedback === 'success' && (
+        <FeedbackCard
+          className="green"
+          header={itemTitlesMatchingBarcode.join(' / ')}
+          text={`wurde ${shopTitlesToMatchingItems.join(' / ')} hinzugefügt.`}
+        />
+      )}
+      {feedback === 'failure' && (
+        <FeedbackCard
+          className="red"
+          header={barcode}
+          text="Keinem Deiner Produkte ist dieser Barcode zugeordnet."
+        />
+      )}
       <ButtonRectangle
         title={
           feedback === 'success' ? 'Weiteren Code scannen' : 'Erneut scannen'

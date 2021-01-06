@@ -37,7 +37,11 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
     <PageLayout>
       <HeaderPositioned shopId={shopId} />
       <ItemTitle>{itemTitle}</ItemTitle>
-      <FeedbackCard feedback="validate" barcode={barcode} />
+      <FeedbackCard
+        className="yellow"
+        header={barcode}
+        text="Ist dies die Nummer unter dem Barcode des Produkts?"
+      />
       <ButtonRectangle
         title={'Speichern'}
         onClick={navigateBackToShop}

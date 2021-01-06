@@ -1,36 +1,22 @@
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
-export default function FeedbackCard({
-  feedback,
-  barcode,
-  itemTitlesMatchingBarcode,
-  shopTitlesToMatchingItems,
-}) {
+FeedbackCard.propTypes = {
+  className: PropTypes.string.isRequired,
+  header: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+}
+
+export default function FeedbackCard({ className, header, text }) {
   return (
-    <>
-      {feedback === 'validate' && (
-        <FeedbackCardStyled className="yellow">
-          <strong>{barcode}</strong>
-          Ist dies die Nummer unter dem Barcode des Produkts?
-        </FeedbackCardStyled>
-      )}
-      {feedback === 'success' && (
-        <FeedbackCardStyled className="green">
-          <strong>{itemTitlesMatchingBarcode.join(' / ')}</strong>
-          {`wurde ${shopTitlesToMatchingItems.join(' / ')} hinzugefügt.`}
-        </FeedbackCardStyled>
-      )}
-      {feedback === 'failure' && (
-        <FeedbackCardStyled className="red">
-          <strong>{barcode}</strong>
-          Keinem Deiner Produkte ist dieser Barcode zugeordnet.
-        </FeedbackCardStyled>
-      )}
-    </>
+    <CardLayout className={className}>
+      <strong>{header}</strong>
+      {text}
+    </CardLayout>
   )
 }
 
-const FeedbackCardStyled = styled.div`
+const CardLayout = styled.div`
   box-shadow: var(--light-box-shadow);
   border-radius: 5px;
   border: var(--border);
