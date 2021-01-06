@@ -1,6 +1,6 @@
+import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import { useHistory } from 'react-router-dom'
 
 import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
@@ -27,14 +27,7 @@ export default function StoreSelect({
         {shopIdsToMatchingItems.map((shopId, index) => {
           const shopTitle = shopTitlesToMatchingItems[index]
           return (
-            <MenuItem
-              onClick={() =>
-                history.replace({
-                  pathname: `/shop/${shopTitle}`,
-                  state: { shopId },
-                })
-              }
-            >
+            <MenuItem onClick={() => navigateToShop(shopTitle, shopId)}>
               {shopTitle}
             </MenuItem>
           )
@@ -42,6 +35,12 @@ export default function StoreSelect({
       </Select>
     </SelectWrapper>
   )
+  function navigateToShop(shopTitle, shopId) {
+    history.replace({
+      pathname: `/shop/${shopTitle}`,
+      state: { shopId },
+    })
+  }
 }
 
 const SelectWrapper = styled(FormControl)`

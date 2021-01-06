@@ -17,8 +17,8 @@ export default function OverlayNavigation({ onClick, addShop, className }) {
   const newShopId = uuid()
 
   return (
-    <ClickableOverlayBackground onClick={onClick} className={className}>
-      <BackgroundStyled />
+    <>
+      <OpaqueBackground onClick={onClick} className={className} />
       <ButtonAddShop
         title="Neues Geschäft hinzufügen"
         onClick={handleAddShopClick}
@@ -33,7 +33,7 @@ export default function OverlayNavigation({ onClick, addShop, className }) {
       >
         <ScannerIconAnimated />
       </ButtonScanner>
-    </ClickableOverlayBackground>
+    </>
   )
   function handleAddShopClick() {
     history.push({
@@ -50,17 +50,12 @@ export default function OverlayNavigation({ onClick, addShop, className }) {
   }
 }
 
-const ClickableOverlayBackground = styled.div`
-  height: 100%;
-  width: 100%;
-`
-const BackgroundStyled = styled.div`
+const OpaqueBackground = styled.div`
   height: 100%;
   width: 100%;
   background-color: var(--white);
   opacity: 0.8;
 `
-
 const ButtonAddShop = styled(ButtonLabeledCircle)`
   position: absolute;
   z-index: var(--z-index-item-on-overlay);
@@ -86,7 +81,6 @@ const ButtonScanner = styled(ButtonLabeledCircle)`
   bottom: calc(60px + 10px);
   right: calc(30px + 10px);
 `
-
 const ScannerIconAnimated = styled(ScannerIcon)`
   animation: 0.2s ease-in-out 0s 1 rotate;
 

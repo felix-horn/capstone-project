@@ -3,6 +3,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Quagga from 'quagga'
+
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import Explanation from '../00.SharedComponents/01.UI-Elements/02.Components/Explanation'
 import FeedbackCard from './01.UI-Elements/FeedbackCard'
@@ -24,9 +25,8 @@ PageFeedbackScan.propTypes = {
 }
 
 export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
+  const barcode = useLocation().state.barcode
   const history = useHistory()
-  const location = useLocation()
-  const barcode = location.state.barcode
 
   /* the same barcode can be allocated to more than one item - even in differen shops */
   const itemIdsMatchingBarcode = getItemIdsByBarcode(database, barcode)
@@ -63,7 +63,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
   }, [])
 
   return (
-    <PageGrid>
+    <PageLayout>
       <HeaderPositioned />
       <Explanation useCase="uncheckItem" />
       <FeedbackCard
@@ -76,7 +76,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
         title={
           feedback === 'success' ? 'Weiteren Code scannen' : 'Erneut scannen'
         }
-        onClick={navigateToScanner}
+        onClick={navigateBackToScanner}
         className="primary"
       >
         <ScanIcon />
@@ -84,16 +84,12 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
 
       {
         /* in the case of one match,
-        the user has the option to navigate to the corresponding shop via a button*/
+        the user has the option to navigate to the corresponding shop
+        via a button */
         shopIdsToMatchingItems.length === 1 && (
           <ButtonRectangle
             title={`Zur Liste "${shopTitlesToMatchingItems[0]}"`}
-            onClick={() =>
-              history.replace({
-                pathname: `/shop/${shopTitlesToMatchingItems[0]}`,
-                state: { shopId: shopIdsToMatchingItems[0] },
-              })
-            }
+            onClick={navigateToShop}
           >
             <ListIcon />
           </ButtonRectangle>
@@ -102,9 +98,8 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
 
       {
         /* in the case of more than one match,
-        the user has the option to navigate to any of the shops
-        (via a dropdown select)
-        which contain the matched item*/
+        the user has the option to navigate to any of the corresponding shops
+        via a dropdown select */
         shopIdsToMatchingItems.length > 1 && (
           <StoreSelect
             shopIdsToMatchingItems={shopIdsToMatchingItems}
@@ -125,29 +120,34 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
           />
         )
       }
-    </PageGrid>
+    </PageLayout>
   )
-  function navigateToScanner() {
+  function navigateBackToScanner() {
     history.push({
       pathname: '/scanner',
       state: { useCase: 'uncheckItem' },
     })
   }
+  function navigateToShop() {
+    history.replace({
+      pathname: `/shop/${shopTitlesToMatchingItems[0]}`,
+      state: { shopId: shopIdsToMatchingItems[0] },
+    })
+  }
 }
 
-const HeaderPositioned = styled(Header)`
-  position: fixed;
-  z-index: var(--z-index-header);
-  top: 0;
-  left: 0;
-  width: 100%;
-`
-
-const PageGrid = styled.div`
+const PageLayout = styled.div`
   margin-top: 35px;
   display: grid;
   grid-template-rows: auto 40vh auto auto;
   gap: 25px;
   align-items: start;
   justify-items: center;
+`
+const HeaderPositioned = styled(Header)`
+  position: fixed;
+  z-index: var(--z-index-header);
+  top: 0;
+  left: 0;
+  width: 100%;
 `

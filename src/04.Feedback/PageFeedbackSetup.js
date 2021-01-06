@@ -2,10 +2,11 @@ import { useEffect } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
-import ButtonRectangle from './01.UI-Elements/ButtonRectangle'
 import Quagga from 'quagga'
+
+import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import FeedbackCard from './01.UI-Elements/FeedbackCard'
+import ButtonRectangle from './01.UI-Elements/ButtonRectangle'
 import SaveIcon from '@material-ui/icons/Save'
 import ScanIcon from '@material-ui/icons/CropFree'
 import { getItemTitle, getShopTitle } from '../services/filter.services'
@@ -16,12 +17,11 @@ PageFeedbackSetup.propTypes = {
 }
 
 export default function PageFeedbackSetup({ database, changeBarcode }) {
-  const history = useHistory()
-  const location = useLocation()
-  const itemId = location.state.itemId
-  const shopId = location.state.shopId
-  const barcode = location.state.barcode
+  const itemId = useLocation().state.itemId
   const itemTitle = getItemTitle(database, itemId)
+  const barcode = useLocation().state.barcode
+  const shopId = useLocation().state.shopId
+  const history = useHistory()
 
   useEffect(() => {
     if (window.navigator.vibrate) {
@@ -34,7 +34,7 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
   }, [])
 
   return (
-    <PageGrid>
+    <PageLayout>
       <HeaderPositioned shopId={shopId} />
       <ItemTitle>{itemTitle}</ItemTitle>
       <FeedbackCard feedback="validate" barcode={barcode} />
@@ -45,10 +45,10 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
       >
         <SaveIcon />
       </ButtonRectangle>
-      <ButtonRectangle title={'Erneut scannen'} onClick={navigateToScanner}>
+      <ButtonRectangle title={'Erneut scannen'} onClick={navigateBackToScanner}>
         <ScanIcon />
       </ButtonRectangle>
-    </PageGrid>
+    </PageLayout>
   )
 
   function navigateBackToShop() {
@@ -57,7 +57,7 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
       state: { shopId },
     })
   }
-  function navigateToScanner() {
+  function navigateBackToScanner() {
     history.push({
       pathname: '/scanner',
       state: { itemId, itemTitle, shopId, useCase: 'setup' },
@@ -65,6 +65,14 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
   }
 }
 
+const PageLayout = styled.div`
+  margin-top: 35px;
+  display: grid;
+  grid-template-rows: auto 40vh auto auto;
+  gap: 25px;
+  align-items: start;
+  justify-items: center;
+`
 const HeaderPositioned = styled(Header)`
   position: fixed;
   z-index: var(--z-index-header);
@@ -72,16 +80,6 @@ const HeaderPositioned = styled(Header)`
   left: 0;
   width: 100%;
 `
-
 const ItemTitle = styled.strong`
   font-size: 1.2rem;
-`
-
-const PageGrid = styled.div`
-  margin-top: 35px;
-  display: grid;
-  grid-template-rows: auto 40vh auto auto;
-  gap: 25px;
-  align-items: start;
-  justify-items: center;
 `
