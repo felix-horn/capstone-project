@@ -10,7 +10,7 @@ OverlayMenu.propTypes = {
 export default function OverlayMenu({ toggleMenu, deleteShop }) {
   return (
     <ClickableMenuBackground onClick={toggleMenu} data-testid="background">
-      <MenuStyled deleteShop={deleteShop} />
+      <MenuPositioned deleteShop={deleteShop} />
     </ClickableMenuBackground>
   )
 }
@@ -24,7 +24,7 @@ const ClickableMenuBackground = styled.div`
   width: 100%;
 `
 
-const MenuStyled = styled(Menu)`
+const MenuPositioned = styled(Menu)`
   position: absolute;
   z-index: var(--z-index-item-on-overlay);
   top: 45px;

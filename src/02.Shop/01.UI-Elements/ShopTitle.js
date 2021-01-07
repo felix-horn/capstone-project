@@ -15,7 +15,7 @@ export default function ShopTitle({
   className,
 }) {
   return (
-    <ShopTitleStyled
+    <Title
       placeholder="Geschäft"
       value={database.shops.byId[shopId].title}
       onChange={handleInputChange}
@@ -28,14 +28,10 @@ export default function ShopTitle({
   }
 }
 
-const ShopTitleStyled = styled.input`
-  margin-left: 7px;
-  margin-bottom: 10px;
-  font-weight: 400 !important;
-  font-size: 1.3em !important;
+const Title = styled.input`
+  outline: none;
   border: none;
-  &:focus {
-    outline: none;
-  }
+  font-weight: 400;
+  font-size: 1.3em;
   opacity: ${(props) => (props.title === '' ? 0.5 : 1)};
 `

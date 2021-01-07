@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { getItemCheckStatus, getItemTitle } from '../services/filter.services'
 
 export default function useUndoDelete(database, addListItem) {
   const [visibilityButtonUndo, setVisibilityButtonUndo] = useState('hidden')
@@ -11,8 +12,8 @@ export default function useUndoDelete(database, addListItem) {
   }
 
   function cacheDeletedListItem(targetId, shopId) {
-    const title = database.items.byId[targetId].title
-    const isChecked = database.items.byId[targetId].isChecked
+    const title = getItemTitle(database, targetId)
+    const isChecked = getItemCheckStatus(database, targetId)
     setDeletedListItem({ shopId, title, isChecked })
     setVisibilityButtonUndo('shown')
   }

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import useUndoDelete from '../hooks/useUndoDelete'
+
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import OverlayMenu from '../00.SharedComponents/01.UI-Elements/02.Components/OverlayMenu'
 import ShopTitle from './01.UI-Elements/ShopTitle'
@@ -10,6 +10,7 @@ import UncheckedList from './02.Components/UncheckedList'
 import ButtonAddItem from './01.UI-Elements/ButtonAddItem'
 import CheckedList from './02.Components/CheckedList'
 import Footer from '../00.SharedComponents/01.UI-Elements/02.Components/Footer'
+import useUndoDelete from '../hooks/useUndoDelete'
 
 ShopPage.propTypes = {
   database: PropTypes.object.isRequired,
@@ -19,6 +20,7 @@ ShopPage.propTypes = {
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
   rearrangeListOrder: PropTypes.func.isRequired,
+  deleteShop: PropTypes.func.isRequired,
 }
 
 export default function ShopPage({
@@ -37,8 +39,7 @@ export default function ShopPage({
     undoDelete,
   } = useUndoDelete(database, addListItem)
 
-  const location = useLocation()
-  const shopId = location.state.shopId
+  const shopId = useLocation().state.shopId
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
 
@@ -102,16 +103,15 @@ const HeaderPositioned = styled(Header)`
   left: 0;
   width: 100%;
 `
-
 const ShopTitlePositioned = styled(ShopTitle)`
   margin-top: 40px;
+  margin-left: 7px;
+  margin-bottom: 10px;
 `
-
 const ButtonAddItemPositioned = styled(ButtonAddItem)`
   margin-left: 30px;
   margin-bottom: 20px;
 `
-
 const FooterPositioned = styled(Footer)`
   position: fixed;
   z-index: var(--z-index-header);

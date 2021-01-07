@@ -12,12 +12,7 @@ export default function Menu({ deleteShop, className }) {
   const history = useHistory()
   return (
     <LayoutWrapper className={className}>
-      <OptionDelete
-        onClick={handleClick}
-        exact
-        to="/"
-        data-testid="delete-button"
-      >
+      <OptionDelete onClick={handleClick} data-testid="delete-button">
         <DeleteForeverIcon />
         Liste unwiderruflich löschen
       </OptionDelete>
