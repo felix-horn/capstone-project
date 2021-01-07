@@ -62,7 +62,7 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
     })
   }
   function navigateBackToScanner() {
-    history.push({
+    history.replace({
       pathname: '/scanner',
       state: { itemId, itemTitle, shopId, useCase: 'setup' },
     })

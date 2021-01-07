@@ -131,7 +131,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
     </PageLayout>
   )
   function navigateBackToScanner() {
-    history.push({
+    history.replace({
       pathname: '/scanner',
       state: { useCase: 'uncheckItem' },
     })
