@@ -101,14 +101,14 @@ export default function useDatabase() {
     )
   }
 
-  function rearrangeListOrder(draggedId, indexToShopIds, shopId) {
+  function rearrangeListOrder(draggedId, newIndexInShopIds, shopId) {
     const shopItemIds = [...database.shops.byId[shopId].items]
     // remove id from initial position
     const shopItemIdsWithoutTargetId = shopItemIds.filter(
       (id) => id !== draggedId
     )
     // insert id in new position
-    shopItemIdsWithoutTargetId.splice(indexToShopIds, 0, draggedId)
+    shopItemIdsWithoutTargetId.splice(newIndexInShopIds, 0, draggedId)
 
     setDatabase(
       produce(database, (draft) => {

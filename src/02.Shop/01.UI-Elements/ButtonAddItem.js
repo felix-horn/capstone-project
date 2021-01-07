@@ -9,28 +9,26 @@ ButtonAddItem.propTypes = {
 
 export default function ButtonAddItem({ onClick, className }) {
   return (
-    <Button onClick={onClick} className={className} data-testid="add-button">
-      <AddIconStyled />
-      <ButtonTextStyled>Listeneintrag</ButtonTextStyled>
-    </Button>
+    <ButtonLayout
+      onClick={onClick}
+      className={className}
+      data-testid="add-button"
+    >
+      <AddIconPositioned />
+      <ButtonText>Listeneintrag</ButtonText>
+    </ButtonLayout>
   )
 }
 
-const Button = styled.button`
-  outline: none;
-  border: none;
-  background: none;
+const ButtonLayout = styled.div`
   display: flex;
   align-items: center;
 `
-const AddIconStyled = styled(AddIcon)`
+const AddIconPositioned = styled(AddIcon)`
   margin-right: 20px;
   color: var(--mid-gray);
 `
 
-const ButtonTextStyled = styled.span`
-  font-family: 'Roboto', sans-serif;
-  font-size: 1rem;
-  font-weight: 300;
+const ButtonText = styled.span`
   color: var(--light-gray);
 `

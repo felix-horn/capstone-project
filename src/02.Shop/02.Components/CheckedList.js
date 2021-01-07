@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+
 import { getCheckedItemIds } from '../../services/filter.services'
 import ListItem from '../01.UI-Elements/ListItem'
 
@@ -23,7 +24,7 @@ export default function CheckedList({
   return (
     <>
       {checkedIds.length > 0 && (
-        <CheckedListStyled>
+        <ListLayout>
           {checkedIds.map((id) => (
             <ListItem
               key={id}
@@ -36,16 +37,16 @@ export default function CheckedList({
               onDelete={() => deleteListItem(id)}
             />
           ))}
-        </CheckedListStyled>
+        </ListLayout>
       )}
     </>
   )
 }
 
-const CheckedListStyled = styled.div`
+const ListLayout = styled.div`
   margin: 3px 2px 10px 0;
+  border-top: var(--border);
   padding-top: 10px;
   padding-left: 26px;
-  border-top: var(--border);
   display: grid;
 `

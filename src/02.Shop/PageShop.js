@@ -109,7 +109,7 @@ const ShopTitlePositioned = styled(ShopTitle)`
   margin-bottom: 10px;
 `
 const ButtonAddItemPositioned = styled(ButtonAddItem)`
-  margin-left: 30px;
+  margin-left: 36px;
   margin-bottom: 20px;
 `
 const FooterPositioned = styled(Footer)`

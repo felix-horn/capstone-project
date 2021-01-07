@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+
 import ListItem from '../01.UI-Elements/ListItem'
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator'
 import {
@@ -16,7 +17,6 @@ UncheckedList.propTypes = {
   deleteListItem: PropTypes.func.isRequired,
   addListItem: PropTypes.func.isRequired,
   rearrangeListOrder: PropTypes.func.isRequired,
-  checked: PropTypes.bool,
 }
 
 export default function UncheckedList({
@@ -38,10 +38,7 @@ export default function UncheckedList({
     >
       <Droppable droppableId="listId">
         {(provided) => (
-          <UncheckedListLayout
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
+          <ListLayout {...provided.droppableProps} ref={provided.innerRef}>
             {uncheckedIds.map((id, index) => (
               <Draggable key={id} draggableId={id} index={index}>
                 {(provided, snapshot) => (
@@ -68,7 +65,7 @@ export default function UncheckedList({
               </Draggable>
             ))}
             {provided.placeholder}
-          </UncheckedListLayout>
+          </ListLayout>
         )}
       </Droppable>
     </DragDropContext>
@@ -85,7 +82,7 @@ export default function UncheckedList({
     const draggedId = result.draggableId
     // new index within unchecked IDs is returned
     const newIndexInUncheckedIds = result.destination.index
-    // new index within all IDs of the shop (including checked IDs) must be determined
+    // new index within ALL IDs of the shop (including checked IDs) must be determined
     const newIdPrecedingDraggedId = uncheckedIds[newIndexInUncheckedIds - 1]
     const newIndexInShopIds =
       getShopItemIndex(database, shopId, newIdPrecedingDraggedId) + 1
@@ -99,6 +96,10 @@ export default function UncheckedList({
   }
 }
 
+const ListLayout = styled.div`
+  margin: 3px 2px 10px;
+  display: grid;
+`
 const ListItemWrapper = styled.div`
   box-shadow: ${(props) =>
     props.isDragging ? 'var(--light-box-shadow)' : 'none'};
@@ -107,14 +108,8 @@ const ListItemWrapper = styled.div`
   display: flex;
   align-items: center;
 `
-
 const DragIconWrapper = styled.div`
   display: flex;
   align-items: center;
   opacity: 0.3;
-`
-
-const UncheckedListLayout = styled.div`
-  margin: 3px 2px 10px;
-  display: grid;
 `

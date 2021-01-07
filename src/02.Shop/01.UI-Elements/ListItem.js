@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+
 import Checkbox from '@material-ui/core/Checkbox'
-import CloseIcon from '@material-ui/icons/Close'
-import CropFreeIcon from '@material-ui/icons/CropFree'
+import DeleteIcon from '@material-ui/icons/Close'
+import ScannerIcon from '@material-ui/icons/CropFree'
 import {
   getItemBarcodeStatus,
   getItemCheckStatus,
@@ -46,7 +47,7 @@ export default function ListItem({
   console.log({ isFocusedNew })
 
   return (
-    <ListItemStyled checked={isChecked} data-testid="list-item">
+    <ListItemLayout checked={isChecked} data-testid="list-item">
       <Checkbox
         type="checkbox"
         color="default"
@@ -54,7 +55,7 @@ export default function ListItem({
         onChange={handleCheckboxToggle}
         data-testid="checkbox"
       />
-      <TitleStyled
+      <Title
         value={title}
         onChange={handleInputChange}
         onKeyUp={(event) => event.key === 'Enter' && handleEnter(event)}
@@ -66,25 +67,12 @@ export default function ListItem({
       />
       {isIconsShown && (
         <>
-          <ScannerIconStyled
-            onClick={navigateToScanner}
-            hasBarcode={hasBarcode}
-          />
-          <DeleteButtonStyled
-            onClick={handleDelete}
-            data-testid="delete-list-item"
-          />
+          <ScannerButton onClick={navigateToScanner} hasBarcode={hasBarcode} />
+          <DeleteButton onClick={handleDelete} data-testid="delete-list-item" />
         </>
       )}
-    </ListItemStyled>
+    </ListItemLayout>
   )
-
-  function navigateToScanner() {
-    history.replace({
-      pathname: '/scanner',
-      state: { itemId, title, shopId, useCase: 'setup' },
-    })
-  }
 
   function handleCheckboxToggle() {
     //clearTimeout(raceConditionTimer)
@@ -111,37 +99,41 @@ export default function ListItem({
     //return () => clearTimeout(raceConditionTimer)
   }
 
+  function navigateToScanner() {
+    history.replace({
+      pathname: '/scanner',
+      state: { itemId, title, shopId, useCase: 'setup' },
+    })
+  }
+
   function handleDelete() {
     //clearTimeout(raceConditionTimer)
     onDelete()
   }
 }
 
-const ListItemStyled = styled.label`
+const ListItemLayout = styled.label`
   width: 85vw;
   display: flex;
   align-items: center;
   opacity: ${(props) => (props.checked ? 0.5 : 1)};
 `
-const TitleStyled = styled.input`
+const Title = styled.input`
   margin-left: 9px;
+  outline: none;
+  border: none;
   font-family: 'Roboto', sans-serif;
   font-size: 1em;
   font-weight: 300;
   color: var(--almost-black);
   text-decoration: ${(props) => (props.isCrossedOut ? 'line-through' : 'none')};
-  border: none;
-  &:focus {
-    outline: none;
-  }
 `
-const DeleteButtonStyled = styled(CloseIcon)`
+const DeleteButton = styled(DeleteIcon)`
   margin-left: 5px;
   transform: scale(0.9);
   opacity: 0.4;
 `
-
-const ScannerIconStyled = styled(CropFreeIcon)`
+const ScannerButton = styled(ScannerIcon)`
   margin-left: auto;
   transform: scale(0.9);
   color: ${(props) => (props.hasBarcode ? 'black' : '#4285F4')};
