@@ -8,22 +8,22 @@ ItemTitle.propTypes = {
 
 export default function ItemTitle({ useCase, itemTitle }) {
   return (
-    <StatusStyled>
+    <StatusWrapper>
       {useCase === 'uncheckItem' && 'Scannt...'}
       {useCase === 'setup' && (
         <>
           <span>Scanne:</span>
-          <TitleStyled>{itemTitle}</TitleStyled>
+          <Title>{itemTitle}</Title>
         </>
       )}
-    </StatusStyled>
+    </StatusWrapper>
   )
 }
 
-const StatusStyled = styled.div`
+const StatusWrapper = styled.div`
   display: grid;
   place-items: center;
 `
-const TitleStyled = styled.strong`
+const Title = styled.strong`
   font-size: 1.2rem;
 `

@@ -49,14 +49,6 @@ export default function PageScanner() {
   }
 }
 
-const HeaderPositioned = styled(Header)`
-  position: fixed;
-  z-index: var(--z-index-header);
-  top: 0;
-  left: 0;
-  width: 100%;
-`
-
 const PageLayout = styled.div`
   position: relative;
   margin-top: 35px;
@@ -66,7 +58,13 @@ const PageLayout = styled.div`
   gap: 35px;
   place-items: center;
 `
-
+const HeaderPositioned = styled(Header)`
+  position: fixed;
+  z-index: var(--z-index-header);
+  top: 0;
+  left: 0;
+  width: 100%;
+`
 const ScannerWrapper = styled.div`
   .container {
     position: absolute;
@@ -75,11 +73,9 @@ const ScannerWrapper = styled.div`
     transform: translate(-50%, -50%);
     bottom: 40vh;
   }
-
   .container,
   #interactive.viewport {
     width: 85vw;
-
     #interactive.viewport canvas,
     video {
       position: absolute;
