@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+
 import ShopCard from './02.Components/ShopCard'
 import OverlayNavigation from './02.Components/OverlayNavigation'
 import ButtonCircle from './01.UI-Elements/ButtonCircle'
@@ -14,6 +15,7 @@ OverviewPage.propTypes = {
 export default function OverviewPage({ database, addShop }) {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false)
   const [buttonNavigationClass, setButtonNavigationClass] = useState('')
+  const allShopIds = database.shops.allIds
   return (
     <PageLayout>
       {isOverlayVisible && (
@@ -22,7 +24,7 @@ export default function OverviewPage({ database, addShop }) {
           addShop={addShop}
         />
       )}
-      {database.shops.allIds.map((shopId) => (
+      {allShopIds.map((shopId) => (
         <ShopCard key={shopId} shopId={shopId} database={database} />
       ))}
       <ButtonNavigation
