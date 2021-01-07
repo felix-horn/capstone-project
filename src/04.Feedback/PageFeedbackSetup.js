@@ -9,7 +9,7 @@ import FeedbackCard from './01.UI-Elements/FeedbackCard'
 import ButtonRectangle from './01.UI-Elements/ButtonRectangle'
 import SaveIcon from '@material-ui/icons/Save'
 import ScanIcon from '@material-ui/icons/CropFree'
-import { getItemTitle, getShopTitle } from '../services/filter.services'
+import { getItemTitle, getShopTitle } from '../services/database.services'
 
 PageFeedbackSetup.propTypes = {
   database: PropTypes.object.isRequired,

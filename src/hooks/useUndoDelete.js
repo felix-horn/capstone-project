@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getItemCheckStatus, getItemTitle } from '../services/filter.services'
+import { getItemCheckStatus, getItemTitle } from '../services/database.services'
 
 export default function useUndoDelete(database, addListItem) {
   const [visibilityButtonUndo, setVisibilityButtonUndo] = useState('hidden')

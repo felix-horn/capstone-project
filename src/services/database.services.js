@@ -21,7 +21,7 @@ function getUncheckedItemIds(database, shopId) {
 }
 
 function getQuantityCheckedItems(database, shopId) {
-  return getCheckedItemIds(database, shopId).lenth
+  return getCheckedItemIds(database, shopId).length
 }
 
 function getShopTitle(database, shopId) {

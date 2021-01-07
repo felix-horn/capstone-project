@@ -10,7 +10,7 @@ import {
   getItemBarcodeStatus,
   getItemCheckStatus,
   getItemTitle,
-} from '../../services/filter.services'
+} from '../../services/database.services'
 
 ListItem.propTypes = {
   isChecked: PropTypes.bool,

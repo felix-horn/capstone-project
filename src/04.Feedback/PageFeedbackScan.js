@@ -17,7 +17,7 @@ import {
   getItemIdsByBarcode,
   getItemTitles,
   getShopIdsByItemIds,
-} from '../services/filter.services'
+} from '../services/database.services'
 
 PageFeedbackScan.propTypes = {
   database: PropTypes.object.isRequired,

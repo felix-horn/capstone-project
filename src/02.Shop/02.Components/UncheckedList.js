@@ -7,7 +7,7 @@ import DragIndicatorIcon from '@material-ui/icons/DragIndicator'
 import {
   getShopItemIndex,
   getUncheckedItemIds,
-} from '../../services/filter.services'
+} from '../../services/database.services'
 
 UncheckedList.propTypes = {
   shopId: PropTypes.string.isRequired,

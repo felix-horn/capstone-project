@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
-import { getCheckedItemIds } from '../../services/filter.services'
+import { getCheckedItemIds } from '../../services/database.services'
 import ListItem from '../01.UI-Elements/ListItem'
 
 CheckedList.propTypes = {
