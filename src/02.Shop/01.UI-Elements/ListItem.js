@@ -52,7 +52,7 @@ export default function ListItem({
       <Title
         value={title}
         onChange={handleInputChange}
-        onKeyUp={(event) => event.key === 'Enter' && handleEnter(event)}
+        onKeyUp={handleOnKeyUp}
         onFocus={showIcons}
         onBlur={hideIcons}
         autoFocus={isFocused}
@@ -77,9 +77,8 @@ export default function ListItem({
     changeTitle(event.target.value)
   }
 
-  function handleEnter(event) {
-    // event.target.blur()
-    !isChecked && onEnter()
+  function handleOnKeyUp(event) {
+    event.key === 'Enter' && !isChecked && onEnter()
   }
 
   function showIcons() {
