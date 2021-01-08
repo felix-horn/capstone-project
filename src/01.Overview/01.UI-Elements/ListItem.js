@@ -8,8 +8,8 @@ ListItem.propTypes = {
 export default function ListItem({ title }) {
   return (
     <ListItemLayout>
-      <CheckboxStyled />
-      <TitleStyled>{title}</TitleStyled>
+      <Checkbox />
+      <Title>{title}</Title>
     </ListItemLayout>
   )
 }
@@ -20,14 +20,14 @@ const ListItemLayout = styled.label`
   gap: 5px;
 `
 
-const CheckboxStyled = styled.div`
+const Checkbox = styled.div`
   border: 1px solid var(--light-gray);
   border-radius: 2px;
   height: 15px;
   width: 15px;
 `
 
-const TitleStyled = styled.p`
+const Title = styled.p`
   margin: 0;
   color: var(--dark-gray);
 `
