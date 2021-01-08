@@ -12,6 +12,7 @@ Header.propTypes = {
 
 export default function Header({ onClick, shopId, className }) {
   const history = useHistory()
+  console.log({ history })
   return (
     <LayoutWrapper className={className}>
       <BackButton onClick={navigateBack} data-testid="back-button">
@@ -21,7 +22,8 @@ export default function Header({ onClick, shopId, className }) {
     </LayoutWrapper>
   )
   function navigateBack() {
-    history.replace(shopId ? { pathname: '/shop', state: { shopId } } : '/')
+    // history.replace(shopId ? { pathname: '/shop', state: { shopId } } : '/')
+    history.goBack()
   }
 }
 
