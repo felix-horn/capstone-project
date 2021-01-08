@@ -34,17 +34,10 @@ export default function ListItem({
   isFocused,
 }) {
   const [isIconsShown, setIsIconsShown] = useState(false)
-  const [isFocusedNew, setIsFocusedNew] = useState(isFocused)
   const title = getItemTitle(database, itemId)
   const isChecked = getItemCheckStatus(database, itemId)
   const hasBarcode = getItemBarcodeStatus(database, itemId)
   const history = useHistory()
-
-  useEffect(() => {
-    setIsFocusedNew(isFocused)
-  }, [])
-
-  console.log({ isFocusedNew })
 
   return (
     <ListItemLayout checked={isChecked} data-testid="list-item">
@@ -61,7 +54,7 @@ export default function ListItem({
         onKeyUp={(event) => event.key === 'Enter' && handleEnter(event)}
         onFocus={showIcons}
         onBlur={hideIcons}
-        autoFocus={isFocusedNew}
+        autoFocus={isFocused}
         isCrossedOut={isChecked}
         data-testid="title-list-item"
       />
@@ -77,7 +70,6 @@ export default function ListItem({
   function handleCheckboxToggle() {
     //clearTimeout(raceConditionTimer)
     toggleCheckbox()
-    setIsFocusedNew(false)
   }
 
   function handleInputChange(event) {
@@ -94,9 +86,9 @@ export default function ListItem({
   }
 
   function hideIcons() {
-    // raceConditionTimer = setTimeout(() => setIsIconsShown(false), 0)
-    setTimeout(() => setIsIconsShown(false), 0)
-    //return () => clearTimeout(raceConditionTimer)
+    let raceConditionTimer = setTimeout(() => setIsIconsShown(false), 0)
+    // setTimeout(() => setIsIconsShown(false), 0)
+    return () => clearTimeout(raceConditionTimer)
   }
 
   function navigateToScanner() {

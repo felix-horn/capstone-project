@@ -60,8 +60,8 @@ export default function ShopPage({
       <UncheckedList
         shopId={shopId}
         database={database}
-        addListItem={() => addListItem(shopId)}
-        changeTitle={changeItemTitle}
+        addListItem={handleAddListItem}
+        changeTitle={(id, fieldValue) => handleChangeItemTitle(id, fieldValue)}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={(id) => handelDeleteListItem(id, shopId)}
         rearrangeListOrder={(draggedId, indexToShopIds) =>
@@ -83,6 +83,10 @@ export default function ShopPage({
       />
     </>
   )
+  function handleChangeItemTitle(id, fieldValue) {
+    changeItemTitle(id, fieldValue)
+    setIsFocused(false)
+  }
   function handleAddListItem() {
     addListItem(shopId)
     setIsFocused(true)

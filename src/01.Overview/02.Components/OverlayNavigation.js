@@ -1,10 +1,11 @@
 import { useHistory } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import { v4 as uuid } from 'uuid'
+import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
-import ButtonLabeledCircle from '../01.UI-Elements/ButtonLabeledCircle'
 import AddShopIcon from '@material-ui/icons/PostAdd'
 import ScannerIcon from '@material-ui/icons/CropFree'
+
+import ButtonLabeledCircle from '../01.UI-Elements/ButtonLabeledCircle'
 
 OverlayNavigation.propTypes = {
   onClick: PropTypes.func.isRequired,
