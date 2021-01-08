@@ -30,7 +30,9 @@ export default function ShopCard({ shopId, database }) {
         <ListItem key={id} title={getItemTitle(database, id)} />
       ))}
       {quantityCheckedIds > 0 && (
-        <CheckedItemsSummary quantityCheckedIds={quantityCheckedIds} />
+        <CheckedItemsSummaryPositioned
+          quantityCheckedIds={quantityCheckedIds}
+        />
       )}
     </CardLayout>
   )
@@ -51,4 +53,7 @@ const CardLayout = styled.div`
 `
 const ShopTitlePositioned = styled(ShopTitle)`
   margin-bottom: 8px;
+`
+const CheckedItemsSummaryPositioned = styled(CheckedItemsSummary)`
+  margin: 4px 2px 0;
 `
