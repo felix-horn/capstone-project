@@ -63,7 +63,7 @@ export default function ShopPage({
         addListItem={handleAddListItem}
         changeTitle={(id, fieldValue) => handleChangeItemTitle(id, fieldValue)}
         toggleIsChecked={toggleIsChecked}
-        deleteListItem={(id) => handelDeleteListItem(id, shopId)}
+        deleteListItem={(id) => handleDeleteListItem(id, shopId)}
         rearrangeListOrder={(draggedId, indexToShopIds) =>
           rearrangeListOrder(draggedId, indexToShopIds, shopId)
         }
@@ -75,7 +75,7 @@ export default function ShopPage({
         database={database}
         changeTitle={changeItemTitle}
         toggleIsChecked={toggleIsChecked}
-        deleteListItem={(id) => handelDeleteListItem(id, shopId)}
+        deleteListItem={(id) => handleDeleteListItem(id, shopId)}
       />
       <FooterPositioned
         onClick={undoDelete}
@@ -94,7 +94,7 @@ export default function ShopPage({
   function toggleMenu() {
     setIsMenuVisible(!isMenuVisible)
   }
-  function handelDeleteListItem(itemId, shopId) {
+  function handleDeleteListItem(itemId, shopId) {
     deleteListItem(itemId, shopId)
     cacheDeletedListItem(itemId, shopId)
   }

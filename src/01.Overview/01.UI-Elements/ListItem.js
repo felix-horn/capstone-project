@@ -7,14 +7,14 @@ ListItem.propTypes = {
 
 export default function ListItem({ title }) {
   return (
-    <ListItemStyled>
+    <ListItemLayout>
       <CheckboxStyled />
       <TitleStyled>{title}</TitleStyled>
-    </ListItemStyled>
+    </ListItemLayout>
   )
 }
 
-const ListItemStyled = styled.label`
+const ListItemLayout = styled.label`
   display: flex;
   align-items: center;
   gap: 5px;

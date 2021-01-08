@@ -6,8 +6,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 Header.propTypes = {
   onClick: PropTypes.func,
-  className: PropTypes.string,
   shopId: PropTypes.string,
+  className: PropTypes.string,
 }
 
 export default function Header({ onClick, shopId, className }) {
@@ -26,13 +26,13 @@ export default function Header({ onClick, shopId, className }) {
 }
 
 const LayoutWrapper = styled.div`
+  box-shadow: var(--light-box-shadow);
   height: 60px;
   max-width: 450px;
   background-color: var(--white);
   display: grid;
   place-items: center;
   grid-template-columns: 60px auto 60px;
-  box-shadow: var(--light-box-shadow);
 `
 
 const BackButton = styled.div`
