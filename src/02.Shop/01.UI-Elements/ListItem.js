@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
@@ -38,6 +38,7 @@ export default function ListItem({
   const isChecked = getItemCheckStatus(database, itemId)
   const hasBarcode = getItemBarcodeStatus(database, itemId)
   const history = useHistory()
+  let raceConditionTimer
 
   return (
     <ListItemLayout checked={isChecked} data-testid="list-item">
@@ -68,7 +69,7 @@ export default function ListItem({
   )
 
   function handleCheckboxToggle() {
-    //clearTimeout(raceConditionTimer)
+    clearTimeout(raceConditionTimer)
     toggleCheckbox()
   }
 
@@ -77,7 +78,7 @@ export default function ListItem({
   }
 
   function handleEnter(event) {
-    event.target.blur()
+    // event.target.blur()
     !isChecked && onEnter()
   }
 
@@ -86,8 +87,7 @@ export default function ListItem({
   }
 
   function hideIcons() {
-    let raceConditionTimer = setTimeout(() => setIsIconsShown(false), 0)
-    // setTimeout(() => setIsIconsShown(false), 0)
+    raceConditionTimer = setTimeout(() => setIsIconsShown(false), 0)
     return () => clearTimeout(raceConditionTimer)
   }
 
@@ -99,7 +99,7 @@ export default function ListItem({
   }
 
   function handleDelete() {
-    //clearTimeout(raceConditionTimer)
+    clearTimeout(raceConditionTimer)
     onDelete()
   }
 }

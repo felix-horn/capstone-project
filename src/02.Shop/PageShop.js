@@ -41,7 +41,7 @@ export default function ShopPage({
 
   const shopId = useLocation().state.shopId
   const [isMenuVisible, setIsMenuVisible] = useState(false)
-  const [isFocused, setIsFocused] = useState(false)
+  const [isItemFocused, setIsItemFocused] = useState(false)
 
   return (
     <>
@@ -67,7 +67,7 @@ export default function ShopPage({
         rearrangeListOrder={(draggedId, indexToShopIds) =>
           rearrangeListOrder(draggedId, indexToShopIds, shopId)
         }
-        isFocused={isFocused}
+        isFocused={isItemFocused}
       />
       <ButtonAddItemPositioned onClick={handleAddListItem} />
       <CheckedList
@@ -85,11 +85,11 @@ export default function ShopPage({
   )
   function handleChangeItemTitle(id, fieldValue) {
     changeItemTitle(id, fieldValue)
-    setIsFocused(false)
+    setIsItemFocused(false)
   }
   function handleAddListItem() {
     addListItem(shopId)
-    setIsFocused(true)
+    setIsItemFocused(true)
   }
   function toggleMenu() {
     setIsMenuVisible(!isMenuVisible)
