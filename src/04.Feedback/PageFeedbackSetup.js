@@ -3,12 +3,12 @@ import { useLocation, useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Quagga from 'quagga'
+import SaveIcon from '@material-ui/icons/Save'
+import ScanIcon from '@material-ui/icons/CropFree'
 
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import FeedbackCard from './01.UI-Elements/FeedbackCard'
 import ButtonRectangle from './01.UI-Elements/ButtonRectangle'
-import SaveIcon from '@material-ui/icons/Save'
-import ScanIcon from '@material-ui/icons/CropFree'
 import { getItemTitle, getShopTitle } from '../services/database.services'
 
 PageFeedbackSetup.propTypes = {

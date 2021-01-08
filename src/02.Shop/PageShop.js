@@ -45,7 +45,7 @@ export default function ShopPage({
 
   return (
     <>
-      <HeaderPositioned onClick={toggleMenu} />
+      <HeaderPositioned onMenuClick={toggleMenu} />
       {isMenuVisible && (
         <OverlayMenu
           toggleMenu={toggleMenu}

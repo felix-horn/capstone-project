@@ -5,12 +5,12 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 Header.propTypes = {
-  onClick: PropTypes.func,
+  onMenuClick: PropTypes.func,
   shopId: PropTypes.string,
   className: PropTypes.string,
 }
 
-export default function Header({ onClick, shopId, className }) {
+export default function Header({ onMenuClick, shopId, className }) {
   const history = useHistory()
   console.log({ history })
   return (
@@ -18,7 +18,9 @@ export default function Header({ onClick, shopId, className }) {
       <BackButton onClick={navigateBack} data-testid="back-button">
         <ArrowBackIcon />
       </BackButton>
-      {onClick && <MenuButton onClick={onClick} data-testid="menu-button" />}
+      {onMenuClick && (
+        <MenuButton onClick={onMenuClick} data-testid="menu-button" />
+      )}
     </LayoutWrapper>
   )
   function navigateBack() {

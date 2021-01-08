@@ -3,14 +3,14 @@ import { useLocation, useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 import Quagga from 'quagga'
+import ListIcon from '@material-ui/icons/List'
+import ScanIcon from '@material-ui/icons/CropFree'
 
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import Explanation from '../00.SharedComponents/01.UI-Elements/02.Components/Explanation'
 import FeedbackCard from './01.UI-Elements/FeedbackCard'
 import ButtonRectangle from './01.UI-Elements/ButtonRectangle'
 import StoreSelect from './01.UI-Elements/StoreSelect'
-import ListIcon from '@material-ui/icons/List'
-import ScanIcon from '@material-ui/icons/CropFree'
 import {
   getAllShopIds,
   getAllShopTitles,
