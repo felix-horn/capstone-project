@@ -57,7 +57,7 @@ export default function ShopPage({
         database={database}
         changeTitle={(fieldValue) => changeShopTitle(shopId, fieldValue)}
       />
-      <UncheckedList
+      <UncheckedListPositioned
         shopId={shopId}
         database={database}
         addListItem={handleAddListItem}
@@ -70,7 +70,7 @@ export default function ShopPage({
         isFocused={isItemFocused}
       />
       <ButtonAddItemPositioned onClick={handleAddListItem} />
-      <CheckedList
+      <CheckedListPositioned
         shopId={shopId}
         database={database}
         changeTitle={changeItemTitle}
@@ -112,9 +112,16 @@ const ShopTitlePositioned = styled(ShopTitle)`
   margin-left: 7px;
   margin-bottom: 10px;
 `
+const UncheckedListPositioned = styled(UncheckedList)`
+  margin-left: 5px;
+`
 const ButtonAddItemPositioned = styled(ButtonAddItem)`
-  margin-left: 36px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-left: 38px;
+  margin-bottom: 15px;
+`
+const CheckedListPositioned = styled(CheckedList)`
+  margin-left: 5px;
 `
 const FooterPositioned = styled(Footer)`
   position: fixed;

@@ -17,6 +17,7 @@ UncheckedList.propTypes = {
   deleteListItem: PropTypes.func.isRequired,
   addListItem: PropTypes.func.isRequired,
   rearrangeListOrder: PropTypes.func.isRequired,
+  className: PropTypes.func,
 }
 
 export default function UncheckedList({
@@ -28,6 +29,7 @@ export default function UncheckedList({
   addListItem,
   rearrangeListOrder,
   isFocused,
+  className,
 }) {
   const uncheckedIds = getUncheckedItemIds(database, shopId)
 
@@ -38,7 +40,11 @@ export default function UncheckedList({
     >
       <Droppable droppableId="listId">
         {(provided) => (
-          <ListLayout {...provided.droppableProps} ref={provided.innerRef}>
+          <ListLayout
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+            className={className}
+          >
             {uncheckedIds.map((id, index) => (
               <Draggable key={id} draggableId={id} index={index}>
                 {(provided, snapshot) => (
@@ -97,7 +103,6 @@ export default function UncheckedList({
 }
 
 const ListLayout = styled.div`
-  margin: 3px 2px 10px;
   display: grid;
 `
 const ListItemWrapper = styled.div`

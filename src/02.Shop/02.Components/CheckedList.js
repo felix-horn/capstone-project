@@ -10,6 +10,7 @@ CheckedList.propTypes = {
   changeTitle: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
+  className: PropTypes.func,
 }
 
 export default function CheckedList({
@@ -18,13 +19,14 @@ export default function CheckedList({
   changeTitle,
   toggleIsChecked,
   deleteListItem,
+  className,
 }) {
   const checkedIds = getCheckedItemIds(database, shopId)
 
   return (
     <>
       {checkedIds.length > 0 && (
-        <ListLayout>
+        <ListLayout className={className}>
           {checkedIds.map((id) => (
             <ListItem
               key={id}
@@ -44,9 +46,8 @@ export default function CheckedList({
 }
 
 const ListLayout = styled.div`
-  margin: 3px 2px 10px 0;
   border-top: var(--border);
   padding-top: 10px;
-  padding-left: 26px;
+  padding-left: 25px;
   display: grid;
 `
