@@ -25,7 +25,7 @@ export default function ShopCard({ shopId, database }) {
 
   return (
     <CardLayout onClick={navigateToShop} data-testid="shop-card">
-      <ShopTitle title={shopTitle} />
+      <ShopTitlePositioned title={shopTitle} />
       {uncheckedIds.map((id) => (
         <ListItem key={id} title={getItemTitle(database, id)} />
       ))}
@@ -48,4 +48,7 @@ const CardLayout = styled.div`
   padding: 15px;
   display: grid;
   gap: 5px;
+`
+const ShopTitlePositioned = styled(ShopTitle)`
+  margin-bottom: 8px;
 `

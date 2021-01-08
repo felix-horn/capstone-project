@@ -3,14 +3,14 @@ import styled from 'styled-components/macro'
 
 ShopTitle.propTypes = {
   title: PropTypes.string.isRequired,
+  className: PropTypes.string,
 }
 
-export default function ShopTitle({ title }) {
-  return <ShopTitleStyled>{title}</ShopTitleStyled>
+export default function ShopTitle({ title, className }) {
+  return <TitleLayout className={className}>{title}</TitleLayout>
 }
 
-const ShopTitleStyled = styled.h2`
-  margin-bottom: 8px !important;
+const TitleLayout = styled.h2`
   font-size: 1.2rem;
   font-weight: 400;
   color: var(--almost-black);

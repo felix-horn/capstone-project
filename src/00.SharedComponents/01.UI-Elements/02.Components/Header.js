@@ -12,7 +12,6 @@ Header.propTypes = {
 
 export default function Header({ onMenuClick, shopId, className }) {
   const history = useHistory()
-  console.log({ history })
   return (
     <LayoutWrapper className={className}>
       <BackButton onClick={navigateBack} data-testid="back-button">
