@@ -25,7 +25,7 @@ const ButtonLayout = styled.div`
   align-items: center;
 `
 const AddIconPositioned = styled(AddIcon)`
-  margin-right: 20px;
+  margin-right: 17px;
   color: var(--mid-gray);
 `
 

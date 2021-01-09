@@ -109,7 +109,7 @@ const HeaderPositioned = styled(Header)`
 `
 const ShopTitlePositioned = styled(ShopTitle)`
   margin-top: 40px;
-  margin-left: 7px;
+  margin-left: 10px;
   margin-bottom: 10px;
 `
 const UncheckedListPositioned = styled(UncheckedList)`
@@ -117,11 +117,11 @@ const UncheckedListPositioned = styled(UncheckedList)`
 `
 const ButtonAddItemPositioned = styled(ButtonAddItem)`
   margin-top: 10px;
-  margin-left: 38px;
+  margin-left: 39px;
   margin-bottom: 15px;
 `
 const CheckedListPositioned = styled(CheckedList)`
-  margin-left: 5px;
+  margin-left: 4px;
 `
 const FooterPositioned = styled(Footer)`
   position: fixed;
