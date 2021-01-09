@@ -48,7 +48,7 @@ export default function OverviewPage({ database, addShop }) {
 }
 
 const PageLayout = styled.div`
-  height: calc(100vh - 50px - 50px); // 50px top and bottom
+  height: calc(100vh - 50px - 50px); // GlobalStyles: 50px top and bottom
   display: grid;
   gap: 10px;
   grid-auto-rows: minmax(min-content, max-content);

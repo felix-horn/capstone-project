@@ -117,7 +117,7 @@ const UncheckedListPositioned = styled(UncheckedList)`
 `
 const ButtonAddItemPositioned = styled(ButtonAddItem)`
   margin-top: 10px;
-  margin-left: 39px;
+  margin-left: 38px;
   margin-bottom: 15px;
 `
 const CheckedListPositioned = styled(CheckedList)`

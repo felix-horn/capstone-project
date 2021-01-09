@@ -52,7 +52,7 @@ export default function PageScanner() {
 const PageLayout = styled.div`
   position: relative;
   margin-top: 35px;
-  height: calc(100vh - 50px - 10px);
+  height: calc(100vh - 50px - 50px); // GlobalStyles: 50px top and bottom
   display: grid;
   grid-auto-rows: minmax(min-content, max-content);
   gap: 35px;
