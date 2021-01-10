@@ -4,11 +4,11 @@ import UndoIcon from '@material-ui/icons/Undo'
 
 Footer.propTypes = {
   onClick: PropTypes.func.isRequired,
-  className: PropTypes.string,
   visibilityButtonUndo: PropTypes.string,
+  className: PropTypes.string,
 }
 
-export default function Footer({ onClick, className, visibilityButtonUndo }) {
+export default function Footer({ onClick, visibilityButtonUndo, className }) {
   return (
     <FooterLayout className={className}>
       <DynamicUndoIcon

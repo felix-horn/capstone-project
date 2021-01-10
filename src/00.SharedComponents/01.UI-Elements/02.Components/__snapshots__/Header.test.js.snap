@@ -2,13 +2,13 @@
 
 exports[`Header renders correctly 1`] = `
 .c0 {
+  box-shadow: var(--light-box-shadow);
   height: 60px;
   max-width: 450px;
   background-color: var(--white);
   display: grid;
   place-items: center;
   grid-template-columns: 60px auto 60px;
-  box-shadow: var(--light-box-shadow);
 }
 
 .c1 {
@@ -25,11 +25,9 @@ exports[`Header renders correctly 1`] = `
 <div
   class="c0"
 >
-  <a
-    aria-current="page"
-    class="c1 active"
+  <div
+    class="c1"
     data-testid="back-button"
-    href="/"
   >
     <svg
       aria-hidden="true"
@@ -41,7 +39,7 @@ exports[`Header renders correctly 1`] = `
         d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
       />
     </svg>
-  </a>
+  </div>
   <svg
     aria-hidden="true"
     class="MuiSvgIcon-root c2"
