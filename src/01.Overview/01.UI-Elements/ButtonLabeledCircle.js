@@ -3,15 +3,19 @@ import styled from 'styled-components/macro'
 import ButtonCircle from './ButtonCircle'
 
 ButtonLabeledCircle.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  children: PropTypes.element.isRequired,
+  variant: PropTypes.string,
   className: PropTypes.string,
 }
 
 export default function ButtonLabeledCircle({
-  className,
   onClick,
   title,
   children,
   variant,
+  className,
 }) {
   return (
     <ButtonLayout

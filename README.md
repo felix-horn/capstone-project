@@ -1,6 +1,6 @@
 ## BARCODE GROCERY LIST
 
-**Capstone project in the course of the web development bootcamp at neuefische**
+**Capstone project in the course of my web development bootcamp at neuefische**
 
 ![GitHub top language](https://img.shields.io/github/languages/top/JanaHaeusler/Par1?color=%23679FBE&style=plastic)
 ![GitHub last commit](https://img.shields.io/github/last-commit/JanaHaeusler/Par1?color=%2314254D&style=plastic)
@@ -43,6 +43,7 @@ A hosted version can be found here:
 - PropTypes
 - React-Testing-Library / JEST
 - Cypress
+- PWA
 - react-beautiful-dnd
 - Normalized Data
 - immer
@@ -74,7 +75,8 @@ A hosted version can be found here:
 
 6. To run Cypress tests:
 
-   `$ npm run cypress`
+   `$ npm run cy:run`
+   `$ npm run cy:open`
 
 7. Create a build ready for deployment:
 

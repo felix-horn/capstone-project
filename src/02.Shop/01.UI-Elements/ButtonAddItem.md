@@ -1,3 +1,3 @@
 ```js padded
-<ButtonAddItem/>
+<ButtonAddItem onClick={() => {}} />
 ```

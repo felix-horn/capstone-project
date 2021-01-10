@@ -2,16 +2,17 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
 ButtonCircle.propTypes = {
-  className: PropTypes.string,
   children: PropTypes.element.isRequired,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
+  variant: PropTypes.string,
+  className: PropTypes.string,
 }
 
 export default function ButtonCircle({
-  className,
   children,
   onClick,
   variant,
+  className,
 }) {
   return (
     <ButtonLayout onClick={onClick} className={className} variant={variant}>

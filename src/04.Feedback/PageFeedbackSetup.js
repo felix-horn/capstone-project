@@ -43,13 +43,13 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
         text="Ist dies die Nummer unter dem Barcode des Produkts?"
       />
       <ButtonRectangle
-        title={'Speichern'}
+        title="Speichern"
         onClick={navigateBackToShop}
         className="primary"
       >
         <SaveIcon />
       </ButtonRectangle>
-      <ButtonRectangle title={'Erneut scannen'} onClick={navigateBackToScanner}>
+      <ButtonRectangle title="Erneut scannen" onClick={navigateBackToScanner}>
         <ScanIcon />
       </ButtonRectangle>
     </PageLayout>

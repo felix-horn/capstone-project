@@ -1,14 +1,19 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
-Button.propTypes = {
+ButtonRectangle.propTypes = {
   title: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  className: PropTypes.string,
   children: PropTypes.element.isRequired,
+  className: PropTypes.string,
 }
 
-export default function Button({ title, onClick, className, children }) {
+export default function ButtonRectangle({
+  title,
+  onClick,
+  children,
+  className,
+}) {
   return (
     <ButtonLayout onClick={onClick} className={className}>
       {children}

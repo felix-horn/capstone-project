@@ -27,7 +27,10 @@ export default function StoreSelect({
         {shopIdsToMatchingItems.map((shopId, index) => {
           const shopTitle = shopTitlesToMatchingItems[index]
           return (
-            <MenuItem onClick={() => navigateToShop(shopTitle, shopId)}>
+            <MenuItem
+              key={shopId}
+              onClick={() => navigateToShop(shopTitle, shopId)}
+            >
               {shopTitle}
             </MenuItem>
           )

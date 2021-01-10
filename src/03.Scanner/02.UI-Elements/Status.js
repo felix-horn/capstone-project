@@ -1,12 +1,12 @@
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
-ItemTitle.propTypes = {
+Status.propTypes = {
   useCase: PropTypes.string.isRequired,
   itemTitle: PropTypes.string.isRequired,
 }
 
-export default function ItemTitle({ useCase, itemTitle }) {
+export default function Status({ useCase, itemTitle }) {
   return (
     <StatusWrapper>
       {useCase === 'uncheckItem' && 'Scannt...'}

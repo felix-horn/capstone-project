@@ -1,8 +1,11 @@
 One checked item
+
 ```js padded
-<CheckedItemsSummary lengthCheckedIds={1}/>
+<CheckedItemsSummary quantityCheckedIds={1} />
 ```
+
 Two or more checked items
+
 ```js padded
-<CheckedItemsSummary lengthCheckedIds={2}/>
+<CheckedItemsSummary quantityCheckedIds={2} />
 ```

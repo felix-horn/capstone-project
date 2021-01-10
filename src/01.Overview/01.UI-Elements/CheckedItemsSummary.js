@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 
 CheckedItemsSummary.propTypes = {
   quantityCheckedIds: PropTypes.number.isRequired,
-  className: PropTypes.number,
+  className: PropTypes.string,
 }
 
 export default function CheckedItemsSummary({ quantityCheckedIds, className }) {
