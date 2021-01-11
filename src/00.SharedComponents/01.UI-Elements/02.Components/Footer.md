@@ -4,7 +4,7 @@ Undo Button grayed out
 <Footer onClick={() => {}} visibilityButtonUndo="grayedOut" />
 ```
 
-Undo Button grayed out
+Undo Button active
 
 ```js padded
 <Footer onClick={() => {}} visibilityButtonUndo="shown" />

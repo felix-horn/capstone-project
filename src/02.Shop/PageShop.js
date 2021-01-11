@@ -64,8 +64,8 @@ export default function ShopPage({
         changeTitle={(id, fieldValue) => handleChangeItemTitle(id, fieldValue)}
         toggleIsChecked={toggleIsChecked}
         deleteListItem={(id) => handleDeleteListItem(id, shopId)}
-        rearrangeListOrder={(draggedId, indexToShopIds) =>
-          rearrangeListOrder(draggedId, indexToShopIds, shopId)
+        rearrangeListOrder={(draggedId, newIdPrecedingDraggedId) =>
+          rearrangeListOrder(draggedId, newIdPrecedingDraggedId, shopId)
         }
         isFocused={isItemFocused}
       />

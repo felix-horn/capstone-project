@@ -94,6 +94,7 @@ export default function ListItem({
   }
 
   function navigateToScanner() {
+    clearTimeout(raceConditionTimer)
     history.replace({
       pathname: '/scanner',
       state: { itemId, title, shopId, useCase: 'setup' },

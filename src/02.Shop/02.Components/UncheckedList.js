@@ -4,10 +4,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 
 import ListItem from '../01.UI-Elements/ListItem'
 import DragIndicatorIcon from '@material-ui/icons/DragIndicator'
-import {
-  getShopItemIndex,
-  getUncheckedItemIds,
-} from '../../services/database.services'
+import { getUncheckedItemIds } from '../../services/database.services'
 
 UncheckedList.propTypes = {
   shopId: PropTypes.string.isRequired,
@@ -88,11 +85,14 @@ export default function UncheckedList({
     const draggedId = result.draggableId
     // new index within unchecked IDs is returned
     const newIndexInUncheckedIds = result.destination.index
+    // remove id from initial position
+    const rearrangedUncheckedIds = uncheckedIds.filter((id) => id !== draggedId)
+    // insert id in new position
+    rearrangedUncheckedIds.splice(newIndexInUncheckedIds, 0, draggedId)
     // new index within ALL IDs of the shop (including checked IDs) must be determined
-    const newIdPrecedingDraggedId = uncheckedIds[newIndexInUncheckedIds - 1]
-    const newIndexInShopIds =
-      getShopItemIndex(database, shopId, newIdPrecedingDraggedId) + 1
-    rearrangeListOrder(draggedId, newIndexInShopIds)
+    const newIdPrecedingDraggedId =
+      rearrangedUncheckedIds[newIndexInUncheckedIds - 1]
+    rearrangeListOrder(draggedId, newIdPrecedingDraggedId)
   }
 
   function handleEnter(targetId) {
