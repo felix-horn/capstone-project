@@ -17,7 +17,7 @@ UncheckedList.propTypes = {
   deleteListItem: PropTypes.func.isRequired,
   addListItem: PropTypes.func.isRequired,
   rearrangeListOrder: PropTypes.func.isRequired,
-  className: PropTypes.func,
+  className: PropTypes.string,
 }
 
 export default function UncheckedList({

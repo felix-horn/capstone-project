@@ -59,7 +59,7 @@ function getItemCheckStatus(database, itemId) {
 }
 
 function getItemBarcodeStatus(database, itemId) {
-  return !!database.items.byId[itemId].barcode
+  return !!database.items.byId[itemId].barcode && 'inDatabase'
 }
 
 function getItemIdsByBarcode(database, barcode) {

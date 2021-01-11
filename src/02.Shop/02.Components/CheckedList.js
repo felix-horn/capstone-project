@@ -10,7 +10,7 @@ CheckedList.propTypes = {
   changeTitle: PropTypes.func.isRequired,
   toggleIsChecked: PropTypes.func.isRequired,
   deleteListItem: PropTypes.func.isRequired,
-  className: PropTypes.func,
+  className: PropTypes.string,
 }
 
 export default function CheckedList({

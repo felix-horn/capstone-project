@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 
 ButtonCircle.propTypes = {
   children: PropTypes.element.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   variant: PropTypes.string,
   className: PropTypes.string,
 }

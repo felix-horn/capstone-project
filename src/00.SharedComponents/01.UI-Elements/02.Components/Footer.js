@@ -9,15 +9,26 @@ Footer.propTypes = {
 }
 
 export default function Footer({ onClick, visibilityButtonUndo, className }) {
+  const colorUndoIcon = getColorUndoIcon()
   return (
     <FooterLayout className={className}>
-      <DynamicUndoIcon
+      <UndoIcon
         onClick={onClick}
-        visibilityButtonUndo={visibilityButtonUndo}
+        style={{ color: colorUndoIcon }}
         data-testid="undo-button"
       />
     </FooterLayout>
   )
+  function getColorUndoIcon() {
+    switch (visibilityButtonUndo) {
+      case 'grayedOut':
+        return 'var(--light-gray)'
+      case 'shown':
+        return 'var(--dark-gray)'
+      default:
+        return 'var(--white)'
+    }
+  }
 }
 
 const FooterLayout = styled.div`
@@ -27,18 +38,4 @@ const FooterLayout = styled.div`
   background-color: var(--white);
   display: grid;
   place-items: center;
-`
-
-const DynamicUndoIcon = styled(UndoIcon)`
-  color: ${(props) => {
-    // eslint-disable-next-line default-case
-    switch (props.visibilityButtonUndo) {
-      case 'hidden':
-        return 'var(--white)'
-      case 'grayedOut':
-        return 'var(--light-gray)'
-      case 'shown':
-        return 'var(--dark-gray)'
-    }
-  }};
 `

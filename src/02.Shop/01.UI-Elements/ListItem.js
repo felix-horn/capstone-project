@@ -36,7 +36,7 @@ export default function ListItem({
   const [isIconsShown, setIsIconsShown] = useState(false)
   const title = getItemTitle(database, itemId)
   const isChecked = getItemCheckStatus(database, itemId)
-  const hasBarcode = getItemBarcodeStatus(database, itemId)
+  const scannerIconColoring = getScannerIconColoring()
   const history = useHistory()
   let raceConditionTimer
 
@@ -61,7 +61,10 @@ export default function ListItem({
       />
       {isIconsShown && (
         <>
-          <ScannerButton onClick={navigateToScanner} hasBarcode={hasBarcode} />
+          <ScannerButton
+            onClick={navigateToScanner}
+            className={scannerIconColoring}
+          />
           <DeleteButton onClick={handleDelete} data-testid="delete-list-item" />
         </>
       )}
@@ -101,6 +104,15 @@ export default function ListItem({
     clearTimeout(raceConditionTimer)
     onDelete()
   }
+
+  function getScannerIconColoring() {
+    const itemBarcodeStatus = getItemBarcodeStatus(database, itemId)
+    if (itemBarcodeStatus === 'inDatabase') {
+      return 'grayed-out'
+    } else {
+      return 'cta'
+    }
+  }
 }
 
 const ListItemLayout = styled.label`
@@ -127,6 +139,10 @@ const DeleteButton = styled(DeleteIcon)`
 const ScannerButton = styled(ScannerIcon)`
   margin-left: auto;
   transform: scale(0.9);
-  color: ${(props) => (props.hasBarcode ? 'black' : '#4285F4')};
-  opacity: ${(props) => (props.hasBarcode ? '0.1' : '1')};
+  &.cta {
+    color: var(--CTA-blue);
+  }
+  &.grayed-out {
+    opacity: 0.1;
+  }
 `

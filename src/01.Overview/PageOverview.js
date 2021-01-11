@@ -62,7 +62,7 @@ const OverlayNavigationPositioned = styled(OverlayNavigation)`
 const ButtonNavigation = styled(ButtonCircle)`
   position: fixed;
   z-index: var(--z-index-floating-item);
-  bottom: 170px;
+  bottom: 70px;
   right: 40px;
 `
 const MenuIconAnimated = styled(MenuIcon)`

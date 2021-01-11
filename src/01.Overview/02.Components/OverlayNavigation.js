@@ -60,7 +60,7 @@ const OpaqueBackground = styled.div`
 const ButtonAddShop = styled(ButtonLabeledCircle)`
   position: absolute;
   z-index: var(--z-index-item-on-overlay);
-  bottom: calc(220px + 10px + 5px);
+  bottom: calc(120px + 10px + 5px);
   right: calc(30px + 10px + 5px);
 
   animation: 0.2s ease-in-out 0s 1 slideUp;
@@ -79,7 +79,7 @@ const ButtonAddShop = styled(ButtonLabeledCircle)`
 const ButtonScanner = styled(ButtonLabeledCircle)`
   position: absolute;
   z-index: var(--z-index-item-on-overlay);
-  bottom: calc(160px + 10px);
+  bottom: calc(60px + 10px);
   right: calc(30px + 10px);
 `
 const ScannerIconAnimated = styled(ScannerIcon)`
