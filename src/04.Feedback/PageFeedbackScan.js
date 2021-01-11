@@ -147,7 +147,7 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
 const PageLayout = styled.div`
   margin-top: 35px;
   display: grid;
-  grid-template-rows: auto 40vh auto auto;
+  grid-template-rows: auto 30vh auto auto;
   gap: 25px;
   align-items: start;
   justify-items: center;

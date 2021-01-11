@@ -28,11 +28,9 @@ exports[`Menu renders correctly 1`] = `
 <div
   class="c0"
 >
-  <a
-    aria-current="page"
-    class="c1 active"
+  <div
+    class="c1"
     data-testid="delete-button"
-    href="/"
   >
     <svg
       aria-hidden="true"
@@ -45,6 +43,6 @@ exports[`Menu renders correctly 1`] = `
       />
     </svg>
     Liste unwiderruflich löschen
-  </a>
+  </div>
 </div>
 `;
