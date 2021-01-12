@@ -70,7 +70,9 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
         <FeedbackCard
           className="green"
           header={itemTitlesMatchingBarcode.join(' / ')}
-          text={`wurde ${shopTitlesToMatchingItems.join(' / ')} hinzugefügt.`}
+          text={`wurde ${shopTitlesToMatchingItems.join(
+            ' / '
+          )} wieder hinzugefügt.`}
         />
       )}
       {feedback === 'failure' && (

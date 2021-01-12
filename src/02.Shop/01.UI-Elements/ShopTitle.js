@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
+import { getShopTitle } from '../../services/database.services'
 
 ShopTitle.propTypes = {
   shopId: PropTypes.string.isRequired,
@@ -17,7 +18,7 @@ export default function ShopTitle({
   return (
     <Title
       placeholder="Geschäft"
-      value={database.shops.byId[shopId].title}
+      value={getShopTitle(database, shopId)}
       onChange={handleInputChange}
       className={className}
       data-testid="title-shop"

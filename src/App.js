@@ -37,11 +37,7 @@ export default function App() {
           deleteShop={deleteShop}
         />
       </Route>
-      <Route
-        path="/scanner"
-        onEnter={() => console.log('entered')}
-        onLeave={() => console.log('left')}
-      >
+      <Route path="/scanner">
         <PageScanner />
       </Route>
       <Route path="/feedback-setup">

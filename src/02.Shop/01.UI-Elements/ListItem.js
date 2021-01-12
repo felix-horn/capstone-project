@@ -33,7 +33,7 @@ export default function ListItem({
   onEnter,
   isFocused,
 }) {
-  const [isIconsShown, setIsIconsShown] = useState(false)
+  const [isEditOptionsShown, setIsEditOptionsShown] = useState(false)
   const title = getItemTitle(database, itemId)
   const isChecked = getItemCheckStatus(database, itemId)
   const scannerIconColoring = getScannerIconColoring()
@@ -52,14 +52,14 @@ export default function ListItem({
       <Title
         value={title}
         onChange={handleInputChange}
-        onKeyUp={handleOnKeyUp}
-        onFocus={showIcons}
-        onBlur={hideIcons}
+        onKeyUp={actionIfEnter}
+        onFocus={showEditOptions}
+        onBlur={hideEditOptions}
         autoFocus={isFocused}
         isCrossedOut={isChecked}
         data-testid="title-list-item"
       />
-      {isIconsShown && (
+      {isEditOptionsShown && (
         <>
           <ScannerButton
             onClick={navigateToScanner}
@@ -80,16 +80,16 @@ export default function ListItem({
     changeTitle(event.target.value)
   }
 
-  function handleOnKeyUp(event) {
+  function actionIfEnter(event) {
     event.key === 'Enter' && !isChecked && onEnter()
   }
 
-  function showIcons() {
-    setIsIconsShown(true)
+  function showEditOptions() {
+    setIsEditOptionsShown(true)
   }
 
-  function hideIcons() {
-    raceConditionTimer = setTimeout(() => setIsIconsShown(false), 0)
+  function hideEditOptions() {
+    raceConditionTimer = setTimeout(() => setIsEditOptionsShown(false), 0)
     return () => clearTimeout(raceConditionTimer)
   }
 

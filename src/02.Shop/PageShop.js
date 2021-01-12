@@ -78,7 +78,7 @@ export default function ShopPage({
         deleteListItem={(id) => handleDeleteListItem(id, shopId)}
       />
       <FooterPositioned
-        onClick={undoDelete}
+        onClick={handleUndoButtonClick}
         visibilityButtonUndo={visibilityButtonUndo}
       />
     </>
@@ -97,6 +97,9 @@ export default function ShopPage({
   function handleDeleteListItem(itemId, shopId) {
     deleteListItem(itemId, shopId)
     cacheDeletedListItem(itemId, shopId)
+  }
+  function handleUndoButtonClick() {
+    visibilityButtonUndo === 'shown' && undoDelete()
   }
 }
 

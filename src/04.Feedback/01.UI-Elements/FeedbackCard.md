@@ -14,7 +14,7 @@ Success
 <FeedbackCard
   className="green"
   header="Item Title"
-  text={`wurde Shop Title hinzugefügt.`}
+  text="wurde Shop Title wieder hinzugefügt."
 />
 ```
 
