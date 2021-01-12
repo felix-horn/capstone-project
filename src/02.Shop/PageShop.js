@@ -33,11 +33,10 @@ export default function ShopPage({
   rearrangeListOrder,
   deleteShop,
 }) {
-  const {
-    visibilityButtonUndo,
-    cacheDeletedListItem,
-    undoDelete,
-  } = useUndoDelete(database, addListItem)
+  const { stateButtonUndo, cacheDeletedListItem, undoDelete } = useUndoDelete(
+    database,
+    addListItem
+  )
 
   const shopId = useLocation().state.shopId
   const [isMenuVisible, setIsMenuVisible] = useState(false)
@@ -79,7 +78,7 @@ export default function ShopPage({
       />
       <FooterPositioned
         onClick={handleUndoButtonClick}
-        visibilityButtonUndo={visibilityButtonUndo}
+        stateButtonUndo={stateButtonUndo}
       />
     </>
   )
@@ -99,7 +98,7 @@ export default function ShopPage({
     cacheDeletedListItem(itemId, shopId)
   }
   function handleUndoButtonClick() {
-    visibilityButtonUndo === 'shown' && undoDelete()
+    stateButtonUndo === 'active' && undoDelete()
   }
 }
 

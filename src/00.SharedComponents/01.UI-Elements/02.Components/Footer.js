@@ -4,11 +4,11 @@ import UndoIcon from '@material-ui/icons/Undo'
 
 Footer.propTypes = {
   onClick: PropTypes.func.isRequired,
-  visibilityButtonUndo: PropTypes.string,
+  stateButtonUndo: PropTypes.string,
   className: PropTypes.string,
 }
 
-export default function Footer({ onClick, visibilityButtonUndo, className }) {
+export default function Footer({ onClick, stateButtonUndo, className }) {
   const colorUndoIcon = getColorUndoIcon()
   return (
     <FooterLayout className={className}>
@@ -20,10 +20,10 @@ export default function Footer({ onClick, visibilityButtonUndo, className }) {
     </FooterLayout>
   )
   function getColorUndoIcon() {
-    switch (visibilityButtonUndo) {
-      case 'grayedOut':
+    switch (stateButtonUndo) {
+      case 'inactive':
         return 'var(--light-gray)'
-      case 'shown':
+      case 'active':
         return 'var(--dark-gray)'
       default:
         return 'var(--white)'

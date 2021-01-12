@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { getItemCheckStatus, getItemTitle } from '../services/database.services'
 
 export default function useUndoDelete(database, addListItem) {
-  const [visibilityButtonUndo, setVisibilityButtonUndo] = useState('hidden')
+  const [stateButtonUndo, setStateButtonUndo] = useState('')
   const [deletedListItem, setDeletedListItem] = useState({})
 
   return {
-    visibilityButtonUndo,
+    stateButtonUndo,
     cacheDeletedListItem,
     undoDelete,
   }
@@ -15,11 +15,11 @@ export default function useUndoDelete(database, addListItem) {
     const title = getItemTitle(database, targetId)
     const isChecked = getItemCheckStatus(database, targetId)
     setDeletedListItem({ shopId, title, isChecked })
-    setVisibilityButtonUndo('shown')
+    setStateButtonUndo('active')
   }
 
   function undoDelete() {
-    setVisibilityButtonUndo('grayedOut')
+    setStateButtonUndo('inactive')
     addListItem(
       deletedListItem.shopId,
       deletedListItem.title,
