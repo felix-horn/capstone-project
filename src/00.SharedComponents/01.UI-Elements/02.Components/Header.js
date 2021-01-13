@@ -10,20 +10,17 @@ Header.propTypes = {
   className: PropTypes.string,
 }
 
-export default function Header({ onMenuClick, shopId, className }) {
+export default function Header({ onMenuClick, className }) {
   const history = useHistory()
   return (
     <LayoutWrapper className={className}>
-      <BackButton onClick={navigateBack} data-testid="back-button">
-        <ArrowBackIcon />
-      </BackButton>
+      <BackButton onClick={navigateBack} data-testid="back-button" />
       {onMenuClick && (
         <MenuButton onClick={onMenuClick} data-testid="menu-button" />
       )}
     </LayoutWrapper>
   )
   function navigateBack() {
-    // history.replace(shopId ? { pathname: '/shop', state: { shopId } } : '/')
     history.goBack()
   }
 }
@@ -38,7 +35,7 @@ const LayoutWrapper = styled.div`
   grid-template-columns: 60px auto 60px;
 `
 
-const BackButton = styled.div`
+const BackButton = styled(ArrowBackIcon)`
   grid-column: 1;
   margin-top: 2px;
   color: var(--dark-gray);

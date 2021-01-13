@@ -27,7 +27,6 @@ describe('Footer', () => {
       <Footer onClick={onClickMock} stateButtonUndo="inactive" />
     )
     const undoButton = getByTestId('undo-button')
-    const buttonColor = window.getComputedStyle(undoButton)
     // only provides "currentColor" - probably because it's a nested Material UI Icon
     expect(undoButton.fill).toBe('var(--dark-gray)')
   })
