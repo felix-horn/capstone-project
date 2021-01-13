@@ -9,7 +9,7 @@ import ScanIcon from '@material-ui/icons/CropFree'
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import FeedbackCard from './01.UI-Elements/FeedbackCard'
 import ButtonRectangle from './01.UI-Elements/ButtonRectangle'
-import { getItemTitle, getShopTitle } from '../services/database.services'
+import { getItemTitle } from '../services/database.services'
 
 PageFeedbackSetup.propTypes = {
   database: PropTypes.object.isRequired,
@@ -57,11 +57,8 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
 
   function navigateBackToShop() {
     history.goBack()
-    /*   history.replace({
-      pathname: `/shop/${getShopTitle(database, shopId)}`,
-      state: { shopId }, 
-    })*/
   }
+
   function navigateBackToScanner() {
     history.replace({
       pathname: '/scanner',

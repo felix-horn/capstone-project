@@ -18,15 +18,4 @@ describe('Menu', () => {
     user.click(deleteButton)
     expect(deleteShopMock).toHaveBeenCalledTimes(1)
   })
-
-  it('links to correct href', () => {
-    const deleteShopMock = jest.fn()
-    const { getByTestId } = renderWithRouter(
-      <Menu deleteShop={deleteShopMock} />
-    )
-    const deleteButton = getByTestId('delete-button')
-    user.click(deleteButton)
-    const href = deleteButton.href
-    expect(href).toMatch('/')
-  })
 })

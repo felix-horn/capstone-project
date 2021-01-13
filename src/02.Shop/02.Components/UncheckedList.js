@@ -73,9 +73,10 @@ export default function UncheckedList({
       </Droppable>
     </DragDropContext>
   )
+
   function giveHapticFeedback() {
     if (window.navigator.vibrate) {
-      window.navigator.vibrate(10)
+      window.navigator.vibrate(5)
     }
   }
 

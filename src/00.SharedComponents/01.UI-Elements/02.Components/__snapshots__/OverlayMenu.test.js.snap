@@ -48,11 +48,9 @@ exports[`OverlayMenu renders correctly 1`] = `
   <div
     class="c1 c2"
   >
-    <a
-      aria-current="page"
-      class="c3 active"
+    <div
+      class="c3"
       data-testid="delete-button"
-      href="/"
     >
       <svg
         aria-hidden="true"
@@ -65,7 +63,7 @@ exports[`OverlayMenu renders correctly 1`] = `
         />
       </svg>
       Liste unwiderruflich löschen
-    </a>
+    </div>
   </div>
 </div>
 `;

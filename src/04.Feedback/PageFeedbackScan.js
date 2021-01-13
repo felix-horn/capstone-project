@@ -132,12 +132,14 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
       }
     </PageLayout>
   )
+
   function navigateBackToScanner() {
     history.replace({
       pathname: '/scanner',
       state: { useCase: 'uncheckItem' },
     })
   }
+
   function navigateToShop() {
     history.replace({
       pathname: `/shop/${shopTitlesToMatchingItems[0]}`,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 Status.propTypes = {
   useCase: PropTypes.string.isRequired,
-  itemTitle: PropTypes.string.isRequired,
+  itemTitle: PropTypes.string,
 }
 
 export default function Status({ useCase, itemTitle }) {

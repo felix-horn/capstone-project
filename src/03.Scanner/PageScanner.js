@@ -20,11 +20,11 @@ export default function PageScanner() {
   const shopId = location.state?.shopId
   const itemTitle = location.state?.title
 
-  const pathname = useCase === 'setup' ? '/feedback-setup' : '/feedback-scan'
+  // const pathname = useCase === 'setup' ? '/feedback-setup' : '/feedback-scan'
   useEffect(() => {
     if (barcode === '') return
     history.replace({
-      pathname,
+      pathname: useCase === 'setup' ? '/feedback-setup' : '/feedback-scan',
       state: { itemId, shopId, barcode },
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
