@@ -90,9 +90,9 @@ export default function UncheckedList({
     // insert id in new position
     rearrangedUncheckedIds.splice(newIndexInUncheckedIds, 0, draggedId)
     // new index within ALL IDs of the shop (including checked IDs) must be determined
-    const newIdPrecedingDraggedId =
+    const idPrecedingDraggedId =
       rearrangedUncheckedIds[newIndexInUncheckedIds - 1]
-    rearrangeListOrder(draggedId, newIdPrecedingDraggedId)
+    rearrangeListOrder(draggedId, idPrecedingDraggedId, shopId)
   }
 
   function handleEnter(targetId) {

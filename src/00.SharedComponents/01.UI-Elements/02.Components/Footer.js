@@ -9,14 +9,10 @@ Footer.propTypes = {
 }
 
 export default function Footer({ onClick, stateButtonUndo, className }) {
-  const colorUndoIcon = getColorUndoIcon()
+  const color = getColorUndoIcon()
   return (
     <FooterLayout className={className}>
-      <UndoIcon
-        onClick={onClick}
-        style={{ color: colorUndoIcon }}
-        data-testid="undo-button"
-      />
+      <UndoIcon onClick={onClick} style={{ color }} data-testid="undo-button" />
     </FooterLayout>
   )
   function getColorUndoIcon() {
