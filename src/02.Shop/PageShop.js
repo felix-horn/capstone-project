@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import Quagga from 'quagga'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
@@ -41,6 +42,13 @@ export default function ShopPage({
   const shopId = useLocation().state.shopId
   const [isMenuVisible, setIsMenuVisible] = useState(false)
   const [isItemFocused, setIsItemFocused] = useState(false)
+
+  useEffect(() => {
+    console.log(Quagga)
+    // deactivates camera in case the user clicked on back button on PageScanner
+    Quagga.canvas.ctx.image !== null && Quagga.stop()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>

@@ -20,6 +20,7 @@ export default function App() {
     deleteListItem,
     deleteShop,
   } = useDatabase()
+
   return (
     <Switch>
       <Route exact path="/">

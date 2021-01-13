@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Quagga from 'quagga'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
@@ -16,6 +17,13 @@ export default function OverviewPage({ database, addShop }) {
   const [isOverlayVisible, setIsOverlayVisible] = useState(false)
   const [buttonNavigationClass, setButtonNavigationClass] = useState('')
   const allShopIds = database.shops.allIds
+
+  useEffect(() => {
+    // deactivates camera in case the user clicked on back button on PageScanner
+    Quagga.canvas.ctx.image !== null && Quagga.stop()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <PageLayout>
       {isOverlayVisible && (
