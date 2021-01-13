@@ -56,10 +56,11 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
   )
 
   function navigateBackToShop() {
-    history.replace({
+    history.goBack()
+    /*   history.replace({
       pathname: `/shop/${getShopTitle(database, shopId)}`,
-      state: { shopId },
-    })
+      state: { shopId }, 
+    })*/
   }
   function navigateBackToScanner() {
     history.replace({
