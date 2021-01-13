@@ -15,7 +15,12 @@ export default function ButtonCircle({
   className,
 }) {
   return (
-    <ButtonLayout onClick={onClick} className={className} variant={variant}>
+    <ButtonLayout
+      onClick={onClick}
+      variant={variant}
+      className={className}
+      data-testid="button"
+    >
       {children}
     </ButtonLayout>
   )
