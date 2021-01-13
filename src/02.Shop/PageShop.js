@@ -44,9 +44,8 @@ export default function ShopPage({
   const [isItemFocused, setIsItemFocused] = useState(false)
 
   useEffect(() => {
-    console.log(Quagga)
     // deactivates camera in case the user clicked on back button on PageScanner
-    Quagga.canvas.ctx.image !== null && Quagga.stop()
+    Quagga.canvas.ctx.image !== null && setTimeout(() => Quagga.stop())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -92,12 +91,12 @@ export default function ShopPage({
     changeItemTitle(id, fieldValue)
     setIsItemFocused(false)
   }
+  function toggleMenu() {
+    setIsMenuVisible(!isMenuVisible)
+  }
   function handleAddListItem() {
     addListItem(shopId)
     setIsItemFocused(true)
-  }
-  function toggleMenu() {
-    setIsMenuVisible(!isMenuVisible)
   }
   function handleDeleteListItem(itemId, shopId) {
     deleteListItem(itemId, shopId)

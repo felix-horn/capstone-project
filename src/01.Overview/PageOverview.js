@@ -20,7 +20,7 @@ export default function OverviewPage({ database, addShop }) {
 
   useEffect(() => {
     // deactivates camera in case the user clicked on back button on PageScanner
-    Quagga.canvas.ctx.image !== null && Quagga.stop()
+    Quagga.canvas.ctx.image !== null && setTimeout(() => Quagga.stop())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
