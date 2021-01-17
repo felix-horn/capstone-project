@@ -8,22 +8,31 @@ import ScannerIcon from '@material-ui/icons/CropFree'
 import ButtonLabeledCircle from '../01.UI-Elements/ButtonLabeledCircle'
 
 OverlayNavigation.propTypes = {
-  onClick: PropTypes.func.isRequired,
+  onBackgroundClick: PropTypes.func.isRequired,
   addShop: PropTypes.func.isRequired,
   className: PropTypes.string,
 }
 
-export default function OverlayNavigation({ onClick, addShop, className }) {
+export default function OverlayNavigation({
+  onBackgroundClick,
+  addShop,
+  className,
+}) {
   const history = useHistory()
   const newShopId = uuid()
 
   return (
     <>
-      <OpaqueBackground onClick={onClick} className={className} />
+      <OpaqueBackground
+        onClick={onBackgroundClick}
+        className={className}
+        data-testid="opaque-background"
+      />
       <ButtonAddShop
         title="Neues Geschäft hinzufügen"
         onClick={handleAddShopClick}
         variant="small"
+        data-testid="button-add-shop"
       >
         <AddShopIcon />
       </ButtonAddShop>

@@ -28,7 +28,7 @@ export default function OverviewPage({ database, addShop }) {
     <PageLayout>
       {isOverlayVisible && (
         <OverlayNavigationPositioned
-          onClick={handleOverlayClick}
+          onBackgroundClick={handleOverlayClick}
           addShop={addShop}
         />
       )}
