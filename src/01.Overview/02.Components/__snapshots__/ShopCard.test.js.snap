@@ -2,13 +2,12 @@
 
 exports[`ShopCard renders correctly 1`] = `
 .c1 {
-  margin-bottom: 8px !important;
   font-size: 1.2rem;
   font-weight: 400;
   color: var(--almost-black);
 }
 
-.c2 {
+.c3 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -20,21 +19,20 @@ exports[`ShopCard renders correctly 1`] = `
   gap: 5px;
 }
 
-.c3 {
+.c4 {
   border: 1px solid var(--light-gray);
   border-radius: 2px;
   height: 15px;
   width: 15px;
 }
 
-.c4 {
+.c5 {
   margin: 0;
   color: var(--dark-gray);
 }
 
-.c5 {
-  margin: 4px 2px 0 !important;
-  padding: 0;
+.c6 {
+  margin: 0;
   font-size: 0.8rem;
   color: var(--light-gray);
 }
@@ -45,36 +43,41 @@ exports[`ShopCard renders correctly 1`] = `
   padding: 15px;
   display: grid;
   gap: 5px;
-  -webkit-text-decoration: none;
-  text-decoration: none;
 }
 
-<a
+.c2 {
+  margin-bottom: 8px;
+}
+
+.c7 {
+  margin: 4px 2px 0;
+}
+
+<div
   class="c0"
   data-testid="shop-card"
-  href="/ShopPage"
 >
   <h2
-    class="c1"
+    class="c1 c2"
   >
     shopX
   </h2>
   <label
-    class="c2"
+    class="c3"
   >
     <div
-      class="c3"
+      class="c4"
     />
     <p
-      class="c4"
+      class="c5"
     >
       itemA
     </p>
   </label>
   <p
-    class="c5"
+    class="c6 c7"
   >
     und 1 abgehakter Eintrag
   </p>
-</a>
+</div>
 `;
