@@ -8,7 +8,7 @@ import ScanIcon from '@material-ui/icons/CropFree'
 
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
 import Explanation from '../00.SharedComponents/01.UI-Elements/02.Components/Explanation'
-import FeedbackCard from './01.UI-Elements/FeedbackCard'
+import FeedbackCard from './02.Components/FeedbackCard'
 import ButtonRectangle from './01.UI-Elements/ButtonRectangle'
 import StoreSelect from './01.UI-Elements/StoreSelect'
 import {
@@ -66,22 +66,12 @@ export default function PageFeedbackScan({ database, uncheckItemViaBarcode }) {
     <PageLayout>
       <HeaderPositioned />
       <Explanation useCase="uncheckItem" />
-      {feedback === 'success' && (
-        <FeedbackCard
-          className="green"
-          header={itemTitlesMatchingBarcode.join(' / ')}
-          text={`wurde ${shopTitlesToMatchingItems.join(
-            ' / '
-          )} wieder hinzugefügt.`}
-        />
-      )}
-      {feedback === 'failure' && (
-        <FeedbackCard
-          className="red"
-          header={barcode}
-          text="Keinem Deiner Produkte ist dieser Barcode zugeordnet."
-        />
-      )}
+      <FeedbackCard
+        feedback={feedback}
+        barcode={barcode}
+        itemTitles={itemTitlesMatchingBarcode}
+        shopTitles={shopTitlesToMatchingItems}
+      />
       <ButtonRectangle
         title={
           feedback === 'success' ? 'Weiteren Code scannen' : 'Erneut scannen'

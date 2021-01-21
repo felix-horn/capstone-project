@@ -7,7 +7,7 @@ import SaveIcon from '@material-ui/icons/Save'
 import ScanIcon from '@material-ui/icons/CropFree'
 
 import Header from '../00.SharedComponents/01.UI-Elements/02.Components/Header'
-import FeedbackCard from './01.UI-Elements/FeedbackCard'
+import FeedbackCard from './02.Components/FeedbackCard'
 import ButtonRectangle from './01.UI-Elements/ButtonRectangle'
 import { getItemTitle } from '../services/database.services'
 
@@ -37,11 +37,7 @@ export default function PageFeedbackSetup({ database, changeBarcode }) {
     <PageLayout>
       <HeaderPositioned shopId={shopId} />
       <ItemTitle>{itemTitle}</ItemTitle>
-      <FeedbackCard
-        className="yellow"
-        header={barcode}
-        text="Ist dies die Nummer unter dem Barcode des Produkts?"
-      />
+      <FeedbackCard feedback="verify" barcode={barcode} />
       <ButtonRectangle
         title="Speichern"
         onClick={navigateBackToShop}

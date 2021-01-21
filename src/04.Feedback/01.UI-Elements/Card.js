@@ -2,14 +2,14 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
 FeedbackCard.propTypes = {
-  className: PropTypes.string.isRequired,
+  variant: PropTypes.string.isRequired,
   header: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
 }
 
-export default function FeedbackCard({ className, header, text }) {
+export default function FeedbackCard({ variant, header, text }) {
   return (
-    <CardLayout className={className}>
+    <CardLayout variant={variant}>
       <strong>{header}</strong>
       {text}
     </CardLayout>
@@ -27,13 +27,12 @@ const CardLayout = styled.div`
   place-items: center;
   gap: 15px;
 
-  &.yellow {
-    background-color: var(--attention-yellow);
-  }
-  &.green {
-    background-color: var(--confirmation-green);
-  }
-  &.red {
-    background-color: var(--warning-red);
-  }
+  ${(props) =>
+    props.variant === 'green' && 'background-color: var(--confirmation-green);'}
+
+  ${(props) =>
+    props.variant === 'yellow' && 'background-color: var(--attention-yellow);'}
+
+  ${(props) =>
+    props.variant === 'red' && 'background-color: var(--warning-red);'}
 `

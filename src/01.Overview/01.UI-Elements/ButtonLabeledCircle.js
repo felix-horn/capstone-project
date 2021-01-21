@@ -24,9 +24,7 @@ export default function ButtonLabeledCircle({
       data-testid="labeled-circle-button"
     >
       {title}
-      <ButtonCircle /* className="small" */ variant={variant}>
-        {children}
-      </ButtonCircle>
+      <ButtonCircle variant={variant}>{children}</ButtonCircle>
     </ButtonLayout>
   )
 }
