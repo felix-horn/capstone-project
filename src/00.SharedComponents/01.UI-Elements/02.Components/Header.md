@@ -1,0 +1,3 @@
+```js
+<Header onMenuClick={() => {}} />
+```

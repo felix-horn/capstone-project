@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import produce from 'immer'
 import { v4 as uuid } from 'uuid'
 import saveLocally from '../lib/saveLocally'
@@ -24,26 +24,18 @@ export default function useDatabase() {
     saveLocally(STORAGE_KEY, database)
   }, [database])
 
-  const [deletedListItem, setDeletedListItem] = useState({
-    title: '',
-    isChecked: false,
-  })
-
-  const [visibilityUndoButton, setVisibilityUndoButton] = useState('hidden')
-  const fadeTimer = useRef()
-
   return {
     database,
     addShop,
     changeShopTitle,
     addListItem,
     changeItemTitle,
+    changeBarcode,
     toggleIsChecked,
-    deleteListItem,
-    undoDelete,
+    uncheckItemViaBarcode,
     rearrangeListOrder,
+    deleteListItem,
     deleteShop,
-    visibilityUndoButton,
   }
 
   function addShop(newId) {
@@ -82,6 +74,14 @@ export default function useDatabase() {
     )
   }
 
+  function changeBarcode(targetId, barcode) {
+    setDatabase(
+      produce(database, (draft) => {
+        draft.items.byId[targetId].barcode = barcode
+      })
+    )
+  }
+
   function toggleIsChecked(targetId) {
     setDatabase(
       produce(database, (draft) => {
@@ -91,77 +91,59 @@ export default function useDatabase() {
     )
   }
 
-  function rearrangeListOrder(indexFrom, indexTo, shopId) {
-    const idsShopItems = [...database.shops.byId[shopId].items]
-    const [targetItem] = idsShopItems.splice(indexFrom, 1)
-    idsShopItems.splice(indexTo, 0, targetItem)
-
+  function uncheckItemViaBarcode(targetIds) {
     setDatabase(
       produce(database, (draft) => {
-        draft.shops.byId[shopId].items = idsShopItems
+        targetIds.map(
+          (targetId) => (draft.items.byId[targetId].isChecked = false)
+        )
       })
     )
   }
 
-  /* ---------------------- delete ListItem and undo delete --------------------------- */
+  function rearrangeListOrder(draggedId, idPrecedingDraggedId, shopId) {
+    const shopItemIds = [...database.shops.byId[shopId].items]
+    // remove id from initial position
+    const rearrangedShopItemIds = shopItemIds.filter((id) => id !== draggedId)
+    // insert id in new position
+    const newIndexInShopIds =
+      rearrangedShopItemIds.indexOf(idPrecedingDraggedId) + 1
+    rearrangedShopItemIds.splice(newIndexInShopIds, 0, draggedId)
 
-  function deleteListItem(targetId, shopId) {
-    cacheToBeDeletedListItem(targetId, shopId)
-    updateDatabase(targetId, shopId)
-    displayUndoButton()
-  }
-
-  function cacheToBeDeletedListItem(targetId, shopId) {
-    const title = database.items.byId[targetId].title
-    const isChecked = database.items.byId[targetId].isChecked
-    setDeletedListItem({ shopId, title, isChecked })
-  }
-
-  function updateDatabase(targetId, shopId) {
     setDatabase(
       produce(database, (draft) => {
+        draft.shops.byId[shopId].items = rearrangedShopItemIds
+      })
+    )
+  }
+
+  function deleteListItem(itemId, shopId) {
+    setDatabase(
+      produce(database, (draft) => {
+        // remove item's shop allocation
         draft.shops.byId[shopId].items.splice(
-          draft.shops.byId[shopId].items.indexOf(targetId),
+          draft.shops.byId[shopId].items.indexOf(itemId),
           1
         )
-        draft.items.allIds.splice(draft.items.allIds.indexOf(targetId), 1)
-        delete draft.items.byId[targetId]
+        // remove item
+        draft.items.allIds.splice(draft.items.allIds.indexOf(itemId), 1)
+        delete draft.items.byId[itemId]
       })
     )
   }
 
-  function displayUndoButton() {
-    setVisibilityUndoButton('shown')
-    setFadeTimer()
-  }
-
-  function setFadeTimer() {
-    fadeTimer.current && clearTimeout(fadeTimer.current)
-    fadeTimer.current = setTimeout(() => setVisibilityUndoButton('fade'), 4000)
-  }
-
-  function undoDelete() {
-    addListItem(
-      deletedListItem.shopId,
-      deletedListItem.title,
-      deletedListItem.isChecked
-    )
-    setVisibilityUndoButton('hidden')
-    clearTimeout(fadeTimer.current)
-  }
-
-  /* ---------------------- / delete ListItem and undo delete --------------------------- */
-
-  function deleteShop(targetId) {
-    const shopItems = database.shops.byId[targetId].items
+  function deleteShop(shopId) {
+    const idsShopItems = database.shops.byId[shopId].items
     setDatabase(
       produce(database, (draft) => {
-        draft.shops.allIds.splice(draft.shops.allIds.indexOf(targetId), 1)
-        delete draft.shops.byId[targetId]
+        // remove shop
+        draft.shops.allIds.splice(draft.shops.allIds.indexOf(shopId), 1)
+        delete draft.shops.byId[shopId]
+        // remove all items allocated to the shop
         draft.items.allIds = draft.items.allIds.filter(
-          (id) => !shopItems.includes(id)
+          (id) => !idsShopItems.includes(id)
         )
-        shopItems.forEach((idToBeDeleted) => {
+        idsShopItems.forEach((idToBeDeleted) => {
           return delete draft.items.byId[idToBeDeleted]
         })
       })

@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+## BARCODE GROCERY LIST
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Capstone project in the course of my web development bootcamp at neuefische**
 
-## Available Scripts
+![GitHub top language](https://img.shields.io/github/languages/top/JanaHaeusler/Par1?color=%23679FBE&style=plastic)
+![GitHub last commit](https://img.shields.io/github/last-commit/JanaHaeusler/Par1?color=%2314254D&style=plastic)
 
-In the project directory, you can run:
+## Description
 
-### `npm start`
+With "BarcodeGroceryList" it's easier than ever to add an item to your grocery list. You won't ever forget to buy something at the store again.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+0. Set up different lists for different stores.
+1. Open the integrated barcode scanner of the installed PWA via the dedicated short cut on your home screen.
+2. Scan the barcode of the product you wanna add back to your list.
+3. Automatically the item becomes unchecked within the allocated store's list.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Main Features
 
-### `npm test`
+- You can create different lists for different stores.
+- You can easily change the order of items within a list via drag and drop - e.g. to arrange the items in the order they are located at the store.
+- For the setup process, you just need to scan the barcode of each item only once in order to link it with the product.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Motivation
 
-### `npm run build`
+This project was created as part of my graduation from the neuefische coding bootcamp.
+I used to use the Google Keep / Notes app as a grocery list. It sattisfied all my needs and therefore I simply coppied Google's app one to one. With Google's version, however, I had the pain of not being able to put an item back on the list quickly. For some shops I had some 50 checked items in my list. When I wanted to uncheck one specific item in order to buy it the next time I went to that store, I had to navigate to the corresponding shop's list and manually go through all of the 50 items in to uncheck it. With my version, I just need to scann the barcode of the product I would like to uncheck / put back on the list and that's it! Take notes, Google :)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Look & Feel
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![mockup](./README/shopping_mock.jpg)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Demo
 
-### `npm run eject`
+A hosted version can be found here:
+[Shopping](https://capstone-project.felix-horn.vercel.app/)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Tech Stack
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- React
+- React-Router
+- Styled-Components
+- Styleguidist
+- PropTypes
+- React-Testing-Library / JEST
+- Cypress
+- PWA
+- react-beautiful-dnd
+- Normalized Data
+- immer
+- QuaggaJS
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Project setup
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Clone my repository:
 
-## Learn More
+   `$ git clone git@github.com:felix-horn/capstone-project.git`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Install all npm dependencies:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   `$ npm install`
 
-### Code Splitting
+3. To run the app in development mode:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   `$ npm start`
 
-### Analyzing the Bundle Size
+   Then open http://localhost:3000 to view it in the browser.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+4. To run Styleguidist
 
-### Making a Progressive Web App
+   `$ npm run styleguide`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+5. To run unit and component tests:
 
-### Advanced Configuration
+   `$ npm run test`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+6. To run Cypress tests:
 
-### Deployment
+   `$ npm run cy:run`
+   `$ npm run cy:open`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+7. Create a build ready for deployment:
 
-### `npm run build` fails to minify
+   `$ npm run build`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+
+MIT © Felix Horn
+
+---
+
+[neuefische](https://github.com/neuefisch)
